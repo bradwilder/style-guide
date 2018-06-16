@@ -1,0 +1,8 @@
+/node_modules
+/docs
+/composer.lock
+/vendor
+/config.ini
+/config-user.ini
+/config-smtp.ini
+/config-sms.ini
