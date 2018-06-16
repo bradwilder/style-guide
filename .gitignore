@@ -6,3 +6,9 @@
 /config-user.ini
 /config-smtp.ini
 /config-sms.ini
+/app/uploads
+/app/temp
+/app/vendor
+/app/assets/img/uploads
+/app/assets/php/Framework/routes.db
+/app/assets/styles/compiledCSS
