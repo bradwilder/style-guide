@@ -1,0 +1,105 @@
+.tables {
+	border-collapse: collapse;
+	border: 1px solid #bbb;
+	width: 100%;
+	
+	& th,
+	& td {
+		text-align: left;
+	}
+	
+	& th {
+		font-size: 18px;
+		font-weight: bold;
+		padding: 4px;
+		border: 1px solid #bbb;
+	}
+	
+	& td {
+		font-size: 16px;
+		padding: 0 4px;
+		border-right: 1px solid #bbb;
+		border-left: 1px solid #bbb;
+	}
+	
+	& tbody tr {
+		height: 28px;
+	}
+	
+	thead tr th {
+		background-color: #c4d7e8;
+	}
+	
+	&__edit-button {
+		cursor: pointer;
+		padding-right: .25em;
+		
+		&--hide {
+			display: none;	
+		}
+	}
+	
+	&__checkbox {
+		text-align: center !important;
+	}
+	
+	&--sortable {
+		tr th {
+			position: relative;
+		}
+		
+		tr th.sortable {
+			cursor: pointer;
+			padding-right: 15px;
+			
+			span.sortIcon {
+				position: absolute;
+				right: 5px;
+				
+				i {
+					position: relative;
+					vertical-align: middle;
+					
+					&:before {
+						content: '\f0dc';
+					}
+				}
+			}
+			
+			&.headerSortDown,
+			&.headerSortUp {
+				background-color: #6c9dc6;
+				color: #ddd;
+			}
+			
+			&.headerSortDown span.sortIcon i:before {
+				content: '\f0de';
+			}
+			
+			&.headerSortUp span.sortIcon i:before {
+				content: '\f0dd';
+			}
+		}
+	}
+	
+	&--striped {
+		tr.even {
+			background-color: #f8f8ff;
+		}
+		
+		tr.odd {
+			background-color: white;
+		}
+	}
+	
+	&--selectable {
+		tbody tr:not(.th_highlight) {
+			cursor: pointer;
+		}
+		
+		tr.th_highlight {
+			color: #eee;
+			background: #999 !important;
+		}
+	}
+}

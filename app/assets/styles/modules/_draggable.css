@@ -1,0 +1,38 @@
+.draggable {
+	border-style: solid;
+	border-width: .4em;
+	transition: .1s opacity;
+	transition: .3s transform;
+	margin-bottom: .75em;
+	margin-top: 0;
+	
+	&[draggable=true] {
+		cursor: move;
+	}
+	
+	&.moving {
+		opacity: .4;
+		transform: scale(.95);
+	}
+	
+	&.over {
+		border-style: dashed;
+	}
+	
+	&__placeholder {
+		height: 2em;
+		opacity: 0;
+		
+		&.over {
+			opacity: 1;
+		}
+	}
+	
+	&s__container {
+		padding-top: .75em;
+	}
+
+	&s__container.moving &__inner {
+		pointer-events: none;
+	}
+}

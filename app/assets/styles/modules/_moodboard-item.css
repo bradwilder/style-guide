@@ -1,0 +1,53 @@
+.moodboard-item {
+	position: relative;
+	background-color: #eee;
+	display: inline-block;
+	margin: 0 0 2.5em;
+	width: 100%;
+	overflow: hidden;
+	
+	&__image {
+		height: 100%;
+		width: 100%;
+	}
+	
+	&__overlay {
+		position: absolute;
+		height: 100%;
+		width: 100%;
+		top: 0;
+		left: 0;
+		opacity: 0;
+		transition: .3s opacity;
+		color: white;
+		cursor: pointer;
+	}
+	
+	&__overlay__text-container {
+		position: absolute;
+		bottom: 0;
+		font-size: 1.25em;
+		padding: 0 .5em;
+	}
+	
+	&__overlay__title {
+		font-size: 1.33em;
+	}
+	
+	&__overlay__edit-button {
+		font-size: 2em;
+	}
+	
+	&__overlay__text {
+		margin: 0;
+	}
+	
+	&:hover &__image {
+		filter: blur(.8em);
+	}
+	
+	&:hover &__overlay {
+		opacity: 1;
+		background: linear-gradient(60deg, rgba(68,108,179, .6), rgba(103, 65, 114, .3));
+	}
+}

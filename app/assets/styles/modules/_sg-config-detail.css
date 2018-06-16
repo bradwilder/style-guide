@@ -1,0 +1,74 @@
+.sg-config-detail {
+	font-size: 10px;
+	position: relative;
+	
+	&__header {
+		&-buttons {
+			margin-top: .25em;
+			margin-left: .2em;
+			font-size: 3.25em;
+			display: inline;
+			float: right;
+		}
+		
+		&-buttons__sub {
+			margin-top: .1em;
+			margin-left: .2em;
+			font-size: 1.25em;
+			display: inline;
+			float: right;
+		}
+		
+		&-button {
+			vertical-align: top;
+			cursor: pointer;
+			margin-left: .2em;
+			
+			&--dim {
+				opacity: .5;
+				transition: .2s opacity;
+				
+				&:hover {
+					opacity: .8;
+				}
+			} 
+		}
+	}
+	
+	&__switch {
+		font-size: .5em;
+	}
+	
+	&__body {
+		margin: 0 2em;
+	}
+	
+	&__title {
+		display: inline;
+		font-size: 5em;
+		margin-top: 0;
+	}
+	
+	&__desc {
+		font-size: 1.8em;
+		margin-bottom: 0;
+		margin-top: 1.3em;
+		word-wrap: break-word;
+		
+		&__text {
+			margin-left: 1em;
+		}
+	}
+	
+	&__color {
+		margin-left: .5em;
+		height: .8em;
+		width: .8em;
+		border-radius: .8em;
+		display: inline-block;
+	}
+	
+	&__table {
+		margin-top: .8em;
+	}
+}

@@ -1,0 +1,23 @@
+.header {
+	&__brand {
+		float: left;
+		height: 50px;
+		padding: 10px;
+		font-size: 20px;
+		line-height: 20px;
+		margin: 0 30px 0 0;
+	}
+	
+	&__brand-img {
+		max-height: 100%;
+		padding-right: 8px;
+	}
+	
+	&__brand-name {
+		color: #eee;
+	}
+	
+	&__nav {
+		font-size: 16px;
+	}
+}

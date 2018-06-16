@@ -1,0 +1,1 @@
+<div class="arrange-section draggable draggable__placeholder"></div>

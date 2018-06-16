@@ -1,0 +1,22 @@
+.font-listing {
+	td {
+		padding: 10px;
+	}
+	
+	&__label {
+		font-size: 1em;
+		min-width: 200px;
+		
+		p {
+			font-size: 10px;
+		}
+	}
+	
+	&__item {
+		margin: 0;
+	}
+	
+	&--stripe-even {
+		background-color: #F6F7F9;
+	}
+}

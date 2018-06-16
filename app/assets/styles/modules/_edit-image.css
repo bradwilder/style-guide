@@ -1,0 +1,37 @@
+.edit-image {
+	margin-bottom: 5em;
+	margin-top: 0;
+	
+	&:last-child {
+		margin-bottom: 2em;
+	}
+	
+	&__img {
+		width: 100%;
+		border: 1px solid #ddd;
+	}
+	
+	&__list {
+		list-style: none;
+		padding-left: 1.5em;
+	}
+	
+	&__list-item {
+		font-weight: bold;
+		font-size: 1.2em;
+	}
+	
+	&__detail {
+		position: relative;
+	}
+	
+	&__buttons {
+		position: absolute;
+		right: 0;
+		top: .5em;
+	}
+	
+	&__replace-form {
+		display: inline-block;
+	}
+}

@@ -1,0 +1,22 @@
+.comments {
+	font-size: 1.5em;
+	
+	&__list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		
+		&__item {
+			position: relative;
+			background: rgba(0, 0, 0, .015);
+			padding: .55em 1.1em;
+			margin: .55em 0;
+			border-radius: .22em;
+			border: solid .05em rgba(0, 0, 0, .03);
+		}
+	}
+	
+	& &__list &__list {
+		font-size: .98em;
+	}
+}

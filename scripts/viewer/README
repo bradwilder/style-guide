@@ -1,0 +1,5 @@
+This command will create the database, run schema, and insert sample data for my Viewer project. You must configure config.ini and config-user.ini prior to calling this
+The args are:
+ * devMode (not required, but will set up the 'test' database if an argument is provided)
+
+./setup.sh 1

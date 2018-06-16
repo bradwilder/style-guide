@@ -1,0 +1,7 @@
+.popover-list {
+	list-style: none;
+	
+	& li:hover {
+		background: #eee;
+	}
+}

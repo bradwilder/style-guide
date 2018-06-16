@@ -1,0 +1,13 @@
+.page-content {
+	&__container {
+		height: 100%;
+	}
+	
+	&__row {
+		height: 100%;
+	}
+	
+	&__inner-container {
+		height: 100%;
+	}
+}

@@ -1,0 +1,8 @@
+This command will create the router table and setup uploads directories. You must configure config.ini prior to calling this
+ 
+./setupWebServer.sh
+ 
+ 
+This command will clean the web setupWebServer
+ 
+./clean.sh

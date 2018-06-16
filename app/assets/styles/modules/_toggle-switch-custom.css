@@ -1,0 +1,55 @@
+$mainBG: #eee;
+
+$disabled: #8B8B8B;
+$enabled: #929999;
+$border: #DADADA;
+
+$on: #f77c83;
+
+.toggle-switch-custom {
+	position: relative;
+	display: inline-block;
+	height: 2em;
+	width: 1em;
+	background: $mainBG;
+	border-radius: 1em;
+	border: .1em solid $border;
+	transition: border-color .2s;
+	cursor: pointer;
+	box-sizing: border-box;
+	vertical-align: bottom;
+	margin: 0;
+	
+	&:hover:not([data-disabled="true"]) {
+		border-color: $enabled;
+	}
+	
+	&[data-disabled="true"] {
+		cursor: auto;
+		background: transparent;
+	}
+	
+	&__input {
+		display: none;
+	}
+	
+	&__slider {
+		position: absolute;
+		height: .6em;
+		width: .6em;
+		top: 1.1em;
+		left: .1em;
+		background: $enabled;
+		border-radius: 50%;
+		transition: top .25s ease-out;
+	}
+	
+	&__input:checked + &__slider {
+		background: $on;
+		top: .1em;
+	}
+	
+	&__input:disabled + &__slider {
+		background: $disabled;
+	}
+}

@@ -1,0 +1,49 @@
+@import "material-shadows.less";
+
+.card {
+	border-radius: .4em;
+	background-color: #fff;
+	position: relative;
+	
+	&--shadow {
+		.z-depth(4);
+	}
+	
+	&--corners {
+		border-radius: 0;
+	}
+	
+	&__label {
+		text-align: center;
+		font-size: 1em;
+		padding: .9em .5em;
+		margin: 0;
+	}
+	
+	&--left-arrow {
+		overflow-y: visible;
+	}
+	
+	&--left-arrow::after {
+		content: "";
+		width: 0;
+		height: 0;
+		border: 1.5em solid transparent;
+		border-right-color: #fff;
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		left: -3em;
+	}
+	
+	&__container {
+		overflow-y: auto;
+		height: 100%;
+	}	
+	
+	&__list {
+		padding: 1em 2em 1em 3em;
+		/*padding: 1em 3em;*/
+		margin-bottom: 0;
+	}
+}

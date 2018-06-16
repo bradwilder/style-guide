@@ -1,0 +1,54 @@
+.sg-config-uploads {
+	font-size: 18px;
+	
+	&__list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+	
+	&__item {
+		cursor: pointer;
+		
+		&--active {
+			background: lightgray;
+		}
+		
+		&__options {
+			margin-left: .75em;
+			font-size: .9em;
+		}
+		
+		&__option {
+			margin-right: .25em;
+		}
+	}
+	
+	&__folder {
+		font-weight: 600;
+		
+		&:hover {
+			color: #1F3A93;
+		}
+		
+		&__icon {
+			margin-right: .3em;
+			
+			&--open:before {
+				content: '\f01a';
+			}
+
+			&--closed:before {
+				content: '\f18e';
+			}
+		}
+	}
+	
+	&__file {
+		
+	}
+	
+	&__list &__list {
+		margin-left: 1.25em;
+	}
+}

@@ -1,0 +1,10 @@
+.comment {
+	&__cite {
+		font-weight: bold;
+		font-size: 1.2em;
+	}
+	
+	&__date {
+		font-weight: inherit;
+	}
+}

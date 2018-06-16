@@ -1,0 +1,68 @@
+.type {
+	&__title {
+		font-family: 'Source Sans Pro', 'Helvetica', sans-serif;
+		-webkit-font-smoothing: antialiased;
+		text-rendering: optimizeLegibility;
+		text-transform: uppercase;
+		letter-spacing: .03em;
+		font-weight: 200;
+		
+		&--wide {
+			letter-spacing: .05em;
+		}
+		
+		&--no-upper {
+			text-transform: none;
+		}
+		
+		&--darker {
+			font-weight: normal;
+		}
+	}
+	
+	&__desc {
+		font-family: 'Merriweather', serif;
+		-webkit-font-smoothing: antialiased;
+		text-rendering: optimizeLegibility;
+	}
+	
+	&__label {
+		font-family: 'Droid Sans Mono', monospace;
+		-webkit-font-smoothing: antialiased;
+		text-rendering: optimizeLegibility;
+		font-weight: normal;
+		
+		&--emphasis {
+			font-weight: bold;
+		}
+		
+		&--upper {
+			text-transform: uppercase;
+		}
+	}
+	
+	&__link {
+		cursor: pointer;
+		
+		&,
+		&:link,
+		&:visited,
+		&:hover,
+		&:active,
+		&:focus {
+			color: green;
+		}
+	}
+	
+	&__danger {
+		color: red;
+	}
+	
+	&__warning {
+		color: orange;
+	}
+	
+	&__alert {
+		font-style: italic;
+	}
+}

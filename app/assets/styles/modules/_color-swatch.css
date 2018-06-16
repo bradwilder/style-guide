@@ -1,0 +1,32 @@
+.color-swatch {
+	overflow: hidden;
+	display: flex;
+	flex-direction: row;
+	
+	&__tile {
+		display: inline-block;
+		flex-grow: 1;
+
+		&--1 {
+			width: 100%;
+		}
+
+		&--2 {
+			width: 50%;
+		}
+
+		&--3 {
+			width: 33.33333333%;
+		}
+	}
+
+	&__color {
+		height: 15em;
+		cursor: pointer;
+	}
+	
+	&__card {
+		height: 18em;
+	}
+}
+

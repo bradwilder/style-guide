@@ -1,0 +1,27 @@
+.sg-config-font-table-list {
+	font-size: 15px;
+	list-style: none;
+	padding: 0;
+	padding-left: 1em;
+	
+	&__item {
+		cursor: pointer;
+		
+		&--active {
+			background: lightgray;
+		}
+		
+		&__options {
+			margin-left: .75em;
+			font-size: .9em;
+		}
+		
+		&__option {
+			margin-right: .25em;
+		}
+	}
+	
+	& & &__item {
+		font-size: .9em;
+	}
+}

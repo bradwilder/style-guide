@@ -1,0 +1,75 @@
+.page-section {
+	margin-bottom: 2em;
+	margin-top: 14em;
+	
+	&:first-child {
+		margin-top: 2em;
+	}
+	
+	&__content {
+		margin-top: 2em;
+	}
+	
+	&__edit-button {
+		font-size: 3.4em;
+		color: #666;
+	}
+	
+	&__header {
+		border-bottom: .03em solid #ddd;
+		margin-top: 0;
+		padding-bottom: 1em;
+		text-align: center;
+	}
+	
+	&__title {
+		font-size: 5.4em;
+	}
+	
+	&__desc {
+		text-align: center;
+		font-size: 1.8em;
+		margin-top: 1em;
+		margin-bottom: 0;
+	}
+	
+	&__sub {
+		margin-top: 6em;
+		margin-bottom: 2em;
+		
+		&:first-child {
+			margin-top: 2em;
+		}
+		
+		&__content {
+			margin-top: 1em;
+		}
+		
+		&__title {
+			font-size: 4em;
+			margin-bottom: 0;
+			margin-top: 0;
+		}
+		
+		&__desc {
+			font-size: 1.6em;
+			margin-bottom: 0;
+			margin-top: .5em;
+		}
+		
+		&__sub {
+			margin-top: 3em;
+			margin-bottom: 3em;
+			
+			&__title {
+				font-size: 2.8em;
+				margin-bottom: 0em;
+				margin-top: 0em;
+			}
+		}
+	}
+	
+	&--b-margin {
+		margin-bottom: 1.5em;
+	}
+}

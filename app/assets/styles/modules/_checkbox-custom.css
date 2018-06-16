@@ -1,0 +1,57 @@
+$mainBG: #eee;
+
+$disabled: #8B8B8B;
+$enabled: #929999;
+$border: #DADADA;
+
+$on: #f77c83;
+
+.checkbox-custom {
+	font-size: 50px;
+	display: inline-block;
+	height: .8em;
+	width: .8em;
+	
+	&__bg {
+		height: 100%;
+		width: 100%;
+		background: $mainBG;
+		position: relative;
+		border-radius: .2em;
+		border: .08em solid $border;
+		transition: border-color .2s;
+		cursor: pointer;
+		
+		&:hover:not([data-disabled="true"]) {
+			border-color: $enabled;
+		}
+		
+		&[data-disabled="true"] {
+			cursor: auto;
+			background: transparent;
+		}
+	}
+	
+	&__input {
+		display: none;
+	}
+	
+	&__check {
+		color: $on;
+		position: absolute;
+		font-size: .65em;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		opacity: 0;
+		transition: .2s opacity;
+	}
+	
+	&__input:checked + &__check {
+		opacity: 1;
+	}
+	
+	&__input:disabled + &__check {
+		color: $disabled;
+	}
+}

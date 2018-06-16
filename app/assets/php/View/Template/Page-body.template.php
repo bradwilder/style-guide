@@ -1,0 +1,1 @@
+<body <?php if ($useMenu) { echo 'class="body-with-header"'; } ?> <?php if ($useTOC) { echo 'data-spy="scroll" data-target="#toc"'; } if ($useMenu && $useTOC) { echo 'data-offset="50"'; } ?>>

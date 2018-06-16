@@ -1,0 +1,46 @@
+.login {
+	font-size: 15px;
+	
+	&__info {
+		padding: 1em;
+	}
+	
+	&__form {
+		width: 90%;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		
+		@mixin atSmall {
+			width: 40em;
+		}
+		
+		&__title {
+			text-align: center;
+		}
+		
+		&__button {
+			width: 100%;
+			margin-top: .5em;
+			margin-bottom: 0;
+		}
+		
+		&__group {
+			position: relative;
+			margin-top: .5em;
+			margin-bottom: 0;
+		}
+		
+		&__icon {
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			left: .5em;
+		}
+		
+		&__icon-input {
+			padding-left: 2em;
+		}
+	}
+}

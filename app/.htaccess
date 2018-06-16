@@ -1,0 +1,11 @@
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ /index.php [L]
+
+Options -Indexes
+
+<files ~ "[Rr][Oo][Uu][Tt][Ee][Ss].[Dd][Bb]">
+	Order allow,deny
+	Deny from all
+</files>

@@ -1,0 +1,10 @@
+This command will create the database, run schema, and add some initial data (including the root user). You must configure config.ini and config-user.ini prior to calling this
+The args are:
+ * devMode (not required, but will set up the 'test' database if an argument is provided)
+ 
+./setupDBServer.sh 1
+
+
+This command will clean the db server. You must configure config.ini prior to calling this
+
+./clean.sh

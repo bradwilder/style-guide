@@ -1,0 +1,38 @@
+.table-of-contents {
+	margin-top: 20px;
+	
+	& > .nav .nav {
+		li {
+			margin: 2px 32px;
+			padding: 3px 5px !important;
+			border-radius: .5em; /* 5px */
+		}
+		
+		li.active {
+			background: #ddd;
+		}
+		
+		a {
+			padding: 0 !important;
+		}
+	}
+	
+	a {
+		margin: 0;
+		padding: 4px 20px !important;
+	}
+	
+	a,
+	a:hover {
+		border: none !important;
+	}
+	
+	li.active > a {
+		color: #1F3A93 !important;
+	}
+	
+	& > .nav > li.active > a,
+	& > .nav > li.active > a:hover {
+		text-decoration: underline;
+	}
+}
