@@ -20,9 +20,9 @@ class StyleguideSection extends DBItemPositioned
 	{
 		$this->writePositionValue();
 		
-		$this->writeBase($this->name, 'name', self::$tableName, true);
-		$this->writeBase($this->enabled, 'enabled', self::$tableName, false, false, true);
-		$this->writeBase($this->userCreated, 'userCreated', self::$tableName, false, false, true);
+		$this->writeBase($this->name, 'name', true);
+		$this->writeBase($this->enabled, 'enabled', false, false, true);
+		$this->writeBase($this->userCreated, 'userCreated', false, false, true);
 	}
 	
 	public function read()
@@ -53,11 +53,6 @@ class StyleguideSection extends DBItemPositioned
 	public function delete()
 	{
 		parent::deleteBase();
-	}
-	
-	public function writePosition()
-	{
-		parent::writePositionBase();
 	}
 	
 	public static function nameExists(string $name, int $selfID = null)

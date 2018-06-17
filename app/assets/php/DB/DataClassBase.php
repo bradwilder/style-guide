@@ -9,15 +9,12 @@ abstract class DBItem
 	protected function __construct(Db $db, int $id = null, string $tableName = null)
 	{
 		$this->db = $db;
+		$this->id = $id;
 		$this->table = $tableName;
 		
-		if ($id)
+		if (!$id && $tableName)
 		{
-			$this->id = $id;
-		}
-		else if ($tableName)
-		{
-			$this->insertTable($tableName);
+			$this->id = $this->insertTable($tableName);
 		}
 	}
 	
@@ -25,9 +22,9 @@ abstract class DBItem
 	public abstract function read();
 	public abstract function delete();
 	
-	protected function writeBase($value, string $columnName, string $tableName, bool $quote = false, bool $allowNull = false, bool $boolean = false)
+	protected function writeBase($value, string $columnName, bool $quote = false, bool $allowNull = false, bool $boolean = false)
 	{
-		$this->writeBaseImpl($value, $columnName, 'id', $tableName, $quote, $allowNull, $boolean);
+		$this->writeBaseImpl($value, $columnName, 'id', $this->table, $quote, $allowNull, $boolean);
 	}
 	
 	protected function writeBaseImpl($value, string $columnName, string $idName, string $tableName, bool $quote = false, bool $allowNull = false, bool $boolean = false)
@@ -53,16 +50,16 @@ abstract class DBItem
 		}
 	}
 	
-	protected function readTable(string $tableName)
+	protected function readTable(string $tableName, string $primaryColName)
 	{
-		$query = 'select * from ' . $tableName . ' where id = ?';
+		$query = 'select * from ' . $tableName . ' where ' . $primaryColName . ' = ?';
 		$row = $this->db->select($query, 'i', array(&$this->id))[0];
 		$this->setPropertiesFromRow($row);
 	}
 	
 	protected function readBase()
 	{
-		$this->readTable($this->table);
+		$this->readTable($this->table, 'id');
 	}
 	
 	protected function setPropertiesFromRow(array $row)
@@ -92,7 +89,7 @@ abstract class DBItem
 		$query = 'insert into ' . $tableName . ' values ()';
 		$this->db->query($query);
 		
-		$this->id = $this->db->insert_id();
+		return $this->db->insert_id();
 	}
 }
 
@@ -122,7 +119,7 @@ abstract class DBItemParent extends DBItem
 	
 	private function insertParent(int $typeID = null)
 	{
-		$this->insertTable($this->parentTable);
+		$this->id = $this->insertTable($this->parentTable);
 		
 		$this->typeID = $typeID;
 		$this->write();
@@ -144,7 +141,12 @@ abstract class DBItemParent extends DBItem
 	
 	protected function writeTypeID()
 	{
-		$this->writeBase($this->typeID, 'typeID', $this->parentTable);
+		$this->writeBase($this->typeID, 'typeID');
+	}
+	
+	protected function writeBase($value, string $columnName, bool $quote = false, bool $allowNull = false, bool $boolean = false)
+	{
+		$this->writeBaseImpl($value, $columnName, 'id', $this->parentTable, $quote, $allowNull, $boolean);
 	}
 	
 	protected function writeSub($value, string $columnName, bool $quote = false, bool $allowNull = false, bool $boolean = false)
@@ -154,7 +156,7 @@ abstract class DBItemParent extends DBItem
 	
 	public function readWhole($subordinateTableName = null)
 	{
-		$this->readTable($this->parentTable);
+		$this->readTable($this->parentTable, 'id');
 		
 		if ($subordinateTableName)
 		{
@@ -164,9 +166,7 @@ abstract class DBItemParent extends DBItem
 	
 	private function readSub(string $tableName)
 	{
-		$query = 'select * from ' . $tableName . ' where baseID = ?';
-		$row = $this->db->select($query, 'i', array(&$this->id))[0];
-		$this->setPropertiesFromRow($row);
+		$this->readTable($tableName, 'baseID');
 	}
 	
 	protected function deleteBase()
@@ -191,10 +191,10 @@ abstract class DBItemPositioned extends DBItem
 	
 	protected function writePositionValue()
 	{
-		$this->writeBase($this->position, 'position', $this->table);
+		$this->writeBase($this->position, 'position');
 	}
 	
-	protected function writePositionBase()
+	public function writePosition()
 	{
 		$query = 'select case when max(position) is not null then max(position) + 1 else 1 end as next_position from ' . $this->table;
 		$row = $this->db->select($query)[0];
@@ -202,8 +202,6 @@ abstract class DBItemPositioned extends DBItem
 		$this->position = $row['next_position'];
 		$this->writePositionValue();
 	}
-	
-	public abstract function writePosition();
 }
 
 ?>

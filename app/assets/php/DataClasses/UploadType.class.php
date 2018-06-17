@@ -13,7 +13,7 @@ class UploadType extends DBItem
 	
 	public function write()
 	{
-		$this->writeBase($this->code, 'code', self::$tableName, true);
+		$this->writeBase($this->code, 'code', true);
 	}
 	
 	public function read()

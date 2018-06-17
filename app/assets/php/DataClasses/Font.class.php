@@ -37,8 +37,8 @@ class Font extends DBItemParent
 	{
 		$this->writeTypeID();
 		
-		$this->writeBase($this->name, 'name', self::$tableName, true);
-		$this->writeBase($this->alphabetID, 'alphabetID', self::$tableName, false, true);
+		$this->writeBase($this->name, 'name', true);
+		$this->writeBase($this->alphabetID, 'alphabetID', false, true);
 	}
 	
 	public function read($subordinateTableName = null)

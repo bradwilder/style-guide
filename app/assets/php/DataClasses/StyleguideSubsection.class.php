@@ -22,12 +22,12 @@ class StyleguideSubsection extends DBItem
 	
 	public function write()
 	{
-		$this->writeBase($this->name, 'name', self::$tableName, true);
-		$this->writeBase($this->description, 'description', self::$tableName, true);
-		$this->writeBase($this->position, 'position', self::$tableName);
-		$this->writeBase($this->enabled, 'enabled', self::$tableName, false, false, true);
-		$this->writeBase($this->sectionID, 'sectionID', self::$tableName);
-		$this->writeBase($this->parentSubsectionID, 'parentSubsectionID', self::$tableName, false, true);
+		$this->writeBase($this->name, 'name', true);
+		$this->writeBase($this->description, 'description', true);
+		$this->writeBase($this->position, 'position');
+		$this->writeBase($this->enabled, 'enabled', false, false, true);
+		$this->writeBase($this->sectionID, 'sectionID');
+		$this->writeBase($this->parentSubsectionID, 'parentSubsectionID', false, true);
 	}
 	
 	public function read()

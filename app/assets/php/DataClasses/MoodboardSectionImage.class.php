@@ -19,10 +19,10 @@ class MoodboardSectionImage extends DBItem
 	
 	public function write()
 	{
-		$this->writeBase($this->sectionID, 'sectionID', self::$tableName);
-		$this->writeBase($this->imageID, 'imageID', self::$tableName);
-		$this->writeBase($this->position, 'position', self::$tableName);
-		$this->writeBase($this->sizeID, 'sizeID', self::$tableName);
+		$this->writeBase($this->sectionID, 'sectionID');
+		$this->writeBase($this->imageID, 'imageID');
+		$this->writeBase($this->position, 'position');
+		$this->writeBase($this->sizeID, 'sizeID');
 	}
 	
 	public function read()

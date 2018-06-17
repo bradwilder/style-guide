@@ -20,10 +20,10 @@ class StyleguideFontTableListing extends DBItem
 	
 	public function write()
 	{
-		$this->writeBase($this->text, 'text', self::$tableName, true);
-		$this->writeBase($this->itemID, 'itemID', self::$tableName);
-		$this->writeBase($this->fontID, 'fontID', self::$tableName);
-		$this->writeBase($this->position, 'position', self::$tableName);
+		$this->writeBase($this->text, 'text', true);
+		$this->writeBase($this->itemID, 'itemID');
+		$this->writeBase($this->fontID, 'fontID');
+		$this->writeBase($this->position, 'position');
 	}
 	
 	public function read()

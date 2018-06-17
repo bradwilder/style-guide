@@ -15,9 +15,9 @@ class MoodboardSectionImageSize extends DBItem
 	
 	public function write()
 	{
-		$this->writeBase($this->name, 'name', self::$tableName, true);
-		$this->writeBase($this->code, 'code', self::$tableName, true);
-		$this->writeBase($this->description, 'description', self::$tableName, true, true);
+		$this->writeBase($this->name, 'name', true);
+		$this->writeBase($this->code, 'code', true);
+		$this->writeBase($this->description, 'description', true, true);
 	}
 	
 	public function read()

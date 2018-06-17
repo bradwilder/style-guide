@@ -14,8 +14,8 @@ class FontType extends DBItem
 	
 	public function write()
 	{
-		$this->writeBase($this->code, 'code', self::$tableName, true);
-		$this->writeBase($this->description, 'description', self::$tableName, true);
+		$this->writeBase($this->code, 'code', true);
+		$this->writeBase($this->description, 'description', true);
 	}
 	
 	public function read()

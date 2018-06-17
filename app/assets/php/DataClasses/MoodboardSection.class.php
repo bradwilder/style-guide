@@ -21,10 +21,10 @@ class MoodboardSection extends DBItemPositioned
 	{
 		$this->writePositionValue();
 		
-		$this->writeBase($this->name, 'name', self::$tableName, true);
-		$this->writeBase($this->description, 'description', self::$tableName, true, true);
-		$this->writeBase($this->position, 'position', self::$tableName);
-		$this->writeBase($this->modeID, 'modeID', self::$tableName);
+		$this->writeBase($this->name, 'name', true);
+		$this->writeBase($this->description, 'description', true, true);
+		$this->writeBase($this->position, 'position');
+		$this->writeBase($this->modeID, 'modeID');
 	}
 	
 	public function read()
@@ -48,11 +48,6 @@ class MoodboardSection extends DBItemPositioned
 	public function delete()
 	{
 		parent::deleteBase();
-	}
-	
-	public function writePosition()
-	{
-		parent::writePositionBase();
 	}
 	
 	public static function nameExists(string $name, int $selfID = null)

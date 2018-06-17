@@ -39,13 +39,13 @@ class StyleguideItem extends DBItemParent
 	{
 		$this->writeTypeID();
 		
-		$this->writeBase($this->name, 'name', self::$tableName, true);
-		$this->writeBase($this->colLg, 'colLg', self::$tableName);
-		$this->writeBase($this->colMd, 'colMd', self::$tableName);
-		$this->writeBase($this->colSm, 'colSm', self::$tableName);
-		$this->writeBase($this->colXs, 'colXs', self::$tableName);
-		$this->writeBase($this->subsectionID, 'subsectionID', self::$tableName);
-		$this->writeBase($this->position, 'position', self::$tableName);
+		$this->writeBase($this->name, 'name', true);
+		$this->writeBase($this->colLg, 'colLg');
+		$this->writeBase($this->colMd, 'colMd');
+		$this->writeBase($this->colSm, 'colSm');
+		$this->writeBase($this->colXs, 'colXs');
+		$this->writeBase($this->subsectionID, 'subsectionID');
+		$this->writeBase($this->position, 'position');
 	}
 	
 	public function read(string $subordinateTableName = null)

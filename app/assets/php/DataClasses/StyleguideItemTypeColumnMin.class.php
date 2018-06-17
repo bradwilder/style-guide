@@ -17,12 +17,12 @@ class StyleguideItemTypeColumnMin extends DBItem
 	
 	public function write()
 	{
-		$this->writeBase($this->typeID, 'typeID', self::$tableName);
-		$this->writeBase($this->code, 'code', self::$tableName, true);
-		$this->writeBase($this->minLG, 'minLG', self::$tableName);
-		$this->writeBase($this->minMD, 'minMD', self::$tableName);
-		$this->writeBase($this->minSM, 'minSM', self::$tableName);
-		$this->writeBase($this->minXS, 'minXS', self::$tableName);
+		$this->writeBase($this->typeID, 'typeID');
+		$this->writeBase($this->code, 'code', true);
+		$this->writeBase($this->minLG, 'minLG');
+		$this->writeBase($this->minMD, 'minMD');
+		$this->writeBase($this->minSM, 'minSM');
+		$this->writeBase($this->minXS, 'minXS');
 	}
 	
 	public function read()

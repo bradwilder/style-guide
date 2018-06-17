@@ -35,8 +35,8 @@ class Upload extends DBItemParent
 	{
 		$this->writeTypeID();
 		
-		$this->writeBase($this->filePath, 'filePath', self::$tableName, true);
-		$this->writeBase($this->parentID, 'parentID', self::$tableName, false, true);
+		$this->writeBase($this->filePath, 'filePath', true);
+		$this->writeBase($this->parentID, 'parentID', false, true);
 	}
 	
 	public function read(string $subordinateTableName = null)

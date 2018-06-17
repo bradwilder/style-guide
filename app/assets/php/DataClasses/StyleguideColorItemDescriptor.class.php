@@ -15,9 +15,9 @@ class StyleguideColorItemDescriptor extends DBItem
 	
 	public function write()
 	{
-		$this->writeBase($this->description, 'description', self::$tableName, true);
-		$this->writeBase($this->itemID, 'itemID', self::$tableName);
-		$this->writeBase($this->position, 'position', self::$tableName);
+		$this->writeBase($this->description, 'description', true);
+		$this->writeBase($this->itemID, 'itemID');
+		$this->writeBase($this->position, 'position');
 	}
 	
 	public function read()

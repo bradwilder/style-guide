@@ -15,9 +15,9 @@ class StyleguideIconTableListing extends DBItem
 	
 	public function write()
 	{
-		$this->writeBase($this->html, 'html', self::$tableName, true);
-		$this->writeBase($this->itemID, 'itemID', self::$tableName);
-		$this->writeBase($this->position, 'position', self::$tableName);
+		$this->writeBase($this->html, 'html', true);
+		$this->writeBase($this->itemID, 'itemID');
+		$this->writeBase($this->position, 'position');
 	}
 	
 	public function read()

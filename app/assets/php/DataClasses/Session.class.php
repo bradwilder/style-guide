@@ -18,8 +18,8 @@ class Session extends DBItem
 	
 	public function write()
 	{
-		$this->writeBase($this->userID, 'userID', self::$tableName);
-		$this->writeBase($this->hash, 'hash', self::$tableName, true);
+		$this->writeBase($this->userID, 'userID');
+		$this->writeBase($this->hash, 'hash', true);
 		
 		if ($this->expire)
 		{
@@ -27,9 +27,9 @@ class Session extends DBItem
 			$this->db->query($query, 'ii', array(&$this->expire, &$this->id));
 		}
 		
-		$this->writeBase($this->ip, 'ip', self::$tableName, true);
-		$this->writeBase($this->agent, 'agent', self::$tableName, true);
-		$this->writeBase($this->cookieCRC, 'cookieCRC', self::$tableName, true);
+		$this->writeBase($this->ip, 'ip', true);
+		$this->writeBase($this->agent, 'agent', true);
+		$this->writeBase($this->cookieCRC, 'cookieCRC', true);
 	}
 	
 	public function read()

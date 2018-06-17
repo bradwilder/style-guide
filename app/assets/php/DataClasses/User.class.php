@@ -24,14 +24,14 @@ class User extends DBItem
 	
 	public function write()
 	{
-		$this->writeBase($this->displayName, 'displayName', self::$tableName, true, true);
-		$this->writeBase($this->email, 'email', self::$tableName, true);
-		$this->writeBase($this->phone, 'phone', self::$tableName, true, true);
-		$this->writeBase($this->password, 'password', self::$tableName, true);
-		$this->writeBase($this->isActive, 'isActive', self::$tableName, false, false, true);
-		$this->writeBase($this->isDeleted, 'isDeleted', self::$tableName, false, false, true);
-		$this->writeBase($this->resetNeeded, 'resetNeeded', self::$tableName, false, false, true);
-		$this->writeBase($this->groupID, 'groupID', self::$tableName);
+		$this->writeBase($this->displayName, 'displayName', true, true);
+		$this->writeBase($this->email, 'email', true);
+		$this->writeBase($this->phone, 'phone', true, true);
+		$this->writeBase($this->password, 'password', true);
+		$this->writeBase($this->isActive, 'isActive', false, false, true);
+		$this->writeBase($this->isDeleted, 'isDeleted', false, false, true);
+		$this->writeBase($this->resetNeeded, 'resetNeeded', false, false, true);
+		$this->writeBase($this->groupID, 'groupID');
 	}
 	
 	public function read()

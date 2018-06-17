@@ -22,10 +22,10 @@ class Color extends DBItem
 			$this->variant2 = '';
 		}
 		
-		$this->writeBase($this->name, 'name', self::$tableName, true);
-		$this->writeBase($this->hex, 'hex', self::$tableName, true);
-		$this->writeBase($this->variant1, 'variant1', self::$tableName, true, true);
-		$this->writeBase($this->variant2, 'variant2', self::$tableName, true, true);
+		$this->writeBase($this->name, 'name', true);
+		$this->writeBase($this->hex, 'hex', true);
+		$this->writeBase($this->variant1, 'variant1', true, true);
+		$this->writeBase($this->variant2, 'variant2', true, true);
 	}
 	
 	public function read()
