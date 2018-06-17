@@ -2,19 +2,9 @@
 
 class Db
 {
-	protected static $connection;
+	private static $connection;
 	
-	public function connect()
-	{
-		if (!isset(self::$connection))
-		{
-			$this->setConnection();
-		}
-		
-		return self::$connection;
-	}
-	
-	private function setConnection(string $dbName = null)
+	public function __construct(string $dbName = null)
 	{
 		$config = parse_ini_file(__SITE_PATH . '/../config.ini');
 		if ($config['username'] == '')
@@ -25,15 +15,9 @@ class Db
 		self::$connection = new mysqli($config['host'], $config['username'], $config['password'], $dbName ? $dbName : $config['dbname']);
 	}
 	
-	public function query(string $query, string $types = null, array $params = null)
-	{
-		$stmt = $this->createStatement($query, $types, $params);
-		return $stmt->execute();
-	}
-	
 	private function createStatement(string $query, string $types = null, array $params = null)
 	{
-		$stmt = $this->connect()->prepare($query);
+		$stmt = self::$connection->prepare($query);
 		if (!$stmt)
 		{
 			throw new Exception("Can't prepare statement: " . $this->error());
@@ -45,6 +29,12 @@ class Db
 			call_user_func_array(array($stmt, 'bind_param'), $params);
 		}
 		return $stmt;
+	}
+	
+	public function query(string $query, string $types = null, array $params = null)
+	{
+		$stmt = $this->createStatement($query, $types, $params);
+		return $stmt->execute();
 	}
 	
 	public function select(string $query, string $types = null, array $params = null)
@@ -67,22 +57,17 @@ class Db
 	
 	public function error()
 	{
-		return $this->connect()->error;
+		return self::$connection->error;
 	}
 	
 	public function insert_id()
 	{
-		return $this->connect()->insert_id;
+		return self::$connection->insert_id;
 	}
 	
 	public function close()
 	{
-		return $this->connect()->close();
-	}
-	
-	public function changeDatabase(string $dbName)
-	{
-		$this->setConnection($dbName);
+		return self::$connection->close();
 	}
 }
 
