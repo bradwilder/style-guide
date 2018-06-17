@@ -24,10 +24,10 @@ abstract class DBItem
 	
 	protected function writeBase($value, string $columnName, bool $quote = false, bool $allowNull = false, bool $boolean = false)
 	{
-		$this->writeBaseImpl($value, $columnName, 'id', $this->table, $quote, $allowNull, $boolean);
+		$this->writeBaseTable($value, $columnName, 'id', $this->table, $quote, $allowNull, $boolean);
 	}
 	
-	protected function writeBaseImpl($value, string $columnName, string $idName, string $tableName, bool $quote = false, bool $allowNull = false, bool $boolean = false)
+	protected function writeBaseTable($value, string $columnName, string $idName, string $tableName, bool $quote = false, bool $allowNull = false, bool $boolean = false)
 	{
 		if (($allowNull && isset($value)) || (!$allowNull && $value) || $boolean)
 		{
@@ -146,7 +146,7 @@ abstract class DBItemParent extends DBItem
 	
 	protected function writeSub($value, string $columnName, bool $quote = false, bool $allowNull = false, bool $boolean = false)
 	{
-		$this->writeBaseImpl($value, $columnName, 'baseID', $this->subTable, $quote, $allowNull, $boolean);
+		$this->writeBaseTable($value, $columnName, 'baseID', $this->subTable, $quote, $allowNull, $boolean);
 	}
 	
 	public function readWhole($subordinateTableName = null)
