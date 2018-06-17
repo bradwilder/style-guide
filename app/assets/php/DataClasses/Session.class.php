@@ -42,7 +42,7 @@ class Session extends DBItem
 	
 	public function delete()
 	{
-		parent::deleteBase(self::$tableName);
+		parent::deleteBase();
 	}
 }
 

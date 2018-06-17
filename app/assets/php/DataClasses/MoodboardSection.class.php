@@ -14,12 +14,12 @@ class MoodboardSection extends DBItemPositioned
 	
 	public function __construct(Db $db, int $id = null)
 	{
-		parent::__construct($db, $id, self::$tableName);
+		parent::__construct($db, self::$tableName, $id);
 	}
 	
 	public function write()
 	{
-		$this->writePositionValue(self::$tableName);
+		$this->writePositionValue();
 		
 		$this->writeBase($this->name, 'name', self::$tableName, true);
 		$this->writeBase($this->description, 'description', self::$tableName, true, true);
@@ -29,7 +29,7 @@ class MoodboardSection extends DBItemPositioned
 	
 	public function read()
 	{
-		parent::readBase(self::$tableName);
+		parent::readBase();
 	}
 	
 	public function readExtra()
@@ -47,12 +47,12 @@ class MoodboardSection extends DBItemPositioned
 	
 	public function delete()
 	{
-		parent::deleteBase(self::$tableName);
+		parent::deleteBase();
 	}
 	
 	public function writePosition()
 	{
-		parent::writePositionBase(self::$tableName);
+		parent::writePositionBase();
 	}
 	
 	public static function nameExists(string $name, int $selfID = null)

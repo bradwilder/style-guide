@@ -27,12 +27,12 @@ class StyleguideItemTypeColumnMin extends DBItem
 	
 	public function read()
 	{
-		parent::readBase(self::$tableName);
+		parent::readBase();
 	}
 	
 	public function delete()
 	{
-		parent::deleteBase(self::$tableName);
+		parent::deleteBase();
 	}
 }
 

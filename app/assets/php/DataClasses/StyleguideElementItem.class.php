@@ -24,12 +24,12 @@ class StyleguideElementItem extends StyleguideItem
 	{
 		parent::write();
 		
-		$this->writeSub($this->upload1ID, 'upload1ID', self::$tableName, false, true);
-		$this->writeSub($this->upload2ID, 'upload2ID', self::$tableName, false, true);
-		$this->writeSub($this->upload3ID, 'upload3ID', self::$tableName, false, true);
-		$this->writeSub($this->upload4ID, 'upload4ID', self::$tableName, false, true);
-		$this->writeSub($this->upload5ID, 'upload5ID', self::$tableName, false, true);
-		$this->writeSub($this->upload6ID, 'upload6ID', self::$tableName, false, true);
+		$this->writeSub($this->upload1ID, 'upload1ID', false, true);
+		$this->writeSub($this->upload2ID, 'upload2ID', false, true);
+		$this->writeSub($this->upload3ID, 'upload3ID', false, true);
+		$this->writeSub($this->upload4ID, 'upload4ID', false, true);
+		$this->writeSub($this->upload5ID, 'upload5ID', false, true);
+		$this->writeSub($this->upload6ID, 'upload6ID', false, true);
 	}
 	
 	public function read()

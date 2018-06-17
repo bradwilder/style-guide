@@ -17,8 +17,8 @@ class CSSFont extends Font
 	{
 		parent::write();
 		
-		$this->writeSub($this->directory, 'directory', self::$tableName, true, true);
-		$this->writeSub($this->cssFile, 'cssFile', self::$tableName, true);
+		$this->writeSub($this->directory, 'directory', true, true);
+		$this->writeSub($this->cssFile, 'cssFile', true);
 	}
 	
 	public function read()

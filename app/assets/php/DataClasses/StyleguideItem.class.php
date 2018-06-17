@@ -37,7 +37,7 @@ class StyleguideItem extends DBItemParent
 	
 	public function write()
 	{
-		$this->writeTypeID(self::$tableName);
+		$this->writeTypeID();
 		
 		$this->writeBase($this->name, 'name', self::$tableName, true);
 		$this->writeBase($this->colLg, 'colLg', self::$tableName);
@@ -50,7 +50,7 @@ class StyleguideItem extends DBItemParent
 	
 	public function read(string $subordinateTableName = null)
 	{
-		$this->readWhole(self::$tableName, $subordinateTableName);
+		$this->readWhole($subordinateTableName);
 	}
 	
 	public function readExtra()
@@ -65,7 +65,7 @@ class StyleguideItem extends DBItemParent
 
 	public function delete()
 	{
-		$this->deleteBase(self::$tableName);
+		parent::deleteBase();
 	}
 	
 	public function writePosition()

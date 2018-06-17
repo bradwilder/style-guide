@@ -28,7 +28,7 @@ class StyleguideFontTableListing extends DBItem
 	
 	public function read()
 	{
-		parent::readBase(self::$tableName);
+		parent::readBase();
 	}
 	
 	public function readExtra()
@@ -53,7 +53,7 @@ class StyleguideFontTableListing extends DBItem
 	
 	public function delete()
 	{
-		parent::deleteBase(self::$tableName);
+		parent::deleteBase();
 	}
 	
 	public function writePosition()

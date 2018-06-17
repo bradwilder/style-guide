@@ -51,7 +51,7 @@ class User extends DBItem
 	
 	public function delete()
 	{
-		parent::deleteBase(self::$tableName);
+		parent::deleteBase();
 	}
 	
 	public function readExtra()

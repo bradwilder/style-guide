@@ -29,12 +29,12 @@ class StyleguideColorItem extends StyleguideItem
 	{
 		parent::write();
 		
-		$this->writeSub($this->color1ID, 'color1ID', self::$tableName, false, true);
-		$this->writeSub($this->color2ID, 'color2ID', self::$tableName, false, true);
-		$this->writeSub($this->color3ID, 'color3ID', self::$tableName, false, true);
-		$this->writeSub($this->color4ID, 'color4ID', self::$tableName, false, true);
-		$this->writeSub($this->color5ID, 'color5ID', self::$tableName, false, true);
-		$this->writeSub($this->color6ID, 'color6ID', self::$tableName, false, true);
+		$this->writeSub($this->color1ID, 'color1ID', false, true);
+		$this->writeSub($this->color2ID, 'color2ID', false, true);
+		$this->writeSub($this->color3ID, 'color3ID', false, true);
+		$this->writeSub($this->color4ID, 'color4ID', false, true);
+		$this->writeSub($this->color5ID, 'color5ID', false, true);
+		$this->writeSub($this->color6ID, 'color6ID', false, true);
 	}
 	
 	public function read()

@@ -30,7 +30,7 @@ class Color extends DBItem
 	
 	public function read()
 	{
-		parent::readBase(self::$tableName);
+		parent::readBase();
 	}
 	
 	public function delete()
@@ -44,7 +44,7 @@ class Color extends DBItem
 			$colorItem->delete();
 		}
 		
-		parent::deleteBase(self::$tableName);
+		parent::deleteBase();
 	}
 	
 	public static function nameExists(string $name, int $selfID = null)

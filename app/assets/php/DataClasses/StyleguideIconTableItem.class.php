@@ -19,7 +19,7 @@ class StyleguideIconTableItem extends StyleguideItem
 	{
 		parent::write();
 		
-		$this->writeSub($this->fontID, 'fontID', self::$tableName);
+		$this->writeSub($this->fontID, 'fontID');
 	}
 	
 	public function read()

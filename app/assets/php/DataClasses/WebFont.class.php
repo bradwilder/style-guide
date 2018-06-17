@@ -17,8 +17,8 @@ class WebFont extends Font
 	{
 		parent::write();
 		
-		$this->writeSub($this->importURL, 'importURL', self::$tableName, true);
-		$this->writeSub($this->website, 'website', self::$tableName, true, true);
+		$this->writeSub($this->importURL, 'importURL', true);
+		$this->writeSub($this->website, 'website', true, true);
 	}
 	
 	public function read()
