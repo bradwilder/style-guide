@@ -9,7 +9,7 @@ class StyleguideItemType extends DBItem
 	
 	public function __construct(Db $db, int $id = null)
 	{
-		parent::__construct($db, $id, self::$tableName);
+		parent::__construct($db, self::$tableName, $id);
 	}
 	
 	public function write()

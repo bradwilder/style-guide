@@ -6,13 +6,13 @@ abstract class DBItem
 	public $id;
 	protected $table;
 	
-	protected function __construct(Db $db, int $id = null, string $tableName = null)
+	protected function __construct(Db $db, string $tableName, int $id = null, bool $create = true)
 	{
 		$this->db = $db;
-		$this->id = $id;
 		$this->table = $tableName;
+		$this->id = $id;
 		
-		if (!$id && $tableName)
+		if (!$id && $create)
 		{
 			$this->id = $this->insertTable($tableName);
 		}
@@ -96,16 +96,16 @@ abstract class DBItem
 abstract class DBItemParent extends DBItem
 {
 	public $typeID;
-	private $parentTable;
+	private $subTable;
 	
 	// Extra properties
 	public $type;
 	
 	protected function __construct(Db $db, int $id = null, int $typeID = null, string $tableName, string $subordinateTableName = null)
 	{
-		parent::__construct($db, $id, $subordinateTableName);
+		parent::__construct($db, $tableName, $id, false);
 		
-		$this->parentTable = $tableName;
+		$this->subTable = $subordinateTableName;
 		
 		if (!$id && $tableName)
 		{
@@ -119,7 +119,7 @@ abstract class DBItemParent extends DBItem
 	
 	private function insertParent(int $typeID = null)
 	{
-		$this->id = $this->insertTable($this->parentTable);
+		$this->id = $this->insertTable($this->table);
 		
 		$this->typeID = $typeID;
 		$this->write();
@@ -127,7 +127,7 @@ abstract class DBItemParent extends DBItem
 	
 	private function insertSub()
 	{
-		$query = 'insert into ' . $this->table . ' (baseID) values (?)';
+		$query = 'insert into ' . $this->subTable . ' (baseID) values (?)';
 		$this->db->query($query, 'i', array(&$this->id));
 	}
 	
@@ -144,34 +144,19 @@ abstract class DBItemParent extends DBItem
 		$this->writeBase($this->typeID, 'typeID');
 	}
 	
-	protected function writeBase($value, string $columnName, bool $quote = false, bool $allowNull = false, bool $boolean = false)
-	{
-		$this->writeBaseImpl($value, $columnName, 'id', $this->parentTable, $quote, $allowNull, $boolean);
-	}
-	
 	protected function writeSub($value, string $columnName, bool $quote = false, bool $allowNull = false, bool $boolean = false)
 	{
-		$this->writeBaseImpl($value, $columnName, 'baseID', $this->table, $quote, $allowNull, $boolean);
+		$this->writeBaseImpl($value, $columnName, 'baseID', $this->subTable, $quote, $allowNull, $boolean);
 	}
 	
 	public function readWhole($subordinateTableName = null)
 	{
-		$this->readTable($this->parentTable, 'id');
+		$this->readTable($this->table, 'id');
 		
 		if ($subordinateTableName)
 		{
-			$this->readSub($subordinateTableName);
+			$this->readTable($subordinateTableName, 'baseID');
 		}
-	}
-	
-	private function readSub(string $tableName)
-	{
-		$this->readTable($tableName, 'baseID');
-	}
-	
-	protected function deleteBase()
-	{
-		parent::deleteTable($this->parentTable);
 	}
 }
 
@@ -181,7 +166,7 @@ abstract class DBItemPositioned extends DBItem
 	
 	protected function __construct(Db $db, string $table, int $id = null)
 	{
-		parent::__construct($db, $id, $table);
+		parent::__construct($db, $table, $id);
 		
 		if (!$id)
 		{
