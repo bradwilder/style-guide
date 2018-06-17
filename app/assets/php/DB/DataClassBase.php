@@ -121,8 +121,7 @@ abstract class DBItemParent extends DBItem
 	{
 		$this->id = $this->insertTable($this->table);
 		
-		$this->typeID = $typeID;
-		$this->write();
+		$this->writeTypeID($typeID);
 	}
 	
 	private function insertSub()
@@ -139,8 +138,13 @@ abstract class DBItemParent extends DBItem
 		$this->type->read();
 	}
 	
-	protected function writeTypeID()
+	protected function writeTypeID(int $typeID = null)
 	{
+		if ($typeID)
+		{
+			$this->typeID = $typeID;
+		}
+		
 		$this->writeBase($this->typeID, 'typeID');
 	}
 	
