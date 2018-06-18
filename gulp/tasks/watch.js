@@ -11,17 +11,32 @@ gulp.task('watch', function()
 		proxy: "http://localhost:8888"
 	});
 	
+	var phpunitOptions =
+	{
+		bootstrap: "./vendor/autoload.php",
+		includePath: "./app/assets/php/Tests/*",
+		configurationFile: './app/assets/php/Tests/phpunit.xml'
+	};
+	
 	watch(['./app/index.php', 'app/assets/php/**/*.php'], function()
 	{
 		browserSync.reload();
+	});
+	
+	watch(['app/assets/php/DB/**/*.php', 'app/assets/php/DataClasses/**/*.php', 'app/assets/php/Tests/DataClasses/**/*.php'], function()
+	{
+		let options = Object.assign(phpunitOptions);
+		options.testSuite = 'DataClasses';
 		
-		var options =
-		{
-			bootstrap: "./vendor/autoload.php",
-			includePath: "./app/assets/php/Tests/*"
-		};
-		gulp.src('./app/assets/php/Tests/phpunit.xml')
-			.pipe(phpunit('./vendor/bin/phpunit', options).on('error', function() {}));
+		gulp.src('').pipe(phpunit('./vendor/bin/phpunit', options).on('error', function() {}));
+	});
+	
+	watch(['app/assets/php/phpauth/**/*.php', 'app/assets/php/Tests/phpauth/**/*.php'], function()
+	{
+		let options = Object.assign(phpunitOptions);
+		options.testSuite = 'Auth';
+		
+		gulp.src('').pipe(phpunit('./vendor/bin/phpunit', options).on('error', function() {}));
 	});
 	
 	watch(['./app/assets/styles/**/*.less', './app/assets/styles/**/*.css', '!./app/assets/styles/compiledCSS/**/*.css'], function()

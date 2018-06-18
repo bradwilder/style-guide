@@ -16,6 +16,12 @@ require_once __ASSETS_PATH . '/php/Framework/Auth/EmailDelegate.php';
 require_once __ASSETS_PATH . '/php/Framework/Auth/SMSDelegate.php';
 require_once __ASSETS_PATH . '/php/Model/UserFactory.class.php';
 
+require_once __ASSETS_PATH . '/php/DB/DataClassBase.php';
+require_once __ASSETS_PATH . '/php/DataClasses/User.class.php';
+require_once __ASSETS_PATH . '/php/DataClasses/Session.class.php';
+require_once __ASSETS_PATH . '/php/DataClasses/Requests.class.php';
+require_once __ASSETS_PATH . '/php/DataClasses/Attempt.class.php';
+
 use PHPAuth\Auth;
 use PHPAuth\CookieDelegate_i;
 

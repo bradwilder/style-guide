@@ -22,7 +22,13 @@
 	
     <testsuites>
         <testsuite name="AllTests">
-        <directory>.</directory>
+        	<directory>.</directory>
+        </testsuite>
+		<testsuite name="DataClasses">
+	        <directory>./DataClasses/.</directory>
+        </testsuite>
+		<testsuite name="Auth">
+        	<directory>./phpauth/.</directory>
         </testsuite>
     </testsuites>
 	<php>
