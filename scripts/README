@@ -1,12 +1,12 @@
 There are 4 .ini files in this directory which must be copied to the project root directory (i.e., the same level as the app directory) and then configured. These include database connection info, root user info, and smtp and sms connection info.
 
-This command will set up the web server and db server for use. You must configure config.ini and config-user.ini prior to calling this
+This command will set up the web server and db server for use. You must configure config.ini and config-user.ini prior to calling this. The database must be running prior to calling this.
 The args are:
  * devMode (not required, but will set up the 'test' database if an argument is provided)
 
 ./setupAllServers.sh 1
 
 
-This command will clean up the web server and db server. You must configure config.ini prior to calling this
+This command will clean up the web server and db server. You must configure config.ini prior to calling this. The database must be running prior to calling this.
 
 ./cleanAllServers.sh
