@@ -24,7 +24,8 @@ final class StyleguideFontTableListingTest extends TestCase
 	{
 		parent::__construct();
 		
-		$this->db = new Db('test');
+		$this->db = new Db();
+		$this->db->changeDatabase('test');
 	}
 	
 	/**

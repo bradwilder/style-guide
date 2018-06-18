@@ -4,12 +4,22 @@ class Db
 {
 	private static $connection;
 	
-	public function __construct(string $dbName = null)
+	private function connect()
+	{
+		if (!isset(self::$connection))
+		{
+			$this->setConnection();
+		}
+		
+		return self::$connection;
+	}
+	
+	private function setConnection(string $dbName = null)
 	{
 		$config = parse_ini_file(__SITE_PATH . '/../config.ini');
 		if ($config['username'] == '')
 		{
-			return false;
+			return;
 		}
 		
 		self::$connection = new mysqli($config['host'], $config['username'], $config['password'], $dbName ? $dbName : $config['dbname']);
@@ -17,7 +27,7 @@ class Db
 	
 	private function createStatement(string $query, string $types = null, array $params = null)
 	{
-		$stmt = self::$connection->prepare($query);
+		$stmt = $this->connect()->prepare($query);
 		if (!$stmt)
 		{
 			throw new Exception("Can't prepare statement: " . $this->error());
@@ -57,17 +67,22 @@ class Db
 	
 	public function error()
 	{
-		return self::$connection->error;
+		return $this->connect()->error;
 	}
 	
 	public function insert_id()
 	{
-		return self::$connection->insert_id;
+		return $this->connect()->insert_id;
 	}
 	
 	public function close()
 	{
-		return self::$connection->close();
+		return $this->connect()->close();
+	}
+	
+	public function changeDatabase(string $dbName)
+	{
+		$this->setConnection($dbName);
 	}
 }
 
