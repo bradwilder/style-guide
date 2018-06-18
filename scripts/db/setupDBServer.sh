@@ -15,6 +15,10 @@ fi
 ./initData.sh $dbname $username $password $ip $port
 ./createUser.sh $dbname $username $password $ip $port
 
+sed "s/%dbName%/test/g" _dropDB.sql > dropDB.sql
+mysql -h $ip --port=$port -u $username -p$password < dropDB.sql 2>/dev/null
+rm -rf dropDB.sql
+
 if [ ! -z "$1" ]; then
   ./runSchema.sh "test" $username $password $ip $port
 fi

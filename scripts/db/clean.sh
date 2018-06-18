@@ -14,3 +14,7 @@ fi
 sed "s/%dbName%/$dbName/g" _dropDB.sql > dropDB.sql
 mysql -h $ip --port=$port -u $username -p$password < dropDB.sql 2>/dev/null
 rm -rf dropDB.sql
+
+sed "s/%dbName%/test/g" _dropDB.sql > dropDB.sql
+mysql -h $ip --port=$port -u $username -p$password < dropDB.sql 2>/dev/null
+rm -rf dropDB.sql
