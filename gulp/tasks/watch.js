@@ -25,16 +25,20 @@ gulp.task('watch', function()
 	
 	watch(['app/assets/php/DB/**/*.php', 'app/assets/php/DataClasses/**/*.php', 'app/assets/php/Tests/DataClasses/**/*.php'], function()
 	{
-		let options = Object.assign(phpunitOptions);
-		options.testSuite = 'DataClasses';
+		let options = Object.assign(phpunitOptions,
+		{
+			testSuite: 'DataClasses'
+		});
 		
 		gulp.src('').pipe(phpunit('./vendor/bin/phpunit', options).on('error', function() {}));
 	});
 	
 	watch(['app/assets/php/phpauth/**/*.php', 'app/assets/php/Tests/phpauth/**/*.php'], function()
 	{
-		let options = Object.assign(phpunitOptions);
-		options.testSuite = 'Auth';
+		let options = Object.assign(phpunitOptions,
+		{
+			testSuite: 'Auth'
+		});
 		
 		gulp.src('').pipe(phpunit('./vendor/bin/phpunit', options).on('error', function() {}));
 	});
