@@ -2,6 +2,12 @@
 
 Style Guide is a web application that contains two pages: a style guide and a mood board. It is intended to be used by designers and developers during the course of designing and then developing an application. The goal was to give a simpler solution to creating and maintaining a style guide, which is often done in Photoshop and which can be quite cumbersome.
 
+## Features
+
+* User authentication
+* Mood board for collecting design inspiration, with ability to add comments
+* Style guide for documenting color schemes, fonts, icons, and other design elements
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See [Deployment](https://github.com/bradwilder/style-guide#Deployment) for notes on how to deploy the project on a live system.
