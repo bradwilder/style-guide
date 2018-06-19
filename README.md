@@ -4,7 +4,7 @@ Style Guide is a web application that contains two pages: a style guide and a mo
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See Deployment for notes on how to deploy the project on a live system.
 
 ### Prerequisites
 
@@ -38,7 +38,7 @@ npm install
 composer install
 ```
 
-5. Copy the 4 .ini files from the scripts directory to the project root directory
+5. Copy the 4 .ini files from the scripts directory to the project root directory:
 ```
 cp ./scripts/config*.ini .
 ```
@@ -91,9 +91,9 @@ npm run testServer
 
 ## Deployment
 
-Deploying to a live server is similar to the setup for development purposes. These instructions will assume you're using separate database and web servers, but you don't have to.
+Deploying to a live server is similar to the setup for development purposes. These instructions will assume you're using a separate database and web server, but that isn't a requirement.
 
-1. Repeat steps 1-7 from the Installing section for each of the database and web servers
+1. On both the database and web servers, repeat steps 1-7 from the Installing section
 
 2. On the web server, run the setup scripts:
 ```
@@ -109,9 +109,9 @@ cd scripts/db
 cd ../..
 ```
 
-4. Repeat step 9 from the Installing section on the web server
+4. On the web server, repeat step 9 from the Installing section
 
-5. Run the command launch BrowserSync:
+5. Run this command to launch BrowserSync:
 ```
 gulp previewDist
 ```
