@@ -4,7 +4,7 @@ Style Guide is a web application that contains two pages: a style guide and a mo
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See Deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See [Deployment](https://github.com/bradwilder/style-guide#Deployment) for notes on how to deploy the project on a live system.
 
 ### Prerequisites
 
@@ -38,16 +38,16 @@ npm install
 composer install
 ```
 
-5. Copy the 4 .ini files from the scripts directory to the project root directory:
+5. Copy the 4 .ini files from the `scripts` directory to the project root directory:
 ```
 cp ./scripts/config*.ini .
 ```
 
 6. Configure the 4 .ini files that were just copied to the root directory
 
-7. Start the MySQL database, so the schema can run. If you use MAMP for development purposes, there are gulp tasks that will start and stop the MAMP server:
+7. Start the MySQL database so the schema can run. If you use MAMP for development purposes, there are gulp tasks that will start and stop the MAMP server:
 ```
-// Starting the server; the Dev command will point to the app directory, the Dist command will point to the docs directory:
+// Starting the server; the mampDev command will point to the `app` directory, the mampDist command will point to the `docs` directory:
 gulp mampDev
 gulp mampDist
 
@@ -75,7 +75,7 @@ gulp watch
 
 #### Installing with pre-installed style guide
 
-To setup the application with a style guide pre-populated for testing, follow the Installing instructions, but replace step 8 with this:
+To setup the application with a style guide pre-populated for testing, follow the [Installing](https://github.com/bradwilder/style-guide#Installing) instructions, but replace step 8 with this:
 ```
 cd scripts/viewer
 ./setup.sh 1
@@ -93,7 +93,7 @@ npm run testServer
 
 Deploying to a live server is similar to the setup for development purposes. These instructions will assume you're using a separate database and web server, but that isn't a requirement.
 
-1. On both the database and web servers, repeat steps 1-7 from the Installing section
+1. On both the database and web servers, repeat steps 1-7 from the [Installing](https://github.com/bradwilder/style-guide#Installing) section
 
 2. On the web server, run the setup scripts:
 ```
@@ -109,7 +109,7 @@ cd scripts/db
 cd ../..
 ```
 
-4. On the web server, repeat step 9 from the Installing section
+4. On the web server, repeat step 9 from the [Installing](https://github.com/bradwilder/style-guide#Installing) section
 
 5. Run this command to launch BrowserSync:
 ```
