@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts":
-  {
+  "scripts": {
     "testServer": "./vendor/bin/phpunit --config ./app/assets/php/Tests/phpunit.xml"
   },
   "author": "",
@@ -23,7 +22,7 @@
     "gulp-modernizr": "^1.0.0-alpha",
     "gulp-phpunit": "^0.25.0",
     "gulp-postcss": "^7.0.0",
-    "gulp-rename": "^1.2.3",
+    "gulp-rename": "^1.3.0",
     "gulp-rev": "^7.1.2",
     "gulp-uglify": "^3.0.0",
     "gulp-usemin": "^0.3.28",
