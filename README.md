@@ -120,6 +120,10 @@ gulp previewDist
 
 * **Brad Wilder** - [bradwilder](https://github.com/bradwilder)
 
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/bradwilder/style-guide/blob/master/LICENSE) file for details
+
 ## Acknowledgments
 
 * The PHPAuth library was originally forked from [here](https://github.com/PHPAuth/PHPAuth)
