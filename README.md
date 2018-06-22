@@ -1,12 +1,12 @@
 # Style Guide
 
-Style Guide is a web application that helps you build a style guide and a mood board. It is intended to be used by designers and developers during the course of designing and then developing an application. The goal was to give a simpler solution to creating and maintaining a style guide, which is often done in Photoshop and which can be quite cumbersome.
+Style Guide is a web application that lets you easily construct a style guide and a mood board. It is intended to be used by designers and developers during the course of designing and then developing an application. The goal was to give a simpler solution to creating and maintaining a style guide, which is often done in Photoshop and which can be quite cumbersome.
 
 ## Features
 
 * User authentication
 * Mood board for collecting design inspiration, with ability to add comments
-* Style guide for documenting color schemes, fonts, icons, and other design elements
+* Style guide for documenting color schemes, typography, icons, and other design elements
 
 ## Getting Started
 
