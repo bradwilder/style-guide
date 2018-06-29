@@ -8,7 +8,7 @@
 				</div>
 			<?php } ?>
 			
-			<h1 class="page-section__title <?php if (in_array('Edit', $currentUser->roles)) {echo 'editable-section__title';} ?> type__title editable-section__display" data-editable="name"><?=htmlentities($section->name)?></h1>
+			<h1 class="page-section__title <?php if (in_array('Edit', $currentUser->roles)) {echo 'editable-section__display';} ?> type__title" data-editable="name"><?=htmlentities($section->name)?></h1>
 			<input class="type__title type__title--no-upper editable-section__input editable-section__input--large editable-section__input--center editable-section__input--full-width iv_inputValidator" type="text" name="name" data-except-self="<?=$section->id?>" data-initially-valid maxlength="50">
 		</div>
 		<?php if ($section->description != '') { ?>
