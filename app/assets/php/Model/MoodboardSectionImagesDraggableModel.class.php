@@ -13,7 +13,7 @@ class MoodboardSectionImagesDraggableModel extends DraggablesModel
 			$sections = array();
 			foreach ($section->images as $index=>$image)
 			{
-				$draggableSection = self::createDraggablesSection($image['id'], $image['name'], true, $index + 1);
+				$draggableSection = new DraggablesSection($image['id'], $image['name'], true, $index + 1);
 				$sections []= $draggableSection;
 			}
 			

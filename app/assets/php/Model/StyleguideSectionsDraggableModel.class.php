@@ -11,7 +11,7 @@ class StyleguideSectionsDraggableModel extends DraggablesModel
 			$section = new StyleguideSection($this->db, $row['id']);
 			$section->read();
 			
-			$draggableSection = self::createDraggablesSection($section->id, $section->name, $section->enabled, $index + 1);
+			$draggableSection = new DraggablesSection($section->id, $section->name, $section->enabled, $index + 1);
 			$sections []= $draggableSection;
 		}
 		

@@ -13,7 +13,7 @@ class StyleguideSubsectionsDraggableModel extends DraggablesModel
 				$subsection = new StyleguideSubsection($this->db, $row['id']);
 				$subsection->read();
 				
-				$draggableSection = self::createDraggablesSection($subsection->id, $subsection->name, $subsection->enabled, $index + 1);
+				$draggableSection = new DraggablesSection($subsection->id, $subsection->name, $subsection->enabled, $index + 1);
 				$subsections []= $draggableSection;
 			}
 			

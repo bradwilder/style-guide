@@ -24,17 +24,6 @@ abstract class DraggablesModel extends SimpleModel
 			throw new Exception('Sections must be set');
 		}
 	}
-	
-	protected static function createDraggablesSection($id, $name, $enabled, $position, $description = null)
-	{
-		$draggableSection = new DraggableSection();
-		$draggableSection->id = $id;
-		$draggableSection->name = $name;
-		$draggableSection->description = $description;
-		$draggableSection->enabled = $enabled;
-		$draggableSection->position = $position;
-		return $draggableSection;
-	}
 }
 
 ?>

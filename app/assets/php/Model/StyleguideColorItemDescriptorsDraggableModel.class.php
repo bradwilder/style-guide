@@ -13,7 +13,7 @@ class StyleguideColorItemDescriptorsDraggableModel extends DraggablesModel
 			$sections = array();
 			foreach ($item->descriptors as $index=>$descriptor)
 			{
-				$draggableSection = self::createDraggablesSection($descriptor->id, $descriptor->description, true, $index + 1);
+				$draggableSection = new DraggablesSection($descriptor->id, $descriptor->description, true, $index + 1);
 				$sections []= $draggableSection;
 			}
 			
