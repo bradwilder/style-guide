@@ -4,7 +4,7 @@ class Login
 {
 	constructor()
 	{
-		this.resetToggles = $('.login__reset-toggle');
+		this.resetToggle = $('.login__reset-toggle');
 		
 		this.init();
 		this.events();
@@ -12,12 +12,15 @@ class Login
 	
 	init()
 	{
-		showLogin();
+		if (this.resetToggle.length > 0)
+		{
+			showLogin(this.resetToggle);
+		}
 	}
 	
 	events()
 	{
-		this.resetToggles.click(toggleLoginReset);
+		this.resetToggle.click(toggleLoginReset);
 	}
 }
 
@@ -26,17 +29,17 @@ function toggleLoginReset(e)
 	var action = $(e.target).closest('form').attr('data-action');
 	if (action == 'login')
 	{
-		showReset();
+		showReset($(e.target));
 	}
 	else
 	{
-		showLogin();
+		showLogin($(e.target));
 	}
 }
 
-function showLogin()
+function showLogin($target)
 {
-	var $form = $('.login__form form');
+	var $form = $target.closest('form');
 	$form.find('.login__password-group').prop('disabled', false).fadeIn(200);
 	$form.find('[type=password]').attr('required', 'required');
 	$form.find('[type=submit]').html('Login');
@@ -48,9 +51,9 @@ function showLogin()
 	$form.find('.login__reset-toggle__arrow').removeClass('fa-arrow-circle-o-left').addClass('fa-arrow-circle-o-right');
 }
 
-function showReset()
+function showReset($target)
 {
-	var $form = $('.login__form form');
+	var $form = $target.closest('form');
 	$form.find('.login__password-group').prop('disabled', true).fadeOut(200);
 	$form.find('[type=password]').removeAttr('required');
 	$form.find('[type=submit]').html('Reset Password');
