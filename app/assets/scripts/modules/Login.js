@@ -5,7 +5,6 @@ class Login
 	constructor()
 	{
 		this.resetToggles = $('.login__reset-toggle');
-		this.session = new Session();
 		
 		this.init();
 		this.events();

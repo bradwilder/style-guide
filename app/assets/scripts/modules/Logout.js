@@ -1,4 +1,5 @@
 import Session from './Session';
+import Cookie from './Cookie';
 
 class Logout
 {
@@ -12,7 +13,8 @@ class Logout
 	
 	init()
 	{
-		let session = new Session;
+		let cookie = new Cookie();
+		let session = new Session(cookie);
 		session.setClientOffset();
 		checkSession(session);
 	}
