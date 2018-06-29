@@ -11,7 +11,7 @@
 		<h1 class="page-section__title type__title">Users</h1>
 	</div>
 	
-	<?php echo MVCoutput(UserListModel, Controller_base, UserListView, null, $currentUser, null); ?>
+	<?php echo MVCoutput(UserListModel, Controller_base, SimpleView, 'UserListView--table.template.php', $currentUser, null); ?>
 </section>
 
 <section class="page-section id="branding">

@@ -1,8 +1,8 @@
 <?php
 
-class UserListModel extends Model_base
+class UserListModel extends SimpleModel
 {
-	public function getUsers()
+	public function getData()
 	{
 		$userListItems = Array();
 		$rows = $this->db->select('select id from users order by email');

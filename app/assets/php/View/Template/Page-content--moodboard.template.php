@@ -3,7 +3,7 @@
 include(__ASSETS_PATH . '/php/View/Template/Page-title.template.php');
 
 
-echo MVCoutput(MoodboardSectionsModel, MoodboardSectionsController, MoodboardSectionsView, null, $currentUser, null);
+echo MVCoutput(MoodboardSectionsModel, MoodboardSectionsController, SimpleView, 'MoodboardSections.template.php', $currentUser, null);
 
 
 $commentsModel = new CommentsModel();

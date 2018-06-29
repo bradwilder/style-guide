@@ -2,7 +2,7 @@
 
 class StyleguideElementItemDraggableModel extends DraggablesModel
 {
-	public function getSections()
+	public function getData()
 	{
 		if ($this->id)
 		{		

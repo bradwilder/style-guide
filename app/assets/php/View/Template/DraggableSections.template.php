@@ -1,7 +1,7 @@
-<?php $isDraggable = count($sections) > 1; ?>
+<?php $isDraggable = count($data) > 1; ?>
 
 <div class="draggables__container">
-	<?php foreach ($sections as $section) { ?>
+	<?php foreach ($data as $section) { ?>
 		<div class="draggable__container">
 			<?php
 			if ($isDraggable)

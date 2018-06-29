@@ -15,7 +15,7 @@
 			</tr>
 		</thead>
 		<tbody class="type__label">
-			<?php foreach ($userListItems as $userListItem) {
+			<?php foreach ($data as $userListItem) {
 				include(__ASSETS_PATH . '/php/View/Template/UserListView--table-row.template.php');
 			} ?>
 		</tbody>

@@ -2,7 +2,7 @@
 
 class MoodboardSectionsDraggableModel extends DraggablesModel
 {
-	public function getSections()
+	public function getData()
 	{
 		$rows = $this->db->select('select id from mb_section order by position');
 		

@@ -95,7 +95,7 @@ class MoodboardImageModel extends Model_base
 		}
 	}
 	
-	public function getImages()
+	public function getData()
 	{
 		$rows = $this->db->select('select id from mb_image order by name');
 		

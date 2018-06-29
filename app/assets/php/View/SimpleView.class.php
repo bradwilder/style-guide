@@ -1,8 +1,8 @@
 <?php
 
-class UserDataListView extends View_base
+class SimpleView extends View_base
 {
-	public function __construct(UserDataListModel $model, string $templateFile)
+	public function __construct(SimpleModel $model, string $templateFile)
 	{
 		parent::__construct($model, new Template(__ASSETS_PATH . "/php/View/Template/$templateFile"));
 	}

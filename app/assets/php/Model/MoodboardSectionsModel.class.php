@@ -1,8 +1,8 @@
 <?php
 
-class MoodboardSectionsModel extends Model_base
+class MoodboardSectionsModel extends SimpleModel
 {
-	public function getSections()
+	public function getData()
 	{
 		$rows = $this->db->select('select id from mb_section order by position');
 		

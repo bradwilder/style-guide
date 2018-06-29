@@ -1,6 +1,6 @@
 <?php
 
-abstract class UserDataListModel extends Model_base
+abstract class UserDataListModel extends SimpleModel
 {
 	protected $userID;
 	
@@ -8,8 +8,6 @@ abstract class UserDataListModel extends Model_base
 	{
 		$this->userID = $userID;
 	}
-	
-	public abstract function getData();
 }
 
 ?>

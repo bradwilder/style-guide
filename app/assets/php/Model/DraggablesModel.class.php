@@ -1,11 +1,10 @@
 <?php
 
-abstract class DraggablesModel extends Model_base
+abstract class DraggablesModel extends SimpleModel
 {
 	public $id;
 	public $sections;
 	
-	public abstract function getSections();
 	public abstract function arrangeSections();
 	
 	protected function arrangeSectionsSimple($className)

@@ -2,7 +2,7 @@
 
 class StyleguideColorItemDescriptorsDraggableModel extends DraggablesModel
 {
-	public function getSections()
+	public function getData()
 	{
 		if ($this->id)
 		{		
