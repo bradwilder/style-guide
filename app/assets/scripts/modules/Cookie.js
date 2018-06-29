@@ -1,7 +1,5 @@
 class Cookie
 {
-	constructor() {}
-	
 	getCookie(name)
 	{
 		var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
