@@ -2,11 +2,6 @@ class ActivationRequest
 {
 	constructor()
 	{
-		this.events();
-	}
-	
-	events()
-	{
 		$('body').click(function(e)
 		{
 			if ($(e.target).hasClass('activate-request'))
