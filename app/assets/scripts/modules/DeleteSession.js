@@ -2,11 +2,6 @@ class DeleteSession
 {
 	constructor()
 	{
-		this.events();
-	}
-	
-	events()
-	{
 		$('body').click(function(e)
 		{
 			if ($(e.target).hasClass('sessions-table__delete'))

@@ -10,7 +10,7 @@ class Modal_Sessions
 	{
 		this.modals.on("modal-init", function(e, target)
 		{
-			var $modal = $(this);
+			var $modal = $(e.target);
 			var $modalBody = $modal.find('.modal-body');
 			$modalBody.empty();
 			

@@ -2,11 +2,6 @@ class DeleteSection
 {
 	constructor()
 	{
-		this.events();
-	}
-	
-	events()
-	{
 		$('body').click(function(e)
 		{
 			if ($(e.target).hasClass('delete-section'))

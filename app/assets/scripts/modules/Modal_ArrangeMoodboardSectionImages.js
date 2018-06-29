@@ -12,7 +12,7 @@ class Modal_ArrangeMoodboardSectionImages
 	{
 		this.modals.on("modal-init", function(e, trigger)
 		{
-			var $modal = $(this);
+			var $modal = $(e.target);
 			$modal.find('.draggable__container').remove();
 			$modal.find('.draggable__placeholder').remove();
 			

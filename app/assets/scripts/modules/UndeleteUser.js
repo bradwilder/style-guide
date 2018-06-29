@@ -2,11 +2,6 @@ class UndeleteUser
 {
 	constructor()
 	{
-		this.events();
-	}
-	
-	events()
-	{
 		$('body').click(function(e)
 		{
 			if ($(e.target).hasClass('undelete-user'))

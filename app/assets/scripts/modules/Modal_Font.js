@@ -13,7 +13,7 @@ class Modal_Font
 		var _this = this;
 		this.addFontModal.on("modal-init", function(e)
 		{
-			var $modal = $(this);
+			var $modal = $(e.target);
 			_this._getAlphabets($modal, '0');
 			_this._getFontTypes($modal, '0');
 		});
@@ -30,7 +30,7 @@ class Modal_Font
 		
 		this.editFontmodal.on("modal-init", function(e, trigger)
 		{
-			var $modal = $(this);
+			var $modal = $(e.target);
 			
 			var selectedID = $(trigger).closest('tr').attr('data-id');
 			
@@ -95,7 +95,7 @@ class Modal_Font
 		
 		this.viewFontModal.on("modal-init", function(e, trigger)
 		{
-			var $modal = $(this);
+			var $modal = $(e.target);
 			
 			var selectedID = $(trigger).closest('tr').attr('data-id');
 			

@@ -10,7 +10,7 @@ class Modal_NewSection
 	{
 		this.modals.on("modal-init", function(e)
 		{
-			var $modal = $(this);
+			var $modal = $(e.target);
 			
 			var $select = $modal.find('[name=mode]');
 			$select.empty();

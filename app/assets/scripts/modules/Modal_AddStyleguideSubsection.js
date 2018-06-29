@@ -10,7 +10,7 @@ class Modal_AddStyleguideSubsection
 	{
 		this.modals.on("modal-init", function(e, trigger)
 		{
-			var $modal = $(this);
+			var $modal = $(e.target);
 			
 			var sectionID = $(trigger).attr('data-section-id');
 			$modal.find('[name=section_id]').val(sectionID);

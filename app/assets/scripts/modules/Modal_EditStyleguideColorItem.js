@@ -15,7 +15,7 @@ class Modal_EditStyleguideColorItem
 	{
 		this.editColorModal.on("modal-init", function(e, trigger)
 		{
-			var $modal = $(this);
+			var $modal = $(e.target);
 			
 			var itemID = $(trigger).attr('data-id');
 			var selectedColorID;
@@ -101,7 +101,7 @@ class Modal_EditStyleguideColorItem
 		
 		this.addColorModal.on("modal-init", function(e, trigger)
 		{
-			var $modal = $(this);
+			var $modal = $(e.target);
 			
 			var itemID = $(trigger).attr('data-id');
 			
@@ -174,7 +174,7 @@ class Modal_EditStyleguideColorItem
 		
 		this.editColorDescriptorModal.on("modal-init", function(e, trigger)
 		{
-			var $modal = $(this);
+			var $modal = $(e.target);
 			
 			var descriptorID = $(trigger).attr('data-id');
 			
@@ -195,7 +195,7 @@ class Modal_EditStyleguideColorItem
 		
 		this.addColorDescriptorModal.on("modal-init", function(e, trigger)
 		{
-			var $modal = $(this);
+			var $modal = $(e.target);
 			
 			var itemID = $(trigger).attr('data-id');
 			

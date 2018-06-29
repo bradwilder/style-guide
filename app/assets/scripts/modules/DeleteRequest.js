@@ -2,11 +2,6 @@ class DeleteRequest
 {
 	constructor()
 	{
-		this.events();
-	}
-	
-	events()
-	{
 		$('body').click(function(e)
 		{
 			if ($(e.target).hasClass('requests-table__delete'))

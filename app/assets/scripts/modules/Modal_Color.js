@@ -10,7 +10,7 @@ class Modal_Color
 	{
 		this.editColorModal.on("modal-init", function(e, trigger)
 		{
-			var $modal = $(this);
+			var $modal = $(e.target);
 			
 			var selectedID = $(trigger).closest('tr').attr('data-id');
 			

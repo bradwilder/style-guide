@@ -15,7 +15,7 @@ class Modal_Uploads
 		var _this = this;
 		this.addFileModal.on("modal-init", function(e, trigger)
 		{
-			var $modal = $(this);
+			var $modal = $(e.target);
 			
 			var folderID = $(trigger).attr('data-id');
 			$modal.find('[name="folder_id"]').val(folderID);
@@ -30,7 +30,7 @@ class Modal_Uploads
 		
 		this.editFileModal.on("modal-init", function(e, trigger)
 		{
-			var $modal = $(this);
+			var $modal = $(e.target);
 			
 			var uploadID = $(trigger).attr('data-id');
 			$modal.find('[name="upload_id"]').val(uploadID);
@@ -65,7 +65,7 @@ class Modal_Uploads
 		
 		this.viewFileModal.on("modal-init", function(e, trigger)
 		{
-			var $modal = $(this);
+			var $modal = $(e.target);
 			
 			var uploadID = $(trigger).attr('data-id');
 			
@@ -86,7 +86,7 @@ class Modal_Uploads
 		
 		this.addFolderModal.on("modal-init", function(e, trigger)
 		{
-			var $modal = $(this);
+			var $modal = $(e.target);
 			
 			var folderID = $(trigger).attr('data-id');
 			$modal.find('[name="folder_id"]').val(folderID);
@@ -94,7 +94,7 @@ class Modal_Uploads
 		
 		this.editFolderModal.on("modal-init", function(e, trigger)
 		{
-			var $modal = $(this);
+			var $modal = $(e.target);
 			
 			var folderID = $(trigger).attr('data-id');
 			$modal.find('[name="folder_id"]').val(folderID);

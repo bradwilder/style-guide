@@ -14,7 +14,7 @@ class Modal_EditStyleguideIconTableItem
 	{
 		this.editFontModal.on("modal-init", function(e, trigger)
 		{
-			var $modal = $(this);
+			var $modal = $(e.target);
 			
 			var itemID = $(trigger).attr('data-id');
 			
@@ -83,7 +83,7 @@ class Modal_EditStyleguideIconTableItem
 		
 		this.addListingModal.on("modal-init", function(e, trigger)
 		{
-			var $modal = $(this);
+			var $modal = $(e.target);
 			
 			var itemID = $(trigger).attr('data-id');
 			
@@ -92,7 +92,7 @@ class Modal_EditStyleguideIconTableItem
 		
 		this.editListingModal.on("modal-init", function(e, trigger)
 		{
-			var $modal = $(this);
+			var $modal = $(e.target);
 			
 			var listingID = $(trigger).attr('data-id');
 			

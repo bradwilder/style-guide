@@ -14,7 +14,7 @@ class Modal_EditStyleguideItem
 	{
 		this.addItemModal.on("modal-init", function(e, trigger)
 		{
-			var $modal = $(this);
+			var $modal = $(e.target);
 			var subsectionID = $(trigger).attr('data-id');
 			
 			$modal.find('[name=subsection_id]').val(subsectionID);
@@ -41,7 +41,7 @@ class Modal_EditStyleguideItem
 		
 		this.editItemModal.on("modal-init", function(e, trigger)
 		{
-			var $modal = $(this);
+			var $modal = $(e.target);
 			var itemID = $(trigger).attr('data-id');
 			
 			$modal.find('[name=item_id]').val(itemID);
@@ -62,7 +62,7 @@ class Modal_EditStyleguideItem
 		
 		this.editItemColumnsModal.on("modal-init", function(e, trigger)
 		{
-			var $modal = $(this);
+			var $modal = $(e.target);
 			var itemID = $(trigger).attr('data-id');
 			
 			$modal.find('[name=item_id]').val(itemID);

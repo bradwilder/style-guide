@@ -12,7 +12,7 @@ class Modal_EditStyleguideElementItem
 	{
 		this.addUploadModal.on("modal-init", function(e, trigger)
 		{
-			var $modal = $(this);
+			var $modal = $(e.target);
 			
 			var itemID = $(trigger).attr('data-id');
 			

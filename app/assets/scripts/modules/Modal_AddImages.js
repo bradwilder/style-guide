@@ -10,7 +10,7 @@ class Modal_AddImages
 	{
 		this.modals.on("modal-init", function(e, trigger)
 		{
-			var $modal = $(this);
+			var $modal = $(e.target);
 			
 			$modal.find('.edit-image').remove();
 			

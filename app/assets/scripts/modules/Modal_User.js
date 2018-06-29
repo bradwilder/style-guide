@@ -13,7 +13,7 @@ class Modal_User
 	{
 		this.newUserModal.on("modal-init", function(e)
 		{
-			var $modal = $(this);
+			var $modal = $(e.target);
 			
 			var $select = $modal.find('[name=group]');
 			$select.empty();
@@ -40,7 +40,7 @@ class Modal_User
 		
 		this.editUserModal.on("modal-init", function(e, target)
 		{
-			var $modal = $(this);
+			var $modal = $(e.target);
 			
 			var $selectedRow = $(target).closest('tr');
 			var selectedID = $selectedRow.find('.users-table__id').html();
@@ -111,7 +111,7 @@ class Modal_User
 		
 		this.deleteUserModal.on("modal-init", function(e, target)
 		{
-			var $modal = $(this);
+			var $modal = $(e.target);
 			
 			var $selectedRow = $(target).closest('tr');
 			var selectedID = $selectedRow.find('.users-table__id').html();
@@ -125,7 +125,7 @@ class Modal_User
 		
 		this.changePasswordModal.on("modal-init", function(e, target)
 		{
-			var $modal = $(this);
+			var $modal = $(e.target);
 			
 			var $selectedRow = $(target).closest('tr');
 			var selectedID = $selectedRow.find('.users-table__id').html();

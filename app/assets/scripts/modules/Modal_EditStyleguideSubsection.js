@@ -10,7 +10,7 @@ class Modal_EditStyleguideSubsection
 	{
 		this.modals.on("modal-init", function(e, trigger)
 		{
-			var $modal = $(this);
+			var $modal = $(e.target);
 			var subsectionID = $(trigger).attr('data-id');
 			
 			$modal.find('[name=subsection_id]').val(subsectionID);

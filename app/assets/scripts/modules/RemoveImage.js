@@ -2,11 +2,6 @@ class RemoveImage
 {
 	constructor()
 	{
-		this.events();
-	}
-	
-	events()
-	{
 		$('body').click(function(e)
 		{
 			if ($(e.target).hasClass('remove-image'))

@@ -4,11 +4,6 @@ class EditSection
 {
 	constructor()
 	{
-		this.events();
-	}
-	
-	events()
-	{
 		var _this = this;
 		
 		$('body').click(function(e)

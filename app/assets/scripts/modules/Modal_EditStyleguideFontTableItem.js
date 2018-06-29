@@ -16,7 +16,7 @@ class Modal_EditStyleguideFontTableItem
 	{
 		this.addListingModal.on("modal-init", function(e, trigger)
 		{
-			var $modal = $(this);
+			var $modal = $(e.target);
 			
 			var itemID = $(trigger).attr('data-id');
 			
@@ -45,7 +45,7 @@ class Modal_EditStyleguideFontTableItem
 		
 		this.editListingModal.on("modal-init", function(e, trigger)
 		{
-			var $modal = $(this);
+			var $modal = $(e.target);
 			
 			var listingID = $(trigger).attr('data-id');
 			
@@ -65,7 +65,7 @@ class Modal_EditStyleguideFontTableItem
 		
 		this.editFontModal.on("modal-init", function(e, trigger)
 		{
-			var $modal = $(this);
+			var $modal = $(e.target);
 			
 			var listingID = $(trigger).attr('data-id');
 			
@@ -94,7 +94,7 @@ class Modal_EditStyleguideFontTableItem
 		
 		this.addListingCSSModal.on("modal-init", function(e, trigger)
 		{
-			var $modal = $(this);
+			var $modal = $(e.target);
 			
 			var listingID = $(trigger).attr('data-id');
 			
@@ -103,7 +103,7 @@ class Modal_EditStyleguideFontTableItem
 		
 		this.editListingCSSModal.on("modal-init", function(e, trigger)
 		{
-			var $modal = $(this);
+			var $modal = $(e.target);
 			
 			var listingCSSID = $(trigger).attr('data-id');
 			

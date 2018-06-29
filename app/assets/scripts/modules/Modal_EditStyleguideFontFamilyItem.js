@@ -12,7 +12,7 @@ class Modal_EditStyleguideFontFamilyItem
 	{
 		this.editModal.on("modal-init", function(e, trigger)
 		{
-			var $modal = $(this);
+			var $modal = $(e.target);
 			
 			var itemID = $(trigger).attr('data-id');
 			

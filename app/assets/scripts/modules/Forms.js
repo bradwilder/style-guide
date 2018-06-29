@@ -2,11 +2,6 @@ class Forms
 {
 	constructor()
 	{
-		this.events();
-	}
-	
-	events()
-	{
 		$('body').submit(function(e)
 		{
 			if ($(e.target).is('form'))
