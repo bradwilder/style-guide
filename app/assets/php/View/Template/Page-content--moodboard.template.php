@@ -3,12 +3,12 @@
 include(__ASSETS_PATH . '/php/View/Template/Page-title.template.php');
 
 
-echo MVCoutput(MoodboardSectionsModel, MoodboardSectionsController, SimpleView, 'MoodboardSections.template.php', $currentUser, null);
+echo MVCoutput(MoodboardSectionsModel, Controller_base, SimpleView, 'MoodboardSections.template.php', $currentUser, null);
 
 
 $commentsModel = new CommentsModel();
 
-$commentsController = new CommentsController($commentsModel);
+$commentsController = new Controller_base($commentsModel);
 $commentsController->index();
 
 $commentsView = new CommentsView($commentsModel);
