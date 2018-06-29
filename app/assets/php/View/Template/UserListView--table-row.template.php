@@ -30,7 +30,7 @@
 				}
 			}
 			
-			if (!$userListItem->user->isActive && $noActiveRequest)
+			if (!$userListItem->user->isActive && !$userListItem->user->isDeleted && $noActiveRequest)
 			{
 				echo '<i data-id="' . $userListItem->user->id . '" class="tables__edit-button activate-request fa fa-envelope"></i>';
 			}
