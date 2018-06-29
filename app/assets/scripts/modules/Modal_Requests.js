@@ -1,4 +1,4 @@
-class Modal_Sessions
+class Modal_Requests
 {
 	constructor()
 	{
@@ -8,14 +8,13 @@ class Modal_Sessions
 	
 	events()
 	{
-		this.modals.on("modal-init", function(e)
+		this.modals.on("modal-init", function(e, target)
 		{
 			var $modal = $(this);
 			var $modalBody = $modal.find('.modal-body');
 			$modalBody.empty();
 			
-			var $selectedRow = $('#user-table').getLeadHighlighted();
-			var selectedUserID = $selectedRow.find('.users-table__id').html();
+			var selectedUserID = $(target).attr('data-id');
 			
 			$.ajax
 			({
@@ -31,4 +30,4 @@ class Modal_Sessions
 	}
 }
 
-export default Modal_Sessions;
+export default Modal_Requests;

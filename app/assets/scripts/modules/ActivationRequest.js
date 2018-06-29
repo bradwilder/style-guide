@@ -11,8 +11,7 @@ class ActivationRequest
 		{
 			if ($(e.target).hasClass('activate-request'))
 			{
-				var $row = $(e.target).closest('tr');
-				var userID = $row.find('.users-table__id').html();
+				var userID = $(e.target).attr('data-id');
 				
 				$.ajax
 				({

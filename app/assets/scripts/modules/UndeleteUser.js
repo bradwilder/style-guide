@@ -13,8 +13,7 @@ class UndeleteUser
 			{
 				if (confirm("Are you sure you want to undelete the user?" ))
 				{
-					var $row = $(e.target).closest('tr');
-					var userID = $row.find('.users-table__id').html();
+					var userID = $(e.target).attr('data-id');
 					
 					$.ajax
 					({

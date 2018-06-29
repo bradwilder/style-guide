@@ -38,11 +38,11 @@ class Modal_User
 			});
 		});
 		
-		this.editUserModal.on("modal-init", function(e)
+		this.editUserModal.on("modal-init", function(e, target)
 		{
 			var $modal = $(this);
 			
-			var $selectedRow = $('#user-table').getLeadHighlighted();
+			var $selectedRow = $(target).closest('tr');
 			var selectedID = $selectedRow.find('.users-table__id').html();
 			var selectedEmail = $selectedRow.find('.users-table__email').html();
 			var selectedPhone = $selectedRow.find('.users-table__phone').html();
@@ -109,11 +109,11 @@ class Modal_User
 			});
 		});
 		
-		this.deleteUserModal.on("modal-init", function(e)
+		this.deleteUserModal.on("modal-init", function(e, target)
 		{
 			var $modal = $(this);
 			
-			var $selectedRow = $('#user-table').getLeadHighlighted();
+			var $selectedRow = $(target).closest('tr');
 			var selectedID = $selectedRow.find('.users-table__id').html();
 			var selectedEmail = $selectedRow.find('.users-table__email').html();
 			
@@ -123,11 +123,11 @@ class Modal_User
 			$modal.find('[name=user_id_current]').val($('[data-user-id]').attr('data-user-id'));
 		});
 		
-		this.changePasswordModal.on("modal-init", function(e)
+		this.changePasswordModal.on("modal-init", function(e, target)
 		{
 			var $modal = $(this);
 			
-			var $selectedRow = $('#user-table').getLeadHighlighted();
+			var $selectedRow = $(target).closest('tr');
 			var selectedID = $selectedRow.find('.users-table__id').html();
 			
 			$modal.find('[name=id]').val(selectedID);
