@@ -39,7 +39,7 @@
 			<?php if (!$userListItem->user->isDeleted) { ?>
 				<i data-id="<?=$userListItem->user->id?>" class="tables__edit-button fa fa-trash" data-modal="#deleteUserModal"></i>
 			<?php } else { ?>
-				<i class="tables__edit-button undelete-user fa fa-undo"></i>
+				<i data-id="<?=$userListItem->user->id?>" class="tables__edit-button undelete-user fa fa-undo"></i>
 			<?php } ?>
 		<?php } ?>
 	</td>
