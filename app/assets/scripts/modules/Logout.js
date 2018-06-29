@@ -5,7 +5,6 @@ class Logout
 	constructor()
 	{
 		this.logouts = $('.logout__submit');
-		this.session = new Session();
 		
 		this.init();
 		this.events();
@@ -13,82 +12,82 @@ class Logout
 	
 	init()
 	{
-		this.session.setClientOffset();
-		this.checkSession();
+		let session = new Session;
+		session.setClientOffset();
+		checkSession(session);
 	}
 	
 	events()
 	{
-		var _this = this;
 		this.logouts.click(function()
 		{
-			_this.logoutSubmit().bind(_this);
+			logoutSubmit();
 		});
 	}
+}
+
+const checkSession = (session) =>
+{
+	var diff = session.sessionTimeRemaining();
 	
-	checkSession()
+	if (diff <= 0)
 	{
-		var diff = this.session.sessionTimeRemaining();
+		logoutSubmit();
+	}
+	else
+	{
+		var secondsTotal = Math.ceil(diff / 1000);
 		
-		if (diff <= 0)
+		//var hours = Math.floor(secondsTotal / 3600);
+		//var minutes = Math.floor((secondsTotal % 3600) / 60);
+		//var seconds = secondsTotal % 60;
+		
+		//var time = (hours > 0 ? hours + ":" : "") + (minutes >= 10 ? minutes : "0" + minutes) + ":" + (seconds >= 10 ? seconds : "0" + seconds) 
+		//console.log(time);
+		
+		var timeEst;
+		if (secondsTotal >= 3600)
 		{
-			this.logoutSubmit();
+			timeEst = Math.floor(secondsTotal / 3600) + "h";
+		}
+		else if (secondsTotal >= 60)
+		{
+			timeEst = Math.floor(secondsTotal / 60) + "m";
+		}
+		else if (secondsTotal > 45)
+		{
+			timeEst = "60s";
+		}
+		else if (secondsTotal > 30)
+		{
+			timeEst = "45s";
+		}
+		else if (secondsTotal > 15)
+		{
+			timeEst = "30s";
 		}
 		else
 		{
-			var secondsTotal = Math.ceil(diff / 1000);
-			
-			//var hours = Math.floor(secondsTotal / 3600);
-			//var minutes = Math.floor((secondsTotal % 3600) / 60);
-			//var seconds = secondsTotal % 60;
-			
-			//var time = (hours > 0 ? hours + ":" : "") + (minutes >= 10 ? minutes : "0" + minutes) + ":" + (seconds >= 10 ? seconds : "0" + seconds) 
-			//console.log(time);
-			
-			var timeEst;
-			if (secondsTotal >= 3600)
-			{
-				timeEst = Math.floor(secondsTotal / 3600) + "h";
-			}
-			else if (secondsTotal >= 60)
-			{
-				timeEst = Math.floor(secondsTotal / 60) + "m";
-			}
-			else if (secondsTotal > 45)
-			{
-				timeEst = "60s";
-			}
-			else if (secondsTotal > 30)
-			{
-				timeEst = "45s";
-			}
-			else if (secondsTotal > 15)
-			{
-				timeEst = "30s";
-			}
-			else
-			{
-				timeEst = "15s";
-			}
-			$(".user-session-remaining").text("[" + timeEst + "]");
-			
-			setTimeout(this.checkSession.bind(this), 10000);
+			timeEst = "15s";
 		}
+		$(".user-session-remaining").text("[" + timeEst + "]");
+		
+		setTimeout(checkSession.bind(null, session), 10000);
 	}
-	
-	logoutSubmit()
-	{
-		$.ajax
-		({
-			url: '/user',
-			type: 'POST',
-			data: 'action=logout',
-			success: function(data)
-			{
-				window.location="/login?message=" + encodeURIComponent('You have been logged out successfully.');
-			}
-		});
-	}
+}
+
+const logoutSubmit = () =>
+{
+	$.ajax
+	({
+		url: '/user',
+		type: 'POST',
+		data: 'action=logout',
+		success: function()
+		{
+			window.location="/login?message=" + encodeURIComponent('You have been logged out successfully.');
+		}
+	});
 }
 
 export default Logout;
