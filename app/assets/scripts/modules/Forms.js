@@ -10,6 +10,7 @@ class Forms
 				
 				var $formData = new FormData($form[0]);
 				
+				// Remove unchanged parameters
 				$form.find('[data-original-value]').each(function()
 				{
 					var originalValue = $(this).attr('data-original-value');
@@ -21,6 +22,7 @@ class Forms
 					}
 				});
 				
+				// Add action parameter
 				var action = $form.attr('data-action');
 				if (action)
 				{
@@ -52,7 +54,7 @@ class Forms
 						
 						if (redirect)
 						{
-							window.location=redirect;
+							window.location = redirect;
 						}
 						else if (refresh != 'false')
 						{
