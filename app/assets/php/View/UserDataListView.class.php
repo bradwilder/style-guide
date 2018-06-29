@@ -1,10 +1,10 @@
 <?php
 
-abstract class UserDataListView extends View_base
+class UserDataListView extends View_base
 {
-	public function __construct(UserDataListModel $model)
+	public function __construct(UserDataListModel $model, string $templateFile)
 	{
-		parent::__construct($model);
+		parent::__construct($model, new Template(__ASSETS_PATH . "/php/View/Template/$templateFile"));
 	}
 	
 	public function output()
