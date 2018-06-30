@@ -3,7 +3,8 @@
 .editable-section {
 	position: relative;
 	
-	&__button-container {
+	&__button-container,
+	&__edit-button-container {
 		display: inline;
 		float: right;
 	}
@@ -12,20 +13,16 @@
 		pointer-events: none;
 		cursor: auto;
 		transition: .35s opacity;
-		opacity: 0;
-		display: none;
+		opacity: .1;
+		display: inline-block;
 		
-		&--show {
-			opacity: .1;
-			display: inline-block;
-			
-			&:hover {
-				opacity: 1 !important;
-			}
+		&:hover {
+			opacity: 1 !important;
 		}
 	}
 	
-	&:hover &__button-container > &__button--show {
+	&:hover &__button-container > &__button,
+	&:hover &__edit-button-container > &__button {
 		opacity: .5;
 		pointer-events: auto;
 		cursor: pointer;
@@ -50,8 +47,6 @@
 	}
 	
 	&__input {
-		display: none;
-		
 		&--medium {
 			font-size: 3em;
 		}
@@ -98,7 +93,11 @@
 		}
 	}
 	
-	&--editing &__input {
+	&__form {
+		display: none;
+	}
+	
+	&--editing &__form {
 		display: block;
 	}
 	

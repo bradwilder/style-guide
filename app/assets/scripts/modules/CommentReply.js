@@ -2,38 +2,37 @@ class CommentReply
 {
 	constructor()
 	{
+		this.overlayClear = $('.editable-section__overlay--clear');
+		
 		this.events();
 	}
 	
 	events()
 	{
+		var _this = this;
+		
 		$('body').click(function(e)
 		{
 			if ($(e.target).hasClass('comment__reply-button'))
 			{
 				var $section = $(e.target).closest('.editable-section');
 				
-				$section.find('.editable-section__button-edit').removeClass('editable-section__button--show');
-				
-				$section.closest_descendent('.comment__body').append($('.commentReplyForm').clone());
-				$section.closest_descendent('.commentReplyForm').show();
+				$section.closest_descendent('.comment__body').append($('#commentReplyForm').clone());
 				
 				$section.addClass('editable-section--editing');
 				$section.find('.editable-section__input').first().focus();
-				$('.editable-section__overlay--clear').show();
+				_this.overlayClear.show();
 			}
 			
 			if ($(e.target).hasClass('comment__reply-submit') || $(e.target).hasClass('editable-section__overlay--clear'))
 			{
 				var $section = $('.editable-section--editing');
 				
-				$section.find('.editable-section__button-edit').addClass('editable-section__button--show');
-				
 				var reply = $section.find('.comment__body.editable-section__input').val();
-				$section.find('.commentReplyForm').remove();
+				$section.find('.editable-section__form').remove();
 				
 				$section.removeClass('editable-section--editing');
-				$('.editable-section__overlay--clear').hide();
+				_this.overlayClear.hide();
 				
 				if ($(e.target).hasClass('comment__reply-submit'))
 				{

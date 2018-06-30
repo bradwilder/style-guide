@@ -4,7 +4,7 @@
 	<div class="page-section__header">
 		<?php if (in_array('Root', $currentUser->roles)) { ?>
 			<div class="page-section__edit-button editable-section__button-container">
-				<a tabindex="0" role="button" class="editable-section__button editable-section__button--show fa fa-plus" data-modal="#newUserModal"></a>
+				<a tabindex="-1" role="button" class="editable-section__button fa fa-plus" data-modal="#newUserModal"></a>
 			</div>
 		<?php } ?>
 		

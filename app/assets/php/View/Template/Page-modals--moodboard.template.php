@@ -36,7 +36,7 @@ echoModal('arrangeMoodboardSectionImagesModal', 'Arrange Images', 'Modal--arrang
 	<li><a href="#" class="type__title--darker remove-image">Remove Image</a></li>
 </ul>
 
-<form class="commentReplyForm" method="post" role="form" style="display: none;">
+<form id="commentReplyForm" class="editable-section__form" method="post" role="form">
 	<textarea class="comment__body form-control type__desc editable-section__input" name="reply" cols="45" rows="8" placeholder="Comment" required></textarea>
 	<button type="button" class="comment__reply-submit editable-section__input btn btn-primary">Reply</button>
 </form>

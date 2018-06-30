@@ -194,8 +194,8 @@
 			<section class="editable-section">
 				<div class="sg-config-detail__header">
 					<span class="sg-config-detail__header-buttons__sub editable-section__button-container">
-						<a v-if="data.items.length > 1" tabindex="0" role="button" class="sg-config-detail__header-button editable-section__button editable-section__button--show fa fa-arrows" data-modal="#arrangeSubsectionsModal" :data-id="data.item.id"></a>
-						<a tabindex="0" role="button" class="sg-config-detail__header-button editable-section__button editable-section__button--show fa fa-plus" data-modal="#addSubsectionModal" :data-section-id="data.item.id"></a>
+						<a v-if="data.items.length > 1" tabindex="0" role="button" class="sg-config-detail__header-button editable-section__button fa fa-arrows" data-modal="#arrangeSubsectionsModal" :data-id="data.item.id"></a>
+						<a tabindex="0" role="button" class="sg-config-detail__header-button editable-section__button fa fa-plus" data-modal="#addSubsectionModal" :data-section-id="data.item.id"></a>
 					</span>
 					<h4 class="sg-config-detail__desc type__title type__title--darker">Subsections</h4>
 				</div>
@@ -251,8 +251,8 @@
 			<section class="editable-section">
 				<div class="sg-config-detail__header">
 					<span class="sg-config-detail__header-buttons__sub editable-section__button-container">
-						<a v-if="data.items.length > 1" tabindex="0" role="button" class="sg-config-detail__header-button editable-section__button editable-section__button--show fa fa-arrows" data-modal="#arrangeItemsModal" :data-id="data.item.id"></a>
-						<a tabindex="0" role="button" class="sg-config-detail__header-button editable-section__button editable-section__button--show fa fa-plus" data-modal="#addItemModal" :data-id="data.item.id"></a>
+						<a v-if="data.items.length > 1" tabindex="0" role="button" class="sg-config-detail__header-button editable-section__button fa fa-arrows" data-modal="#arrangeItemsModal" :data-id="data.item.id"></a>
+						<a tabindex="0" role="button" class="sg-config-detail__header-button editable-section__button fa fa-plus" data-modal="#addItemModal" :data-id="data.item.id"></a>
 					</span>
 					<h4 class="sg-config-detail__desc type__title type__title--darker">Items</h4>
 				</div>
@@ -273,8 +273,8 @@
 			<section v-if="!data.item.parentSubsectionID" class="editable-section">
 				<div class="sg-config-detail__header">
 					<span class="sg-config-detail__header-buttons__sub editable-section__button-container">
-						<a v-if="data.subitems.length > 1" tabindex="0" role="button" class="sg-config-detail__header-button editable-section__button editable-section__button--show fa fa-arrows" data-modal="#arrangeSubsectionsModal" :data-id="data.item.id"></a>
-						<a tabindex="0" role="button" class="sg-config-detail__header-button editable-section__button editable-section__button--show fa fa-plus" data-modal="#addSubsectionModal" :data-section-id="data.item.sectionID" :data-parent-sub-id="data.item.id"></a>
+						<a v-if="data.subitems.length > 1" tabindex="0" role="button" class="sg-config-detail__header-button editable-section__button fa fa-arrows" data-modal="#arrangeSubsectionsModal" :data-id="data.item.id"></a>
+						<a tabindex="0" role="button" class="sg-config-detail__header-button editable-section__button fa fa-plus" data-modal="#addSubsectionModal" :data-section-id="data.item.sectionID" :data-parent-sub-id="data.item.id"></a>
 					</span>
 					<h4 class="sg-config-detail__desc type__title type__title--darker">Sub-subsections</h4>
 				</div>
@@ -345,9 +345,9 @@
 		<section class="editable-section">
 			<div class="sg-config-detail__header">
 				<span class="sg-config-detail__header-buttons__sub editable-section__button-container">
-					<a v-show="data.type.code != 'color-pal' && data.item.colors.length == 1" tabindex="0" role="button" class="sg-config-detail__header-button editable-section__button editable-section__button--show fa fa-pencil" data-modal="#editColorItemModal" :data-id="data.id"></a>
-					<a v-show="data.type.code == 'color-pal' && data.item.colors.length > 1" tabindex="0" role="button" class="sg-config-detail__header-button editable-section__button editable-section__button--show fa fa-arrows" data-modal="#arrangeColorItemModal" :data-id="data.id"></a>
-					<a v-show="(data.type.code == 'color-pal' && data.item.colors.length < 6) || (data.type.code != 'color-pal' && data.item.colors.length == 0)" tabindex="0" role="button" class="sg-config-detail__header-button editable-section__button editable-section__button--show fa fa-plus" data-modal="#addColorItemModal" :data-id="data.id"></a>
+					<a v-show="data.type.code != 'color-pal' && data.item.colors.length == 1" tabindex="0" role="button" class="sg-config-detail__header-button editable-section__button fa fa-pencil" data-modal="#editColorItemModal" :data-id="data.id"></a>
+					<a v-show="data.type.code == 'color-pal' && data.item.colors.length > 1" tabindex="0" role="button" class="sg-config-detail__header-button editable-section__button fa fa-arrows" data-modal="#arrangeColorItemModal" :data-id="data.id"></a>
+					<a v-show="(data.type.code == 'color-pal' && data.item.colors.length < 6) || (data.type.code != 'color-pal' && data.item.colors.length == 0)" tabindex="0" role="button" class="sg-config-detail__header-button editable-section__button fa fa-plus" data-modal="#addColorItemModal" :data-id="data.id"></a>
 				</span>
 				<h4 class="sg-config-detail__desc type__title type__title--darker">Colors</h4>
 			</div>
@@ -371,9 +371,9 @@
 		<section v-if="data.type.code.indexOf('pal') == -1" class="editable-section">
 			<div class="sg-config-detail__header">
 				<span class="sg-config-detail__header-buttons__sub editable-section__button-container">
-					<a v-show="data.item.descriptors.length > 1" tabindex="0" role="button" class="sg-config-detail__header-button editable-section__button editable-section__button--show fa fa-arrows" data-modal="#arrangeColorItemDescriptorsModal" :data-id="data.id"></a>
-					<a tabindex="0" role="button" class="sg-config-detail__header-button editable-section__button editable-section__button--show fa fa-plus" data-modal="#addColorItemDescriptorModal" :data-id="data.id"></a>
-					<a v-show="data.type.code.indexOf('desc') != -1" tabindex="0" role="button" class="sg-config-detail__header-button editable-section__button editable-section__button--show fa fa-trash" @click="deleteDescriptors"></a>
+					<a v-show="data.item.descriptors.length > 1" tabindex="0" role="button" class="sg-config-detail__header-button editable-section__button fa fa-arrows" data-modal="#arrangeColorItemDescriptorsModal" :data-id="data.id"></a>
+					<a tabindex="0" role="button" class="sg-config-detail__header-button editable-section__button fa fa-plus" data-modal="#addColorItemDescriptorModal" :data-id="data.id"></a>
+					<a v-show="data.type.code.indexOf('desc') != -1" tabindex="0" role="button" class="sg-config-detail__header-button editable-section__button fa fa-trash" @click="deleteDescriptors"></a>
 				</span>
 				<h4 class="sg-config-detail__desc type__title type__title--darker">Descriptors</h4>
 			</div>
@@ -461,7 +461,7 @@
 		<section class="editable-section">
 			<div class="sg-config-detail__header">
 				<span class="sg-config-detail__header-buttons__sub editable-section__button-container">
-					<a tabindex="0" role="button" class="sg-config-detail__header-button editable-section__button editable-section__button--show fa fa-pencil" data-modal="#editFontFamilyItemModal" :data-id="data.id"></a>
+					<a tabindex="0" role="button" class="sg-config-detail__header-button editable-section__button fa fa-pencil" data-modal="#editFontFamilyItemModal" :data-id="data.id"></a>
 				</span>
 				<h4 class="sg-config-detail__desc type__title"><span class="type__title--darker">Font Family</span><span class="sg-config-detail__desc__text">{{data.item.name}}</span></h4>
 			</div>
@@ -493,8 +493,8 @@
 	<section class="editable-section">
 		<div class="sg-config-detail__header">
 			<span class="sg-config-detail__header-buttons__sub editable-section__button-container">
-				<a tabindex="0" role="button" class="sg-config-detail__header-button editable-section__button editable-section__button--show fa fa-arrows" data-modal="#arrangeFontTableItemListingsModal" :data-id="data.id"></a>
-				<a tabindex="0" role="button" class="sg-config-detail__header-button editable-section__button editable-section__button--show fa fa-plus" data-modal="#addFontTableItemListingModal" :data-id="data.id"></a>
+				<a tabindex="0" role="button" class="sg-config-detail__header-button editable-section__button fa fa-arrows" data-modal="#arrangeFontTableItemListingsModal" :data-id="data.id"></a>
+				<a tabindex="0" role="button" class="sg-config-detail__header-button editable-section__button fa fa-plus" data-modal="#addFontTableItemListingModal" :data-id="data.id"></a>
 			</span>
 			<h4 class="sg-config-detail__desc type__title type__title--darker">Font Table Items</h4>
 		</div>
@@ -556,7 +556,7 @@
 		<section class="editable-section">
 			<div class="sg-config-detail__header">
 				<span class="sg-config-detail__header-buttons__sub editable-section__button-container">
-					<a tabindex="0" role="button" class="sg-config-detail__header-button editable-section__button editable-section__button--show fa fa-pencil" data-modal="#editIconTableItemFontModal" :data-id="data.id"></a>
+					<a tabindex="0" role="button" class="sg-config-detail__header-button editable-section__button fa fa-pencil" data-modal="#editIconTableItemFontModal" :data-id="data.id"></a>
 				</span>
 				<h4 class="sg-config-detail__desc type__title"><span class="type__title--darker">Icon Set</span><span class="sg-config-detail__desc__text">{{data.item.iconSet.name}}</span></h4>
 			</div>
@@ -565,8 +565,8 @@
 		<section class="editable-section">
 			<div class="sg-config-detail__header">
 				<span class="sg-config-detail__header-buttons__sub editable-section__button-container">
-					<a v-show="data.item.listings.length > 1" tabindex="0" role="button" class="sg-config-detail__header-button editable-section__button editable-section__button--show fa fa-arrows" data-modal="#arrangeIconTableItemModal" :data-id="data.id"></a>
-					<a tabindex="0" role="button" class="sg-config-detail__header-button editable-section__button editable-section__button--show fa fa-plus" data-modal="#addIconTableItemModal" :data-id="data.id"></a>
+					<a v-show="data.item.listings.length > 1" tabindex="0" role="button" class="sg-config-detail__header-button editable-section__button fa fa-arrows" data-modal="#arrangeIconTableItemModal" :data-id="data.id"></a>
+					<a tabindex="0" role="button" class="sg-config-detail__header-button editable-section__button fa fa-plus" data-modal="#addIconTableItemModal" :data-id="data.id"></a>
 				</span>
 				<h4 class="sg-config-detail__desc type__title type__title--darker">Icons</h4>
 			</div>
@@ -620,8 +620,8 @@
 	<section class="editable-section">
 		<div class="sg-config-detail__header">
 			<span class="sg-config-detail__header-buttons__sub editable-section__button-container">
-				<a v-show="data.item.images.length > 1" tabindex="0" role="button" class="sg-config-detail__header-button editable-section__button editable-section__button--show fa fa-arrows" data-modal="#arrangeElementItemModal" :data-id="data.id"></a>
-				<a v-show="data.item.images.length < 6" tabindex="0" role="button" class="sg-config-detail__header-button editable-section__button editable-section__button--show fa fa-plus" data-modal="#addElementItemModal" :data-id="data.id"></a>
+				<a v-show="data.item.images.length > 1" tabindex="0" role="button" class="sg-config-detail__header-button editable-section__button fa fa-arrows" data-modal="#arrangeElementItemModal" :data-id="data.id"></a>
+				<a v-show="data.item.images.length < 6" tabindex="0" role="button" class="sg-config-detail__header-button editable-section__button fa fa-plus" data-modal="#addElementItemModal" :data-id="data.id"></a>
 			</span>
 			<h4 class="sg-config-detail__desc type__title type__title--darker">Images</h4>
 		</div>
@@ -683,7 +683,7 @@
 	<section class="editable-section">
 		<div class="sg-config-detail__header">
 			<span class="sg-config-detail__header-buttons__sub editable-section__button-container">
-				<a tabindex="0" role="button" class="sg-config-detail__header-button editable-section__button editable-section__button--show fa fa-pencil" data-modal="#editItemColumnsModal" :data-id="itemId"></a>
+				<a tabindex="0" role="button" class="sg-config-detail__header-button editable-section__button fa fa-pencil" data-modal="#editItemColumnsModal" :data-id="itemId"></a>
 			</span>
 			<h4 class="sg-config-detail__desc type__title type__title--darker">Columns</h4>
 		</div>
