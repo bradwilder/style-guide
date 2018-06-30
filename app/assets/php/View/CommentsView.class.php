@@ -4,9 +4,9 @@ use Tree\Node\Node;
 
 class CommentsView extends View_base
 {
-	public function __construct(CommentsModel $model)
+	public function __construct(CommentsModel $model, $currentUser)
 	{
-		parent::__construct($model, new Template(__ASSETS_PATH . '/php/View/Template/Comments--list.template.php'));
+		parent::__construct($model, $currentUser, new Template(__ASSETS_PATH . '/php/View/Template/Comments--list.template.php'));
 	}
 	
 	public function output()

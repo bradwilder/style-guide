@@ -2,10 +2,9 @@
 
 class PageSectionView extends View_base
 {
-	public function __construct(PageSectionModel $model)
+	public function __construct(PageSectionModel $model, $currentUser)
 	{
-		parent::__construct($model);
-		$this->template = new Template(__ASSETS_PATH . '/php/View/Template/PageSection.template.php');
+		parent::__construct($model, $currentUser, new Template(__ASSETS_PATH . '/php/View/Template/PageSection.template.php'));
 	}
 	
 	public function output()

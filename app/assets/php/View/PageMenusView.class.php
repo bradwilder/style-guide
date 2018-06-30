@@ -2,9 +2,9 @@
 
 class PageMenusView extends View_base
 {
-	public function __construct(PageMenusModel $model)
+	public function __construct(PageMenusModel $model, $currentUser)
 	{
-		parent::__construct($model, new Template(__ASSETS_PATH . '/php/View/Template/Page-menus.template.php'));
+		parent::__construct($model, $currentUser, new Template(__ASSETS_PATH . '/php/View/Template/Page-menus.template.php'));
 	}
 	
 	public function output()

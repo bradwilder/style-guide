@@ -2,9 +2,9 @@
 
 class StyleguideItemView extends View_base
 {
-	public function __construct(StyleguideItemModel $model)
+	public function __construct(StyleguideItemModel $model, $currentUser)
 	{
-		parent::__construct($model);
+		parent::__construct($model, $currentUser);
 	}
 	
 	public function output()

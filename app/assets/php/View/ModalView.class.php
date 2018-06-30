@@ -2,9 +2,9 @@
 
 class ModalView extends View_base
 {
-	public function __construct(ModalModel $model)
+	public function __construct(ModalModel $model, $currentUser)
 	{
-		parent::__construct($model, new Template(__ASSETS_PATH . '/php/View/Template/Page-modal.template.php'));
+		parent::__construct($model, $currentUser, new Template(__ASSETS_PATH . '/php/View/Template/Page-modal.template.php'));
 	}
 	
 	public function output()

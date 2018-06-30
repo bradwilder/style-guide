@@ -2,9 +2,9 @@
 
 class StyleguideSectionsView extends View_base
 {
-	public function __construct(StyleguideSectionsModel $model)
+	public function __construct(StyleguideSectionsModel $model, $currentUser)
 	{
-		parent::__construct($model);
+		parent::__construct($model, $currentUser);
 	}
 	
 	public function output()
@@ -38,7 +38,7 @@ class StyleguideSectionsView extends View_base
 			$pageSectionModel->title = $section->name;
 			$pageSectionModel->subsections = $subsections;
 			
-			$pageSectionView = new PageSectionView($pageSectionModel);
+			$pageSectionView = new PageSectionView($pageSectionModel, $this->currentUser);
 			$output .= $pageSectionView->output();
 		}
 		
@@ -58,7 +58,7 @@ class StyleguideSectionsView extends View_base
 			$imodel = new StyleguideItemModel();
 			$imodel->foreignItem = $row;
 
-			$view = new StyleguideItemView($imodel);
+			$view = new StyleguideItemView($imodel, $this->currentUser);
 			$itemContent = $view->output();		
 
 			$content .= $itemContent;

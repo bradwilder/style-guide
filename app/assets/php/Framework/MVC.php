@@ -12,13 +12,14 @@ class Model_base
 
 class View_base
 {
-	public $currentUser;
+	private $currentUser;
 	protected $model;
 	protected $template;
 	
-	public function __construct(Model_base $model, Template $template = null)
+	public function __construct(Model_base $model, $currentUser = null, Template $template = null)
 	{
-        $this->model = $model;
+		$this->model = $model;
+		$this->currentUser = $currentUser;
 		$this->template = $template;
     }
 	
@@ -96,15 +97,11 @@ function MVCoutput($modelClass, $controllerClass, $viewClass = null, $templateFi
 		$view;
 		if ($templateFile)
 		{
-			$view = new $viewClass($model, $templateFile);
+			$view = new $viewClass($model, $currentUser, $templateFile);
 		}
 		else
 		{
-			$view = new $viewClass($model);
-		}
-		if ($currentUser)
-		{
-			$view->currentUser = $currentUser;
+			$view = new $viewClass($model, $currentUser);
 		}
 		
 		return $view->output();

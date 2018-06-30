@@ -2,9 +2,9 @@
 
 class StyleguidePageView extends PageView
 {
-	public function __construct(StyleguidePageModel $model, string $templateFile)
+	public function __construct(StyleguidePageModel $model, $currentUser, string $templateFile)
 	{
-		parent::__construct($model, $templateFile);
+		parent::__construct($model, $currentUser, $templateFile);
 	}
 	
 	public function output()

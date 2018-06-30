@@ -11,8 +11,7 @@ $commentsModel = new CommentsModel();
 $commentsController = new Controller_base($commentsModel);
 $commentsController->index();
 
-$commentsView = new CommentsView($commentsModel);
-$commentsView->currentUser = $currentUser;
+$commentsView = new CommentsView($commentsModel, $currentUser);
 $commentsContent = $commentsView->output();
 
 
@@ -23,8 +22,7 @@ $commentCount = $pageSectionModel->sectionModel->getCommentCount();
 $pageSectionModel->description = $commentCount . ' comment' . ($commentCount == 1 ? '' : 's');
 $pageSectionModel->content = $commentsContent;
 
-$pageSectionView = new PageSectionView($pageSectionModel);
-$pageSectionView->currentUser = $currentUser;
+$pageSectionView = new PageSectionView($pageSectionModel, $currentUser);
 echo $pageSectionView->output();
 
 ?>

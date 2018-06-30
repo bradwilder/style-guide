@@ -10,7 +10,7 @@ if (!function_exists('echoModal'))
 		$modalModel->title = $title;
 		$modalModel->template = $template;
 
-		$modalView = new ModalView($modalModel);
+		$modalView = new ModalView($modalModel, $currentUser);
 		echo $modalView->output();
 	}
 }

@@ -2,9 +2,9 @@
 
 class PageView extends View_base
 {
-	public function __construct(PageModel $model, string $templateFile)
+	public function __construct(PageModel $model, $currentUser, string $templateFile)
 	{
-		parent::__construct($model, new Template(__ASSETS_PATH . "/php/View/Template/$templateFile"));
+		parent::__construct($model, $currentUser, new Template(__ASSETS_PATH . "/php/View/Template/$templateFile"));
 	}
 	
 	public function output()

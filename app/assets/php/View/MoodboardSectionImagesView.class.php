@@ -2,9 +2,9 @@
 
 class MoodboardSectionImagesView extends View_base
 {
-	public function __construct(MoodboardSectionModel $model)
+	public function __construct(MoodboardSectionModel $model, $currentUser)
 	{
-		parent::__construct($model, new Template(__ASSETS_PATH . '/php/View/Template/MoodboardSectionImages.template.php'));
+		parent::__construct($model, $currentUser, new Template(__ASSETS_PATH . '/php/View/Template/MoodboardSectionImages.template.php'));
 	}
 	
 	public function output()
