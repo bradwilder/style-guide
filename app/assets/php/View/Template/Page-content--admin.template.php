@@ -1,6 +1,6 @@
 <?php include(__ASSETS_PATH . '/php/View/Template/Page-title.template.php'); ?>
 
-<section class="page-section <?php if (in_array('Root', $currentUser->roles)) {echo 'editable-section';} ?>" id="users">
+<section class="page-section <?php if (in_array('Root', $currentUser->roles)) {echo 'editable-section';} ?>">
 	<div class="page-section__header">
 		<?php if (in_array('Root', $currentUser->roles)) { ?>
 			<div class="page-section__edit-button editable-section__button-container">
@@ -14,7 +14,7 @@
 	<?php echo MVCoutput(UserListModel, Controller_base, SimpleView, 'UserListView--table.template.php', $currentUser, null); ?>
 </section>
 
-<section class="page-section id="branding">
+<section class="page-section">
 	<div class="page-section__header">
 		<h1 class="page-section__title type__title">Branding</h1>
 	</div>
@@ -22,7 +22,7 @@
 	
 </section>
 
-<section class="page-section id="pageOptions">
+<section class="page-section">
 	<div class="page-section__header">
 		<h1 class="page-section__title type__title">Page Options</h1>
 	</div>
