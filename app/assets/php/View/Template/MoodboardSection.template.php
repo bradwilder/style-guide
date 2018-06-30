@@ -1,4 +1,4 @@
-<section class="page-section <?php if (in_array('Edit', $currentUser->roles)) {echo 'editable-section';} ?>" id="section-<?=$section->id?>">
+<section class="page-section <?php if (in_array('Edit', $currentUser->roles)) {echo 'editable-section';} ?>" id="page-section-<?=$section->id?>">
 	<div class="page-section__header editable-section__display">
 		<?php if (in_array('Edit', $currentUser->roles)) { ?>
 			<div class="page-section__edit-button editable-section__button-container">

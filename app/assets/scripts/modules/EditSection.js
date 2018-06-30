@@ -11,7 +11,7 @@ class EditSection
 			if ($(e.target).hasClass('edit-section__trigger'))
 			{
 				var sectionID = $(e.target).closest('.popover').attr('data-ID');
-				var $section = $('#section-' + sectionID);
+				var $section = $('#page-section-' + sectionID);
 				
 				_this.editableSection = new EditableSection($section);
 				_this.editableSection.edit();
