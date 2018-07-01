@@ -126,7 +126,6 @@ Vue.component('config-tree',
 		({
 			url: '/styleguideConfig',
 			type: 'GET',
-			data: 'action=tree',
 			dataType: 'json',
 			success: function(data)
 			{

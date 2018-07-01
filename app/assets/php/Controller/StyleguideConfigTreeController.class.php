@@ -7,7 +7,7 @@ class StyleguideConfigTreeController extends Controller_base
 		parent::__construct($model);
 	}
 	
-	public function tree()
+	public function index()
 	{
 		echo json_encode($this->model->getTree());
 	}
