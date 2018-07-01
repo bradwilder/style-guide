@@ -10,7 +10,7 @@
 				<th class="sortable">Sessions<span class="sortIcon"><i class="fa"></i></span></th>
 				<th class="sortable">Requests<span class="sortIcon"><i class="fa"></i></span></th>
 				<th class="sortable">Status<span class="sortIcon"><i class="fa"></i></span></th>
-				<th class="{sorter: false}">Options</th>
+				<th class="{sorter: false}"><i class="fa fa-cog"></i></th>
 			</tr>
 		</thead>
 		<tbody class="type__label">
