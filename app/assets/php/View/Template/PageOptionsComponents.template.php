@@ -4,7 +4,7 @@
 			<thead class="type__title">
 				<tr>
 					<th class="sortable">Page Code<span class="sortIcon"><i class="fa"></i></span></th>
-					<th class="{sorter: false}">Show TOC<span class="sortIcon"><i class="fa"></i></span></th>
+					<th class="{sorter: false}">Show TOC</th>
 				</tr>
 			</thead>
 			<tbody class="type__label">
