@@ -33,7 +33,7 @@ class StyleguideSectionsView extends View_base
 				$subsections []= $subsection;
 			}
 			
-			$pageSectionModel = new PageSectionModel($this->model);
+			$pageSectionModel = new PageSectionModel();
 			
 			$pageSectionModel->title = $section->name;
 			$pageSectionModel->subsections = $subsections;

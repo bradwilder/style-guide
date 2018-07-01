@@ -6,7 +6,7 @@ class PageSectionEditableOptions
 	public $submittable;
 	public $buttons = array();
 	
-	public function __construct($role, $submittable = false)
+	public function __construct($role, PageSectionSubmittableOptions $submittable = null)
 	{
 		$this->role = $role;
 		$this->submittable = $submittable;

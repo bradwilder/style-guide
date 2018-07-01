@@ -11,6 +11,7 @@ class PageSectionHeaderView extends View_base
 	{
 		$this->template->title = $this->model->title;
 		$this->template->editableOptions = $this->model->editableOptions;
+		$this->template->buttons = $this->model->buttons;
 		
 		return parent::output();
 	}

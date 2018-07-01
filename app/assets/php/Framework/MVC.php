@@ -12,7 +12,7 @@ class Model_base
 
 class View_base
 {
-	private $currentUser;
+	protected $currentUser;
 	protected $model;
 	protected $template;
 	
@@ -43,10 +43,7 @@ class Controller_base
         $this->model = $model;
     }
 	
-	public function index()
-	{
-		
-	}
+	public function index() {}
 }
 
 class Template
@@ -78,18 +75,18 @@ class Template
 	}
 }
 
-function MVCoutput($modelClass, $controllerClass, $viewClass = null, $templateFile = null, $currentUser = null, $action = null)
+function MVCoutput($modelClass, $controllerClass, $viewClass = null, $templateFile = null, $currentUser = null, $action = null, $actionArgs = array())
 {
 	$model = new $modelClass;
 	
 	$controller = new $controllerClass($model);
 	if ($action)
 	{
-		$controller->$action();
+		call_user_func_array([$controller, $action], $actionArgs);
 	}
 	else
 	{
-		$controller->index();
+		call_user_func_array([$controller, 'index'], $actionArgs);
 	}
 	
 	if ($viewClass)

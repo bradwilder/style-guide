@@ -2,7 +2,6 @@
 
 class PageSectionEditableButton
 {
-	public $edit = false;
 	public $classes;
 	public $attributes;
 	

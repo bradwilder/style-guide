@@ -19,6 +19,11 @@
 		&:hover {
 			opacity: 1 !important;
 		}
+		
+		&[type="submit"] {
+			border: none;
+			outline: none;
+		}
 	}
 	
 	&:hover &__button-container > &__button,
@@ -26,15 +31,6 @@
 		opacity: .5;
 		pointer-events: auto;
 		cursor: pointer;
-	}
-	
-	&__button-edit,
-	&__button-edit:link,
-	&__button-edit:visited,
-	&__button-edit:hover,
-	&__button-edit:active,
-	&__button-edit:focus {
-		color: inherit;
 	}
 	
 	&__button-done,

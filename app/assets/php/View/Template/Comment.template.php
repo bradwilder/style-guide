@@ -2,7 +2,7 @@
 	<div>
 		<?php if ($hasPermission) { ?>
 			<div class="comment__edit-button editable-section__button-container">
-				<a tabindex="-1" role="button" class="editable-section__button editable-section__button-edit comment__reply-button fa fa-reply"></a>
+				<a tabindex="-1" role="button" class="editable-section__button comment__reply-button fa fa-reply"></a>
 			</div>
 		<?php } ?>
 		<h4 data-toc-skip class="comment__cite type__desc"><?=htmlentities($comment->userName)?> <small class="comment__date type__title">&bull; <?=date("M d, Y H:i:s", $comment->postTime)?></small></h4>

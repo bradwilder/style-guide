@@ -13,6 +13,8 @@ class PageSectionView extends View_base
 		$this->template->description = $this->model->description;
 		$this->template->content = $this->model->content;
 		$this->template->subsections = $this->model->subsections;
+		$this->template->editableOptions = $this->model->editableOptions;
+		$this->template->headerButtons = $this->model->headerButtons;
 		
 		return parent::output();
 	}
