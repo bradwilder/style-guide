@@ -10,3 +10,13 @@ create table routes
 	requiresAuth integer,
 	requiredRole text
 );
+
+create table actionArgs
+(
+	id integer primary key,
+	argument text,
+	type text,
+	routeID integer,
+	position integer,
+	foreign key(routeID) references routes(id)
+);

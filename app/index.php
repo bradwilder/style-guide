@@ -91,7 +91,27 @@ $router = new Router();
 $db = new PDO('sqlite:' . __ASSETS_PATH . '/php/Framework/routes.db') or die("cannot open the database");
 foreach ($db->query('select * from routes') as $row)
 {
-	$router->addRoute(new Route($row['path'], $row['model'], $row['view'], $row['templateFile'], $row['controller'], $row['action'], $row['requiresAuth'] == 1, $row['requiredRole']));
+	$route = new Route($row['path'], $row['model'], $row['view'], $row['templateFile'], $row['controller'], $row['action'], $row['requiresAuth'] == 1, $row['requiredRole']);
+	foreach ($db->query('select argument, type from actionArgs where routeID = ' . $row['id'] . ' order by position') as $argRow)
+	{
+		$argument;
+		$type = $argRow['type'];
+		switch ($type)
+		{
+			case 'string':
+				$argument = $argRow['argument'];
+				break;
+			case 'boolean':
+				$argument = ($argRow['argument'] === 'true');
+				break;
+			case 'integer':
+				$argument = intval($argRow['argument']);
+				break;
+		}
+		$route->addActionArg($argument);
+	}
+	
+	$router->addRoute($route);
 }
 
 // Find the route
@@ -106,7 +126,7 @@ catch (Exception $e)
 	$currentUser = $auth->authenticate(true, $uri);
 	if ($currentUser)
 	{
-		echo MVCoutput("PageModel", "NotFoundPageController", "PageView", "Page.template.php", $currentUser);
+		echo MVCoutput("PageModel", "PageController", "PageView", "Page.template.php", $currentUser, null, array('404 - Page Not Found!', 'notFound', true));
 		return;
 	}
 }

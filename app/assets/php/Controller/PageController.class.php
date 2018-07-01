@@ -7,7 +7,7 @@ class PageController extends Controller_base
 		parent::__construct($model);
 	}
 	
-	protected function setPageData($pageTitle, $pageCode, $useMenu = false, $fullHeight = false)
+	public function index($pageTitle, $pageCode, $useMenu = false, $fullHeight = false)
 	{
 		$this->model->pageTitle = $pageTitle;
 		$this->model->pageCode = $pageCode;

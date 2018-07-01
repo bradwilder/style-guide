@@ -57,6 +57,7 @@ class Route
 {
 	private $path;
 	private $action;
+	private $actionArgs = array();
 	public $model;
 	public $view;
 	public $templateFile;
@@ -74,6 +75,16 @@ class Route
 		$this->action = $action;
 		$this->requiresAuth = $requiresAuth;
 		$this->requiredRole = $requiredRole;
+	}
+	
+	public function addActionArg($actionArg)
+	{
+		$this->actionArgs []= $actionArg;
+	}
+	
+	public function getActionArgs()
+	{
+		return $this->actionArgs;
 	}
 	
 	public function match(Request $request)
@@ -132,7 +143,7 @@ class Dispatcher
 {
 	public function dispatch($route, $request)
 	{
-		echo MVCoutput($route->model, $route->controller, $route->view, $route->templateFile, $request->currentUser, $request->getAction());
+		echo MVCoutput($route->model, $route->controller, $route->view, $route->templateFile, $request->currentUser, $request->getAction(), $route->getActionArgs());
 	}
 }
 

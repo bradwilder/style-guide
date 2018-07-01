@@ -2,14 +2,9 @@
 
 class StyleguidePageController extends PageController
 {
-	public function index()
+	public function config($pageTitle, $pageCode, $useMenu = false, $fullHeight = false)
 	{
-		$this->setPageData('Style Guide', 'styleguide', true);
-	}
-	
-	public function config()
-	{
-		$this->setPageData('Style Guide Config', 'styleguideConfig', true, true);
+		$this->index($pageTitle, $pageCode, $useMenu, $fullHeight);
 	}
 }
 

@@ -1,11 +1,46 @@
-insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/login", "PageModel", "PageView", "LoginPage.template.php", "LoginPageController", null, 0, null);
-insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/reset-password", "PageModel", "PageView", "ResetPasswordPage.template.php", "ResetPasswordPageController", null, 0, null);
-insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/activate", "PageModel", "PageView", "ActivatePage.template.php", "ActivatePageController", null, 0, null);
-insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/resend-activation", "PageModel", "PageView", "ResendActivationPage.template.php", "ResendActivationPageController", null, 0, null);
+create temp table if not exists variables (name text primary key, value text);
+
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/login", "PageModel", "PageView", "LoginPage.template.php", "CredentialPageController", null, 0, null);
+insert or replace into variables values ('id', last_insert_rowid());
+insert into actionArgs (argument, type, routeID, position) values ('Login', 'string', (select value from variables where name = 'id'), 1);
+
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/reset-password", "PageModel", "PageView", "ResetPasswordPage.template.php", "CredentialPageController", null, 0, null);
+insert or replace into variables values ('id', last_insert_rowid());
+insert into actionArgs (argument, type, routeID, position) values ('Reset Password', 'string', (select value from variables where name = 'id'), 1);
+
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/activate", "PageModel", "PageView", "ActivatePage.template.php", "CredentialPageController", null, 0, null);
+insert or replace into variables values ('id', last_insert_rowid());
+insert into actionArgs (argument, type, routeID, position) values ('Activate', 'string', (select value from variables where name = 'id'), 1);
+
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/resend-activation", "PageModel", "PageView", "ResendActivationPage.template.php", "CredentialPageController", null, 0, null);
+insert or replace into variables values ('id', last_insert_rowid());
+insert into actionArgs (argument, type, routeID, position) values ('Resend Activation', 'string', (select value from variables where name = 'id'), 1);
+
 insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/", "StyleguidePageModel", "StyleguidePageView", "Page.template.php", "StyleguidePageController", null, 1, "View");
+insert or replace into variables values ('id', last_insert_rowid());
+insert into actionArgs (argument, type, routeID, position) values ('Style Guide', 'string', (select value from variables where name = 'id'), 1);
+insert into actionArgs (argument, type, routeID, position) values ('styleguide', 'string', (select value from variables where name = 'id'), 2);
+insert into actionArgs (argument, type, routeID, position) values ('true', 'boolean', (select value from variables where name = 'id'), 3);
+
 insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/", "PageModel", "PageView", "Page.template.php", "StyleguidePageController", 'config', 1, "Edit");
-insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/moodboard", "PageModel", "PageView", "Page.template.php", "MoodboardPageController", null, 1, "View");
-insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/admin", "PageModel", "PageView", "Page.template.php", "AdminPageController", null, 1, "Admin");
+insert or replace into variables values ('id', last_insert_rowid());
+insert into actionArgs (argument, type, routeID, position) values ('Style Guide Config', 'string', (select value from variables where name = 'id'), 1);
+insert into actionArgs (argument, type, routeID, position) values ('styleguideConfig', 'string', (select value from variables where name = 'id'), 2);
+insert into actionArgs (argument, type, routeID, position) values ('true', 'boolean', (select value from variables where name = 'id'), 3);
+insert into actionArgs (argument, type, routeID, position) values ('true', 'boolean', (select value from variables where name = 'id'), 4);
+
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/moodboard", "PageModel", "PageView", "Page.template.php", "PageController", null, 1, "View");
+insert or replace into variables values ('id', last_insert_rowid());
+insert into actionArgs (argument, type, routeID, position) values ('Mood Board', 'string', (select value from variables where name = 'id'), 1);
+insert into actionArgs (argument, type, routeID, position) values ('moodboard', 'string', (select value from variables where name = 'id'), 2);
+insert into actionArgs (argument, type, routeID, position) values ('true', 'boolean', (select value from variables where name = 'id'), 3);
+
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/admin", "PageModel", "PageView", "Page.template.php", "PageController", null, 1, "Admin");
+insert or replace into variables values ('id', last_insert_rowid());
+insert into actionArgs (argument, type, routeID, position) values ('Admin', 'string', (select value from variables where name = 'id'), 1);
+insert into actionArgs (argument, type, routeID, position) values ('admin', 'string', (select value from variables where name = 'id'), 2);
+insert into actionArgs (argument, type, routeID, position) values ('true', 'boolean', (select value from variables where name = 'id'), 3);
+
 insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/user", "UserModel", null, null, "UserController", 'edit', 1, "Admin");
 insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/user", "UserModel", null, null, "UserController", 'emailExists', 1, "Admin");
 insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/user", "UserModel", null, null, "UserController", 'add', 1, "Admin");
