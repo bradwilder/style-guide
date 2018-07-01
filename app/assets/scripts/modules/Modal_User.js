@@ -47,7 +47,7 @@ class Modal_User
 			var selectedEmail = $selectedRow.find('.users-table__email').html();
 			var selectedPhone = $selectedRow.find('.users-table__phone').html();
 			var selectedDisplayName = $selectedRow.find('.users-table__display-name').html();
-			var selectedGroupID = $selectedRow.find('.users-table__group-id').html();
+			var selectedGroupID = $selectedRow.attr('data-group-id');
 			
 			$modal.find('[name=id]').val(selectedID);
 			

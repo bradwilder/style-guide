@@ -1,9 +1,8 @@
-<tr class="<?=($userListItem->user->id == $currentUser->id ? 'type__label--emphasis' : '')?>">
+<tr class="<?=($userListItem->user->id == $currentUser->id ? 'type__label--emphasis' : '')?>" data-group-id="<?=$userListItem->user->groupID?>">
 	<td class="users-table__id"><?=$userListItem->user->id?></td>
 	<td class="users-table__email"><?=$userListItem->user->email?></td>
 	<td class="users-table__phone"><?=$userListItem->user->phone?></td>
 	<td class="users-table__display-name"><?=$userListItem->user->displayName?></td>
-	<td class="users-table__group-id" style="display:none;"><?=$userListItem->user->groupID?></td>
 	<td class="users-table__group-name"><?=$userListItem->group->name?></td>
 	<td class="users-table__sessions">
 		<?php if ($userListItem->user->sessions > 0) { ?>
