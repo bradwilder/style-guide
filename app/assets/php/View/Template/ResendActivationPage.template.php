@@ -13,4 +13,8 @@
 		</form>
 	</div>
 
-<?php include(__ASSETS_PATH . "/php/View/Template/Page-footer--$pageCode.template.php"); ?>
+<?php
+	$model = new PageFooterModel($pageCode);
+	$view = new PageFooterView($model, $currentUser);
+	echo $view->output();
+?>
