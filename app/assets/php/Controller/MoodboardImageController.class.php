@@ -4,8 +4,8 @@ class MoodboardImageController extends Controller_base
 {
 	public function __construct(MoodboardImageModel $model)
 	{
-        parent::__construct($model);
-    }
+		parent::__construct($model);
+	}
 	
 	public function nameExists()
 	{

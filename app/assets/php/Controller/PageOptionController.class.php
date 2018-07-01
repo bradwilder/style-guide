@@ -4,8 +4,8 @@ class PageOptionController extends Controller_base
 {
 	public function __construct(PageOptionModel $model)
 	{
-        parent::__construct($model);
-    }
+		parent::__construct($model);
+	}
 	
 	public function getShowTOCList()
 	{

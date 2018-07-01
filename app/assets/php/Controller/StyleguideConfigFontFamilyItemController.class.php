@@ -4,8 +4,8 @@ class StyleguideConfigFontFamilyItemController extends Controller_base
 {
 	public function __construct(StyleguideConfigFontFamilyItemModel $model)
 	{
-        parent::__construct($model);
-    }
+		parent::__construct($model);
+	}
 	
 	public function edit()
 	{

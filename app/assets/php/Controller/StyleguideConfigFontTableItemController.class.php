@@ -4,8 +4,8 @@ class StyleguideConfigFontTableItemController extends Controller_base
 {
 	public function __construct(StyleguideConfigFontTableItemModel $model)
 	{
-        parent::__construct($model);
-    }
+		parent::__construct($model);
+	}
 	
 	public function editListingFont()
 	{

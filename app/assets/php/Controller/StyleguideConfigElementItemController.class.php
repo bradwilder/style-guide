@@ -4,8 +4,8 @@ class StyleguideConfigElementItemController extends Controller_base
 {
 	public function __construct(StyleguideConfigElementItemModel $model)
 	{
-        parent::__construct($model);
-    }
+		parent::__construct($model);
+	}
 	
 	public function deleteUpload()
 	{

@@ -4,8 +4,8 @@ class DraggableSectionsController extends Controller_base
 {
 	public function __construct(DraggablesModel $model)
 	{
-        parent::__construct($model);
-    }
+		parent::__construct($model);
+	}
 	
 	public function index()
 	{
