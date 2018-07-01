@@ -1,6 +1,6 @@
 <script type="text/x-template" id="page-options-table-template">
 	<div class="admin-table__wrapper">
-		<table class="tables tables--sortable {sortList: [[0, 0]], widgets: ['zebra']} tables--striped tables--selectable" id="page-options-table">
+		<table class="tables tables--sortable {sortList: [[0, 0]], widgets: ['zebra']} tables--striped tables--selectable">
 			<thead class="type__title">
 				<tr>
 					<th class="sortable">Page Code<span class="sortIcon"><i class="fa"></i></span></th>

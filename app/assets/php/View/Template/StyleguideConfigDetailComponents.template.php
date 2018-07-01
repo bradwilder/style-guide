@@ -25,7 +25,7 @@
 		</div>
 		
 		<div class="sg-config-detail__body">
-			<table class="sg-config-detail__table tables tables--striped tables--selectable tables--sortable {sortList: [[0, 0]], widgets: ['zebra']}" id="colors-table">
+			<table class="sg-config-detail__table tables tables--striped tables--selectable tables--sortable {sortList: [[0, 0]], widgets: ['zebra']}">
 				<thead class="type__title type__title--darker">
 					<tr>
 						<th class="sortable">Name<span class="sortIcon"><i class="fa"></i></span></th>
@@ -71,7 +71,7 @@
 		</div>
 		
 		<div class="sg-config-detail__body">
-			<table class="sg-config-detail__table tables tables--striped tables--selectable tables--sortable {sortList: [[0, 0]], widgets: ['zebra']}" id="fonts-table">
+			<table class="sg-config-detail__table tables tables--striped tables--selectable tables--sortable {sortList: [[0, 0]], widgets: ['zebra']}">
 				<thead class="type__title type__title--darker">
 					<tr>
 						<th class="sortable">Name<span class="sortIcon"><i class="fa"></i></span></th>
@@ -146,7 +146,7 @@
 		</div>
 		
 		<div class="sg-config-detail__body">
-			<table class="sg-config-detail__table tables tables--striped tables--selectable" id="sections-table">
+			<table class="sg-config-detail__table tables tables--striped tables--selectable">
 				<thead class="type__title type__title--darker">
 					<tr>
 						<th>Name</th>
@@ -200,7 +200,7 @@
 					<h4 class="sg-config-detail__desc type__title type__title--darker">Subsections</h4>
 				</div>
 				
-				<table class="sg-config-detail__table tables tables--striped tables--selectable" id="section-table">
+				<table class="sg-config-detail__table tables tables--striped tables--selectable">
 					<thead class="type__title type__title--darker">
 						<tr>
 							<th>Name</th>
@@ -257,7 +257,7 @@
 					<h4 class="sg-config-detail__desc type__title type__title--darker">Items</h4>
 				</div>
 				
-				<table class="sg-config-detail__table tables tables--striped tables--selectable" id="subsection-items-table">
+				<table class="sg-config-detail__table tables tables--striped tables--selectable">
 					<thead class="type__title type__title--darker">
 						<tr>
 							<th>Name</th>
@@ -279,7 +279,7 @@
 					<h4 class="sg-config-detail__desc type__title type__title--darker">Sub-subsections</h4>
 				</div>
 				
-				<table class="sg-config-detail__table tables tables--striped tables--selectable" id="subsection-subsections-table">
+				<table class="sg-config-detail__table tables tables--striped tables--selectable">
 					<thead class="type__title type__title--darker">
 						<tr>
 							<th>Name</th>
@@ -352,7 +352,7 @@
 				<h4 class="sg-config-detail__desc type__title type__title--darker">Colors</h4>
 			</div>
 			
-			<table class="sg-config-detail__table tables tables--striped" :class="{'tables--selectable': data.type.code == 'color-pal'}" id="color-item-colors-table">
+			<table class="sg-config-detail__table tables tables--striped" :class="{'tables--selectable': data.type.code == 'color-pal'}">
 				<thead class="type__title type__title--darker">
 					<tr>
 						<th>Name</th>
@@ -378,7 +378,7 @@
 				<h4 class="sg-config-detail__desc type__title type__title--darker">Descriptors</h4>
 			</div>
 			
-			<table class="sg-config-detail__table tables tables--striped tables--selectable" id="color-item-descriptors-table">
+			<table class="sg-config-detail__table tables tables--striped tables--selectable">
 				<thead class="type__title type__title--darker">
 					<tr>
 						<th>Descriptor</th>
@@ -571,7 +571,7 @@
 				<h4 class="sg-config-detail__desc type__title type__title--darker">Icons</h4>
 			</div>
 			
-			<table class="sg-config-detail__table tables tables--striped tables--selectable" id="icon-listing-table">
+			<table class="sg-config-detail__table tables tables--striped tables--selectable">
 				<thead class="type__title type__title--darker">
 					<tr>
 						<th>HTML</th>
@@ -626,7 +626,7 @@
 			<h4 class="sg-config-detail__desc type__title type__title--darker">Images</h4>
 		</div>
 		
-		<table class="sg-config-detail__table tables tables--striped tables--selectable" id="segmented-element-table">
+		<table class="sg-config-detail__table tables tables--striped tables--selectable">
 			<thead class="type__title type__title--darker">
 				<tr>
 					<th>File Name</th>

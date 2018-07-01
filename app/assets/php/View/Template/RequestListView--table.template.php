@@ -1,4 +1,4 @@
-<table class="tables" id="requests-table">
+<table class="tables">
 	<thead class="type__title">
 		<tr>
 			<th>Expiration</th>
