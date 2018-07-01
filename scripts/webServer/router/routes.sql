@@ -1,134 +1,133 @@
-insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values
-  ("/login", "PageModel", "PageView", "LoginPage.template.php", "LoginPageController", null, 0, null),
-  ("/reset-password", "PageModel", "PageView", "ResetPasswordPage.template.php", "ResetPasswordPageController", null, 0, null),
-  ("/activate", "PageModel", "PageView", "ActivatePage.template.php", "ActivatePageController", null, 0, null),
-  ("/resend-activation", "PageModel", "PageView", "ResendActivationPage.template.php", "ResendActivationPageController", null, 0, null),
-  ("/", "StyleguidePageModel", "StyleguidePageView", "Page.template.php", "StyleguidePageController", null, 1, "View"),
-  ("/", "PageModel", "PageView", "Page.template.php", "StyleguidePageController", 'config', 1, "Edit"),
-  ("/moodboard", "PageModel", "PageView", "Page.template.php", "MoodboardPageController", null, 1, "View"),
-  ("/admin", "PageModel", "PageView", "Page.template.php", "AdminPageController", null, 1, "Admin"),
-  ("/user", "UserModel", null, null, "UserController", 'edit', 1, "Admin"),
-  ("/user", "UserModel", null, null, "UserController", 'emailExists', 1, "Admin"),
-  ("/user", "UserModel", null, null, "UserController", 'add', 1, "Admin"),
-  ("/user", "UserModel", null, null, "UserController", 'groups', 1, "View"),
-  ("/user", "UserModel", null, null, "UserController", 'delete', 1, "Admin"),
-  ("/user", "UserModel", null, null, "UserController", 'undelete', 1, "Admin"),
-  ("/user", "UserModel", null, null, "UserController", 'changePassword', 1, "Admin"),
-  ("/user", "UserModel", null, null, "UserController", 'activationRequest', 1, "Admin"),
-  ("/user", "UserModel", null, null, "UserController", 'deleteRequest', 1, "Admin"),
-  ("/user", "UserModel", null, null, "UserController", 'logout', 1, null),
-  ("/user", "UserModel", null, null, "UserController", 'login', 0, null),
-  ("/user", "UserModel", null, null, "UserController", 'requestReset', 0, null),
-  ("/user", "UserModel", null, null, "UserController", 'resetPassword', 0, null),
-  ("/user", "UserModel", null, null, "UserController", 'activate', 0, null),
-  ("/user", "UserModel", null, null, "UserController", 'resendActivation', 0, null),
-  ("/session", "SessionModel", null, null, "SessionController", 'refresh', 1, null),
-  ("/session", "SessionModel", null, null, "SessionController", 'delete', 1, "Admin"),
-  ("/sessionList", "SessionListModel", 'SimpleView', 'SessionListView--table.template.php', "UserDataListController", null, 1, "Admin"),
-  ("/requestList", "RequestListModel", 'SimpleView', 'RequestListView--table.template.php', "UserDataListController", null, 1, "Admin"),
-  ("/pageOption", "PageOptionModel", null, null, "PageOptionController", 'getShowTOCList', 1, "Admin"),
-  ("/pageOption", "PageOptionModel", null, null, "PageOptionController", 'setShowTOC', 1, "Admin"),
-  ("/comment", "CommentModel", null, null, "CommentController", 'submit', 1, 'Comment'),
-  ("/comment", "CommentModel", null, null, "CommentController", 'reply', 1, 'Comment'),
-  ("/moodboardSection", "MoodboardSectionModel", null, null, "MoodboardSectionController", 'modes', 1, 'View'),
-  ("/moodboardSection", "MoodboardSectionModel", null, null, "MoodboardSectionController", 'add', 1, 'Edit'),
-  ("/moodboardSection", "MoodboardSectionModel", null, null, "MoodboardSectionController", 'nameExists', 1, 'Edit'),
-  ("/moodboardSection", "MoodboardSectionModel", null, null, "MoodboardSectionController", 'edit', 1, 'Edit'),
-  ("/moodboardSection", "MoodboardSectionModel", null, null, "MoodboardSectionController", 'delete', 1, 'Edit'),
-  ("/moodboardSection", "MoodboardSectionModel", "MoodboardSectionImagesView", null, "MoodboardSectionController", 'additionalImages', 1, 'Edit'),
-  ("/moodboardSection", "MoodboardSectionModel", null, null, "MoodboardSectionController", 'removeImage', 1, 'Edit'),
-  ("/moodboardSection", "MoodboardSectionModel", null, null, "MoodboardSectionController", 'addImages', 1, 'Edit'),
-  ("/moodboardSectionsDraggable", "MoodboardSectionsDraggableModel", 'SimpleView', 'DraggableSections.template.php', "DraggableSectionsController", null, 1, 'Edit'),
-  ("/moodboardSectionsDraggable", "MoodboardSectionsDraggableModel", null, null, "DraggableSectionsController", 'arrange', 1, 'Edit'),
-  ("/moodboardSectionImagesDraggable", "MoodboardSectionImagesDraggableModel", 'SimpleView', 'DraggableSections.template.php', "DraggableSectionsIDController", null, 1, 'Edit'),
-  ("/moodboardSectionImagesDraggable", "MoodboardSectionImagesDraggableModel", null, null, "DraggableSectionsIDController", 'arrange', 1, 'Edit'),
-  ("/moodboardImage", "MoodboardImageModel", null, null, "MoodboardImageController", 'nameExists', 1, 'Edit'),
-  ("/moodboardImage", "MoodboardImageModel", null, null, "MoodboardImageController", 'add', 1, 'Edit'),
-  ("/moodboardImage", "MoodboardImageModel", "SimpleView", 'MoodboardImages.template.php', "MoodboardImageController", null, 1, 'Edit'),
-  ("/moodboardImage", "MoodboardImageModel", null, null, "MoodboardImageController", 'delete', 1, 'Edit'),
-  ("/moodboardImage", "MoodboardImageModel", null, null, "MoodboardImageController", 'replace', 1, 'Edit'),
-  ("/styleguideConfig", "StyleguideConfigTreeModel", null, null, "StyleguideConfigTreeController", 'tree', 1, 'Edit'),
-  ("/styleguideConfigDetail", "StyleguideConfigDetailModel", null, null, "StyleguideConfigDetailController", null, 1, 'Edit'),
-  ("/colors", "StyleguideConfigColorsModel", null, null, "StyleguideConfigColorsController", 'getDefaultColor', 1, 'View'),
-  ("/colors", "StyleguideConfigColorsModel", null, null, "StyleguideConfigColorsController", 'setDefaultColor', 1, 'Edit'),
-  ("/colors", "StyleguideConfigColorsModel", null, null, "StyleguideConfigColorsController", 'delete', 1, 'Edit'),
-  ("/colors", "StyleguideConfigColorsModel", null, null, "StyleguideConfigColorsController", 'nameExists', 1, 'Edit'),
-  ("/colors", "StyleguideConfigColorsModel", null, null, "StyleguideConfigColorsController", 'add', 1, 'Edit'),
-  ("/colors", "StyleguideConfigColorsModel", null, null, "StyleguideConfigColorsController", 'get', 1, 'Edit'),
-  ("/colors", "StyleguideConfigColorsModel", null, null, "StyleguideConfigColorsController", 'edit', 1, 'Edit'),
-  ("/fonts", "StyleguideConfigFontsModel", null, null, "StyleguideConfigFontsController", 'delete', 1, 'Edit'),
-  ("/fonts", "StyleguideConfigFontsModel", null, null, "StyleguideConfigFontsController", 'nameExists', 1, 'Edit'),
-  ("/fonts", "StyleguideConfigFontsModel", null, null, "StyleguideConfigFontsController", 'add', 1, 'Edit'),
-  ("/fonts", "StyleguideConfigFontsModel", null, null, "StyleguideConfigFontsController", 'get', 1, 'Edit'),
-  ("/fonts", "StyleguideConfigFontsModel", null, null, "StyleguideConfigFontsController", 'alphabets', 1, 'Edit'),
-  ("/fonts", "StyleguideConfigFontsModel", null, null, "StyleguideConfigFontsController", 'fontTypes', 1, 'Edit'),
-  ("/fonts", "StyleguideConfigFontsModel", null, null, "StyleguideConfigFontsController", 'edit', 1, 'Edit'),
-  ("/upload", "StyleguideConfigUploadsModel", null, null, "StyleguideConfigUploadsController", 'uploadFile', 1, 'Edit'),
-  ("/upload", "StyleguideConfigUploadsModel", null, null, "StyleguideConfigUploadsController", 'newFolder', 1, 'Edit'),
-  ("/upload", "StyleguideConfigUploadsModel", null, null, "StyleguideConfigUploadsController", 'delete', 1, 'Edit'),
-  ("/upload", "StyleguideConfigUploadsModel", null, null, "StyleguideConfigUploadsController", 'get', 1, 'Edit'),
-  ("/upload", "StyleguideConfigUploadsModel", null, null, "StyleguideConfigUploadsController", 'editFile', 1, 'Edit'),
-  ("/upload", "StyleguideConfigUploadsModel", null, null, "StyleguideConfigUploadsController", 'editFolder', 1, 'Edit'),
-  ("/section", "StyleguideConfigSectionModel", null, null, "StyleguideConfigSectionController", 'delete', 1, 'Edit'),
-  ("/section", "StyleguideConfigSectionModel", null, null, "StyleguideConfigSectionController", 'nameExists', 1, 'Edit'),
-  ("/section", "StyleguideConfigSectionModel", null, null, "StyleguideConfigSectionController", 'add', 1, 'Edit'),
-  ("/section", "StyleguideConfigSectionModel", null, null, "StyleguideConfigSectionController", 'get', 1, 'Edit'),
-  ("/section", "StyleguideConfigSectionModel", null, null, "StyleguideConfigSectionController", 'edit', 1, 'Edit'),
-  ("/section", "StyleguideConfigSectionModel", null, null, "StyleguideConfigSectionController", 'enable', 1, 'Edit'),
-  ("/styleguideSectionsDraggable", "StyleguideSectionsDraggableModel", 'SimpleView', 'DraggableSections.template.php', "DraggableSectionsController", null, 1, 'Edit'),
-  ("/styleguideSectionsDraggable", "StyleguideSectionsDraggableModel", null, null, "DraggableSectionsController", 'arrange', 1, 'Edit'),
-  ("/subsection", "StyleguideConfigSubsectionModel", null, null, "StyleguideConfigSubsectionController", 'delete', 1, 'Edit'),
-  ("/subsection", "StyleguideConfigSubsectionModel", null, null, "StyleguideConfigSubsectionController", 'nameExists', 1, 'Edit'),
-  ("/subsection", "StyleguideConfigSubsectionModel", null, null, "StyleguideConfigSubsectionController", 'add', 1, 'Edit'),
-  ("/subsection", "StyleguideConfigSubsectionModel", null, null, "StyleguideConfigSubsectionController", 'get', 1, 'Edit'),
-  ("/subsection", "StyleguideConfigSubsectionModel", null, null, "StyleguideConfigSubsectionController", 'edit', 1, 'Edit'),
-  ("/subsection", "StyleguideConfigSubsectionModel", null, null, "StyleguideConfigSubsectionController", 'enable', 1, 'Edit'),
-  ("/styleguideSubsectionsDraggable", "StyleguideSubsectionsDraggableModel", 'SimpleView', 'DraggableSections.template.php', "DraggableSectionsController", null, 1, 'Edit'),
-  ("/styleguideSubsectionsDraggable", "StyleguideSubsectionsDraggableModel", null, null, "DraggableSectionsController", 'arrange', 1, 'Edit'),
-  ("/styleguideSubSubsectionsDraggable", "StyleguideSubSubsectionsDraggableModel", 'SimpleView', 'DraggableSections.template.php', "DraggableSectionsController", null, 1, 'Edit'),
-  ("/styleguideSubSubsectionsDraggable", "StyleguideSubsectionsDraggableModel", null, null, "DraggableSectionsController", 'arrange', 1, 'Edit'),
-  ("/styleguideItemsDraggable", "StyleguideItemsDraggableModel", 'SimpleView', 'DraggableSections.template.php', "DraggableSectionsController", null, 1, 'Edit'),
-  ("/styleguideItemsDraggable", "StyleguideItemsDraggableModel", null, null, "DraggableSectionsController", 'arrange', 1, 'Edit'),
-  ("/item", "StyleguideConfigItemModel", null, null, "StyleguideConfigItemController", 'delete', 1, 'Edit'),
-  ("/item", "StyleguideConfigItemModel", null, null, "StyleguideConfigItemController", 'get', 1, 'Edit'),
-  ("/item", "StyleguideConfigItemModel", null, null, "StyleguideConfigItemController", 'nameExists', 1, 'Edit'),
-  ("/item", "StyleguideConfigItemModel", null, null, "StyleguideConfigItemController", 'edit', 1, 'Edit'),
-  ("/item", "StyleguideConfigItemModel", null, null, "StyleguideConfigItemController", 'add', 1, 'Edit'),
-  ("/item", "StyleguideConfigItemModel", null, null, "StyleguideConfigItemController", 'getTypes', 1, 'Edit'),
-  ("/item", "StyleguideConfigItemModel", null, null, "StyleguideConfigItemController", 'editColumns', 1, 'Edit'),
-  ("/item", "StyleguideConfigItemModel", null, null, "StyleguideConfigItemController", 'getColumns', 1, 'Edit'),
-  ("/colorItem", "StyleguideConfigColorItemModel", null, null, "StyleguideConfigColorItemController", 'editColor', 1, 'Edit'),
-  ("/colorItem", "StyleguideConfigColorItemModel", null, null, "StyleguideConfigColorItemController", 'addColor', 1, 'Edit'),
-  ("/colorItem", "StyleguideConfigColorItemModel", null, null, "StyleguideConfigColorItemController", 'deleteColor', 1, 'Edit'),
-  ("/colorItem", "StyleguideConfigColorItemModel", null, null, "StyleguideConfigColorItemController", 'getDescriptor', 1, 'Edit'),
-  ("/colorItem", "StyleguideConfigColorItemModel", null, null, "StyleguideConfigColorItemController", 'editDescriptor', 1, 'Edit'),
-  ("/colorItem", "StyleguideConfigColorItemModel", null, null, "StyleguideConfigColorItemController", 'deleteDescriptor', 1, 'Edit'),
-  ("/colorItem", "StyleguideConfigColorItemModel", null, null, "StyleguideConfigColorItemController", 'deleteDescriptors', 1, 'Edit'),
-  ("/colorItem", "StyleguideConfigColorItemModel", null, null, "StyleguideConfigColorItemController", 'addDescriptor', 1, 'Edit'),
-  ("/styleguideColorItemDraggable", "StyleguideColorItemDraggableModel", 'SimpleView', 'DraggableSections.template.php', "DraggableSectionsIDController", null, 1, 'Edit'),
-  ("/styleguideColorItemDraggable", "StyleguideColorItemDraggableModel", null, null, "DraggableSectionsIDController", 'arrange', 1, 'Edit'),
-  ("/styleguideColorItemDescriptorsDraggable", "StyleguideColorItemDescriptorsDraggableModel", 'SimpleView', 'DraggableSections.template.php', "DraggableSectionsController", null, 1, 'Edit'),
-  ("/styleguideColorItemDescriptorsDraggable", "StyleguideColorItemDescriptorsDraggableModel", null, null, "DraggableSectionsController", 'arrange', 1, 'Edit'),
-  ("/fontFamilyItem", "StyleguideConfigFontFamilyItemModel", null, null, "StyleguideConfigFontFamilyItemController", 'edit', 1, 'Edit'),
-  ("/fontTableItem", "StyleguideConfigFontTableItemModel", null, null, "StyleguideConfigFontTableItemController", 'addListing', 1, 'Edit'),
-  ("/fontTableItem", "StyleguideConfigFontTableItemModel", null, null, "StyleguideConfigFontTableItemController", 'getListing', 1, 'Edit'),
-  ("/fontTableItem", "StyleguideConfigFontTableItemModel", null, null, "StyleguideConfigFontTableItemController", 'editListing', 1, 'Edit'),
-  ("/fontTableItem", "StyleguideConfigFontTableItemModel", null, null, "StyleguideConfigFontTableItemController", 'editListingFont', 1, 'Edit'),
-  ("/fontTableItem", "StyleguideConfigFontTableItemModel", null, null, "StyleguideConfigFontTableItemController", 'deleteListing', 1, 'Edit'),
-  ("/fontTableItem", "StyleguideConfigFontTableItemModel", null, null, "StyleguideConfigFontTableItemController", 'addListingCSS', 1, 'Edit'),
-  ("/fontTableItem", "StyleguideConfigFontTableItemModel", null, null, "StyleguideConfigFontTableItemController", 'deleteListingCSS', 1, 'Edit'),
-  ("/fontTableItem", "StyleguideConfigFontTableItemModel", null, null, "StyleguideConfigFontTableItemController", 'getListingCSS', 1, 'Edit'),
-  ("/fontTableItem", "StyleguideConfigFontTableItemModel", null, null, "StyleguideConfigFontTableItemController", 'editListingCSS', 1, 'Edit'),
-  ("/styleguideFontTableItemDraggable", "StyleguideFontTableItemDraggableModel", 'SimpleView', 'DraggableSections.template.php', "DraggableSectionsController", null, 1, 'Edit'),
-  ("/styleguideFontTableItemDraggable", "StyleguideFontTableItemDraggableModel", null, null, "DraggableSectionsController", 'arrange', 1, 'Edit'),
-  ("/iconTableItem", "StyleguideConfigIconTableItemModel", null, null, "StyleguideConfigIconTableItemController", 'delete', 1, 'Edit'),
-  ("/iconTableItem", "StyleguideConfigIconTableItemModel", null, null, "StyleguideConfigIconTableItemController", 'editFont', 1, 'Edit'),
-  ("/iconTableItem", "StyleguideConfigIconTableItemModel", null, null, "StyleguideConfigIconTableItemController", 'addListing', 1, 'Edit'),
-  ("/iconTableItem", "StyleguideConfigIconTableItemModel", null, null, "StyleguideConfigIconTableItemController", 'getListing', 1, 'Edit'),
-  ("/iconTableItem", "StyleguideConfigIconTableItemModel", null, null, "StyleguideConfigIconTableItemController", 'editListing', 1, 'Edit'),
-  ("/styleguideIconTableItemDraggable", "StyleguideIconTableItemDraggableModel", 'SimpleView', 'DraggableSections.template.php', "DraggableSectionsController", null, 1, 'Edit'),
-  ("/styleguideIconTableItemDraggable", "StyleguideIconTableItemDraggableModel", null, null, "DraggableSectionsController", 'arrange', 1, 'Edit'),
-  ("/elementItem", "StyleguideConfigElementItemModel", null, null, "StyleguideConfigElementItemController", 'deleteUpload', 1, 'Edit'),
-  ("/elementItem", "StyleguideConfigElementItemModel", null, null, "StyleguideConfigElementItemController", 'addUpload', 1, 'Edit'),
-  ("/styleguideElementItemDraggable", "StyleguideElementItemDraggableModel", 'SimpleView', 'DraggableSections.template.php', "DraggableSectionsIDController", null, 1, 'Edit'),
-  ("/styleguideElementItemDraggable", "StyleguideElementItemDraggableModel", null, null, "DraggableSectionsIDController", 'arrange', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/login", "PageModel", "PageView", "LoginPage.template.php", "LoginPageController", null, 0, null);
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/reset-password", "PageModel", "PageView", "ResetPasswordPage.template.php", "ResetPasswordPageController", null, 0, null);
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/activate", "PageModel", "PageView", "ActivatePage.template.php", "ActivatePageController", null, 0, null);
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/resend-activation", "PageModel", "PageView", "ResendActivationPage.template.php", "ResendActivationPageController", null, 0, null);
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/", "StyleguidePageModel", "StyleguidePageView", "Page.template.php", "StyleguidePageController", null, 1, "View");
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/", "PageModel", "PageView", "Page.template.php", "StyleguidePageController", 'config', 1, "Edit");
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/moodboard", "PageModel", "PageView", "Page.template.php", "MoodboardPageController", null, 1, "View");
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/admin", "PageModel", "PageView", "Page.template.php", "AdminPageController", null, 1, "Admin");
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/user", "UserModel", null, null, "UserController", 'edit', 1, "Admin");
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/user", "UserModel", null, null, "UserController", 'emailExists', 1, "Admin");
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/user", "UserModel", null, null, "UserController", 'add', 1, "Admin");
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/user", "UserModel", null, null, "UserController", 'groups', 1, "View");
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/user", "UserModel", null, null, "UserController", 'delete', 1, "Admin");
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/user", "UserModel", null, null, "UserController", 'undelete', 1, "Admin");
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/user", "UserModel", null, null, "UserController", 'changePassword', 1, "Admin");
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/user", "UserModel", null, null, "UserController", 'activationRequest', 1, "Admin");
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/user", "UserModel", null, null, "UserController", 'deleteRequest', 1, "Admin");
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/user", "UserModel", null, null, "UserController", 'logout', 1, null);
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/user", "UserModel", null, null, "UserController", 'login', 0, null);
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/user", "UserModel", null, null, "UserController", 'requestReset', 0, null);
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/user", "UserModel", null, null, "UserController", 'resetPassword', 0, null);
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/user", "UserModel", null, null, "UserController", 'activate', 0, null);
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/user", "UserModel", null, null, "UserController", 'resendActivation', 0, null);
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/session", "SessionModel", null, null, "SessionController", 'refresh', 1, null);
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/session", "SessionModel", null, null, "SessionController", 'delete', 1, "Admin");
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/sessionList", "SessionListModel", 'SimpleView', 'SessionListView--table.template.php', "UserDataListController", null, 1, "Admin");
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/requestList", "RequestListModel", 'SimpleView', 'RequestListView--table.template.php', "UserDataListController", null, 1, "Admin");
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/pageOption", "PageOptionModel", null, null, "PageOptionController", 'getShowTOCList', 1, "Admin");
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/pageOption", "PageOptionModel", null, null, "PageOptionController", 'setShowTOC', 1, "Admin");
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/comment", "CommentModel", null, null, "CommentController", 'submit', 1, 'Comment');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/comment", "CommentModel", null, null, "CommentController", 'reply', 1, 'Comment');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/moodboardSection", "MoodboardSectionModel", null, null, "MoodboardSectionController", 'modes', 1, 'View');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/moodboardSection", "MoodboardSectionModel", null, null, "MoodboardSectionController", 'add', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/moodboardSection", "MoodboardSectionModel", null, null, "MoodboardSectionController", 'nameExists', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/moodboardSection", "MoodboardSectionModel", null, null, "MoodboardSectionController", 'edit', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/moodboardSection", "MoodboardSectionModel", null, null, "MoodboardSectionController", 'delete', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/moodboardSection", "MoodboardSectionModel", "MoodboardSectionImagesView", null, "MoodboardSectionController", 'additionalImages', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/moodboardSection", "MoodboardSectionModel", null, null, "MoodboardSectionController", 'removeImage', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/moodboardSection", "MoodboardSectionModel", null, null, "MoodboardSectionController", 'addImages', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/moodboardSectionsDraggable", "MoodboardSectionsDraggableModel", 'SimpleView', 'DraggableSections.template.php', "DraggableSectionsController", null, 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/moodboardSectionsDraggable", "MoodboardSectionsDraggableModel", null, null, "DraggableSectionsController", 'arrange', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/moodboardSectionImagesDraggable", "MoodboardSectionImagesDraggableModel", 'SimpleView', 'DraggableSections.template.php', "DraggableSectionsIDController", null, 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/moodboardSectionImagesDraggable", "MoodboardSectionImagesDraggableModel", null, null, "DraggableSectionsIDController", 'arrange', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/moodboardImage", "MoodboardImageModel", null, null, "MoodboardImageController", 'nameExists', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/moodboardImage", "MoodboardImageModel", null, null, "MoodboardImageController", 'add', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/moodboardImage", "MoodboardImageModel", "SimpleView", 'MoodboardImages.template.php', "MoodboardImageController", null, 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/moodboardImage", "MoodboardImageModel", null, null, "MoodboardImageController", 'delete', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/moodboardImage", "MoodboardImageModel", null, null, "MoodboardImageController", 'replace', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/styleguideConfig", "StyleguideConfigTreeModel", null, null, "StyleguideConfigTreeController", 'tree', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/styleguideConfigDetail", "StyleguideConfigDetailModel", null, null, "StyleguideConfigDetailController", null, 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/colors", "StyleguideConfigColorsModel", null, null, "StyleguideConfigColorsController", 'getDefaultColor', 1, 'View');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/colors", "StyleguideConfigColorsModel", null, null, "StyleguideConfigColorsController", 'setDefaultColor', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/colors", "StyleguideConfigColorsModel", null, null, "StyleguideConfigColorsController", 'delete', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/colors", "StyleguideConfigColorsModel", null, null, "StyleguideConfigColorsController", 'nameExists', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/colors", "StyleguideConfigColorsModel", null, null, "StyleguideConfigColorsController", 'add', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/colors", "StyleguideConfigColorsModel", null, null, "StyleguideConfigColorsController", 'get', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/colors", "StyleguideConfigColorsModel", null, null, "StyleguideConfigColorsController", 'edit', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/fonts", "StyleguideConfigFontsModel", null, null, "StyleguideConfigFontsController", 'delete', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/fonts", "StyleguideConfigFontsModel", null, null, "StyleguideConfigFontsController", 'nameExists', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/fonts", "StyleguideConfigFontsModel", null, null, "StyleguideConfigFontsController", 'add', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/fonts", "StyleguideConfigFontsModel", null, null, "StyleguideConfigFontsController", 'get', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/fonts", "StyleguideConfigFontsModel", null, null, "StyleguideConfigFontsController", 'alphabets', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/fonts", "StyleguideConfigFontsModel", null, null, "StyleguideConfigFontsController", 'fontTypes', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/fonts", "StyleguideConfigFontsModel", null, null, "StyleguideConfigFontsController", 'edit', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/upload", "StyleguideConfigUploadsModel", null, null, "StyleguideConfigUploadsController", 'uploadFile', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/upload", "StyleguideConfigUploadsModel", null, null, "StyleguideConfigUploadsController", 'newFolder', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/upload", "StyleguideConfigUploadsModel", null, null, "StyleguideConfigUploadsController", 'delete', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/upload", "StyleguideConfigUploadsModel", null, null, "StyleguideConfigUploadsController", 'get', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/upload", "StyleguideConfigUploadsModel", null, null, "StyleguideConfigUploadsController", 'editFile', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/upload", "StyleguideConfigUploadsModel", null, null, "StyleguideConfigUploadsController", 'editFolder', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/section", "StyleguideConfigSectionModel", null, null, "StyleguideConfigSectionController", 'delete', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/section", "StyleguideConfigSectionModel", null, null, "StyleguideConfigSectionController", 'nameExists', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/section", "StyleguideConfigSectionModel", null, null, "StyleguideConfigSectionController", 'add', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/section", "StyleguideConfigSectionModel", null, null, "StyleguideConfigSectionController", 'get', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/section", "StyleguideConfigSectionModel", null, null, "StyleguideConfigSectionController", 'edit', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/section", "StyleguideConfigSectionModel", null, null, "StyleguideConfigSectionController", 'enable', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/styleguideSectionsDraggable", "StyleguideSectionsDraggableModel", 'SimpleView', 'DraggableSections.template.php', "DraggableSectionsController", null, 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/styleguideSectionsDraggable", "StyleguideSectionsDraggableModel", null, null, "DraggableSectionsController", 'arrange', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/subsection", "StyleguideConfigSubsectionModel", null, null, "StyleguideConfigSubsectionController", 'delete', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/subsection", "StyleguideConfigSubsectionModel", null, null, "StyleguideConfigSubsectionController", 'nameExists', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/subsection", "StyleguideConfigSubsectionModel", null, null, "StyleguideConfigSubsectionController", 'add', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/subsection", "StyleguideConfigSubsectionModel", null, null, "StyleguideConfigSubsectionController", 'get', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/subsection", "StyleguideConfigSubsectionModel", null, null, "StyleguideConfigSubsectionController", 'edit', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/subsection", "StyleguideConfigSubsectionModel", null, null, "StyleguideConfigSubsectionController", 'enable', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/styleguideSubsectionsDraggable", "StyleguideSubsectionsDraggableModel", 'SimpleView', 'DraggableSections.template.php', "DraggableSectionsController", null, 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/styleguideSubsectionsDraggable", "StyleguideSubsectionsDraggableModel", null, null, "DraggableSectionsController", 'arrange', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/styleguideSubSubsectionsDraggable", "StyleguideSubSubsectionsDraggableModel", 'SimpleView', 'DraggableSections.template.php', "DraggableSectionsController", null, 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/styleguideSubSubsectionsDraggable", "StyleguideSubsectionsDraggableModel", null, null, "DraggableSectionsController", 'arrange', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/styleguideItemsDraggable", "StyleguideItemsDraggableModel", 'SimpleView', 'DraggableSections.template.php', "DraggableSectionsController", null, 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/styleguideItemsDraggable", "StyleguideItemsDraggableModel", null, null, "DraggableSectionsController", 'arrange', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/item", "StyleguideConfigItemModel", null, null, "StyleguideConfigItemController", 'delete', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/item", "StyleguideConfigItemModel", null, null, "StyleguideConfigItemController", 'get', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/item", "StyleguideConfigItemModel", null, null, "StyleguideConfigItemController", 'nameExists', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/item", "StyleguideConfigItemModel", null, null, "StyleguideConfigItemController", 'edit', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/item", "StyleguideConfigItemModel", null, null, "StyleguideConfigItemController", 'add', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/item", "StyleguideConfigItemModel", null, null, "StyleguideConfigItemController", 'getTypes', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/item", "StyleguideConfigItemModel", null, null, "StyleguideConfigItemController", 'editColumns', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/item", "StyleguideConfigItemModel", null, null, "StyleguideConfigItemController", 'getColumns', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/colorItem", "StyleguideConfigColorItemModel", null, null, "StyleguideConfigColorItemController", 'editColor', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/colorItem", "StyleguideConfigColorItemModel", null, null, "StyleguideConfigColorItemController", 'addColor', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/colorItem", "StyleguideConfigColorItemModel", null, null, "StyleguideConfigColorItemController", 'deleteColor', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/colorItem", "StyleguideConfigColorItemModel", null, null, "StyleguideConfigColorItemController", 'getDescriptor', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/colorItem", "StyleguideConfigColorItemModel", null, null, "StyleguideConfigColorItemController", 'editDescriptor', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/colorItem", "StyleguideConfigColorItemModel", null, null, "StyleguideConfigColorItemController", 'deleteDescriptor', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/colorItem", "StyleguideConfigColorItemModel", null, null, "StyleguideConfigColorItemController", 'deleteDescriptors', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/colorItem", "StyleguideConfigColorItemModel", null, null, "StyleguideConfigColorItemController", 'addDescriptor', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/styleguideColorItemDraggable", "StyleguideColorItemDraggableModel", 'SimpleView', 'DraggableSections.template.php', "DraggableSectionsIDController", null, 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/styleguideColorItemDraggable", "StyleguideColorItemDraggableModel", null, null, "DraggableSectionsIDController", 'arrange', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/styleguideColorItemDescriptorsDraggable", "StyleguideColorItemDescriptorsDraggableModel", 'SimpleView', 'DraggableSections.template.php', "DraggableSectionsController", null, 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/styleguideColorItemDescriptorsDraggable", "StyleguideColorItemDescriptorsDraggableModel", null, null, "DraggableSectionsController", 'arrange', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/fontFamilyItem", "StyleguideConfigFontFamilyItemModel", null, null, "StyleguideConfigFontFamilyItemController", 'edit', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/fontTableItem", "StyleguideConfigFontTableItemModel", null, null, "StyleguideConfigFontTableItemController", 'addListing', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/fontTableItem", "StyleguideConfigFontTableItemModel", null, null, "StyleguideConfigFontTableItemController", 'getListing', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/fontTableItem", "StyleguideConfigFontTableItemModel", null, null, "StyleguideConfigFontTableItemController", 'editListing', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/fontTableItem", "StyleguideConfigFontTableItemModel", null, null, "StyleguideConfigFontTableItemController", 'editListingFont', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/fontTableItem", "StyleguideConfigFontTableItemModel", null, null, "StyleguideConfigFontTableItemController", 'deleteListing', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/fontTableItem", "StyleguideConfigFontTableItemModel", null, null, "StyleguideConfigFontTableItemController", 'addListingCSS', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/fontTableItem", "StyleguideConfigFontTableItemModel", null, null, "StyleguideConfigFontTableItemController", 'deleteListingCSS', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/fontTableItem", "StyleguideConfigFontTableItemModel", null, null, "StyleguideConfigFontTableItemController", 'getListingCSS', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/fontTableItem", "StyleguideConfigFontTableItemModel", null, null, "StyleguideConfigFontTableItemController", 'editListingCSS', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/styleguideFontTableItemDraggable", "StyleguideFontTableItemDraggableModel", 'SimpleView', 'DraggableSections.template.php', "DraggableSectionsController", null, 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/styleguideFontTableItemDraggable", "StyleguideFontTableItemDraggableModel", null, null, "DraggableSectionsController", 'arrange', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/iconTableItem", "StyleguideConfigIconTableItemModel", null, null, "StyleguideConfigIconTableItemController", 'delete', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/iconTableItem", "StyleguideConfigIconTableItemModel", null, null, "StyleguideConfigIconTableItemController", 'editFont', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/iconTableItem", "StyleguideConfigIconTableItemModel", null, null, "StyleguideConfigIconTableItemController", 'addListing', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/iconTableItem", "StyleguideConfigIconTableItemModel", null, null, "StyleguideConfigIconTableItemController", 'getListing', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/iconTableItem", "StyleguideConfigIconTableItemModel", null, null, "StyleguideConfigIconTableItemController", 'editListing', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/styleguideIconTableItemDraggable", "StyleguideIconTableItemDraggableModel", 'SimpleView', 'DraggableSections.template.php', "DraggableSectionsController", null, 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/styleguideIconTableItemDraggable", "StyleguideIconTableItemDraggableModel", null, null, "DraggableSectionsController", 'arrange', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/elementItem", "StyleguideConfigElementItemModel", null, null, "StyleguideConfigElementItemController", 'deleteUpload', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/elementItem", "StyleguideConfigElementItemModel", null, null, "StyleguideConfigElementItemController", 'addUpload', 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/styleguideElementItemDraggable", "StyleguideElementItemDraggableModel", 'SimpleView', 'DraggableSections.template.php', "DraggableSectionsIDController", null, 1, 'Edit');
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/styleguideElementItemDraggable", "StyleguideElementItemDraggableModel", null, null, "DraggableSectionsIDController", 'arrange', 1, 'Edit');
