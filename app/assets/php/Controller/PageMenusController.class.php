@@ -7,39 +7,9 @@ class PageMenusController extends Controller_base
 		parent::__construct($model);
 	}
 	
-	public function login()
+	public function index($code)
 	{
-		$this->model->pageCode = __FUNCTION__;
-		$this->model->setBrandName();
-	}
-	
-	public function notFound()
-	{
-		$this->model->pageCode = __FUNCTION__;
-		$this->model->setBrandName();
-	}
-	
-	public function admin()
-	{
-		$this->model->pageCode = __FUNCTION__;
-		$this->model->setBrandName();
-	}
-	
-	public function moodboard()
-	{
-		$this->model->pageCode = __FUNCTION__;
-		$this->model->setBrandName();
-	}
-	
-	public function styleguide()
-	{
-		$this->model->pageCode = __FUNCTION__;
-		$this->model->setBrandName();
-	}
-	
-	public function styleguideConfig()
-	{
-		$this->model->pageCode = __FUNCTION__;
+		$this->model->pageCode = $code;
 		$this->model->setBrandName();
 	}
 }
