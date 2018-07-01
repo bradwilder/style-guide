@@ -1,13 +1,15 @@
 <section class="page-section <?php if (in_array('Edit', $currentUser->roles)) {echo 'editable-section';} ?>" id="page-section-<?=$section->id?>">
-	<div class="page-section__header editable-section__display">
-		<?php if (in_array('Edit', $currentUser->roles)) { ?>
-			<div class="page-section__edit-button editable-section__button-container">
-				<a tabindex="-1" role="button" class="editable-section__button editable-section__button-edit fa fa-pencil" data-popover-trigger="#editSectionPopover" data-popover-source-id="<?=$section->id?>" tabindex="-1"></a>
-			</div>
-		<?php } ?>
+	<?php
+		$button = new PageSectionEditableButton('fa fa-pencil', 'data-popover-trigger="#editSectionPopover" data-popover-source-id="' . $section->id . '"');
+		$button->edit = true;
 		
-		<h1 class="page-section__title <?php if (in_array('Edit', $currentUser->roles)) {echo 'editable-section__display';} ?> type__title" data-editable="name"><?=htmlentities($section->name)?></h1>
-	</div>
+		$options = new PageSectionEditableOptions('Edit', true);
+		$options->addButton($button);
+		
+		$model = new PageSectionHeaderModel(htmlentities($section->name), $options);
+		$view = new PageSectionHeaderView($model, $currentUser);
+		echo $view->output();
+	?>
 	
 	<?php if ($section->description != '') { ?>
 		<p class="page-section__desc type__desc editable-section__display" data-editable="desc"><?=htmlentities($section->description)?></p>
