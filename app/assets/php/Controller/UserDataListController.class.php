@@ -4,8 +4,8 @@ class UserDataListController extends Controller_base
 {
 	public function __construct(UserDataListModel $model)
 	{
-        parent::__construct($model);
-    }
+		parent::__construct($model);
+	}
 	
 	public function index()
 	{
