@@ -1,5 +1,5 @@
 <table class="tables">
-	<thead class="type__title">
+	<thead class="type__title type__title--darker">
 		<tr>
 			<th>IP</th>
 			<th>Expiration</th>

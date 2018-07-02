@@ -68,7 +68,7 @@
 		display: inline-block;
 	}
 	
-	&__table {
+	&__table-wrapper {
 		margin-top: .8em;
 	}
 }

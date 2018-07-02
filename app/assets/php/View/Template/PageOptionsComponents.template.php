@@ -1,7 +1,7 @@
 <script type="text/x-template" id="page-options-table-template">
 	<div class="admin-table__wrapper">
-		<table class="tables tables--sortable {sortList: [[0, 0]], widgets: ['zebra']} tables--striped tables--selectable">
-			<thead class="type__title">
+		<table class="tables tables--striped tables--selectable tables--sortable {sortList: [[0, 0]], widgets: ['zebra']}">
+			<thead class="type__title type__title--darker">
 				<tr>
 					<th class="sortable">Page Code<span class="sortIcon"><i class="fa"></i></span></th>
 					<th class="{sorter: false}">Show TOC</th>

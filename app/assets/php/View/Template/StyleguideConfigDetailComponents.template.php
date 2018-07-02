@@ -25,21 +25,23 @@
 		</div>
 		
 		<div class="sg-config-detail__body">
-			<table class="sg-config-detail__table tables tables--striped tables--selectable tables--sortable {sortList: [[0, 0]], widgets: ['zebra']}">
-				<thead class="type__title type__title--darker">
-					<tr>
-						<th class="sortable">Name<span class="sortIcon"><i class="fa"></i></span></th>
-						<th class="sortable">#<span class="sortIcon"><i class="fa"></i></span></th>
-						<th class="sortable">Variant 1<span class="sortIcon"><i class="fa"></i></span></th>
-						<th class="sortable">Variant 2<span class="sortIcon"><i class="fa"></i></span></th>
-						<th class="{sorter: false}">BG</th>
-						<th class="{sorter: false}"><i class="fa fa-cog"></i></th>
-					</tr>
-				</thead>
-				<tbody class="type__label">
-					<tr is="color-table-row" v-for="item in data.items" :model="item" :initially-selected="item.id == data.item" v-on:delete="deleteItem"></tr>
-				</tbody>
-			</table>
+			<div class="sg-config-detail__table-wrapper">
+				<table class="tables tables--striped tables--selectable tables--sortable {sortList: [[0, 0]], widgets: ['zebra']}">
+					<thead class="type__title type__title--darker">
+						<tr>
+							<th class="sortable">Name<span class="sortIcon"><i class="fa"></i></span></th>
+							<th class="sortable">#<span class="sortIcon"><i class="fa"></i></span></th>
+							<th class="sortable">Variant 1<span class="sortIcon"><i class="fa"></i></span></th>
+							<th class="sortable">Variant 2<span class="sortIcon"><i class="fa"></i></span></th>
+							<th class="{sorter: false}">BG</th>
+							<th class="{sorter: false}"><i class="fa fa-cog"></i></th>
+						</tr>
+					</thead>
+					<tbody class="type__label">
+						<tr is="color-table-row" v-for="item in data.items" :model="item" :initially-selected="item.id == data.item" v-on:delete="deleteItem"></tr>
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
 </script>
@@ -71,18 +73,20 @@
 		</div>
 		
 		<div class="sg-config-detail__body">
-			<table class="sg-config-detail__table tables tables--striped tables--selectable tables--sortable {sortList: [[0, 0]], widgets: ['zebra']}">
-				<thead class="type__title type__title--darker">
-					<tr>
-						<th class="sortable">Name<span class="sortIcon"><i class="fa"></i></span></th>
-						<th class="sortable">Type<span class="sortIcon"><i class="fa"></i></span></th>
-						<th class="{sorter: false}"><i class="fa fa-cog"></i></th>
-					</tr>
-				</thead>
-				<tbody class="type__label">
-					<tr is="font-table-row" v-for="item in data.items" :model="item"></tr>
-				</tbody>
-			</table>
+			<div class="sg-config-detail__table-wrapper">
+				<table class="tables tables--striped tables--selectable tables--sortable {sortList: [[0, 0]], widgets: ['zebra']}">
+					<thead class="type__title type__title--darker">
+						<tr>
+							<th class="sortable">Name<span class="sortIcon"><i class="fa"></i></span></th>
+							<th class="sortable">Type<span class="sortIcon"><i class="fa"></i></span></th>
+							<th class="{sorter: false}"><i class="fa fa-cog"></i></th>
+						</tr>
+					</thead>
+					<tbody class="type__label">
+						<tr is="font-table-row" v-for="item in data.items" :model="item"></tr>
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
 </script>
@@ -146,18 +150,20 @@
 		</div>
 		
 		<div class="sg-config-detail__body">
-			<table class="sg-config-detail__table tables tables--striped tables--selectable">
-				<thead class="type__title type__title--darker">
-					<tr>
-						<th>Name</th>
-						<th>Enabled</th>
-						<th><i class="fa fa-cog"></i></th>
-					</tr>
-				</thead>
-				<tbody class="type__label">
-					<tr is="sections-row" v-for="(item, index) in data.items" :model="item" :index="index" v-on:delete="deleteItem"></tr>
-				</tbody>
-			</table>
+			<div class="sg-config-detail__table-wrapper">
+				<table class="tables tables--striped tables--selectable">
+					<thead class="type__title type__title--darker">
+						<tr>
+							<th>Name</th>
+							<th>Enabled</th>
+							<th><i class="fa fa-cog"></i></th>
+						</tr>
+					</thead>
+					<tbody class="type__label">
+						<tr is="sections-row" v-for="(item, index) in data.items" :model="item" :index="index" v-on:delete="deleteItem"></tr>
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
 </script>
@@ -200,18 +206,20 @@
 					<h4 class="sg-config-detail__desc type__title type__title--darker">Subsections</h4>
 				</div>
 				
-				<table class="sg-config-detail__table tables tables--striped tables--selectable">
-					<thead class="type__title type__title--darker">
-						<tr>
-							<th>Name</th>
-							<th>Enabled</th>
-							<th><i class="fa fa-cog"></i></th>
-						</tr>
-					</thead>
-					<tbody class="type__label">
-						<tr is="section-row" v-for="(item, index) in data.items" :model="item" :index="index" v-on:delete="deleteItem"></tr>
-					</tbody>
-				</table>
+				<div class="sg-config-detail__table-wrapper">
+					<table class="tables tables--striped tables--selectable">
+						<thead class="type__title type__title--darker">
+							<tr>
+								<th>Name</th>
+								<th>Enabled</th>
+								<th><i class="fa fa-cog"></i></th>
+							</tr>
+						</thead>
+						<tbody class="type__label">
+							<tr is="section-row" v-for="(item, index) in data.items" :model="item" :index="index" v-on:delete="deleteItem"></tr>
+						</tbody>
+					</table>
+				</div>
 			</section>
 		</div>
 	</div>
@@ -257,17 +265,19 @@
 					<h4 class="sg-config-detail__desc type__title type__title--darker">Items</h4>
 				</div>
 				
-				<table class="sg-config-detail__table tables tables--striped tables--selectable">
-					<thead class="type__title type__title--darker">
-						<tr>
-							<th>Name</th>
-							<th><i class="fa fa-cog"></i></th>
-						</tr>
-					</thead>
-					<tbody class="type__label">
-						<tr is="subsection-items-row" v-for="(item, index) in data.items" :model="item" :index="index"></tr>
-					</tbody>
-				</table>
+				<div class="sg-config-detail__table-wrapper">
+					<table class="tables tables--striped tables--selectable">
+						<thead class="type__title type__title--darker">
+							<tr>
+								<th>Name</th>
+								<th><i class="fa fa-cog"></i></th>
+							</tr>
+						</thead>
+						<tbody class="type__label">
+							<tr is="subsection-items-row" v-for="(item, index) in data.items" :model="item" :index="index"></tr>
+						</tbody>
+					</table>
+				</div>
 			</section>
 			
 			<section v-if="!data.item.parentSubsectionID" class="editable-section">
@@ -279,18 +289,20 @@
 					<h4 class="sg-config-detail__desc type__title type__title--darker">Sub-subsections</h4>
 				</div>
 				
-				<table class="sg-config-detail__table tables tables--striped tables--selectable">
-					<thead class="type__title type__title--darker">
-						<tr>
-							<th>Name</th>
-							<th>Enabled</th>
-							<th><i class="fa fa-cog"></i></th>
-						</tr>
-					</thead>
-					<tbody class="type__label">
-						<tr is="subsection-subsubsections-row" v-for="(item, index) in data.subitems" :model="item" :index="index" v-on:deletesub="deleteSub" v-on:deleteitem="deleteItem"></tr>
-					</tbody>
-				</table>
+				<div class="sg-config-detail__table-wrapper">
+					<table class="tables tables--striped tables--selectable">
+						<thead class="type__title type__title--darker">
+							<tr>
+								<th>Name</th>
+								<th>Enabled</th>
+								<th><i class="fa fa-cog"></i></th>
+							</tr>
+						</thead>
+						<tbody class="type__label">
+							<tr is="subsection-subsubsections-row" v-for="(item, index) in data.subitems" :model="item" :index="index" v-on:deletesub="deleteSub" v-on:deleteitem="deleteItem"></tr>
+						</tbody>
+					</table>
+				</div>
 			</section>
 		</div>
 	</div>
@@ -352,20 +364,22 @@
 				<h4 class="sg-config-detail__desc type__title type__title--darker">Colors</h4>
 			</div>
 			
-			<table class="sg-config-detail__table tables tables--striped" :class="{'tables--selectable': data.type.code == 'color-pal'}">
-				<thead class="type__title type__title--darker">
-					<tr>
-						<th>Name</th>
-						<th>#</th>
-						<th v-show="data.type.code.indexOf('var') != -1">Variant 1</th>
-						<th v-show="data.type.code.indexOf('var') != -1">Variant 2</th>
-						<th v-show="data.type.code == 'color-pal'"><i class="fa fa-cog"></i></th>
-					</tr>
-				</thead>
-				<tbody class="type__label">
-					<tr is="colors-item-row" v-for="(item, index) in data.item.colors" :model="item" :index="index" :show-variants="data.type.code.indexOf('var') != -1" :can-delete="data.type.code == 'color-pal'" :item-id="data.id" v-on:delete="deleteColor"></tr>
-				</tbody>
-			</table>
+			<div class="sg-config-detail__table-wrapper">
+				<table class="tables tables--striped" :class="{'tables--selectable': data.type.code == 'color-pal'}">
+					<thead class="type__title type__title--darker">
+						<tr>
+							<th>Name</th>
+							<th>#</th>
+							<th v-show="data.type.code.indexOf('var') != -1">Variant 1</th>
+							<th v-show="data.type.code.indexOf('var') != -1">Variant 2</th>
+							<th v-show="data.type.code == 'color-pal'"><i class="fa fa-cog"></i></th>
+						</tr>
+					</thead>
+					<tbody class="type__label">
+						<tr is="colors-item-row" v-for="(item, index) in data.item.colors" :model="item" :index="index" :show-variants="data.type.code.indexOf('var') != -1" :can-delete="data.type.code == 'color-pal'" :item-id="data.id" v-on:delete="deleteColor"></tr>
+					</tbody>
+				</table>
+			</div>
 		</section>
 		
 		<section v-if="data.type.code.indexOf('pal') == -1" class="editable-section">
@@ -378,17 +392,19 @@
 				<h4 class="sg-config-detail__desc type__title type__title--darker">Descriptors</h4>
 			</div>
 			
-			<table class="sg-config-detail__table tables tables--striped tables--selectable">
-				<thead class="type__title type__title--darker">
-					<tr>
-						<th>Descriptor</th>
-						<th><i class="fa fa-cog"></i></th>
-					</tr>
-				</thead>
-				<tbody class="type__desc">
-					<tr is="colors-item-descriptors-row" v-for="(item, index) in data.item.descriptors" :model="item" :index="index" v-on:deletedescriptor="deleteDescriptor"></tr>
-				</tbody>
-			</table>
+			<div class="sg-config-detail__table-wrapper">
+				<table class="tables tables--striped tables--selectable">
+					<thead class="type__title type__title--darker">
+						<tr>
+							<th>Descriptor</th>
+							<th><i class="fa fa-cog"></i></th>
+						</tr>
+					</thead>
+					<tbody class="type__desc">
+						<tr is="colors-item-descriptors-row" v-for="(item, index) in data.item.descriptors" :model="item" :index="index" v-on:deletedescriptor="deleteDescriptor"></tr>
+					</tbody>
+				</table>
+			</div>
 		</section>
 	</div>
 </script>
@@ -571,18 +587,20 @@
 				<h4 class="sg-config-detail__desc type__title type__title--darker">Icons</h4>
 			</div>
 			
-			<table class="sg-config-detail__table tables tables--striped tables--selectable">
-				<thead class="type__title type__title--darker">
-					<tr>
-						<th>HTML</th>
-						<th>Icon</th>
-						<th><i class="fa fa-cog"></i></th>
-					</tr>
-				</thead>
-				<tbody class="type__label">
-					<tr is="icon-listing-item-row" v-for="(item, index) in data.item.listings" :model="item" :index="index" :item-id="data.id" v-on:delete="deleteListing"></tr>
-				</tbody>
-			</table>
+			<div class="sg-config-detail__table-wrapper">
+				<table class="tables tables--striped tables--selectable">
+					<thead class="type__title type__title--darker">
+						<tr>
+							<th>HTML</th>
+							<th>Icon</th>
+							<th><i class="fa fa-cog"></i></th>
+						</tr>
+					</thead>
+					<tbody class="type__label">
+						<tr is="icon-listing-item-row" v-for="(item, index) in data.item.listings" :model="item" :index="index" :item-id="data.id" v-on:delete="deleteListing"></tr>
+					</tbody>
+				</table>
+			</div>
 		</section>
 	</div>
 </script>
@@ -626,18 +644,20 @@
 			<h4 class="sg-config-detail__desc type__title type__title--darker">Images</h4>
 		</div>
 		
-		<table class="sg-config-detail__table tables tables--striped tables--selectable">
-			<thead class="type__title type__title--darker">
-				<tr>
-					<th>File Name</th>
-					<th>Path</th>
-					<th><i class="fa fa-cog"></i></th>
-				</tr>
-			</thead>
-			<tbody class="type__label">
-				<tr is="segmented-element-item-row" v-for="(item, index) in data.item.images" :model="item" :index="index" :item-id="data.id" v-on:delete="deleteUpload"></tr>
-			</tbody>
-		</table>
+		<div class="sg-config-detail__table-wrapper">
+			<table class="tables tables--striped tables--selectable">
+				<thead class="type__title type__title--darker">
+					<tr>
+						<th>File Name</th>
+						<th>Path</th>
+						<th><i class="fa fa-cog"></i></th>
+					</tr>
+				</thead>
+				<tbody class="type__label">
+					<tr is="segmented-element-item-row" v-for="(item, index) in data.item.images" :model="item" :index="index" :item-id="data.id" v-on:delete="deleteUpload"></tr>
+				</tbody>
+			</table>
+		</div>
 	</section>
 </script>
 
@@ -688,19 +708,21 @@
 			<h4 class="sg-config-detail__desc type__title type__title--darker">Columns</h4>
 		</div>
 				
-		<table class="sg-config-detail__table tables tables--striped">
-			<thead class="type__title type__title--darker">
-				<tr>
-					<th>Lg</th>
-					<th>Md</th>
-					<th>Sm</th>
-					<th>Xs</th>
-				</tr>
-			</thead>
-			<tbody class="type__label">
-				<tr is="columns-row" :model="model" :index="0"></tr>
-			</tbody>
-		</table>
+		<div class="sg-config-detail__table-wrapper">
+			<table class="tables tables--striped">
+				<thead class="type__title type__title--darker">
+					<tr>
+						<th>Lg</th>
+						<th>Md</th>
+						<th>Sm</th>
+						<th>Xs</th>
+					</tr>
+				</thead>
+				<tbody class="type__label">
+					<tr is="columns-row" :model="model" :index="0"></tr>
+				</tbody>
+			</table>
+		</div>
 	</section>
 </script>
 
