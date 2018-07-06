@@ -81,7 +81,7 @@ gulp build
 gulp watch
 ```
 
-#### Installing with pre-installed style guide
+#### Installing with some initial data
 
 To setup the application with a style guide pre-populated for testing, follow the [Installing](https://github.com/bradwilder/style-guide#Installing) instructions, but replace step 8 with this:
 ```
