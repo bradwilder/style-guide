@@ -67,7 +67,7 @@ cd scripts
 ./setupAllServers.sh 1
 cd ..
 ```
-Note: After running this script, you can delete all but config.ini from the root directory. You only need them again if you plan to re-run the setup scripts (e.g., to replace a broken schema).
+Note: After running this script, you can delete config-user.ini from the root directory. You only need this again if you plan to re-run the setup scripts (e.g., to replace a broken schema).
 
 9. Build the application:
 ```
