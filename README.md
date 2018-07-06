@@ -53,11 +53,13 @@ cp ./scripts/config*.ini .
 
 7. Start the MySQL database so the schema can run. If you use MAMP for development purposes, there are gulp tasks that will start and stop the MAMP server:
 ```
-// Starting the server; the mampDev command will point to the `app` directory, the mampDist command will point to the `docs` directory:
+// Start the server in the development (app) directory:
 gulp mampDev
+
+// Start the server in the distribution (docs) directory:
 gulp mampDist
 
-// Stopping the server
+// Stop the server
 gulp mampStop
 ```
 
