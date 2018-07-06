@@ -163,7 +163,9 @@ class UserModel extends Model_base
 	
 	public function activate()
 	{
-		if ($this->emailKey && $this->smsKey && $this->newPassword && $this->newPasswordConfirm)
+		$smsEnabled = $this->getSMSEnabled();
+		
+		if ($this->emailKey && (!$smsEnabled || $this->smsKey) && $this->newPassword && $this->newPasswordConfirm)
 		{
 			$config = new Config($this->db);
 			$auth = new Auth($this->db, $config, new EmailDelegate(), new SMSDelegate());
@@ -178,11 +180,6 @@ class UserModel extends Model_base
 				$error = array('error' => $activate['message']);
 				$error['inactive'] = '1';
 				$error['expired'] = $activate['expired'];
-				if ($error['expired'])
-				{
-					$error['key'] = $key;
-					$error['smsKey'] = $smsKey;
-				}
 				return $error;
 			}
 		}
@@ -194,7 +191,9 @@ class UserModel extends Model_base
 	
 	public function resendActivation()
 	{
-		if ($this->emailKey && $this->smsKey)
+		$smsEnabled = $this->getSMSEnabled();
+		
+		if ($this->emailKey && (!$smsEnabled || $this->smsKey))
 		{
 			$config = new Config($this->db);
 			$auth = new Auth($this->db, $config, new EmailDelegate(), new SMSDelegate());
@@ -288,7 +287,9 @@ class UserModel extends Model_base
 	
 	public function resetPassword()
 	{
-		if ($this->emailKey && $this->smsKey && $this->newPassword && $this->newPasswordConfirm)
+		$smsEnabled = $this->getSMSEnabled();
+		
+		if ($this->emailKey && (!$smsEnabled || $this->smsKey) && $this->newPassword && $this->newPasswordConfirm)
 		{
 			$config = new Config($this->db);
 			$auth = new Auth($this->db, $config, new EmailDelegate(), new SMSDelegate());
@@ -314,6 +315,17 @@ class UserModel extends Model_base
 		}
 		
 		return $groups;
+	}
+	
+	private function getSMSEnabled()
+	{
+		$rows = $this->db->select('select value from config where setting = "sms"');
+		if (count($rows) > 0)
+		{
+			return ($rows[0]['value'] == 1);
+		}
+		
+		return false;
 	}
 }
 

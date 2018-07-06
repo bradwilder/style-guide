@@ -20,7 +20,7 @@ These instructions will get you a copy of the project up and running on your loc
 * [npm](https://www.npmjs.com/)
 * [Composer](https://getcomposer.org/)
 * An email account that can be used for sending registration emails
-* An account on [twilio.com](https://www.twilio.com/) to use for sending registration sms messages
+* An account on [twilio.com](https://www.twilio.com/) to use for sending registration SMS messages (if you choose to enable SMS)
 
 ### Installing
 

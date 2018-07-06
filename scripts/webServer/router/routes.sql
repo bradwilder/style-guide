@@ -4,15 +4,15 @@ insert into routes (path, model, view, templateFile, controller, action, require
 insert or replace into variables values ('id', last_insert_rowid());
 insert into actionArgs (argument, type, routeID, position) values ('Login', 'string', (select value from variables where name = 'id'), 1);
 
-insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/reset-password", "PageModel", "PageView", "ResetPasswordPage.template.php", "CredentialPageController", null, 0, null);
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/reset-password", "SMSPageModel", "SMSPageView", "ResetPasswordPage.template.php", "SMSPageController", null, 0, null);
 insert or replace into variables values ('id', last_insert_rowid());
 insert into actionArgs (argument, type, routeID, position) values ('Reset Password', 'string', (select value from variables where name = 'id'), 1);
 
-insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/activate", "PageModel", "PageView", "ActivatePage.template.php", "CredentialPageController", null, 0, null);
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/activate", "SMSPageModel", "SMSPageView", "ActivatePage.template.php", "SMSPageController", null, 0, null);
 insert or replace into variables values ('id', last_insert_rowid());
 insert into actionArgs (argument, type, routeID, position) values ('Activate', 'string', (select value from variables where name = 'id'), 1);
 
-insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/resend-activation", "PageModel", "PageView", "ResendActivationPage.template.php", "CredentialPageController", null, 0, null);
+insert into routes (path, model, view, templateFile, controller, action, requiresAuth, requiredRole) values ("/resend-activation", "SMSPageModel", "SMSPageView", "ResendActivationPage.template.php", "SMSPageController", null, 0, null);
 insert or replace into variables values ('id', last_insert_rowid());
 insert into actionArgs (argument, type, routeID, position) values ('Resend Activation', 'string', (select value from variables where name = 'id'), 1);
 

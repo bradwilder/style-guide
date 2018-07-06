@@ -11,7 +11,6 @@ INSERT INTO config (setting, value) VALUES
   ('site_password_reset_page', 'reset-password'),
   ('site_timezone', 'America/Denver'),
   ('site_key', 'fghuior.)/!/jdUkd8s2!7HVHG7777ghg'),
-  ('sms', '1'),
   ('verify_email_max_length', '254'),
   ('verify_email_min_length', '5'),
   ('verify_email_use_banlist', '1'),
