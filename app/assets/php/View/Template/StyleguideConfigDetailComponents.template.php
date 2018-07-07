@@ -740,19 +740,19 @@
 		<div class="modal-body">
 			<input :value="itemID" type="text" name="item_id" style="display: none;">
 			<div class="form-group">
-				<label for="lg">Large</label>
-				<input v-model="columns.lg" type="number" class="form-control" name="lg" id="lg" placeholder="LG" :min="mins.lg" max="12" required/>
+				<label for="lg">Large Screens</label>
+				<input v-model="columns.lg" type="number" class="form-control" name="lg" id="lg" placeholder="LG" :min="mins.lg" max="12" v-on:input="lgChanged()" required/>
 			</div>
 			<div class="form-group">
-				<label for="md">Medium</label>
-				<input v-model="columns.md" type="number" class="form-control" name="md" id="md" placeholder="MD" :min="Math.max(mins.md, columns.lg)" max="12" required/>
+				<label for="md">Medium Screens</label>
+				<input v-model="columns.md" type="number" class="form-control" name="md" id="md" placeholder="MD" :min="Math.max(mins.md, columns.lg)" max="12" v-on:input="mdChanged()" required/>
 			</div>
 			<div class="form-group">
-				<label for="sm">Small</label>
-				<input v-model="columns.sm" type="number" class="form-control" name="sm" id="sm" placeholder="SM" :min="Math.max(mins.sm, columns.md)" max="12" required/>
+				<label for="sm">Small Screens</label>
+				<input v-model="columns.sm" type="number" class="form-control" name="sm" id="sm" placeholder="SM" :min="Math.max(mins.sm, columns.md)" max="12" v-on:input="smChanged()" required/>
 			</div>
 			<div class="form-group">
-				<label for="xs">Extra Small</label>
+				<label for="xs">Extra Small Screens</label>
 				<input v-model="columns.xs" type="number" class="form-control" name="xs" id="xs" placeholder="XS" :min="Math.max(mins.xs, columns.sm)" max="12" required/>
 			</div>
 		</div>

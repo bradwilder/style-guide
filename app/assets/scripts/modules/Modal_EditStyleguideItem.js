@@ -92,6 +92,23 @@ class Modal_EditStyleguideItem
 							itemID: itemID,
 							columns: columnData.columns,
 							mins: columnData.mins
+						},
+						methods:
+						{
+							lgChanged: function()
+							{
+								this.columns.md = Math.max(this.columns.md, this.columns.lg);
+								this.mdChanged();
+							},
+							mdChanged: function()
+							{
+								this.columns.sm = Math.max(this.columns.sm, this.columns.md);
+								this.smChanged();
+							},
+							smChanged: function()
+							{
+								this.columns.xs = Math.max(this.columns.xs, this.columns.sm);
+							}
 						}
 					});
 				}
