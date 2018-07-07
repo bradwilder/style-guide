@@ -26,40 +26,20 @@
 		
 		<div class="sg-config-detail__body">
 			<div class="sg-config-detail__table-wrapper">
-				<table class="tables tables--striped tables--selectable tables--sortable {sortList: [[0, 0]], widgets: ['zebra']}">
-					<thead class="type__title type__title--darker">
-						<tr>
-							<?php
-								$model = new TableHeaderColumnModel('Name', null, true, true);
-								$view = new TableHeaderColumnView($model, $currentUser);
-								echo $view->output();
-								
-								$model = new TableHeaderColumnModel('#', null, true, true);
-								$view = new TableHeaderColumnView($model, $currentUser);
-								echo $view->output();
-								
-								$model = new TableHeaderColumnModel('Variant 1', null, true, true);
-								$view = new TableHeaderColumnView($model, $currentUser);
-								echo $view->output();
-								
-								$model = new TableHeaderColumnModel('Variant 2', null, true, true);
-								$view = new TableHeaderColumnView($model, $currentUser);
-								echo $view->output();
-								
-								$model = new TableHeaderColumnModel('BG', null, true, false);
-								$view = new TableHeaderColumnView($model, $currentUser);
-								echo $view->output();
-								
-								$model = new TableHeaderColumnModel(null, null, true, false, true);
-								$view = new TableHeaderColumnView($model, $currentUser);
-								echo $view->output();
-							?>
-						</tr>
-					</thead>
-					<tbody class="type__label">
-						<tr is="color-table-row" v-for="item in data.items" :model="item" :initially-selected="item.id == data.item" v-on:delete="deleteItem"></tr>
-					</tbody>
-				</table>
+				<?php
+					$tableSortingOptions = new TableSortingOptions();
+					$tableModel = new TableModel($tableSortingOptions, true, true, '<tr is="color-table-row" v-for="item in data.items" :model="item" :initially-selected="item.id == data.item" v-on:delete="deleteItem"></tr>');
+					
+					$tableModel->addTableHeaderColumn(new TableHeaderColumnModel('Name', null, true, true));
+					$tableModel->addTableHeaderColumn(new TableHeaderColumnModel('#', null, true, true));
+					$tableModel->addTableHeaderColumn(new TableHeaderColumnModel('Variant 1', null, true, true));
+					$tableModel->addTableHeaderColumn(new TableHeaderColumnModel('Variant 2', null, true, true));
+					$tableModel->addTableHeaderColumn(new TableHeaderColumnModel('BG', null, true, false));
+					$tableModel->addTableHeaderColumn(new TableHeaderColumnModel(null, null, true, false, true));
+					
+					$view = new TableView($tableModel, $currentUser);
+					echo $view->output();
+				?>
 			</div>
 		</div>
 	</div>
@@ -93,28 +73,17 @@
 		
 		<div class="sg-config-detail__body">
 			<div class="sg-config-detail__table-wrapper">
-				<table class="tables tables--striped tables--selectable tables--sortable {sortList: [[0, 0]], widgets: ['zebra']}">
-					<thead class="type__title type__title--darker">
-						<tr>
-							<?php
-								$model = new TableHeaderColumnModel('Name', null, true, true);
-								$view = new TableHeaderColumnView($model, $currentUser);
-								echo $view->output();
-								
-								$model = new TableHeaderColumnModel('Type', null, true, true);
-								$view = new TableHeaderColumnView($model, $currentUser);
-								echo $view->output();
-								
-								$model = new TableHeaderColumnModel(null, null, true, false, true);
-								$view = new TableHeaderColumnView($model, $currentUser);
-								echo $view->output();
-							?>
-						</tr>
-					</thead>
-					<tbody class="type__label">
-						<tr is="font-table-row" v-for="item in data.items" :model="item"></tr>
-					</tbody>
-				</table>
+				<?php
+					$tableSortingOptions = new TableSortingOptions();
+					$tableModel = new TableModel($tableSortingOptions, true, true, '<tr is="font-table-row" v-for="item in data.items" :model="item"></tr>');
+					
+					$tableModel->addTableHeaderColumn(new TableHeaderColumnModel('Name', null, true, true));
+					$tableModel->addTableHeaderColumn(new TableHeaderColumnModel('Type', null, true, true));
+					$tableModel->addTableHeaderColumn(new TableHeaderColumnModel(null, null, true, false, true));
+					
+					$view = new TableView($tableModel, $currentUser);
+					echo $view->output();
+				?>
 			</div>
 		</div>
 	</div>
@@ -180,28 +149,16 @@
 		
 		<div class="sg-config-detail__body">
 			<div class="sg-config-detail__table-wrapper">
-				<table class="tables tables--striped tables--selectable">
-					<thead class="type__title type__title--darker">
-						<tr>
-							<?php
-								$model = new TableHeaderColumnModel('Name');
-								$view = new TableHeaderColumnView($model, $currentUser);
-								echo $view->output();
-								
-								$model = new TableHeaderColumnModel('Enabled');
-								$view = new TableHeaderColumnView($model, $currentUser);
-								echo $view->output();
-								
-								$model = new TableHeaderColumnModel(null, null, false, false, true);
-								$view = new TableHeaderColumnView($model, $currentUser);
-								echo $view->output();
-							?>
-						</tr>
-					</thead>
-					<tbody class="type__label">
-						<tr is="sections-row" v-for="(item, index) in data.items" :model="item" :index="index" v-on:delete="deleteItem"></tr>
-					</tbody>
-				</table>
+				<?php
+					$tableModel = new TableModel(null, true, true, '<tr is="sections-row" v-for="(item, index) in data.items" :model="item" :index="index" v-on:delete="deleteItem"></tr>');
+					
+					$tableModel->addTableHeaderColumn(new TableHeaderColumnModel('Name'));
+					$tableModel->addTableHeaderColumn(new TableHeaderColumnModel('Enabled'));
+					$tableModel->addTableHeaderColumn(new TableHeaderColumnModel(null, null, false, false, true));
+					
+					$view = new TableView($tableModel, $currentUser);
+					echo $view->output();
+				?>
 			</div>
 		</div>
 	</div>
@@ -246,28 +203,16 @@
 				</div>
 				
 				<div class="sg-config-detail__table-wrapper">
-					<table class="tables tables--striped tables--selectable">
-						<thead class="type__title type__title--darker">
-							<tr>
-								<?php
-									$model = new TableHeaderColumnModel('Name');
-									$view = new TableHeaderColumnView($model, $currentUser);
-									echo $view->output();
-									
-									$model = new TableHeaderColumnModel('Enabled');
-									$view = new TableHeaderColumnView($model, $currentUser);
-									echo $view->output();
-									
-									$model = new TableHeaderColumnModel(null, null, false, false, true);
-									$view = new TableHeaderColumnView($model, $currentUser);
-									echo $view->output();
-								?>
-							</tr>
-						</thead>
-						<tbody class="type__label">
-							<tr is="section-row" v-for="(item, index) in data.items" :model="item" :index="index" v-on:delete="deleteItem"></tr>
-						</tbody>
-					</table>
+					<?php
+						$tableModel = new TableModel(null, true, true, '<tr is="section-row" v-for="(item, index) in data.items" :model="item" :index="index" v-on:delete="deleteItem"></tr>');
+						
+						$tableModel->addTableHeaderColumn(new TableHeaderColumnModel('Name'));
+						$tableModel->addTableHeaderColumn(new TableHeaderColumnModel('Enabled'));
+						$tableModel->addTableHeaderColumn(new TableHeaderColumnModel(null, null, false, false, true));
+						
+						$view = new TableView($tableModel, $currentUser);
+						echo $view->output();
+					?>
 				</div>
 			</section>
 		</div>
@@ -315,24 +260,15 @@
 				</div>
 				
 				<div class="sg-config-detail__table-wrapper">
-					<table class="tables tables--striped tables--selectable">
-						<thead class="type__title type__title--darker">
-							<tr>
-								<?php
-									$model = new TableHeaderColumnModel('Name');
-									$view = new TableHeaderColumnView($model, $currentUser);
-									echo $view->output();
-									
-									$model = new TableHeaderColumnModel(null, null, false, false, true);
-									$view = new TableHeaderColumnView($model, $currentUser);
-									echo $view->output();
-								?>
-							</tr>
-						</thead>
-						<tbody class="type__label">
-							<tr is="subsection-items-row" v-for="(item, index) in data.items" :model="item" :index="index"></tr>
-						</tbody>
-					</table>
+					<?php
+						$tableModel = new TableModel(null, true, true, '<tr is="subsection-items-row" v-for="(item, index) in data.items" :model="item" :index="index"></tr>');
+						
+						$tableModel->addTableHeaderColumn(new TableHeaderColumnModel('Name'));
+						$tableModel->addTableHeaderColumn(new TableHeaderColumnModel(null, null, false, false, true));
+						
+						$view = new TableView($tableModel, $currentUser);
+						echo $view->output();
+					?>
 				</div>
 			</section>
 			
@@ -346,28 +282,16 @@
 				</div>
 				
 				<div class="sg-config-detail__table-wrapper">
-					<table class="tables tables--striped tables--selectable">
-						<thead class="type__title type__title--darker">
-							<tr>
-								<?php
-									$model = new TableHeaderColumnModel('Name');
-									$view = new TableHeaderColumnView($model, $currentUser);
-									echo $view->output();
-									
-									$model = new TableHeaderColumnModel('Enabled');
-									$view = new TableHeaderColumnView($model, $currentUser);
-									echo $view->output();
-									
-									$model = new TableHeaderColumnModel(null, null, false, false, true);
-									$view = new TableHeaderColumnView($model, $currentUser);
-									echo $view->output();
-								?>
-							</tr>
-						</thead>
-						<tbody class="type__label">
-							<tr is="subsection-subsubsections-row" v-for="(item, index) in data.subitems" :model="item" :index="index" v-on:deletesub="deleteSub" v-on:deleteitem="deleteItem"></tr>
-						</tbody>
-					</table>
+					<?php
+						$tableModel = new TableModel(null, true, true, '<tr is="subsection-subsubsections-row" v-for="(item, index) in data.subitems" :model="item" :index="index" v-on:deletesub="deleteSub" v-on:deleteitem="deleteItem"></tr>');
+						
+						$tableModel->addTableHeaderColumn(new TableHeaderColumnModel('Name'));
+						$tableModel->addTableHeaderColumn(new TableHeaderColumnModel('Enabled'));
+						$tableModel->addTableHeaderColumn(new TableHeaderColumnModel(null, null, false, false, true));
+						
+						$view = new TableView($tableModel, $currentUser);
+						echo $view->output();
+					?>
 				</div>
 			</section>
 		</div>
@@ -431,36 +355,18 @@
 			</div>
 			
 			<div class="sg-config-detail__table-wrapper">
-				<table class="tables tables--striped" :class="{'tables--selectable': data.type.code == 'color-pal'}">
-					<thead class="type__title type__title--darker">
-						<tr>
-							<?php
-								$model = new TableHeaderColumnModel('Name');
-								$view = new TableHeaderColumnView($model, $currentUser);
-								echo $view->output();
-								
-								$model = new TableHeaderColumnModel('#');
-								$view = new TableHeaderColumnView($model, $currentUser);
-								echo $view->output();
-								
-								$model = new TableHeaderColumnModel('Variant 1', 'v-show="data.type.code.indexOf(`var`) != -1"');
-								$view = new TableHeaderColumnView($model, $currentUser);
-								echo $view->output();
-								
-								$model = new TableHeaderColumnModel('Variant 2', 'v-show="data.type.code.indexOf(`var`) != -1"');
-								$view = new TableHeaderColumnView($model, $currentUser);
-								echo $view->output();
-								
-								$model = new TableHeaderColumnModel(null, 'v-show="data.type.code == `color-pal`"', false, false, true);
-								$view = new TableHeaderColumnView($model, $currentUser);
-								echo $view->output();
-							?>
-						</tr>
-					</thead>
-					<tbody class="type__label">
-						<tr is="colors-item-row" v-for="(item, index) in data.item.colors" :model="item" :index="index" :show-variants="data.type.code.indexOf('var') != -1" :can-delete="data.type.code == 'color-pal'" :item-id="data.id" v-on:delete="deleteColor"></tr>
-					</tbody>
-				</table>
+				<?php
+					$tableModel = new TableModel(null, true, false, '<tr is="colors-item-row" v-for="(item, index) in data.item.colors" :model="item" :index="index" :show-variants="data.type.code.indexOf(`var`) != -1" :can-delete="data.type.code == `color-pal`" :item-id="data.id" v-on:delete="deleteColor"></tr>', null, `:class="{'tables--selectable': data.type.code == 'color-pal'}`);
+					
+					$tableModel->addTableHeaderColumn(new TableHeaderColumnModel('Name'));
+					$tableModel->addTableHeaderColumn(new TableHeaderColumnModel('#'));
+					$tableModel->addTableHeaderColumn(new TableHeaderColumnModel('Variant 1', 'v-show="data.type.code.indexOf(`var`) != -1"'));
+					$tableModel->addTableHeaderColumn(new TableHeaderColumnModel('Variant 2', 'v-show="data.type.code.indexOf(`var`) != -1"'));
+					$tableModel->addTableHeaderColumn(new TableHeaderColumnModel(null, 'v-show="data.type.code == `color-pal`"', false, false, true));
+					
+					$view = new TableView($tableModel, $currentUser);
+					echo $view->output();
+				?>
 			</div>
 		</section>
 		
@@ -475,24 +381,15 @@
 			</div>
 			
 			<div class="sg-config-detail__table-wrapper">
-				<table class="tables tables--striped tables--selectable">
-					<thead class="type__title type__title--darker">
-						<tr>
-							<?php
-								$model = new TableHeaderColumnModel('Descriptor');
-								$view = new TableHeaderColumnView($model, $currentUser);
-								echo $view->output();
-								
-								$model = new TableHeaderColumnModel(null, null, false, false, true);
-								$view = new TableHeaderColumnView($model, $currentUser);
-								echo $view->output();
-							?>
-						</tr>
-					</thead>
-					<tbody class="type__desc">
-						<tr is="colors-item-descriptors-row" v-for="(item, index) in data.item.descriptors" :model="item" :index="index" v-on:deletedescriptor="deleteDescriptor"></tr>
-					</tbody>
-				</table>
+				<?php
+					$tableModel = new TableModel(null, true, true, '<tr is="colors-item-descriptors-row" v-for="(item, index) in data.item.descriptors" :model="item" :index="index" v-on:deletedescriptor="deleteDescriptor"></tr>');
+					
+					$tableModel->addTableHeaderColumn(new TableHeaderColumnModel('Descriptor'));
+					$tableModel->addTableHeaderColumn(new TableHeaderColumnModel(null, null, false, false, true));
+					
+					$view = new TableView($tableModel, $currentUser);
+					echo $view->output();
+				?>
 			</div>
 		</section>
 	</div>
@@ -677,28 +574,16 @@
 			</div>
 			
 			<div class="sg-config-detail__table-wrapper">
-				<table class="tables tables--striped tables--selectable">
-					<thead class="type__title type__title--darker">
-						<tr>
-							<?php
-								$model = new TableHeaderColumnModel('HTML');
-								$view = new TableHeaderColumnView($model, $currentUser);
-								echo $view->output();
-								
-								$model = new TableHeaderColumnModel('Icon');
-								$view = new TableHeaderColumnView($model, $currentUser);
-								echo $view->output();
-								
-								$model = new TableHeaderColumnModel(null, null, false, false, true);
-								$view = new TableHeaderColumnView($model, $currentUser);
-								echo $view->output();
-							?>
-						</tr>
-					</thead>
-					<tbody class="type__label">
-						<tr is="icon-listing-item-row" v-for="(item, index) in data.item.listings" :model="item" :index="index" :item-id="data.id" v-on:delete="deleteListing"></tr>
-					</tbody>
-				</table>
+				<?php
+					$tableModel = new TableModel(null, true, true, '<tr is="icon-listing-item-row" v-for="(item, index) in data.item.listings" :model="item" :index="index" :item-id="data.id" v-on:delete="deleteListing"></tr>');
+					
+					$tableModel->addTableHeaderColumn(new TableHeaderColumnModel('HTML'));
+					$tableModel->addTableHeaderColumn(new TableHeaderColumnModel('Icon'));
+					$tableModel->addTableHeaderColumn(new TableHeaderColumnModel(null, null, false, false, true));
+					
+					$view = new TableView($tableModel, $currentUser);
+					echo $view->output();
+				?>
 			</div>
 		</section>
 	</div>
@@ -744,28 +629,16 @@
 		</div>
 		
 		<div class="sg-config-detail__table-wrapper">
-			<table class="tables tables--striped tables--selectable">
-				<thead class="type__title type__title--darker">
-					<tr>
-						<?php
-							$model = new TableHeaderColumnModel('File Name');
-							$view = new TableHeaderColumnView($model, $currentUser);
-							echo $view->output();
-							
-							$model = new TableHeaderColumnModel('Path');
-							$view = new TableHeaderColumnView($model, $currentUser);
-							echo $view->output();
-							
-							$model = new TableHeaderColumnModel(null, null, false, false, true);
-							$view = new TableHeaderColumnView($model, $currentUser);
-							echo $view->output();
-						?>
-					</tr>
-				</thead>
-				<tbody class="type__label">
-					<tr is="segmented-element-item-row" v-for="(item, index) in data.item.images" :model="item" :index="index" :item-id="data.id" v-on:delete="deleteUpload"></tr>
-				</tbody>
-			</table>
+			<?php
+				$tableModel = new TableModel(null, true, true, '<tr is="segmented-element-item-row" v-for="(item, index) in data.item.images" :model="item" :index="index" :item-id="data.id" v-on:delete="deleteUpload"></tr>');
+				
+				$tableModel->addTableHeaderColumn(new TableHeaderColumnModel('File Name'));
+				$tableModel->addTableHeaderColumn(new TableHeaderColumnModel('Path'));
+				$tableModel->addTableHeaderColumn(new TableHeaderColumnModel(null, null, false, false, true));
+				
+				$view = new TableView($tableModel, $currentUser);
+				echo $view->output();
+			?>
 		</div>
 	</section>
 </script>
@@ -818,32 +691,17 @@
 		</div>
 				
 		<div class="sg-config-detail__table-wrapper">
-			<table class="tables tables--striped">
-				<thead class="type__title type__title--darker">
-					<tr>
-						<?php
-							$model = new TableHeaderColumnModel('Lg');
-							$view = new TableHeaderColumnView($model, $currentUser);
-							echo $view->output();
-							
-							$model = new TableHeaderColumnModel('Md');
-							$view = new TableHeaderColumnView($model, $currentUser);
-							echo $view->output();
-							
-							$model = new TableHeaderColumnModel('Sm');
-							$view = new TableHeaderColumnView($model, $currentUser);
-							echo $view->output();
-							
-							$model = new TableHeaderColumnModel('Xs');
-							$view = new TableHeaderColumnView($model, $currentUser);
-							echo $view->output();
-						?>
-					</tr>
-				</thead>
-				<tbody class="type__label">
-					<tr is="columns-row" :model="model" :index="0"></tr>
-				</tbody>
-			</table>
+			<?php
+				$tableModel = new TableModel(null, true, false, '<tr is="columns-row" :model="model" :index="0"></tr>');
+				
+				$tableModel->addTableHeaderColumn(new TableHeaderColumnModel('Lg'));
+				$tableModel->addTableHeaderColumn(new TableHeaderColumnModel('Md'));
+				$tableModel->addTableHeaderColumn(new TableHeaderColumnModel('Sm'));
+				$tableModel->addTableHeaderColumn(new TableHeaderColumnModel('Xs'));
+				
+				$view = new TableView($tableModel, $currentUser);
+				echo $view->output();
+			?>
 		</div>
 	</section>
 </script>

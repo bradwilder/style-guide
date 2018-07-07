@@ -1,23 +1,15 @@
 <script type="text/x-template" id="page-options-table-template">
 	<div class="admin-table__wrapper">
-		<table class="tables tables--striped tables--selectable tables--sortable {sortList: [[0, 0]], widgets: ['zebra']}">
-			<thead class="type__title type__title--darker">
-				<tr>
-					<?php
-						$model = new TableHeaderColumnModel('Page Code', null, true, true);
-						$view = new TableHeaderColumnView($model, $currentUser);
-						echo $view->output();
-						
-						$model = new TableHeaderColumnModel('Show TOC', null, true, false);
-						$view = new TableHeaderColumnView($model, $currentUser);
-						echo $view->output();
-					?>
-				</tr>
-			</thead>
-			<tbody class="type__label">
-				<tr is="page-options-table-row" v-for="row in tableData" :model="row"></tr>
-			</tbody>
-		</table>
+		<?php
+			$tableSortingOptions = new TableSortingOptions();
+			$tableModel = new TableModel($tableSortingOptions, true, true, '<tr is="page-options-table-row" v-for="row in tableData" :model="row"></tr>', false);
+			
+			$tableModel->addTableHeaderColumn(new TableHeaderColumnModel('Page Code', null, true, true));
+			$tableModel->addTableHeaderColumn(new TableHeaderColumnModel('Show TOC', null, true, false));
+			
+			$view = new TableView($tableModel, $currentUser);
+			echo $view->output();
+		?>
 	</div>
 </script>
 
