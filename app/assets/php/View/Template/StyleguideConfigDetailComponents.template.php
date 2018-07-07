@@ -29,12 +29,31 @@
 				<table class="tables tables--striped tables--selectable tables--sortable {sortList: [[0, 0]], widgets: ['zebra']}">
 					<thead class="type__title type__title--darker">
 						<tr>
-							<th class="sortable">Name<span class="sortIcon"><i class="fa"></i></span></th>
-							<th class="sortable">#<span class="sortIcon"><i class="fa"></i></span></th>
-							<th class="sortable">Variant 1<span class="sortIcon"><i class="fa"></i></span></th>
-							<th class="sortable">Variant 2<span class="sortIcon"><i class="fa"></i></span></th>
-							<th class="{sorter: false}">BG</th>
-							<th class="{sorter: false}"><i class="fa fa-cog"></i></th>
+							<?php
+								$model = new TableHeaderColumnModel('Name', null, true, true);
+								$view = new TableHeaderColumnView($model, $currentUser);
+								echo $view->output();
+								
+								$model = new TableHeaderColumnModel('#', null, true, true);
+								$view = new TableHeaderColumnView($model, $currentUser);
+								echo $view->output();
+								
+								$model = new TableHeaderColumnModel('Variant 1', null, true, true);
+								$view = new TableHeaderColumnView($model, $currentUser);
+								echo $view->output();
+								
+								$model = new TableHeaderColumnModel('Variant 2', null, true, true);
+								$view = new TableHeaderColumnView($model, $currentUser);
+								echo $view->output();
+								
+								$model = new TableHeaderColumnModel('BG', null, true, false);
+								$view = new TableHeaderColumnView($model, $currentUser);
+								echo $view->output();
+								
+								$model = new TableHeaderColumnModel(null, null, true, false, true);
+								$view = new TableHeaderColumnView($model, $currentUser);
+								echo $view->output();
+							?>
 						</tr>
 					</thead>
 					<tbody class="type__label">
@@ -77,9 +96,19 @@
 				<table class="tables tables--striped tables--selectable tables--sortable {sortList: [[0, 0]], widgets: ['zebra']}">
 					<thead class="type__title type__title--darker">
 						<tr>
-							<th class="sortable">Name<span class="sortIcon"><i class="fa"></i></span></th>
-							<th class="sortable">Type<span class="sortIcon"><i class="fa"></i></span></th>
-							<th class="{sorter: false}"><i class="fa fa-cog"></i></th>
+							<?php
+								$model = new TableHeaderColumnModel('Name', null, true, true);
+								$view = new TableHeaderColumnView($model, $currentUser);
+								echo $view->output();
+								
+								$model = new TableHeaderColumnModel('Type', null, true, true);
+								$view = new TableHeaderColumnView($model, $currentUser);
+								echo $view->output();
+								
+								$model = new TableHeaderColumnModel(null, null, true, false, true);
+								$view = new TableHeaderColumnView($model, $currentUser);
+								echo $view->output();
+							?>
 						</tr>
 					</thead>
 					<tbody class="type__label">
@@ -154,9 +183,19 @@
 				<table class="tables tables--striped tables--selectable">
 					<thead class="type__title type__title--darker">
 						<tr>
-							<th>Name</th>
-							<th>Enabled</th>
-							<th><i class="fa fa-cog"></i></th>
+							<?php
+								$model = new TableHeaderColumnModel('Name');
+								$view = new TableHeaderColumnView($model, $currentUser);
+								echo $view->output();
+								
+								$model = new TableHeaderColumnModel('Enabled');
+								$view = new TableHeaderColumnView($model, $currentUser);
+								echo $view->output();
+								
+								$model = new TableHeaderColumnModel(null, null, false, false, true);
+								$view = new TableHeaderColumnView($model, $currentUser);
+								echo $view->output();
+							?>
 						</tr>
 					</thead>
 					<tbody class="type__label">
@@ -210,9 +249,19 @@
 					<table class="tables tables--striped tables--selectable">
 						<thead class="type__title type__title--darker">
 							<tr>
-								<th>Name</th>
-								<th>Enabled</th>
-								<th><i class="fa fa-cog"></i></th>
+								<?php
+									$model = new TableHeaderColumnModel('Name');
+									$view = new TableHeaderColumnView($model, $currentUser);
+									echo $view->output();
+									
+									$model = new TableHeaderColumnModel('Enabled');
+									$view = new TableHeaderColumnView($model, $currentUser);
+									echo $view->output();
+									
+									$model = new TableHeaderColumnModel(null, null, false, false, true);
+									$view = new TableHeaderColumnView($model, $currentUser);
+									echo $view->output();
+								?>
 							</tr>
 						</thead>
 						<tbody class="type__label">
@@ -269,8 +318,15 @@
 					<table class="tables tables--striped tables--selectable">
 						<thead class="type__title type__title--darker">
 							<tr>
-								<th>Name</th>
-								<th><i class="fa fa-cog"></i></th>
+								<?php
+									$model = new TableHeaderColumnModel('Name');
+									$view = new TableHeaderColumnView($model, $currentUser);
+									echo $view->output();
+									
+									$model = new TableHeaderColumnModel(null, null, false, false, true);
+									$view = new TableHeaderColumnView($model, $currentUser);
+									echo $view->output();
+								?>
 							</tr>
 						</thead>
 						<tbody class="type__label">
@@ -293,9 +349,19 @@
 					<table class="tables tables--striped tables--selectable">
 						<thead class="type__title type__title--darker">
 							<tr>
-								<th>Name</th>
-								<th>Enabled</th>
-								<th><i class="fa fa-cog"></i></th>
+								<?php
+									$model = new TableHeaderColumnModel('Name');
+									$view = new TableHeaderColumnView($model, $currentUser);
+									echo $view->output();
+									
+									$model = new TableHeaderColumnModel('Enabled');
+									$view = new TableHeaderColumnView($model, $currentUser);
+									echo $view->output();
+									
+									$model = new TableHeaderColumnModel(null, null, false, false, true);
+									$view = new TableHeaderColumnView($model, $currentUser);
+									echo $view->output();
+								?>
 							</tr>
 						</thead>
 						<tbody class="type__label">
@@ -368,11 +434,27 @@
 				<table class="tables tables--striped" :class="{'tables--selectable': data.type.code == 'color-pal'}">
 					<thead class="type__title type__title--darker">
 						<tr>
-							<th>Name</th>
-							<th>#</th>
-							<th v-show="data.type.code.indexOf('var') != -1">Variant 1</th>
-							<th v-show="data.type.code.indexOf('var') != -1">Variant 2</th>
-							<th v-show="data.type.code == 'color-pal'"><i class="fa fa-cog"></i></th>
+							<?php
+								$model = new TableHeaderColumnModel('Name');
+								$view = new TableHeaderColumnView($model, $currentUser);
+								echo $view->output();
+								
+								$model = new TableHeaderColumnModel('#');
+								$view = new TableHeaderColumnView($model, $currentUser);
+								echo $view->output();
+								
+								$model = new TableHeaderColumnModel('Variant 1', 'v-show="data.type.code.indexOf(`var`) != -1"');
+								$view = new TableHeaderColumnView($model, $currentUser);
+								echo $view->output();
+								
+								$model = new TableHeaderColumnModel('Variant 2', 'v-show="data.type.code.indexOf(`var`) != -1"');
+								$view = new TableHeaderColumnView($model, $currentUser);
+								echo $view->output();
+								
+								$model = new TableHeaderColumnModel(null, 'v-show="data.type.code == `color-pal`"', false, false, true);
+								$view = new TableHeaderColumnView($model, $currentUser);
+								echo $view->output();
+							?>
 						</tr>
 					</thead>
 					<tbody class="type__label">
@@ -396,8 +478,15 @@
 				<table class="tables tables--striped tables--selectable">
 					<thead class="type__title type__title--darker">
 						<tr>
-							<th>Descriptor</th>
-							<th><i class="fa fa-cog"></i></th>
+							<?php
+								$model = new TableHeaderColumnModel('Descriptor');
+								$view = new TableHeaderColumnView($model, $currentUser);
+								echo $view->output();
+								
+								$model = new TableHeaderColumnModel(null, null, false, false, true);
+								$view = new TableHeaderColumnView($model, $currentUser);
+								echo $view->output();
+							?>
 						</tr>
 					</thead>
 					<tbody class="type__desc">
@@ -591,9 +680,19 @@
 				<table class="tables tables--striped tables--selectable">
 					<thead class="type__title type__title--darker">
 						<tr>
-							<th>HTML</th>
-							<th>Icon</th>
-							<th><i class="fa fa-cog"></i></th>
+							<?php
+								$model = new TableHeaderColumnModel('HTML');
+								$view = new TableHeaderColumnView($model, $currentUser);
+								echo $view->output();
+								
+								$model = new TableHeaderColumnModel('Icon');
+								$view = new TableHeaderColumnView($model, $currentUser);
+								echo $view->output();
+								
+								$model = new TableHeaderColumnModel(null, null, false, false, true);
+								$view = new TableHeaderColumnView($model, $currentUser);
+								echo $view->output();
+							?>
 						</tr>
 					</thead>
 					<tbody class="type__label">
@@ -648,9 +747,19 @@
 			<table class="tables tables--striped tables--selectable">
 				<thead class="type__title type__title--darker">
 					<tr>
-						<th>File Name</th>
-						<th>Path</th>
-						<th><i class="fa fa-cog"></i></th>
+						<?php
+							$model = new TableHeaderColumnModel('File Name');
+							$view = new TableHeaderColumnView($model, $currentUser);
+							echo $view->output();
+							
+							$model = new TableHeaderColumnModel('Path');
+							$view = new TableHeaderColumnView($model, $currentUser);
+							echo $view->output();
+							
+							$model = new TableHeaderColumnModel(null, null, false, false, true);
+							$view = new TableHeaderColumnView($model, $currentUser);
+							echo $view->output();
+						?>
 					</tr>
 				</thead>
 				<tbody class="type__label">
@@ -712,10 +821,23 @@
 			<table class="tables tables--striped">
 				<thead class="type__title type__title--darker">
 					<tr>
-						<th>Lg</th>
-						<th>Md</th>
-						<th>Sm</th>
-						<th>Xs</th>
+						<?php
+							$model = new TableHeaderColumnModel('Lg');
+							$view = new TableHeaderColumnView($model, $currentUser);
+							echo $view->output();
+							
+							$model = new TableHeaderColumnModel('Md');
+							$view = new TableHeaderColumnView($model, $currentUser);
+							echo $view->output();
+							
+							$model = new TableHeaderColumnModel('Sm');
+							$view = new TableHeaderColumnView($model, $currentUser);
+							echo $view->output();
+							
+							$model = new TableHeaderColumnModel('Xs');
+							$view = new TableHeaderColumnView($model, $currentUser);
+							echo $view->output();
+						?>
 					</tr>
 				</thead>
 				<tbody class="type__label">

@@ -3,8 +3,15 @@
 		<table class="tables tables--striped tables--selectable tables--sortable {sortList: [[0, 0]], widgets: ['zebra']}">
 			<thead class="type__title type__title--darker">
 				<tr>
-					<th class="sortable">Page Code<span class="sortIcon"><i class="fa"></i></span></th>
-					<th class="{sorter: false}">Show TOC</th>
+					<?php
+						$model = new TableHeaderColumnModel('Page Code', null, true, true);
+						$view = new TableHeaderColumnView($model, $currentUser);
+						echo $view->output();
+						
+						$model = new TableHeaderColumnModel('Show TOC', null, true, false);
+						$view = new TableHeaderColumnView($model, $currentUser);
+						echo $view->output();
+					?>
 				</tr>
 			</thead>
 			<tbody class="type__label">

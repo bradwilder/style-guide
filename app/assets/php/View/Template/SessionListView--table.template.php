@@ -1,9 +1,19 @@
 <table class="tables">
 	<thead class="type__title type__title--darker">
 		<tr>
-			<th>IP</th>
-			<th>Expiration</th>
-			<th><i class="fa fa-cog"></i></th>
+			<?php
+				$model = new TableHeaderColumnModel('IP');
+				$view = new TableHeaderColumnView($model, $currentUser);
+				echo $view->output();
+				
+				$model = new TableHeaderColumnModel('Expiration');
+				$view = new TableHeaderColumnView($model, $currentUser);
+				echo $view->output();
+				
+				$model = new TableHeaderColumnModel(null, null, false, false, true);
+				$view = new TableHeaderColumnView($model, $currentUser);
+				echo $view->output();
+			?>
 		</tr>
 	</thead>
 	<tbody class="type__label">

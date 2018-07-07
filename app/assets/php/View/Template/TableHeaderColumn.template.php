@@ -1,0 +1,1 @@
+<th <?=$attributes?> <?php if ($tableSortable) {echo 'class="' . ($columnSortable ? 'sortable' : '{sorter: false}') . '"';} ?>><?php if ($cog) {echo '<i class="fa fa-cog"></i>';} else {echo $data;} ?><?php if ($tableSortable) {echo '<span class="sortIcon"><i class="fa"></i></span>';} ?></th>

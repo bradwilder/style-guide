@@ -2,15 +2,43 @@
 	<table class="tables tables--striped tables--selectable tables--sortable {sortList: [[0, 0]], widgets: ['zebra']}">
 		<thead class="type__title type__title--darker">
 			<tr>
-				<th class="sortable">ID<span class="sortIcon"><i class="fa"></i></span></th>
-				<th class="sortable">Email<span class="sortIcon"><i class="fa"></i></span></th>
-				<th class="sortable">Phone<span class="sortIcon"><i class="fa"></i></span></th>
-				<th class="sortable">Name<span class="sortIcon"><i class="fa"></i></span></th>
-				<th class="sortable">Group<span class="sortIcon"><i class="fa"></i></span></th>
-				<th class="sortable">Sessions<span class="sortIcon"><i class="fa"></i></span></th>
-				<th class="sortable">Requests<span class="sortIcon"><i class="fa"></i></span></th>
-				<th class="sortable">Status<span class="sortIcon"><i class="fa"></i></span></th>
-				<th class="{sorter: false}"><i class="fa fa-cog"></i></th>
+				<?php
+					$model = new TableHeaderColumnModel('ID', null, true, true);
+					$view = new TableHeaderColumnView($model, $currentUser);
+					echo $view->output();
+					
+					$model = new TableHeaderColumnModel('Email', null, true, true);
+					$view = new TableHeaderColumnView($model, $currentUser);
+					echo $view->output();
+					
+					$model = new TableHeaderColumnModel('Phone', null, true, true);
+					$view = new TableHeaderColumnView($model, $currentUser);
+					echo $view->output();
+					
+					$model = new TableHeaderColumnModel('Name', null, true, true);
+					$view = new TableHeaderColumnView($model, $currentUser);
+					echo $view->output();
+					
+					$model = new TableHeaderColumnModel('Group', null, true, true);
+					$view = new TableHeaderColumnView($model, $currentUser);
+					echo $view->output();
+					
+					$model = new TableHeaderColumnModel('Sessions', null, true, true);
+					$view = new TableHeaderColumnView($model, $currentUser);
+					echo $view->output();
+					
+					$model = new TableHeaderColumnModel('Requests', null, true, true);
+					$view = new TableHeaderColumnView($model, $currentUser);
+					echo $view->output();
+					
+					$model = new TableHeaderColumnModel('Status', null, true, true);
+					$view = new TableHeaderColumnView($model, $currentUser);
+					echo $view->output();
+					
+					$model = new TableHeaderColumnModel(null, null, true, false, true);
+					$view = new TableHeaderColumnView($model, $currentUser);
+					echo $view->output();
+				?>
 			</tr>
 		</thead>
 		<tbody class="type__label">
