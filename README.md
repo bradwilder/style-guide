@@ -4,9 +4,9 @@ Style Guide is a web application that lets you easily construct a style guide an
 
 ## Features
 
-* User authentication
-* Mood board for collecting design inspiration, with ability to add comments
 * Style guide for documenting color schemes, typography, icons, and other design elements
+* Mood board for collecting design inspiration, with support for comments
+* User authentication
 
 ## Getting Started
 
