@@ -17,10 +17,8 @@ class MoodboardSection extends DBItemPositioned
 		parent::__construct($db, self::$tableName, $id);
 	}
 	
-	public function write()
+	public function writeSubTable()
 	{
-		$this->writePositionValue();
-		
 		$this->writeBase($this->name, 'name', true);
 		$this->writeBase($this->description, 'description', true, true);
 		$this->writeBase($this->position, 'position');

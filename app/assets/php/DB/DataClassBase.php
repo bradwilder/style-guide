@@ -10,11 +10,17 @@ abstract class DBItem_base
 	{
 		$this->db = $db;
 		$this->table = $table;
-		$this->id = $id;
 		
-		if (!$id)
+		if ($id)
 		{
-			$this->insertTable();
+			$this->id = $id;
+		}
+		else
+		{
+			$query = 'insert into ' . $this->table . ' values ()';
+			$this->db->query($query);
+			
+			$this->id = $this->db->insert_id();
 		}
 	}
 	
@@ -66,14 +72,6 @@ abstract class DBItem_base
 				$this->{$key} = $value;
 			}
 		}
-	}
-	
-	protected function insertTable()
-	{
-		$query = 'insert into ' . $this->table . ' values ()';
-		$this->db->query($query);
-		
-		$this->id = $this->db->insert_id();
 	}
 }
 
@@ -136,7 +134,6 @@ abstract class DBItemParent extends DBItem
 	}
 	
 	public abstract function readSubExtra();
-	
 	public abstract function writeSubTable();
 	
 	public function read(bool $readSub = false)
@@ -188,18 +185,31 @@ abstract class DBItemPositioned extends DBItem
 		}
 	}
 	
-	protected function writePositionValue()
+	abstract public function writeSubTable();
+	
+	public function write()
 	{
-		$this->writeBase($this->position, 'position');
+		$this->writePositionValue();
+		$this->writeSubTable();
 	}
 	
 	public function writePosition()
+	{
+		$this->setNextPositionValue();
+		$this->writePositionValue();
+	}
+	
+	private function setNextPositionValue()
 	{
 		$query = 'select case when max(position) is not null then max(position) + 1 else 1 end as next_position from ' . $this->table;
 		$row = $this->db->select($query)[0];
 		
 		$this->position = $row['next_position'];
-		$this->writePositionValue();
+	}
+	
+	private function writePositionValue()
+	{
+		$this->writeBase($this->position, 'position');
 	}
 }
 

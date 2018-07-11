@@ -16,10 +16,8 @@ class StyleguideSection extends DBItemPositioned
 		parent::__construct($db, self::$tableName, $id);
 	}
 	
-	public function write()
+	public function writeSubTable()
 	{
-		$this->writePositionValue();
-		
 		$this->writeBase($this->name, 'name', true);
 		$this->writeBase($this->enabled, 'enabled', false, false, true);
 		$this->writeBase($this->userCreated, 'userCreated', false, false, true);
