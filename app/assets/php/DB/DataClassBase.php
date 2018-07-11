@@ -93,16 +93,18 @@ abstract class DBItemParent extends DBItem
 	public $typeID;
 	private $subTable;
 	private $typeTable;
+	private $typeClass;
 	
 	// Extra properties
 	public $type;
 	
-	protected function __construct(Db $db, string $table, int $id = null, string $code = null, string $typeTable, string $subTable = null)
+	protected function __construct(Db $db, string $table, int $id = null, string $code = null, string $typeTable, string $typeClass, string $subTable = null)
 	{
 		parent::__construct($db, $table, $id);
 		
 		$this->subTable = $subTable;
 		$this->typeTable = $typeTable;
+		$this->typeClass = $typeClass;
 		
 		if (!$id)
 		{
@@ -130,17 +132,32 @@ abstract class DBItemParent extends DBItem
 		}
 	}
 	
-	public abstract function readExtra();
+	public abstract function readSubExtra();
 	
-	protected function readType(string $typeName)
+	public abstract function writeSubTable();
+	
+	public function read(string $subordinateTableName = null)
 	{
-		$this->type = new $typeName($this->db, $this->typeID);
-		$this->type->read();
+		$this->readTable($this->table, 'id');
+		
+		if ($subordinateTableName)
+		{
+			$this->readTable($subordinateTableName, 'baseID');
+		}
 	}
 	
-	protected function writeBaseParent()
+	public function readExtra()
+	{
+		$this->type = new $this->typeClass($this->db, $this->typeID);
+		$this->type->read();
+		
+		$this->readSubExtra();
+	}
+	
+	public function write()
 	{
 		$this->writeTypeID();
+		$this->writeSubTable();
 	}
 	
 	private function writeTypeID()
@@ -153,14 +170,9 @@ abstract class DBItemParent extends DBItem
 		$this->writeBaseTable($value, $columnName, 'baseID', $this->subTable, $quote, $allowNull, $boolean);
 	}
 	
-	public function readWhole($subordinateTableName = null)
+	public function delete()
 	{
-		$this->readTable($this->table, 'id');
-		
-		if ($subordinateTableName)
-		{
-			$this->readTable($subordinateTableName, 'baseID');
-		}
+		parent::deleteBase();
 	}
 }
 

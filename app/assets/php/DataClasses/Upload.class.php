@@ -7,6 +7,7 @@ class Upload extends DBItemParent
 	
 	protected static $tableName = 'sg_upload';
 	private static $typeTableName = 'sg_upload_type';
+	private static $typeClassName = 'UploadType';
 	
 	public function __construct(Db $db, int $id = null, string $code = null, string $subordinateTableName = null)
 	{
@@ -15,31 +16,16 @@ class Upload extends DBItemParent
 			return;
 		}
 		
-		parent::__construct($db, self::$tableName, $id, $code, self::$typeTableName, $subordinateTableName);
+		parent::__construct($db, self::$tableName, $id, $code, self::$typeTableName, self::$typeClassName, $subordinateTableName);
 	}
 	
-	public function write()
+	public function writeSubTable()
 	{
-		parent::writeBaseParent();
-		
 		$this->writeBase($this->filePath, 'filePath', true);
 		$this->writeBase($this->parentID, 'parentID', false, true);
 	}
 	
-	public function read(string $subordinateTableName = null)
-	{
-		$this->readWhole($subordinateTableName);
-	}
-	
-	public function readExtra()
-	{
-		$this->readType('UploadType');
-	}
-	
-	public function delete()
-	{
-		parent::deleteBase();
-	}
+	public function readSubExtra() {}
 	
 	public function isFolder()
 	{

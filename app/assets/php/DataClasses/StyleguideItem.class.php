@@ -12,6 +12,7 @@ class StyleguideItem extends DBItemParent
 	
 	private static $tableName = 'sg_item';
 	private static $typeTableName = 'sg_item_type';
+	private static $typeClassName = 'StyleguideItemType';
 	
 	public function __construct(Db $db, int $id = null, string $code = null, string $subordinateTableName = null)
 	{
@@ -20,13 +21,11 @@ class StyleguideItem extends DBItemParent
 			return;
 		}
 		
-		parent::__construct($db, self::$tableName, $id, $code, self::$typeTableName, $subordinateTableName);
+		parent::__construct($db, self::$tableName, $id, $code, self::$typeTableName, self::$typeClassName, $subordinateTableName);
 	}
 	
-	public function write()
+	public function writeSubTable()
 	{
-		parent::writeBaseParent();
-		
 		$this->writeBase($this->name, 'name', true);
 		$this->writeBase($this->colLg, 'colLg');
 		$this->writeBase($this->colMd, 'colMd');
@@ -36,24 +35,11 @@ class StyleguideItem extends DBItemParent
 		$this->writeBase($this->position, 'position');
 	}
 	
-	public function read(string $subordinateTableName = null)
-	{
-		$this->readWhole($subordinateTableName);
-	}
-	
-	public function readExtra()
-	{
-		$this->readType('StyleguideItemType');
-	}
+	public function readSubExtra() {}
 	
 	public function readItemData()
 	{
 		throw new Exception('Not implemented on the base type');
-	}
-
-	public function delete()
-	{
-		parent::deleteBase();
 	}
 	
 	public function writePosition()

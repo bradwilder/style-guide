@@ -195,9 +195,7 @@ final class FontTest extends TestCase
 		$insertedItem = $this->insertItem();
 		$this->assertTrue(isset($insertedItem));
 		
-		$this->insertFontFamilyItem($insertedItem);
-		$query = 'update sg_font_family set fontID = ' . $insertedID . ' where baseID = ' . $insertedItem;
-		$this->db->query($query);
+		$this->insertFontFamilyItem($insertedItem, $insertedID);
 		
 		$new = new Font($this->db, $insertedID);
 		$this->assertEquals($insertedID, $new->id);
@@ -250,11 +248,10 @@ final class FontTest extends TestCase
 		return $this->db->insert_id();
 	}
 	
-	private function insertFontFamilyItem($itemID)
+	private function insertFontFamilyItem($itemID, $fontID)
 	{
-		$query = 'insert into sg_font_family (baseID) values (' . $itemID . ')';
+		$query = 'insert into sg_font_family (baseID, fontID) values (' . $itemID . ', ' . $fontID . ')';
 		$this->db->query($query);
-		$this->db->insert_id();
 	}
 }
 

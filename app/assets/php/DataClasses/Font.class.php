@@ -10,6 +10,7 @@ class Font extends DBItemParent
 	
 	private static $tableName = 'sg_font';
 	private static $typeTableName = 'sg_font_type';
+	private static $typeClassName = 'FontType';
 	
 	public function __construct(Db $db, int $id = null, string $code = null, string $subordinateTableName = null)
 	{
@@ -18,26 +19,17 @@ class Font extends DBItemParent
 			return;
 		}
 		
-		parent::__construct($db, self::$tableName, $id, $code, self::$typeTableName, $subordinateTableName);
+		parent::__construct($db, self::$tableName, $id, $code, self::$typeTableName, self::$typeClassName, $subordinateTableName);
 	}
 	
-	public function write()
+	public function writeSubTable()
 	{
-		parent::writeBaseParent();
-		
 		$this->writeBase($this->name, 'name', true);
 		$this->writeBase($this->alphabetID, 'alphabetID', false, true);
 	}
 	
-	public function read($subordinateTableName = null)
+	public function readSubExtra()
 	{
-		$this->readWhole($subordinateTableName);
-	}
-	
-	public function readExtra()
-	{
-		$this->readType('FontType');
-		
 		if ($this->alphabetID)
 		{
 			$this->alphabet = new FontAlphabet($this->db, $this->alphabetID);
@@ -52,11 +44,11 @@ class Font extends DBItemParent
 		
 		foreach ($rows as $row)
 		{
-			$colorItem = new StyleguideFontFamilyItem($this->db, $row['baseID']);
-			$colorItem->delete();
+			$item = new StyleguideFontFamilyItem($this->db, $row['baseID']);
+			$item->delete();
 		}
 		
-		parent::deleteBase();
+		parent::delete();
 	}
 	
 	public static function nameExists(string $name, int $selfID = null)
