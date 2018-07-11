@@ -34,7 +34,7 @@ class StyleguideElementItem extends StyleguideItem
 	
 	public function read()
 	{
-		parent::read(self::$tableName);
+		parent::read(true);
 	}
 	
 	public function readItemData()

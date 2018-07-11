@@ -139,13 +139,13 @@ abstract class DBItemParent extends DBItem
 	
 	public abstract function writeSubTable();
 	
-	public function read(string $subordinateTableName = null)
+	public function read(bool $readSub = false)
 	{
 		$this->readTable($this->table, 'id');
 		
-		if ($subordinateTableName)
+		if ($readSub)
 		{
-			$this->readTable($subordinateTableName, 'baseID');
+			$this->readTable($this->subTable, 'baseID');
 		}
 	}
 	

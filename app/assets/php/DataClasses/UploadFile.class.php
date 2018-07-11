@@ -23,7 +23,7 @@ class UploadFile extends Upload
 	
 	public function read()
 	{
-		parent::read(self::$tableName);
+		parent::read(true);
 	}
 	
 	public function delete()

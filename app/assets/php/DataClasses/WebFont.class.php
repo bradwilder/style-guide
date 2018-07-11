@@ -23,7 +23,7 @@ class WebFont extends Font
 	
 	public function read()
 	{
-		parent::read(self::$tableName);
+		parent::read(true);
 	}
 }
 
