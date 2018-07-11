@@ -6,13 +6,13 @@ abstract class DBItem
 	public $id;
 	protected $table;
 	
-	protected function __construct(Db $db, string $tableName, int $id = null)
+	protected function __construct(Db $db, string $table, int $id = null)
 	{
 		$this->db = $db;
-		$this->table = $tableName;
+		$this->table = $table;
 		$this->id = $id;
 		
-		if (!$id && $tableName)
+		if (!$id)
 		{
 			$this->insertTable();
 		}
@@ -27,7 +27,7 @@ abstract class DBItem
 		$this->writeBaseTable($value, $columnName, 'id', $this->table, $quote, $allowNull, $boolean);
 	}
 	
-	protected function writeBaseTable($value, string $columnName, string $idName, string $tableName, bool $quote = false, bool $allowNull = false, bool $boolean = false)
+	protected function writeBaseTable($value, string $columnName, string $idName, string $table, bool $quote = false, bool $allowNull = false, bool $boolean = false)
 	{
 		if (($allowNull && isset($value)) || (!$allowNull && $value) || $boolean)
 		{
@@ -36,7 +36,7 @@ abstract class DBItem
 				$value =  null;
 			}
 			
-			$query = 'update ' . $tableName . ' set ' . $columnName . ' = ? where ' . $idName . ' = ?';
+			$query = 'update ' . $table . ' set ' . $columnName . ' = ? where ' . $idName . ' = ?';
 			$types;
 			if ($quote)
 			{
@@ -50,9 +50,9 @@ abstract class DBItem
 		}
 	}
 	
-	protected function readTable(string $tableName, string $primaryColName)
+	protected function readTable(string $table, string $primaryColName)
 	{
-		$query = 'select * from ' . $tableName . ' where ' . $primaryColName . ' = ?';
+		$query = 'select * from ' . $table . ' where ' . $primaryColName . ' = ?';
 		$row = $this->db->select($query, 'i', array(&$this->id))[0];
 		$this->setPropertiesFromRow($row);
 	}
@@ -92,23 +92,40 @@ abstract class DBItemParent extends DBItem
 {
 	public $typeID;
 	private $subTable;
+	private $typeTable;
 	
 	// Extra properties
 	public $type;
 	
-	protected function __construct(Db $db, int $id = null, int $typeID = null, string $tableName, string $subordinateTableName = null)
+	protected function __construct(Db $db, string $table, int $id = null, string $code = null, string $typeTable, string $subTable = null)
 	{
-		parent::__construct($db, $tableName, $id);
+		parent::__construct($db, $table, $id);
 		
-		$this->subTable = $subordinateTableName;
+		$this->subTable = $subTable;
+		$this->typeTable = $typeTable;
 		
-		if (!$id && $tableName)
+		if (!$id)
 		{
-			$this->writeTypeID($typeID);
+			$this->typeID = $this->typeIDFromCode($code);
+			
+			$this->writeTypeID();
 			if ($this->subTable)
 			{
 				$query = 'insert into ' . $this->subTable . ' (baseID) values (?)';
 				$this->db->query($query, 'i', array(&$this->id));
+			}
+		}
+	}
+	
+	private function typeIDFromCode(string $code = null)
+	{
+		if ($code)
+		{
+			$query = 'select id from ' . $this->typeTable . ' where code = ?';
+			$rows = $this->db->select($query, 's', array(&$code));
+			if (count($rows) > 0)
+			{
+				return $rows[0]['id'];
 			}
 		}
 	}
@@ -121,13 +138,13 @@ abstract class DBItemParent extends DBItem
 		$this->type->read();
 	}
 	
-	protected function writeTypeID(int $typeID = null)
+	protected function writeBaseParent()
 	{
-		if ($typeID)
-		{
-			$this->typeID = $typeID;
-		}
-		
+		$this->writeTypeID();
+	}
+	
+	private function writeTypeID()
+	{
 		$this->writeBase($this->typeID, 'typeID');
 	}
 	

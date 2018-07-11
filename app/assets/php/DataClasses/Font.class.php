@@ -9,6 +9,7 @@ class Font extends DBItemParent
 	public $alphabet;
 	
 	private static $tableName = 'sg_font';
+	private static $typeTableName = 'sg_font_type';
 	
 	public function __construct(Db $db, int $id = null, string $code = null, string $subordinateTableName = null)
 	{
@@ -17,25 +18,12 @@ class Font extends DBItemParent
 			return;
 		}
 		
-		parent::__construct($db, $id, $this->typeIDFromCode($db, $code), self::$tableName, $subordinateTableName);
-	}
-	
-	private function typeIDFromCode(Db $db, string $code = null)
-	{
-		if ($code)
-		{
-			$query = 'select id from sg_font_type where code = ?';
-			$rows = $db->select($query, 's', array(&$code));
-			if (count($rows) > 0)
-			{
-				return $rows[0]['id'];
-			}
-		}
+		parent::__construct($db, self::$tableName, $id, $code, self::$typeTableName, $subordinateTableName);
 	}
 	
 	public function write()
 	{
-		$this->writeTypeID();
+		parent::writeBaseParent();
 		
 		$this->writeBase($this->name, 'name', true);
 		$this->writeBase($this->alphabetID, 'alphabetID', false, true);
