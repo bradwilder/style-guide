@@ -37,11 +37,6 @@ class Requests extends DBItem
 		
 		$this->setPropertiesFromRow($row);
 	}
-	
-	public function delete()
-	{
-		parent::deleteBase();
-	}
 }
 
 ?>

@@ -17,16 +17,6 @@ class StyleguideFontTableListingCSS extends DBItem
 		$this->writeBase($this->css, 'css', true);
 		$this->writeBase($this->fontListingID, 'fontListingID');
 	}
-	
-	public function read()
-	{
-		parent::readBase();
-	}
-	
-	public function delete()
-	{
-		parent::deleteBase();
-	}
 }
 
 ?>

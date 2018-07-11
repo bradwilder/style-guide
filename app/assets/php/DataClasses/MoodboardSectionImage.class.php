@@ -25,11 +25,6 @@ class MoodboardSectionImage extends DBItem
 		$this->writeBase($this->sizeID, 'sizeID');
 	}
 	
-	public function read()
-	{
-		parent::readBase();
-	}
-	
 	public function readExtra()
 	{
 		if ($this->sizeID)
@@ -38,11 +33,6 @@ class MoodboardSectionImage extends DBItem
 			$size->read();
 			$this->size = $size;
 		}
-	}
-	
-	public function delete()
-	{
-		parent::deleteBase();
 	}
 	
 	public function writePosition()

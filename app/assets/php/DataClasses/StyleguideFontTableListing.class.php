@@ -26,11 +26,6 @@ class StyleguideFontTableListing extends DBItem
 		$this->writeBase($this->position, 'position');
 	}
 	
-	public function read()
-	{
-		parent::readBase();
-	}
-	
 	public function readExtra()
 	{
 		$query = 'select id from sg_font_listing_css where fontListingID = ?';
@@ -49,11 +44,6 @@ class StyleguideFontTableListing extends DBItem
 			$font->read();
 			$this->font = $font;
 		}
-	}
-	
-	public function delete()
-	{
-		parent::deleteBase();
 	}
 	
 	public function writePosition()

@@ -67,11 +67,6 @@ class StyleguideSubsection extends DBItem
 		}
 	}
 	
-	public function delete()
-	{
-		parent::deleteBase();
-	}
-	
 	public function writePosition()
 	{
 		if ($this->sectionID)

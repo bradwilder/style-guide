@@ -49,11 +49,6 @@ class User extends DBItem
 		$this->groupID = $row['groupID'];
 	}
 	
-	public function delete()
-	{
-		parent::deleteBase();
-	}
-	
 	public function readExtra()
 	{
 		$query = 'select count(*) as session_count from sessions where userID = ?';

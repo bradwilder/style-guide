@@ -20,16 +20,6 @@ class StyleguideIconTableListing extends DBItem
 		$this->writeBase($this->position, 'position');
 	}
 	
-	public function read()
-	{
-		parent::readBase();
-	}
-	
-	public function delete()
-	{
-		parent::deleteBase();
-	}
-	
 	public function writePosition()
 	{
 		if ($this->itemID)

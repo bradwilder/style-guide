@@ -27,11 +27,6 @@ class MoodboardSection extends DBItemPositioned
 		$this->writeBase($this->modeID, 'modeID');
 	}
 	
-	public function read()
-	{
-		parent::readBase();
-	}
-	
 	public function readExtra()
 	{
 		$query = 'select i.*, si.id as section_image_id from mb_section s join mb_section_image si on si.sectionID = s.id join mb_image i on i.id = si.imageID where s.id = ? order by si.position';
@@ -43,11 +38,6 @@ class MoodboardSection extends DBItemPositioned
 		$rows = $this->db->select($query, 'i', array(&$this->modeID));
 		
 		$this->modeName = $rows[0]['name'];
-	}
-	
-	public function delete()
-	{
-		parent::deleteBase();
 	}
 	
 	public static function nameExists(string $name, int $selfID = null)

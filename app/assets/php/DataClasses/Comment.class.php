@@ -48,11 +48,6 @@ class Comment extends DBItem
 		
 		$this->userName = $row['user_name'];
 	}
-	
-	public function delete()
-	{
-		parent::deleteBase();
-	}
 }
 
 ?>

@@ -21,22 +21,12 @@ class MoodboardImage extends DBItem
 		$this->writeBase($this->description, 'description', true, true);
 	}
 	
-	public function read()
-	{
-		parent::readBase();
-	}
-	
 	public function readExtra()
 	{
 		$query = 'select s.name from mb_image i join mb_section_image si on si.imageID = i.id join mb_section s on s.id = si.sectionID where i.id = ?';
 		$rows = $this->db->select($query, 'i', array(&$this->id));
 		
 		$this->sections = $rows;
-	}
-	
-	public function delete()
-	{
-		parent::deleteBase();
 	}
 }
 

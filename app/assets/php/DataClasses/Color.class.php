@@ -28,11 +28,6 @@ class Color extends DBItem
 		$this->writeBase($this->variant2, 'variant2', true, true);
 	}
 	
-	public function read()
-	{
-		parent::readBase();
-	}
-	
 	public function delete()
 	{
 		$query = 'select baseID from sg_color_item where color1ID = ? || color2ID = ? || color3ID = ? || color4ID = ? || color5ID = ? || color6ID = ?';
@@ -44,7 +39,7 @@ class Color extends DBItem
 			$colorItem->delete();
 		}
 		
-		parent::deleteBase();
+		parent::delete();
 	}
 	
 	public static function nameExists(string $name, int $selfID = null)

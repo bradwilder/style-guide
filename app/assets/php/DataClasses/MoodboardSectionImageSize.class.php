@@ -19,16 +19,6 @@ class MoodboardSectionImageSize extends DBItem
 		$this->writeBase($this->code, 'code', true);
 		$this->writeBase($this->description, 'description', true, true);
 	}
-	
-	public function read()
-	{
-		parent::readBase();
-	}
-	
-	public function delete()
-	{
-		parent::deleteBase();
-	}
 }
 
 ?>

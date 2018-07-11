@@ -15,16 +15,6 @@ class UploadType extends DBItem
 	{
 		$this->writeBase($this->code, 'code', true);
 	}
-	
-	public function read()
-	{
-		parent::readBase();
-	}
-	
-	public function delete()
-	{
-		parent::deleteBase();
-	}
 }
 
 ?>

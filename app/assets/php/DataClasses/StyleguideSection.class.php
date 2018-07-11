@@ -50,11 +50,6 @@ class StyleguideSection extends DBItemPositioned
 		}
 	}
 	
-	public function delete()
-	{
-		parent::deleteBase();
-	}
-	
 	public static function nameExists(string $name, int $selfID = null)
 	{
 		$db = new Db();

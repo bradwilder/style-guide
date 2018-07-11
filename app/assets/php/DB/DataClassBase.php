@@ -1,6 +1,6 @@
 <?php
 
-abstract class DBItem
+abstract class DBItem_base
 {
 	protected $db;
 	public $id;
@@ -57,11 +57,6 @@ abstract class DBItem
 		$this->setPropertiesFromRow($row);
 	}
 	
-	protected function readBase()
-	{
-		$this->readTable($this->table, 'id');
-	}
-	
 	protected function setPropertiesFromRow(array $row)
 	{
 		foreach ($row as $key => $value)
@@ -73,18 +68,26 @@ abstract class DBItem
 		}
 	}
 	
-	protected function deleteBase()
-	{
-		$query = 'delete from ' . $this->table . ' where id = ?';
-		$this->db->query($query, 'i', array(&$this->id));
-	}
-	
 	protected function insertTable()
 	{
 		$query = 'insert into ' . $this->table . ' values ()';
 		$this->db->query($query);
 		
 		$this->id = $this->db->insert_id();
+	}
+}
+
+abstract class DBItem extends DBItem_base
+{
+	public function read()
+	{
+		$this->readTable($this->table, 'id');
+	}
+	
+	public function delete()
+	{
+		$query = 'delete from ' . $this->table . ' where id = ?';
+		$this->db->query($query, 'i', array(&$this->id));
 	}
 }
 
@@ -168,11 +171,6 @@ abstract class DBItemParent extends DBItem
 	protected function writeSub($value, string $columnName, bool $quote = false, bool $allowNull = false, bool $boolean = false)
 	{
 		$this->writeBaseTable($value, $columnName, 'baseID', $this->subTable, $quote, $allowNull, $boolean);
-	}
-	
-	public function delete()
-	{
-		parent::deleteBase();
 	}
 }
 

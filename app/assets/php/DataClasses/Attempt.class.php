@@ -30,11 +30,6 @@ class Attempt extends DBItem
 		
 		$this->setPropertiesFromRow($row);
 	}
-	
-	public function delete()
-	{
-		parent::deleteBase();
-	}
 }
 
 ?>

@@ -17,16 +17,6 @@ class FontAlphabet extends DBItem
 		$this->writeBase($this->name, 'name', true);
 		$this->writeBase($this->alphabet, 'alphabet', true);
 	}
-	
-	public function read()
-	{
-		parent::readBase();
-	}
-	
-	public function delete()
-	{
-		parent::deleteBase();
-	}
 }
 
 ?>

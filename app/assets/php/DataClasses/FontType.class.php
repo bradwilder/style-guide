@@ -17,16 +17,6 @@ class FontType extends DBItem
 		$this->writeBase($this->code, 'code', true);
 		$this->writeBase($this->description, 'description', true);
 	}
-	
-	public function read()
-	{
-		parent::readBase();
-	}
-	
-	public function delete()
-	{
-		parent::deleteBase();
-	}
 }
 
 ?>

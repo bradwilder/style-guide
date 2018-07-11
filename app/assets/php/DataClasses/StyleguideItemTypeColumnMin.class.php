@@ -24,16 +24,6 @@ class StyleguideItemTypeColumnMin extends DBItem
 		$this->writeBase($this->minSM, 'minSM');
 		$this->writeBase($this->minXS, 'minXS');
 	}
-	
-	public function read()
-	{
-		parent::readBase();
-	}
-	
-	public function delete()
-	{
-		parent::deleteBase();
-	}
 }
 
 ?>
