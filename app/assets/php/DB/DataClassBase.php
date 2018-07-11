@@ -6,15 +6,15 @@ abstract class DBItem
 	public $id;
 	protected $table;
 	
-	protected function __construct(Db $db, string $tableName, int $id = null, bool $create = true)
+	protected function __construct(Db $db, string $tableName, int $id = null)
 	{
 		$this->db = $db;
 		$this->table = $tableName;
 		$this->id = $id;
 		
-		if (!$id && $create)
+		if (!$id && $tableName)
 		{
-			$this->id = $this->insertTable($tableName);
+			$this->insertTable();
 		}
 	}
 	
@@ -73,23 +73,18 @@ abstract class DBItem
 		}
 	}
 	
-	protected function deleteTable(string $tableName)
+	protected function deleteBase()
 	{
-		$query = 'delete from ' . $tableName . ' where id = ?';
+		$query = 'delete from ' . $this->table . ' where id = ?';
 		$this->db->query($query, 'i', array(&$this->id));
 	}
 	
-	protected function deleteBase()
+	protected function insertTable()
 	{
-		$this->deleteTable($this->table);
-	}
-	
-	protected function insertTable(string $tableName)
-	{
-		$query = 'insert into ' . $tableName . ' values ()';
+		$query = 'insert into ' . $this->table . ' values ()';
 		$this->db->query($query);
 		
-		return $this->db->insert_id();
+		$this->id = $this->db->insert_id();
 	}
 }
 
@@ -103,31 +98,19 @@ abstract class DBItemParent extends DBItem
 	
 	protected function __construct(Db $db, int $id = null, int $typeID = null, string $tableName, string $subordinateTableName = null)
 	{
-		parent::__construct($db, $tableName, $id, false);
+		parent::__construct($db, $tableName, $id);
 		
 		$this->subTable = $subordinateTableName;
 		
 		if (!$id && $tableName)
 		{
-			$this->insertParent($typeID);
-			if ($subordinateTableName)
+			$this->writeTypeID($typeID);
+			if ($this->subTable)
 			{
-				$this->insertSub();
+				$query = 'insert into ' . $this->subTable . ' (baseID) values (?)';
+				$this->db->query($query, 'i', array(&$this->id));
 			}
 		}
-	}
-	
-	private function insertParent(int $typeID = null)
-	{
-		$this->id = $this->insertTable($this->table);
-		
-		$this->writeTypeID($typeID);
-	}
-	
-	private function insertSub()
-	{
-		$query = 'insert into ' . $this->subTable . ' (baseID) values (?)';
-		$this->db->query($query, 'i', array(&$this->id));
 	}
 	
 	public abstract function readExtra();
