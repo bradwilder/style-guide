@@ -67,7 +67,7 @@ abstract class DBItem_base
 		{
 			if ($column->allowNull && ($value === 0 || $value === ''))
 			{
-				$value =  null;
+				$value = null;
 			}
 			
 			if ($column->type === DBColumnType::Date)
