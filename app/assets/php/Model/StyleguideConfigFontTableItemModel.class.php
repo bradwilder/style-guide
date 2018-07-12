@@ -124,11 +124,10 @@ class StyleguideConfigFontTableItemModel extends Model_base
 	{
 		if ($this->itemID && $this->listing && $this->fontID)
 		{
-			$listing = new StyleguideFontTableListing($this->db);
-			$listing->itemID = $this->itemID;
+			$listing = new StyleguideFontTableListing($this->db, null, $this->itemID);
 			$listing->text = $this->listing;
 			$listing->fontID = $this->fontID;
-			$listing->writePosition();
+			$listing->write();
 		}
 		else
 		{

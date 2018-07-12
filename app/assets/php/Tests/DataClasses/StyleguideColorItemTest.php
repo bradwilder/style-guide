@@ -70,11 +70,6 @@ final class StyleguideColorItemTest extends TestCase
 	
 	public function testConstructorIDMatch()
     {
-		$insertedItemType = $this->insertItemType();
-		$this->assertTrue(isset($insertedItemType));
-		$query = 'update sg_item_type set code = "boxcar" where id = ' . $insertedItemType;
-		$this->db->query($query);
-		
 		$insertedItem = $this->insertItem();
 		$this->assertTrue(isset($insertedItem));
 		
@@ -87,11 +82,6 @@ final class StyleguideColorItemTest extends TestCase
 	
 	public function testRead()
     {
-		$insertedItemType = $this->insertItemType();
-		$this->assertTrue(isset($insertedItemType));
-		$query = 'update sg_item_type set code = "boxcar" where id = ' . $insertedItemType;
-		$this->db->query($query);
-		
 		$insertedItem = $this->insertItem();
 		$this->assertTrue(isset($insertedItem));
 		
@@ -124,11 +114,6 @@ final class StyleguideColorItemTest extends TestCase
 	
 	public function testReadItemData()
 	{
-		$insertedItemType = $this->insertItemType();
-		$this->assertTrue(isset($insertedItemType));
-		$query = 'update sg_item_type set code = "boxcar" where id = ' . $insertedItemType;
-		$this->db->query($query);
-		
 		$insertedItem = $this->insertItem();
 		$this->assertTrue(isset($insertedItem));
 		
@@ -166,11 +151,6 @@ final class StyleguideColorItemTest extends TestCase
 	
 	public function testWrite()
     {
-		$insertedItemType = $this->insertItemType();
-		$this->assertTrue(isset($insertedItemType));
-		$query = 'update sg_item_type set code = "boxcar" where id = ' . $insertedItemType;
-		$this->db->query($query);
-		
 		$insertedItem = $this->insertItem();
 		$this->assertTrue(isset($insertedItem));
 		
@@ -210,11 +190,6 @@ final class StyleguideColorItemTest extends TestCase
 	
 	public function testWriteNull()
 	{
-		$insertedItemType = $this->insertItemType();
-		$this->assertTrue(isset($insertedItemType));
-		$query = 'update sg_item_type set code = "boxcar" where id = ' . $insertedItemType;
-		$this->db->query($query);
-		
 		$insertedItem = $this->insertItem();
 		$this->assertTrue(isset($insertedItem));
 		
@@ -266,13 +241,49 @@ final class StyleguideColorItemTest extends TestCase
 		$this->assertNull($row['color6ID']);
 	}
 	
+	public function testPosition()
+    {
+		$insertedSubsection1 = $this->insertSubsection();
+		$this->assertTrue(isset($insertedSubsection1));
+		
+		$insertedSubsection2 = $this->insertSubsection();
+		$this->assertTrue(isset($insertedSubsection2));
+		
+		$new1 = new StyleguideColorItem($this->db, null, 'boxcar', $insertedSubsection1);
+		$this->assertNotNull($new1->id);
+		
+		$new2 = new StyleguideColorItem($this->db, null, 'boxcar', $insertedSubsection2);
+		$this->assertNotNull($new2->id);
+		
+		$new3 = new StyleguideColorItem($this->db, null, 'boxcar', $insertedSubsection2);
+		$this->assertNotNull($new3->id);
+		
+		$new4 = new StyleguideColorItem($this->db, null, 'boxcar', $insertedSubsection1);
+		$this->assertNotNull($new4->id);
+		
+		$copy1 = new StyleguideColorItem($this->db, $new1->id);
+		$copy1->read();
+		$this->assertEquals(1, $copy1->position);
+		$this->assertEquals($insertedSubsection1, $copy1->subsectionID);
+		
+		$copy2 = new StyleguideColorItem($this->db, $new2->id);
+		$copy2->read();
+		$this->assertEquals(1, $copy2->position);
+		$this->assertEquals($insertedSubsection2, $copy2->subsectionID);
+		
+		$copy3 = new StyleguideColorItem($this->db, $new3->id);
+		$copy3->read();
+		$this->assertEquals(2, $copy3->position);
+		$this->assertEquals($insertedSubsection2, $copy3->subsectionID);
+		
+		$copy4 = new StyleguideColorItem($this->db, $new4->id);
+		$copy4->read();
+		$this->assertEquals(2, $copy4->position);
+		$this->assertEquals($insertedSubsection1, $copy4->subsectionID);
+	}
+	
 	public function testDelete()
     {
-		$insertedItemType = $this->insertItemType();
-		$this->assertTrue(isset($insertedItemType));
-		$query = 'update sg_item_type set code = "boxcar" where id = ' . $insertedItemType;
-		$this->db->query($query);
-		
 		$insertedItem = $this->insertItem();
 		$this->assertTrue(isset($insertedItem));
 		
@@ -330,6 +341,13 @@ final class StyleguideColorItemTest extends TestCase
 	private function insertColorDescriptor()
 	{
 		$query = 'insert into sg_color_descriptor () values ()';
+		$this->db->query($query);
+		return $this->db->insert_id();
+	}
+	
+	private function insertSubsection()
+	{
+		$query = 'insert into sg_subsection () values ()';
 		$this->db->query($query);
 		return $this->db->insert_id();
 	}

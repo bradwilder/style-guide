@@ -147,56 +147,51 @@ final class StyleguideFontTableListingTest extends TestCase
 		$this->assertEquals($insertedFont, $row['fontID']);
 	}
 	
-	public function testWritePosition()
+	public function testPosition()
     {
-		$insertedID1 = $this->insert();
-		$this->assertEquals(1, $this->getTableCount());
+		$insertedItem1 = $this->insertItem();
+		$this->assertTrue(isset($insertedItem1));
 		
-		$insertedID2 = $this->insert();
-		$this->assertEquals(2, $this->getTableCount());
+		$insertedFontTableItem1 = $this->insertFontTableItem($insertedItem1);
+		$this->assertTrue(isset($insertedFontTableItem1));
 		
-		$insertedID3 = $this->insert();
-		$this->assertEquals(3, $this->getTableCount());
+		$insertedItem2 = $this->insertItem();
+		$this->assertTrue(isset($insertedItem2));
 		
-		$insertedID4 = $this->insert();
-		$this->assertEquals(4, $this->getTableCount());
+		$insertedFontTableItem2 = $this->insertFontTableItem($insertedItem2);
+		$this->assertTrue(isset($insertedFontTableItem2));
 		
-		$insertedItem = $this->insertItem();
-		$this->assertTrue(isset($insertedItem));
+		$new1 = new StyleguideFontTableListing($this->db, null, $insertedItem1);
+		$this->assertNotNull($new1->id);
 		
-		$this->insertFontTableItem($insertedItem);
+		$new2 = new StyleguideFontTableListing($this->db, null, $insertedItem2);
+		$this->assertNotNull($new2->id);
 		
-		$new1 = new StyleguideFontTableListing($this->db, $insertedID1);
-		$this->assertEquals($insertedID1, $new1->id);
+		$new3 = new StyleguideFontTableListing($this->db, null, $insertedItem2);
+		$this->assertNotNull($new3->id);
 		
-		$new2 = new StyleguideFontTableListing($this->db, $insertedID2);
-		$this->assertEquals($insertedID2, $new2->id);
+		$new4 = new StyleguideFontTableListing($this->db, null, $insertedItem1);
+		$this->assertNotNull($new4->id);
 		
-		$new3 = new StyleguideFontTableListing($this->db, $insertedID3);
-		$this->assertEquals($insertedID3, $new3->id);
+		$copy1 = new StyleguideFontTableListing($this->db, $new1->id);
+		$copy1->read();
+		$this->assertEquals(1, $copy1->position);
+		$this->assertEquals($insertedItem1, $copy1->itemID);
 		
-		$new4 = new StyleguideFontTableListing($this->db, $insertedID4);
-		$this->assertEquals($insertedID4, $new4->id);
+		$copy2 = new StyleguideFontTableListing($this->db, $new2->id);
+		$copy2->read();
+		$this->assertEquals(1, $copy2->position);
+		$this->assertEquals($insertedItem2, $copy2->itemID);
 		
-		$new3->writePosition();
-		$this->assertNull($new3->position);
+		$copy3 = new StyleguideFontTableListing($this->db, $new3->id);
+		$copy3->read();
+		$this->assertEquals(2, $copy3->position);
+		$this->assertEquals($insertedItem2, $copy3->itemID);
 		
-		$new1->itemID = $insertedItem;
-		$new2->itemID = $insertedItem;
-		$new3->itemID = $insertedItem;
-		$new4->itemID = $insertedItem;
-		
-		$new3->writePosition();
-		$this->assertEquals(1, $new3->position);
-		
-		$new2->writePosition();
-		$this->assertEquals(2, $new2->position);
-		
-		$new1->writePosition();
-		$this->assertEquals(3, $new1->position);
-		
-		$new4->writePosition();
-		$this->assertEquals(4, $new4->position);
+		$copy4 = new StyleguideFontTableListing($this->db, $new4->id);
+		$copy4->read();
+		$this->assertEquals(2, $copy4->position);
+		$this->assertEquals($insertedItem1, $copy4->itemID);
 	}
 	
 	public function testDelete()
@@ -250,6 +245,7 @@ final class StyleguideFontTableListingTest extends TestCase
 	{
 		$query = 'insert into sg_font_listing_table (baseID) values (' . $id . ')';
 		$this->db->query($query);
+		return $this->db->insert_id();
 	}
 	
 	private function insertFontTableItemCSS()

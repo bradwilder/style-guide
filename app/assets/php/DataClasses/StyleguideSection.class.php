@@ -1,10 +1,11 @@
 <?php
 
-class StyleguideSection extends DBItemPositioned
+class StyleguideSection extends DBItem
 {
 	public $name;
 	public $enabled;
 	public $userCreated;
+	public $position;
 	
 	// Extra properties
 	public $subsections = array();
@@ -18,6 +19,14 @@ class StyleguideSection extends DBItemPositioned
 		$this->addColumn('name', new DBColumn(DBColumnType::String));
 		$this->addColumn('enabled', new DBColumn(DBColumnType::Boolean));
 		$this->addColumn('userCreated', new DBColumn(DBColumnType::Boolean));
+		$this->addColumn('position', new DBColumn(DBColumnType::Numeric));
+		
+		if (!$id)
+		{
+			$positioner = new DBItemPositioner($db, self::$tableName);
+			$this->position = $positioner->getNextPosition();
+			$this->write();
+		}
 	}
 	
 	public function readExtra(bool $enabled = null)

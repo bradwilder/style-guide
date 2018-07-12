@@ -121,10 +121,9 @@ class StyleguideConfigItemModel extends Model_base
 	{
 		if ($this->name && $this->type && $this->subsectionID)
 		{
-			$item = StyleguideItemFactory::createByCode($this->type);
+			$item = StyleguideItemFactory::createByCode($this->type, $this->subsectionID);
 			$item->name = $this->name;
-			$item->subsectionID = $this->subsectionID;
-			$item->writePosition();
+			$item->write();
 		}
 		else
 		{

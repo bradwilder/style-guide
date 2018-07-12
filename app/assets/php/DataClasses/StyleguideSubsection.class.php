@@ -1,12 +1,13 @@
 <?php
 
-class StyleguideSubsection extends DBItemPositioned
+class StyleguideSubsection extends DBItem
 {
 	public $name;
 	public $description;
 	public $enabled;
 	public $sectionID;
 	public $parentSubsectionID;
+	public $position;
 	
 	// Extra properties
 	public $subSubsections = array();
@@ -14,7 +15,7 @@ class StyleguideSubsection extends DBItemPositioned
 	
 	private static $tableName = 'sg_subsection';
 	
-	public function __construct(Db $db, int $id = null)
+	public function __construct(Db $db, int $id = null, int $sectionID = null, int $parentSubsectionID = null)
 	{
 		parent::__construct($db, self::$tableName, $id);
 		
@@ -23,6 +24,15 @@ class StyleguideSubsection extends DBItemPositioned
 		$this->addColumn('enabled', new DBColumn(DBColumnType::Boolean));
 		$this->addColumn('sectionID', new DBColumn(DBColumnType::Numeric));
 		$this->addColumn('parentSubsectionID', new DBColumn(DBColumnType::Numeric, true));
+		$this->addColumn('position', new DBColumn(DBColumnType::Numeric));
+		
+		$this->sectionID = $sectionID;
+		$this->parentSubsectionID = $parentSubsectionID;
+		
+		if (!$id && $sectionID)
+		{
+			$this->writePosition();
+		}
 	}
 	
 	public function readExtra(bool $enabled = null)
@@ -49,7 +59,7 @@ class StyleguideSubsection extends DBItemPositioned
 		}
 	}
 	
-	public function writePosition()
+	private function writePosition()
 	{
 		if ($this->sectionID)
 		{

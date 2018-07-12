@@ -171,54 +171,45 @@ final class StyleguideItemTest extends TestCase
 		$this->assertEquals(4, $row['colXs']);
 	}
 	
-	public function testWritePosition()
+	public function testPosition()
     {
-		$insertedID1 = $this->insert();
-		$this->assertEquals(1, $this->getTableCount());
+		$insertedSubsection1 = $this->insertSubsection();
+		$this->assertTrue(isset($insertedSubsection1));
 		
-		$insertedID2 = $this->insert();
-		$this->assertEquals(2, $this->getTableCount());
+		$insertedSubsection2 = $this->insertSubsection();
+		$this->assertTrue(isset($insertedSubsection2));
 		
-		$insertedID3 = $this->insert();
-		$this->assertEquals(3, $this->getTableCount());
+		$new1 = new StyleguideItem($this->db, null, null, null, $insertedSubsection1);
+		$this->assertNotNull($new1->id);
 		
-		$insertedID4 = $this->insert();
-		$this->assertEquals(4, $this->getTableCount());
+		$new2 = new StyleguideItem($this->db, null, null, null, $insertedSubsection2);
+		$this->assertNotNull($new2->id);
 		
-		$insertedSubsection = $this->insertSubsection();
-		$this->assertTrue(isset($insertedSubsection));
+		$new3 = new StyleguideItem($this->db, null, null, null, $insertedSubsection2);
+		$this->assertNotNull($new3->id);
 		
-		$new1 = new StyleguideItem($this->db, $insertedID1);
-		$this->assertEquals($insertedID1, $new1->id);
+		$new4 = new StyleguideItem($this->db, null, null, null, $insertedSubsection1);
+		$this->assertNotNull($new4->id);
 		
-		$new2 = new StyleguideItem($this->db, $insertedID2);
-		$this->assertEquals($insertedID2, $new2->id);
+		$copy1 = new StyleguideItem($this->db, $new1->id);
+		$copy1->read();
+		$this->assertEquals(1, $copy1->position);
+		$this->assertEquals($insertedSubsection1, $copy1->subsectionID);
 		
-		$new3 = new StyleguideItem($this->db, $insertedID3);
-		$this->assertEquals($insertedID3, $new3->id);
+		$copy2 = new StyleguideItem($this->db, $new2->id);
+		$copy2->read();
+		$this->assertEquals(1, $copy2->position);
+		$this->assertEquals($insertedSubsection2, $copy2->subsectionID);
 		
-		$new4 = new StyleguideItem($this->db, $insertedID4);
-		$this->assertEquals($insertedID4, $new4->id);
+		$copy3 = new StyleguideItem($this->db, $new3->id);
+		$copy3->read();
+		$this->assertEquals(2, $copy3->position);
+		$this->assertEquals($insertedSubsection2, $copy3->subsectionID);
 		
-		$new3->writePosition();
-		$this->assertNull($new3->position);
-		
-		$new1->subsectionID = $insertedSubsection;
-		$new2->subsectionID = $insertedSubsection;
-		$new3->subsectionID = $insertedSubsection;
-		$new4->subsectionID = $insertedSubsection;
-		
-		$new3->writePosition();
-		$this->assertEquals(1, $new3->position);
-		
-		$new2->writePosition();
-		$this->assertEquals(2, $new2->position);
-		
-		$new1->writePosition();
-		$this->assertEquals(3, $new1->position);
-		
-		$new4->writePosition();
-		$this->assertEquals(4, $new4->position);
+		$copy4 = new StyleguideItem($this->db, $new4->id);
+		$copy4->read();
+		$this->assertEquals(2, $copy4->position);
+		$this->assertEquals($insertedSubsection1, $copy4->subsectionID);
 	}
 	
 	public function testDelete()

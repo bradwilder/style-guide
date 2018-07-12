@@ -134,43 +134,35 @@ final class MoodboardSectionTest extends TestCase
 		$this->assertEquals($insertedMode, $row['modeID']);
 	}
 	
-	public function testWritePosition()
+	public function testPosition()
     {
-		$insertedID1 = $this->insert();
-		$this->assertEquals(1, $this->getTableCount());
+		$new1 = new MoodboardSection($this->db);
+		$this->assertNotNull($new1->id);
 		
-		$insertedID2 = $this->insert();
-		$this->assertEquals(2, $this->getTableCount());
+		$new2 = new MoodboardSection($this->db);
+		$this->assertNotNull($new2->id);
 		
-		$insertedID3 = $this->insert();
-		$this->assertEquals(3, $this->getTableCount());
+		$new3 = new MoodboardSection($this->db);
+		$this->assertNotNull($new3->id);
 		
-		$insertedID4 = $this->insert();
-		$this->assertEquals(4, $this->getTableCount());
+		$new4 = new MoodboardSection($this->db);
+		$this->assertNotNull($new4->id);
 		
-		$new1 = new MoodboardSection($this->db, $insertedID1);
-		$this->assertEquals($insertedID1, $new1->id);
+		$copy1 = new MoodboardSection($this->db, $new1->id);
+		$copy1->read();
+		$this->assertEquals(1, $copy1->position);
 		
-		$new2 = new MoodboardSection($this->db, $insertedID2);
-		$this->assertEquals($insertedID2, $new2->id);
+		$copy2 = new MoodboardSection($this->db, $new2->id);
+		$copy2->read();
+		$this->assertEquals(2, $copy2->position);
 		
-		$new3 = new MoodboardSection($this->db, $insertedID3);
-		$this->assertEquals($insertedID3, $new3->id);
+		$copy3 = new MoodboardSection($this->db, $new3->id);
+		$copy3->read();
+		$this->assertEquals(3, $copy3->position);
 		
-		$new4 = new MoodboardSection($this->db, $insertedID4);
-		$this->assertEquals($insertedID4, $new4->id);
-		
-		$new3->writePosition();
-		$this->assertEquals(1, $new3->position);
-		
-		$new2->writePosition();
-		$this->assertEquals(2, $new2->position);
-		
-		$new1->writePosition();
-		$this->assertEquals(3, $new1->position);
-		
-		$new4->writePosition();
-		$this->assertEquals(4, $new4->position);
+		$copy4 = new MoodboardSection($this->db, $new4->id);
+		$copy4->read();
+		$this->assertEquals(4, $copy4->position);
 	}
 	
 	public function testWriteNull()

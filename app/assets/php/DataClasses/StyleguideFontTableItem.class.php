@@ -8,9 +8,9 @@ class StyleguideFontTableItem extends StyleguideItem
 	private static $tableName = 'sg_font_listing_table';
 	private static $code = 'font-tbl';
 	
-	public function __construct(Db $db, int $id = null)
+	public function __construct(Db $db, int $id = null, int $subsectionID = null)
 	{
-		parent::__construct($db, $id, self::$code, self::$tableName);
+		parent::__construct($db, $id, self::$code, self::$tableName, $subsectionID);
 	}
 	
 	public function readItemData()

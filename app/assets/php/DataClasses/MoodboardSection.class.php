@@ -1,10 +1,11 @@
 <?php
 
-class MoodboardSection extends DBItemPositioned
+class MoodboardSection extends DBItem
 {
 	public $name;
 	public $description;
 	public $modeID;
+	public $position;
 	
 	// Extra properties
 	public $images;
@@ -19,6 +20,14 @@ class MoodboardSection extends DBItemPositioned
 		$this->addColumn('name', new DBColumn(DBColumnType::String));
 		$this->addColumn('description', new DBColumn(DBColumnType::String, true));
 		$this->addColumn('modeID', new DBColumn(DBColumnType::Numeric));
+		$this->addColumn('position', new DBColumn(DBColumnType::Numeric));
+		
+		if (!$id)
+		{
+			$positioner = new DBItemPositioner($db, self::$tableName);
+			$this->position = $positioner->getNextPosition();
+			$this->write();
+		}
 	}
 	
 	public function readExtra()

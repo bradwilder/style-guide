@@ -15,9 +15,9 @@ class StyleguideElementItem extends StyleguideItem
 	private static $tableName = 'sg_element';
 	private static $code = 'elem-seg';
 	
-	public function __construct(Db $db, int $id = null)
+	public function __construct(Db $db, int $id = null, int $subsectionID = null)
 	{
-		parent::__construct($db, $id, self::$code, self::$tableName);
+		parent::__construct($db, $id, self::$code, self::$tableName, $subsectionID);
 		
 		$this->addSubColumn('upload1ID', new DBColumn(DBColumnType::Numeric, true));
 		$this->addSubColumn('upload2ID', new DBColumn(DBColumnType::Numeric, true));

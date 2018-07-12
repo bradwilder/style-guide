@@ -25,10 +25,9 @@ class StyleguideConfigIconTableItemModel extends Model_base
 	{
 		if ($this->itemID && $this->listing)
 		{
-			$listing = new StyleguideIconTableListing($this->db);
+			$listing = new StyleguideIconTableListing($this->db, null, $this->itemID);
 			$listing->html = $this->listing;
-			$listing->itemID = $this->itemID;
-			$listing->writePosition();
+			$listing->write();
 		}
 		else
 		{

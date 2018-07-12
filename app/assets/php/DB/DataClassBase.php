@@ -219,30 +219,23 @@ abstract class DBItemParent extends DBItem
 	}
 }
 
-abstract class DBItemPositioned extends DBItem
+class DBItemPositioner
 {
-	public $position;
+	private $db;
+	private $table;
 	
-	protected function __construct(Db $db, string $table, int $id = null)
+	public function __construct(Db $db, string $table)
 	{
-		parent::__construct($db, $table, $id);
-		
-		$this->addColumn('position', new DBColumn(DBColumnType::Numeric));
-		
-		if (!$id)
-		{
-			$this->writePosition();
-		}
+		$this->db = $db;
+		$this->table = $table;
 	}
 	
-	public function writePosition()
+	public function getNextPosition()
 	{
 		$query = 'select case when max(position) is not null then max(position) + 1 else 1 end as next_position from ' . $this->table;
 		$row = $this->db->select($query)[0];
 		
-		$this->position = $row['next_position'];
-		
-		parent::write();
+		return $row['next_position'];
 	}
 }
 

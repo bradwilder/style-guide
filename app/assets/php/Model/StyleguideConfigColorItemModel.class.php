@@ -275,10 +275,9 @@ class StyleguideConfigColorItemModel extends Model_base
 	{
 		if ($this->itemID && $this->descriptor)
 		{
-			$descriptor = new StyleguideColorItemDescriptor($this->db);
-			$descriptor->itemID = $this->itemID;
+			$descriptor = new StyleguideColorItemDescriptor($this->db, null, $this->itemID);
 			$descriptor->description = $this->descriptor;
-			$descriptor->writePosition();
+			$descriptor->write();
 		}
 		else
 		{

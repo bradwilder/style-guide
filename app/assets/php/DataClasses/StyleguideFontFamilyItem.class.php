@@ -7,9 +7,9 @@ class StyleguideFontFamilyItem extends StyleguideItem
 	private static $tableName = 'sg_font_family';
 	private static $code = 'font-fmy';
 	
-	public function __construct(Db $db, int $id = null)
+	public function __construct(Db $db, int $id = null, int $subsectionID = null)
 	{
-		parent::__construct($db, $id, self::$code, self::$tableName);
+		parent::__construct($db, $id, self::$code, self::$tableName, $subsectionID);
 		
 		$this->addSubColumn('fontID', new DBColumn(DBColumnType::Numeric));
 	}

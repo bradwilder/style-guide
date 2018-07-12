@@ -39,7 +39,7 @@ class StyleguideItemFactory
 		return $item;
 	}
 	
-	public static function createByCode($itemTypeCode)
+	public static function createByCode($itemTypeCode, int $subsectionID = null)
 	{
 		$item;
 		$db = new Db();
@@ -51,15 +51,15 @@ class StyleguideItemFactory
 			case 'color-pal':
 			case 'color-var-desc':
 			case 'color-desc':
-				return new StyleguideColorItem($db, null, $itemTypeCode);
+				return new StyleguideColorItem($db, null, $itemTypeCode, $subsectionID);
 			case 'font-fmy':
-				return new StyleguideFontFamilyItem($db);
+				return new StyleguideFontFamilyItem($db, null, $subsectionID);
 			case 'font-tbl':
-				return new StyleguideFontTableItem($db);
+				return new StyleguideFontTableItem($db, null, $subsectionID);
 			case 'icons-css':
-				return new StyleguideIconTableItem($db);
+				return new StyleguideIconTableItem($db, null, $subsectionID);
 			case 'elem-seg':
-				return new StyleguideElementItem($db);
+				return new StyleguideElementItem($db, null, $subsectionID);
 		}
 	}
 }

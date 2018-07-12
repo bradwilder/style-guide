@@ -15,14 +15,14 @@ class StyleguideColorItem extends StyleguideItem
 	
 	private static $tableName = 'sg_color_item';
 	
-	public function __construct(Db $db, int $id = null, $code = null)
+	public function __construct(Db $db, int $id = null, $code = null, int $subsectionID = null)
 	{
 		if (!$id && !$code)
 		{
 			return;
 		}
 		
-		parent::__construct($db, $id, $code, self::$tableName);
+		parent::__construct($db, $id, $code, self::$tableName, $subsectionID);
 		
 		$this->addSubColumn('color1ID', new DBColumn(DBColumnType::Numeric, true));
 		$this->addSubColumn('color2ID', new DBColumn(DBColumnType::Numeric, true));

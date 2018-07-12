@@ -1,10 +1,11 @@
 <?php
 
-class StyleguideFontTableListing extends DBItemPositioned
+class StyleguideFontTableListing extends DBItem
 {
 	public $text;
 	public $itemID;
 	public $fontID;
+	public $position;
 	
 	// Extra properties
 	public $cssList = array();
@@ -12,13 +13,21 @@ class StyleguideFontTableListing extends DBItemPositioned
 	
 	private static $tableName = 'sg_font_listing';
 	
-	public function __construct(Db $db, int $id = null)
+	public function __construct(Db $db, int $id = null, int $itemID = null)
 	{
 		parent::__construct($db, self::$tableName, $id);
 		
 		$this->addColumn('text', new DBColumn(DBColumnType::String));
 		$this->addColumn('itemID', new DBColumn(DBColumnType::Numeric));
 		$this->addColumn('fontID', new DBColumn(DBColumnType::Numeric));
+		$this->addColumn('position', new DBColumn(DBColumnType::Numeric));
+		
+		$this->itemID = $itemID;
+		
+		if (!$id && $itemID)
+		{
+			$this->writePosition();
+		}
 	}
 	
 	public function readExtra()
@@ -41,7 +50,7 @@ class StyleguideFontTableListing extends DBItemPositioned
 		}
 	}
 	
-	public function writePosition()
+	private function writePosition()
 	{
 		if ($this->itemID)
 		{

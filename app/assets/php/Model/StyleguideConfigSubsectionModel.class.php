@@ -88,14 +88,11 @@ class StyleguideConfigSubsectionModel extends Model_base
 	{
 		if ($this->name)
 		{
-			$subsection = new StyleguideSubsection($this->db);
-			$subsection->sectionID = $this->sectionID;
-			$subsection->parentSubsectionID = $this->parentID;
+			$subsection = new StyleguideSubsection($this->db, null, $this->sectionID, $this->parentID);
 			$subsection->name = $this->name;
 			$subsection->description = $this->description;
 			$subsection->enabled = $this->enabled;
 			$subsection->write();
-			$subsection->writePosition();
 		}
 		else
 		{

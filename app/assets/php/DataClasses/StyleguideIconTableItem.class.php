@@ -10,9 +10,9 @@ class StyleguideIconTableItem extends StyleguideItem
 	private static $tableName = 'sg_icon_listing_table';
 	private static $code = 'icons-css';
 	
-	public function __construct(Db $db, int $id = null)
+	public function __construct(Db $db, int $id = null, int $subsectionID = null)
 	{
-		parent::__construct($db, $id, self::$code, self::$tableName);
+		parent::__construct($db, $id, self::$code, self::$tableName, $subsectionID);
 		
 		$this->addSubColumn('fontID', new DBColumn(DBColumnType::Numeric));
 	}

@@ -14,7 +14,7 @@ class StyleguideItem extends DBItemParent
 	private static $typeTableName = 'sg_item_type';
 	private static $typeClassName = 'StyleguideItemType';
 	
-	public function __construct(Db $db, int $id = null, string $code = null, string $subordinateTableName = null)
+	public function __construct(Db $db, int $id = null, string $code = null, string $subordinateTableName = null, int $subsectionID = null)
 	{
 		if (!$id && ($code xor $subordinateTableName))
 		{
@@ -30,6 +30,13 @@ class StyleguideItem extends DBItemParent
 		$this->addColumn('colXs', new DBColumn(DBColumnType::Numeric));
 		$this->addColumn('subsectionID', new DBColumn(DBColumnType::Numeric));
 		$this->addColumn('position', new DBColumn(DBColumnType::Numeric));
+		
+		$this->subsectionID = $subsectionID;
+		
+		if (!$id && $subsectionID)
+		{
+			$this->writePosition();
+		}
 	}
 	
 	public function readSubExtra() {}
@@ -39,7 +46,7 @@ class StyleguideItem extends DBItemParent
 		throw new Exception('Not implemented on the base type');
 	}
 	
-	public function writePosition()
+	private function writePosition()
 	{
 		if ($this->subsectionID)
 		{

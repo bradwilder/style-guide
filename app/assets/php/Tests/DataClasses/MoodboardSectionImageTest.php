@@ -131,54 +131,45 @@ final class MoodboardSectionImageTest extends TestCase
 		$this->assertEquals($insertedSize, $row['sizeID']);
 	}
 	
-	public function testWritePosition()
+	public function testPosition()
     {
-		$insertedID1 = $this->insert();
-		$this->assertEquals(1, $this->getTableCount());
+		$insertedSection1 = $this->insertSection();
+		$this->assertTrue(isset($insertedSection1));
 		
-		$insertedID2 = $this->insert();
-		$this->assertEquals(2, $this->getTableCount());
+		$insertedSection2 = $this->insertSection();
+		$this->assertTrue(isset($insertedSection2));
 		
-		$insertedID3 = $this->insert();
-		$this->assertEquals(3, $this->getTableCount());
+		$new1 = new MoodboardSectionImage($this->db, null, $insertedSection1);
+		$this->assertNotNull($new1->id);
 		
-		$insertedID4 = $this->insert();
-		$this->assertEquals(4, $this->getTableCount());
+		$new2 = new MoodboardSectionImage($this->db, null, $insertedSection2);
+		$this->assertNotNull($new2->id);
 		
-		$insertedSection = $this->insertSection();
-		$this->assertTrue(isset($insertedSection));
+		$new3 = new MoodboardSectionImage($this->db, null, $insertedSection2);
+		$this->assertNotNull($new3->id);
 		
-		$new1 = new MoodboardSectionImage($this->db, $insertedID1);
-		$this->assertEquals($insertedID1, $new1->id);
+		$new4 = new MoodboardSectionImage($this->db, null, $insertedSection1);
+		$this->assertNotNull($new4->id);
 		
-		$new2 = new MoodboardSectionImage($this->db, $insertedID2);
-		$this->assertEquals($insertedID2, $new2->id);
+		$copy1 = new MoodboardSectionImage($this->db, $new1->id);
+		$copy1->read();
+		$this->assertEquals(1, $copy1->position);
+		$this->assertEquals($insertedSection1, $copy1->sectionID);
 		
-		$new3 = new MoodboardSectionImage($this->db, $insertedID3);
-		$this->assertEquals($insertedID3, $new3->id);
+		$copy2 = new MoodboardSectionImage($this->db, $new2->id);
+		$copy2->read();
+		$this->assertEquals(1, $copy2->position);
+		$this->assertEquals($insertedSection2, $copy2->sectionID);
 		
-		$new4 = new MoodboardSectionImage($this->db, $insertedID4);
-		$this->assertEquals($insertedID4, $new4->id);
+		$copy3 = new MoodboardSectionImage($this->db, $new3->id);
+		$copy3->read();
+		$this->assertEquals(2, $copy3->position);
+		$this->assertEquals($insertedSection2, $copy3->sectionID);
 		
-		$new3->writePosition();
-		$this->assertNull($new3->position);
-		
-		$new1->sectionID = $insertedSection;
-		$new2->sectionID = $insertedSection;
-		$new3->sectionID = $insertedSection;
-		$new4->sectionID = $insertedSection;
-		
-		$new3->writePosition();
-		$this->assertEquals(1, $new3->position);
-		
-		$new2->writePosition();
-		$this->assertEquals(2, $new2->position);
-		
-		$new1->writePosition();
-		$this->assertEquals(3, $new1->position);
-		
-		$new4->writePosition();
-		$this->assertEquals(4, $new4->position);
+		$copy4 = new MoodboardSectionImage($this->db, $new4->id);
+		$copy4->read();
+		$this->assertEquals(2, $copy4->position);
+		$this->assertEquals($insertedSection1, $copy4->sectionID);
 	}
 	
 	public function testDelete()
