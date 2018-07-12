@@ -85,11 +85,6 @@ abstract class DBItem_base
 	{
 		$query = 'select * from ' . $table . ' where ' . $primaryColName . ' = ?';
 		$row = $this->db->select($query, 'i', array(&$this->id))[0];
-		$this->setPropertiesFromRow($row, $columns);
-	}
-	
-	private function setPropertiesFromRow(array $row, $columns)
-	{
 		foreach ($row as $key => $value)
 		{
 			if ($key != 'id' && $key != 'baseID')
