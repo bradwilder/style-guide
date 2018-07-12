@@ -14,30 +14,13 @@ class Session extends DBItem
 	public function __construct(Db $db, int $id = null)
 	{
 		parent::__construct($db, self::$tableName, $id);
-	}
-	
-	public function write()
-	{
-		$this->writeBase($this->userID, 'userID');
-		$this->writeBase($this->hash, 'hash', DBColumnType::String);
 		
-		if ($this->expire)
-		{
-			$query = 'update ' . self::$tableName . ' set expire = from_unixtime(?) where id = ?';
-			$this->db->query($query, 'ii', array(&$this->expire, &$this->id));
-		}
-		
-		$this->writeBase($this->ip, 'ip', DBColumnType::String);
-		$this->writeBase($this->agent, 'agent', DBColumnType::String);
-		$this->writeBase($this->cookieCRC, 'cookieCRC', DBColumnType::String);
-	}
-	
-	public function read()
-	{
-		$query = 'select userID, hash, unix_timestamp(expire) as expire, ip, agent, cookieCRC from ' . self::$tableName . ' where id = ?';
-		$row = $this->db->select($query, 'i', array(&$this->id))[0];
-		
-		$this->setPropertiesFromRow($row);
+		$this->addColumn('userID', new DBColumn(DBColumnType::Numeric));
+		$this->addColumn('hash', new DBColumn(DBColumnType::String));
+		$this->addColumn('expire', new DBColumn(DBColumnType::Date));
+		$this->addColumn('ip', new DBColumn(DBColumnType::String));
+		$this->addColumn('agent', new DBColumn(DBColumnType::String));
+		$this->addColumn('cookieCRC', new DBColumn(DBColumnType::String));
 	}
 }
 

@@ -20,12 +20,9 @@ class Font extends DBItemParent
 		}
 		
 		parent::__construct($db, self::$tableName, $id, $code, self::$typeTableName, self::$typeClassName, $subordinateTableName);
-	}
-	
-	public function writeSubTable()
-	{
-		$this->writeBase($this->name, 'name', DBColumnType::String);
-		$this->writeBase($this->alphabetID, 'alphabetID', DBColumnType::Numeric, true);
+		
+		$this->addColumn('name', new DBColumn(DBColumnType::String));
+		$this->addColumn('alphabetID', new DBColumn(DBColumnType::Numeric, true));
 	}
 	
 	public function readSubExtra()

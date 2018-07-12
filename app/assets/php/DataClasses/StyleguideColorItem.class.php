@@ -23,18 +23,13 @@ class StyleguideColorItem extends StyleguideItem
 		}
 		
 		parent::__construct($db, $id, $code, self::$tableName);
-	}
-	
-	public function write()
-	{
-		parent::write();
 		
-		$this->writeSub($this->color1ID, 'color1ID', DBColumnType::Numeric, true);
-		$this->writeSub($this->color2ID, 'color2ID', DBColumnType::Numeric, true);
-		$this->writeSub($this->color3ID, 'color3ID', DBColumnType::Numeric, true);
-		$this->writeSub($this->color4ID, 'color4ID', DBColumnType::Numeric, true);
-		$this->writeSub($this->color5ID, 'color5ID', DBColumnType::Numeric, true);
-		$this->writeSub($this->color6ID, 'color6ID', DBColumnType::Numeric, true);
+		$this->addSubColumn('color1ID', new DBColumn(DBColumnType::Numeric, true));
+		$this->addSubColumn('color2ID', new DBColumn(DBColumnType::Numeric, true));
+		$this->addSubColumn('color3ID', new DBColumn(DBColumnType::Numeric, true));
+		$this->addSubColumn('color4ID', new DBColumn(DBColumnType::Numeric, true));
+		$this->addSubColumn('color5ID', new DBColumn(DBColumnType::Numeric, true));
+		$this->addSubColumn('color6ID', new DBColumn(DBColumnType::Numeric, true));
 	}
 	
 	public function read()

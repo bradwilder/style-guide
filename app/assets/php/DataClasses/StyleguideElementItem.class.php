@@ -18,18 +18,13 @@ class StyleguideElementItem extends StyleguideItem
 	public function __construct(Db $db, int $id = null)
 	{
 		parent::__construct($db, $id, self::$code, self::$tableName);
-	}
-	
-	public function write()
-	{
-		parent::write();
 		
-		$this->writeSub($this->upload1ID, 'upload1ID', DBColumnType::Numeric, true);
-		$this->writeSub($this->upload2ID, 'upload2ID', DBColumnType::Numeric, true);
-		$this->writeSub($this->upload3ID, 'upload3ID', DBColumnType::Numeric, true);
-		$this->writeSub($this->upload4ID, 'upload4ID', DBColumnType::Numeric, true);
-		$this->writeSub($this->upload5ID, 'upload5ID', DBColumnType::Numeric, true);
-		$this->writeSub($this->upload6ID, 'upload6ID', DBColumnType::Numeric, true);
+		$this->addSubColumn('upload1ID', new DBColumn(DBColumnType::Numeric, true));
+		$this->addSubColumn('upload2ID', new DBColumn(DBColumnType::Numeric, true));
+		$this->addSubColumn('upload3ID', new DBColumn(DBColumnType::Numeric, true));
+		$this->addSubColumn('upload4ID', new DBColumn(DBColumnType::Numeric, true));
+		$this->addSubColumn('upload5ID', new DBColumn(DBColumnType::Numeric, true));
+		$this->addSubColumn('upload6ID', new DBColumn(DBColumnType::Numeric, true));
 	}
 	
 	public function read()

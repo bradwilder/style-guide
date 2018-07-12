@@ -5,13 +5,29 @@ abstract class DBColumnType
 	const Numeric = 0;
 	const String = 1;
 	const Boolean = 2;
+	const Date = 3;
+}
+
+class DBColumn
+{
+	public $type;
+	public $allowNull;
+	
+	public function __construct(int $type = DBColumnType::Numeric, bool $allowNull = false)
+	{
+		$this->type = $type;
+		$this->allowNull = $allowNull;
+	}
 }
 
 abstract class DBItem_base
 {
-	protected $db;
 	public $id;
+	
+	protected $db;
 	protected $table;
+	
+	protected $columns = array();
 	
 	protected function __construct(Db $db, string $table, int $id = null)
 	{
@@ -31,54 +47,85 @@ abstract class DBItem_base
 		}
 	}
 	
+	public function addColumn(string $name, DBColumn $column)
+	{
+		$this->columns[$name] = $column;
+	}
+	
 	public abstract function write();
 	public abstract function read();
 	public abstract function delete();
 	
-	protected function writeBase($value, string $columnName, $columnType = DBColumnType::Numeric, bool $allowNull = false)
+	protected function writeBase($value, string $columnName, DBColumn $column)
 	{
-		$this->writeBaseTable($value, $columnName, 'id', $this->table, $columnType, $allowNull);
+		$this->writeBaseTable($value, $columnName, 'id', $this->table, $column);
 	}
 	
-	protected function writeBaseTable($value, string $columnName, string $idName, string $table, $columnType = DBColumnType::Numeric, bool $allowNull = false)
+	protected function writeBaseTable($value, string $columnName, string $idName, string $table, $column)
 	{
-		if (($allowNull && isset($value)) || (!$allowNull && $value) || $columnType === DBColumnType::Boolean)
+		if (($column->allowNull && isset($value)) || (!$column->allowNull && $value) || $column->type === DBColumnType::Boolean)
 		{
-			if ($allowNull && ($value === 0 || $value === ''))
+			if ($column->allowNull && ($value === 0 || $value === ''))
 			{
 				$value =  null;
 			}
 			
+			if ($column->type === DBColumnType::Date)
+			{
+				$value = date('Y-m-d H:i:s', $value);
+			}
+			
 			$query = 'update ' . $table . ' set ' . $columnName . ' = ? where ' . $idName . ' = ?';
-			$types = ($columnType === DBColumnType::String ? 's' : 'i') . 'i';
+			$types = ($column->type === DBColumnType::String || $column->type === DBColumnType::Date ? 's' : 'i') . 'i';
 			$this->db->query($query, $types, array(&$value, &$this->id));
 		}
 	}
 	
-	protected function readTable(string $table, string $primaryColName)
+	protected function readTable(string $table, string $primaryColName, $columns)
 	{
 		$query = 'select * from ' . $table . ' where ' . $primaryColName . ' = ?';
 		$row = $this->db->select($query, 'i', array(&$this->id))[0];
-		$this->setPropertiesFromRow($row);
+		$this->setPropertiesFromRow($row, $columns);
 	}
 	
-	protected function setPropertiesFromRow(array $row)
+	private function setPropertiesFromRow(array $row, $columns)
 	{
 		foreach ($row as $key => $value)
 		{
-			if ($key != 'id')
+			if ($key != 'id' && $key != 'baseID')
 			{
-				$this->{$key} = $value;
+				$column = $columns[$key];
+				
+				if ($column->type === DBColumnType::Boolean)
+				{
+					$this->{$key} = ($value == 1);
+				}
+				else if ($column->type === DBColumnType::Date)
+				{
+					$this->{$key} = strtotime($value);
+				}
+				else
+				{
+					$this->{$key} = $value;
+				}
 			}
 		}
 	}
 }
 
-abstract class DBItem extends DBItem_base
+class DBItem extends DBItem_base
 {
+	public function write()
+	{
+		foreach ($this->columns as $name => $column)
+		{
+			$this->writeBase($this->$name, $name, $column);
+		}
+	}
+	
 	public function read()
 	{
-		$this->readTable($this->table, 'id');
+		$this->readTable($this->table, 'id', $this->columns);
 	}
 	
 	public function delete()
@@ -91,9 +138,11 @@ abstract class DBItem extends DBItem_base
 abstract class DBItemParent extends DBItem
 {
 	public $typeID;
+	
 	private $subTable;
 	private $typeTable;
 	private $typeClass;
+	private $subColumns = array();
 	
 	// Extra properties
 	public $type;
@@ -106,11 +155,13 @@ abstract class DBItemParent extends DBItem
 		$this->typeTable = $typeTable;
 		$this->typeClass = $typeClass;
 		
+		$this->addColumn('typeID', new DBColumn(DBColumnType::Numeric));
+		
 		if (!$id)
 		{
 			$this->typeID = $this->typeIDFromCode($code);
+			parent::write();
 			
-			$this->writeTypeID();
 			if ($this->subTable)
 			{
 				$query = 'insert into ' . $this->subTable . ' (baseID) values (?)';
@@ -132,16 +183,20 @@ abstract class DBItemParent extends DBItem
 		}
 	}
 	
+	public function addSubColumn(string $name, DBColumn $column)
+	{
+		$this->subColumns[$name] = $column;
+	}
+	
 	public abstract function readSubExtra();
-	public abstract function writeSubTable();
 	
 	public function read(bool $readSub = false)
 	{
-		$this->readTable($this->table, 'id');
+		$this->readTable($this->table, 'id', $this->columns);
 		
 		if ($readSub)
 		{
-			$this->readTable($this->subTable, 'baseID');
+			$this->readTable($this->subTable, 'baseID', $this->subColumns);
 		}
 	}
 	
@@ -155,18 +210,12 @@ abstract class DBItemParent extends DBItem
 	
 	public function write()
 	{
-		$this->writeTypeID();
-		$this->writeSubTable();
-	}
-	
-	private function writeTypeID()
-	{
-		$this->writeBase($this->typeID, 'typeID');
-	}
-	
-	protected function writeSub($value, string $columnName, $columnType = DBColumnType::Numeric, bool $allowNull = false)
-	{
-		$this->writeBaseTable($value, $columnName, 'baseID', $this->subTable, $columnType, $allowNull);
+		parent::write();
+		
+		foreach ($this->subColumns as $name => $column)
+		{
+			$this->writeBaseTable($this->$name, $name, 'baseID', $this->subTable, $column);
+		}
 	}
 }
 
@@ -178,37 +227,22 @@ abstract class DBItemPositioned extends DBItem
 	{
 		parent::__construct($db, $table, $id);
 		
+		$this->addColumn('position', new DBColumn(DBColumnType::Numeric));
+		
 		if (!$id)
 		{
 			$this->writePosition();
 		}
 	}
 	
-	abstract public function writeSubTable();
-	
-	public function write()
-	{
-		$this->writePositionValue();
-		$this->writeSubTable();
-	}
-	
 	public function writePosition()
-	{
-		$this->setNextPositionValue();
-		$this->writePositionValue();
-	}
-	
-	private function setNextPositionValue()
 	{
 		$query = 'select case when max(position) is not null then max(position) + 1 else 1 end as next_position from ' . $this->table;
 		$row = $this->db->select($query)[0];
 		
 		$this->position = $row['next_position'];
-	}
-	
-	private function writePositionValue()
-	{
-		$this->writeBase($this->position, 'position');
+		
+		parent::write();
 	}
 }
 

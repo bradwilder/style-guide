@@ -14,24 +14,10 @@ class StyleguideSection extends DBItemPositioned
 	public function __construct(Db $db, int $id = null)
 	{
 		parent::__construct($db, self::$tableName, $id);
-	}
-	
-	public function writeSubTable()
-	{
-		$this->writeBase($this->name, 'name', DBColumnType::String);
-		$this->writeBase($this->enabled, 'enabled', DBColumnType::Boolean);
-		$this->writeBase($this->userCreated, 'userCreated', DBColumnType::Boolean);
-	}
-	
-	public function read()
-	{
-		$query = 'select * from ' . self::$tableName . ' where id = ?';
-		$row = $this->db->select($query, 'i', array(&$this->id))[0];
 		
-		$this->name = $row['name'];
-		$this->position = $row['position'];
-		$this->enabled = ($row['enabled'] == 1);
-		$this->userCreated = ($row['userCreated'] == 1);
+		$this->addColumn('name', new DBColumn(DBColumnType::String));
+		$this->addColumn('enabled', new DBColumn(DBColumnType::Boolean));
+		$this->addColumn('userCreated', new DBColumn(DBColumnType::Boolean));
 	}
 	
 	public function readExtra(bool $enabled = null)

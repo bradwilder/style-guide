@@ -22,17 +22,14 @@ class StyleguideItem extends DBItemParent
 		}
 		
 		parent::__construct($db, self::$tableName, $id, $code, self::$typeTableName, self::$typeClassName, $subordinateTableName);
-	}
-	
-	public function writeSubTable()
-	{
-		$this->writeBase($this->name, 'name', DBColumnType::String);
-		$this->writeBase($this->colLg, 'colLg');
-		$this->writeBase($this->colMd, 'colMd');
-		$this->writeBase($this->colSm, 'colSm');
-		$this->writeBase($this->colXs, 'colXs');
-		$this->writeBase($this->subsectionID, 'subsectionID');
-		$this->writeBase($this->position, 'position');
+		
+		$this->addColumn('name', new DBColumn(DBColumnType::String));
+		$this->addColumn('colLg', new DBColumn(DBColumnType::Numeric));
+		$this->addColumn('colMd', new DBColumn(DBColumnType::Numeric));
+		$this->addColumn('colSm', new DBColumn(DBColumnType::Numeric));
+		$this->addColumn('colXs', new DBColumn(DBColumnType::Numeric));
+		$this->addColumn('subsectionID', new DBColumn(DBColumnType::Numeric));
+		$this->addColumn('position', new DBColumn(DBColumnType::Numeric));
 	}
 	
 	public function readSubExtra() {}

@@ -11,13 +11,10 @@ class MoodboardSectionImageSize extends DBItem
 	public function __construct(Db $db, int $id = null)
 	{
 		parent::__construct($db, self::$tableName, $id);
-	}
-	
-	public function write()
-	{
-		$this->writeBase($this->name, 'name', DBColumnType::String);
-		$this->writeBase($this->code, 'code', DBColumnType::String);
-		$this->writeBase($this->description, 'description', DBColumnType::String, true);
+		
+		$this->addColumn('name', new DBColumn(DBColumnType::String));
+		$this->addColumn('code', new DBColumn(DBColumnType::String));
+		$this->addColumn('description', new DBColumn(DBColumnType::String, true));
 	}
 }
 

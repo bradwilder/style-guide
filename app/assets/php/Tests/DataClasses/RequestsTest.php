@@ -67,7 +67,7 @@ final class RequestsTest extends TestCase
 		$insertedUser = $this->insertUser();
 		$this->assertTrue(isset($insertedUser));
 		
-		$query = 'update ' . self::$tableName . ' set userID = ' . $insertedUser . ', emailKey = "12345678901234567890", smsKey = "09876543210987654321", expire = "2018-01-14 20:26:40", type = "activation" where id = ' . $insertedID;
+		$query = 'update ' . self::$tableName . ' set userID = ' . $insertedUser . ', emailKey = "12345678901234567890", smsKey = "09876543210987654321", expire = "' . date('Y-m-d H:i:s', 1515986800) . '", type = "activation" where id = ' . $insertedID;
 		$this->db->query($query);
 		
 		$new = new Requests($this->db, $insertedID);
@@ -102,7 +102,7 @@ final class RequestsTest extends TestCase
 		$this->assertEquals($insertedUser, $row['userID']);
 		$this->assertEquals('12345678901234567890', $row['emailKey']);
 		$this->assertEquals('09876543210987654321', $row['smsKey']);
-		$this->assertEquals('2018-01-14 20:26:40', $row['expire']);
+		$this->assertEquals(date('Y-m-d H:i:s', 1515986800), $row['expire']);
 		$this->assertEquals('activation', $row['type']);
 	}
 	

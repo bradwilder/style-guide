@@ -13,13 +13,8 @@ class StyleguideIconTableItem extends StyleguideItem
 	public function __construct(Db $db, int $id = null)
 	{
 		parent::__construct($db, $id, self::$code, self::$tableName);
-	}
-	
-	public function write()
-	{
-		parent::write();
 		
-		$this->writeSub($this->fontID, 'fontID');
+		$this->addSubColumn('fontID', new DBColumn(DBColumnType::Numeric));
 	}
 	
 	public function read()

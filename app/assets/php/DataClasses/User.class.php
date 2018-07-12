@@ -20,33 +20,15 @@ class User extends DBItem
 	public function __construct(Db $db, int $id = null)
 	{
 		parent::__construct($db, self::$tableName, $id);
-	}
-	
-	public function write()
-	{
-		$this->writeBase($this->displayName, 'displayName', DBColumnType::String, true);
-		$this->writeBase($this->email, 'email', DBColumnType::String);
-		$this->writeBase($this->phone, 'phone', DBColumnType::String, true);
-		$this->writeBase($this->password, 'password', DBColumnType::String);
-		$this->writeBase($this->isActive, 'isActive', DBColumnType::Boolean);
-		$this->writeBase($this->isDeleted, 'isDeleted', DBColumnType::Boolean);
-		$this->writeBase($this->resetNeeded, 'resetNeeded', DBColumnType::Boolean);
-		$this->writeBase($this->groupID, 'groupID');
-	}
-	
-	public function read()
-	{
-		$query = 'select * from ' . self::$tableName . ' where id = ?';
-		$row = $this->db->select($query, 'i', array(&$this->id))[0];
 		
-		$this->displayName = $row['displayName'];
-		$this->email = $row['email'];
-		$this->phone = $row['phone'];
-		$this->password = $row['password'];
-		$this->isActive = ($row['isActive'] == 1);
-		$this->isDeleted = ($row['isDeleted'] == 1);
-		$this->resetNeeded = ($row['resetNeeded'] == 1);
-		$this->groupID = $row['groupID'];
+		$this->addColumn('displayName', new DBColumn(DBColumnType::String, true));
+		$this->addColumn('email', new DBColumn(DBColumnType::String));
+		$this->addColumn('phone', new DBColumn(DBColumnType::String, true));
+		$this->addColumn('password', new DBColumn(DBColumnType::String));
+		$this->addColumn('isActive', new DBColumn(DBColumnType::Boolean));
+		$this->addColumn('isDeleted', new DBColumn(DBColumnType::Boolean));
+		$this->addColumn('resetNeeded', new DBColumn(DBColumnType::Boolean));
+		$this->addColumn('groupID', new DBColumn(DBColumnType::Numeric));
 	}
 	
 	public function readExtra()

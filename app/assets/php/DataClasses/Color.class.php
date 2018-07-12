@@ -12,6 +12,11 @@ class Color extends DBItem
 	public function __construct(Db $db, int $id = null)
 	{
 		parent::__construct($db, self::$tableName, $id);
+		
+		$this->addColumn('name', new DBColumn(DBColumnType::String));
+		$this->addColumn('hex', new DBColumn(DBColumnType::String));
+		$this->addColumn('variant1', new DBColumn(DBColumnType::String, true));
+		$this->addColumn('variant2', new DBColumn(DBColumnType::String, true));
 	}
 	
 	public function write()
@@ -22,10 +27,7 @@ class Color extends DBItem
 			$this->variant2 = '';
 		}
 		
-		$this->writeBase($this->name, 'name', DBColumnType::String);
-		$this->writeBase($this->hex, 'hex', DBColumnType::String);
-		$this->writeBase($this->variant1, 'variant1', DBColumnType::String, true);
-		$this->writeBase($this->variant2, 'variant2', DBColumnType::String, true);
+		parent::write();
 	}
 	
 	public function delete()
@@ -35,8 +37,8 @@ class Color extends DBItem
 		
 		foreach ($rows as $row)
 		{
-			$colorItem = new StyleguideColorItem($this->db, $row['baseID']);
-			$colorItem->delete();
+			$item = new StyleguideColorItem($this->db, $row['baseID']);
+			$item->delete();
 		}
 		
 		parent::delete();

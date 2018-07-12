@@ -10,25 +10,9 @@ class Attempt extends DBItem
 	public function __construct(Db $db, int $id = null)
 	{
 		parent::__construct($db, self::$tableName, $id);
-	}
-	
-	public function write()
-	{
-		$this->writeBase($this->ip, 'ip', DBColumnType::String);
 		
-		if ($this->expire)
-		{
-			$query = 'update ' . self::$tableName . ' set expire = from_unixtime(?) where id = ?';
-			$this->db->query($query, 'ii', array(&$this->expire, &$this->id));
-		}
-	}
-	
-	public function read()
-	{
-		$query = 'select ip, unix_timestamp(expire) as expire from ' . self::$tableName . ' where id = ?';
-		$row = $this->db->select($query, 'i', array(&$this->id))[0];
-		
-		$this->setPropertiesFromRow($row);
+		$this->addColumn('ip', new DBColumn(DBColumnType::String));
+		$this->addColumn('expire', new DBColumn(DBColumnType::Date));
 	}
 }
 

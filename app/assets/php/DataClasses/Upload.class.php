@@ -17,12 +17,9 @@ class Upload extends DBItemParent
 		}
 		
 		parent::__construct($db, self::$tableName, $id, $code, self::$typeTableName, self::$typeClassName, $subordinateTableName);
-	}
-	
-	public function writeSubTable()
-	{
-		$this->writeBase($this->filePath, 'filePath', DBColumnType::String);
-		$this->writeBase($this->parentID, 'parentID', DBColumnType::Numeric, true);
+		
+		$this->addColumn('filePath', new DBColumn(DBColumnType::String));
+		$this->addColumn('parentID', new DBColumn(DBColumnType::Numeric, true));
 	}
 	
 	public function readSubExtra() {}

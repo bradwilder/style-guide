@@ -11,13 +11,10 @@ class StyleguideIconTableListing extends DBItem
 	public function __construct(Db $db, int $id = null)
 	{
 		parent::__construct($db, self::$tableName, $id);
-	}
-	
-	public function write()
-	{
-		$this->writeBase($this->html, 'html', DBColumnType::String);
-		$this->writeBase($this->itemID, 'itemID');
-		$this->writeBase($this->position, 'position');
+		
+		$this->addColumn('html', new DBColumn(DBColumnType::String));
+		$this->addColumn('itemID', new DBColumn(DBColumnType::Numeric));
+		$this->addColumn('position', new DBColumn(DBColumnType::Numeric));
 	}
 	
 	public function writePosition()

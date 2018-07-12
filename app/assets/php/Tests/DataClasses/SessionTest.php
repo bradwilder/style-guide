@@ -67,7 +67,7 @@ final class SessionTest extends TestCase
 		$insertedUser = $this->insertUser();
 		$this->assertTrue(isset($insertedUser));
 		
-		$query = 'update ' . self::$tableName . ' set userID = ' . $insertedUser . ', hash = "12345678901234567890", expire = "2018-01-14 20:26:40", ip = "127.0.0.1", agent = "brocolli", cookieCRC = "potato" where id = ' . $insertedID;
+		$query = 'update ' . self::$tableName . ' set userID = ' . $insertedUser . ', hash = "12345678901234567890", expire = "' . date('Y-m-d H:i:s', 1515986800) . '", ip = "127.0.0.1", agent = "brocolli", cookieCRC = "potato" where id = ' . $insertedID;
 		$this->db->query($query);
 		
 		$new = new Session($this->db, $insertedID);
@@ -103,7 +103,7 @@ final class SessionTest extends TestCase
 		$row = $this->getByID($insertedID);
 		$this->assertEquals($insertedUser, $row['userID']);
 		$this->assertEquals('12345678901234567890', $row['hash']);
-		$this->assertEquals('2018-01-14 20:26:40', $row['expire']);
+		$this->assertEquals(date('Y-m-d H:i:s', 1515986800), $row['expire']);
 		$this->assertEquals('127.0.0.1', $row['ip']);
 		$this->assertEquals('brocolli', $row['agent']);
 		$this->assertEquals('potato', $row['cookieCRC']);

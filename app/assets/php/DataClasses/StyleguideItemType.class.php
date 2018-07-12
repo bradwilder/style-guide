@@ -10,12 +10,9 @@ class StyleguideItemType extends DBItem
 	public function __construct(Db $db, int $id = null)
 	{
 		parent::__construct($db, self::$tableName, $id);
-	}
-	
-	public function write()
-	{
-		$this->writeBase($this->code, 'code', DBColumnType::String);
-		$this->writeBase($this->description, 'description', DBColumnType::String, true);
+		
+		$this->addColumn('code', new DBColumn(DBColumnType::String));
+		$this->addColumn('description', new DBColumn(DBColumnType::String, true));
 	}
 }
 

@@ -16,29 +16,12 @@ class Comment extends DBItem
 	public function __construct(Db$db, int $id = null)
 	{
 		parent::__construct($db, self::$tableName, $id);
-	}
-	
-	public function write()
-	{
-		$this->writeBase($this->text, 'text', DBColumnType::String);
 		
-		if ($this->postTime)
-		{
-			$query = 'update ' . self::$tableName . ' set postTime = from_unixtime(?) where id = ?';
-			$this->db->query($query, 'ii', array(&$this->postTime, &$this->id));
-		}
-		
-		$this->writeBase($this->commentReplyingToID, 'commentReplyingToID', DBColumnType::Numeric, true);
-		$this->writeBase($this->sectionImageID, 'sectionImageID', DBColumnType::Numeric, true);
-		$this->writeBase($this->userID, 'userID');
-	}
-	
-	public function read()
-	{
-		$query = 'select text, unix_timestamp(postTime) as postTime, commentReplyingToID, sectionImageID, userID from ' . self::$tableName . ' where id = ?';
-		$row = $this->db->select($query, 'i', array(&$this->id))[0];
-		
-		$this->setPropertiesFromRow($row);
+		$this->addColumn('text', new DBColumn(DBColumnType::String));
+		$this->addColumn('postTime', new DBColumn(DBColumnType::Date));
+		$this->addColumn('commentReplyingToID', new DBColumn(DBColumnType::Numeric, true));
+		$this->addColumn('sectionImageID', new DBColumn(DBColumnType::Numeric, true));
+		$this->addColumn('userID', new DBColumn(DBColumnType::Numeric));
 	}
 	
 	public function readExtra()

@@ -18,29 +18,13 @@ class StyleguideSubsection extends DBItem
 	public function __construct(Db $db, int $id = null)
 	{
 		parent::__construct($db, self::$tableName, $id);
-	}
-	
-	public function write()
-	{
-		$this->writeBase($this->name, 'name', DBColumnType::String);
-		$this->writeBase($this->description, 'description', DBColumnType::String);
-		$this->writeBase($this->position, 'position');
-		$this->writeBase($this->enabled, 'enabled', DBColumnType::Boolean);
-		$this->writeBase($this->sectionID, 'sectionID');
-		$this->writeBase($this->parentSubsectionID, 'parentSubsectionID', DBColumnType::Numeric, true);
-	}
-	
-	public function read()
-	{
-		$query = 'select * from ' . self::$tableName . ' where id = ?';
-		$row = $this->db->select($query, 'i', array(&$this->id))[0];
 		
-		$this->name = $row['name'];
-		$this->description = $row['description'];
-		$this->position = $row['position'];
-		$this->enabled = ($row['enabled'] == 1);
-		$this->sectionID = $row['sectionID'];
-		$this->parentSubsectionID = $row['parentSubsectionID'];
+		$this->addColumn('name', new DBColumn(DBColumnType::String));
+		$this->addColumn('description', new DBColumn(DBColumnType::String));
+		$this->addColumn('position', new DBColumn(DBColumnType::Numeric));
+		$this->addColumn('enabled', new DBColumn(DBColumnType::Boolean));
+		$this->addColumn('sectionID', new DBColumn(DBColumnType::Numeric));
+		$this->addColumn('parentSubsectionID', new DBColumn(DBColumnType::Numeric, true));
 	}
 	
 	public function readExtra(bool $enabled = null)

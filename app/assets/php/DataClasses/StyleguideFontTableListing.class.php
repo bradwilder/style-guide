@@ -16,14 +16,11 @@ class StyleguideFontTableListing extends DBItem
 	public function __construct(Db $db, int $id = null)
 	{
 		parent::__construct($db, self::$tableName, $id);
-	}
-	
-	public function write()
-	{
-		$this->writeBase($this->text, 'text', DBColumnType::String);
-		$this->writeBase($this->itemID, 'itemID');
-		$this->writeBase($this->fontID, 'fontID');
-		$this->writeBase($this->position, 'position');
+		
+		$this->addColumn('text', new DBColumn(DBColumnType::String));
+		$this->addColumn('itemID', new DBColumn(DBColumnType::Numeric));
+		$this->addColumn('fontID', new DBColumn(DBColumnType::Numeric));
+		$this->addColumn('position', new DBColumn(DBColumnType::Numeric));
 	}
 	
 	public function readExtra()

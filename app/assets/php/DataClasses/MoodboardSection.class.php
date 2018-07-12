@@ -15,14 +15,10 @@ class MoodboardSection extends DBItemPositioned
 	public function __construct(Db $db, int $id = null)
 	{
 		parent::__construct($db, self::$tableName, $id);
-	}
-	
-	public function writeSubTable()
-	{
-		$this->writeBase($this->name, 'name', DBColumnType::String);
-		$this->writeBase($this->description, 'description', DBColumnType::String, true);
-		$this->writeBase($this->position, 'position');
-		$this->writeBase($this->modeID, 'modeID');
+		
+		$this->addColumn('name', new DBColumn(DBColumnType::String));
+		$this->addColumn('description', new DBColumn(DBColumnType::String, true));
+		$this->addColumn('modeID', new DBColumn(DBColumnType::Numeric));
 	}
 	
 	public function readExtra()

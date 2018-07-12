@@ -11,14 +11,9 @@ class UploadFile extends Upload
 	public function __construct(Db $db, int $id = null)
 	{
 		parent::__construct($db, $id, self::$code, self::$tableName);
-	}
-	
-	public function write()
-	{
-		parent::write();
 		
-		$this->writeSub($this->shortName, 'shortName', DBColumnType::String);
-		$this->writeSub($this->fullName, 'fullName', DBColumnType::String);
+		$this->addSubColumn('shortName', new DBColumn(DBColumnType::String));
+		$this->addSubColumn('fullName', new DBColumn(DBColumnType::String));
 	}
 	
 	public function read()
@@ -33,8 +28,8 @@ class UploadFile extends Upload
 		
 		foreach ($rows as $row)
 		{
-			$element = new StyleguideElementItem($this->db, $row['baseID']);
-			$element->delete();
+			$item = new StyleguideElementItem($this->db, $row['baseID']);
+			$item->delete();
 		}
 		
 		parent::delete();

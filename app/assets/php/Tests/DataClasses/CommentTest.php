@@ -72,7 +72,7 @@ final class CommentTest extends TestCase
 		$insertedSectionImage = $this->insertSectionImage();
 		$this->assertTrue(isset($insertedSectionImage));
 		
-		$query = 'update ' . self::$tableName . ' set text = "hello", postTime = "2018-01-14 20:26:40", commentReplyingToID = ' . $insertedID . ', sectionImageID = ' . $insertedSectionImage . ', userID = ' . $insertedUser . ' where id = ' . $insertedID;
+		$query = 'update ' . self::$tableName . ' set text = "hello", postTime = "' . date('Y-m-d H:i:s', 1515986800) . '", commentReplyingToID = ' . $insertedID . ', sectionImageID = ' . $insertedSectionImage . ', userID = ' . $insertedUser . ' where id = ' . $insertedID;
 		$this->db->query($query);
 		
 		$new = new Comment($this->db, $insertedID);
@@ -125,7 +125,7 @@ final class CommentTest extends TestCase
 		$new->write();
 		$row = $this->getByID($insertedID);
 		$this->assertEquals('hello', $row['text']);
-		$this->assertEquals('2018-01-14 20:26:40', $row['postTime']);
+		$this->assertEquals(date('Y-m-d H:i:s', 1515986800), $row['postTime']);
 		$this->assertEquals($insertedID, $row['commentReplyingToID']);
 		$this->assertEquals($insertedSectionImage, $row['sectionImageID']);
 		$this->assertEquals($insertedUser, $row['userID']);

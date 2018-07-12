@@ -64,7 +64,7 @@ final class AttemptTest extends TestCase
 		$insertedID = $this->insert();
 		$this->assertEquals(1, $this->getTableCount());
 		
-		$query = 'update ' . self::$tableName . ' set ip = "10.11.12.13", expire = "2018-01-14 20:26:40" where id = ' . $insertedID;
+		$query = 'update ' . self::$tableName . ' set ip = "10.11.12.13", expire = "' . date('Y-m-d H:i:s', 1515986800) . '" where id = ' . $insertedID;
 		$this->db->query($query);
 		
 		$new = new Attempt($this->db, $insertedID);
@@ -88,7 +88,7 @@ final class AttemptTest extends TestCase
 		$new->write();
 		$row = $this->getByID($insertedID);
 		$this->assertEquals('10.11.12.13', $row['ip']);
-		$this->assertEquals('2018-01-14 20:26:40', $row['expire']);
+		$this->assertEquals(date('Y-m-d H:i:s', 1515986800), $row['expire']);
 	}
 	
 	public function testDelete()

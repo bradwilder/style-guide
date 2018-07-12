@@ -11,14 +11,9 @@ class WebFont extends Font
 	public function __construct(Db $db, int $id = null)
 	{
 		parent::__construct($db, $id, self::$code, self::$tableName);
-	}
-	
-	public function write()
-	{
-		parent::write();
 		
-		$this->writeSub($this->importURL, 'importURL', DBColumnType::String);
-		$this->writeSub($this->website, 'website', DBColumnType::String, true);
+		$this->addSubColumn('importURL', new DBColumn(DBColumnType::String));
+		$this->addSubColumn('website', new DBColumn(DBColumnType::String, true));
 	}
 	
 	public function read()

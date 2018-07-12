@@ -15,14 +15,11 @@ class MoodboardSectionImage extends DBItem
 	public function __construct(Db $db, int $id = null)
 	{
 		parent::__construct($db, self::$tableName, $id);
-	}
-	
-	public function write()
-	{
-		$this->writeBase($this->sectionID, 'sectionID');
-		$this->writeBase($this->imageID, 'imageID');
-		$this->writeBase($this->position, 'position');
-		$this->writeBase($this->sizeID, 'sizeID');
+		
+		$this->addColumn('sectionID', new DBColumn(DBColumnType::Numeric));
+		$this->addColumn('imageID', new DBColumn(DBColumnType::Numeric));
+		$this->addColumn('position', new DBColumn(DBColumnType::Numeric));
+		$this->addColumn('sizeID', new DBColumn(DBColumnType::Numeric));
 	}
 	
 	public function readExtra()

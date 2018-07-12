@@ -10,12 +10,9 @@ class StyleguideFontTableListingCSS extends DBItem
 	public function __construct(Db $db, int $id = null)
 	{
 		parent::__construct($db, self::$tableName, $id);
-	}
-	
-	public function write()
-	{
-		$this->writeBase($this->css, 'css', DBColumnType::String);
-		$this->writeBase($this->fontListingID, 'fontListingID');
+		
+		$this->addColumn('css', new DBColumn(DBColumnType::String));
+		$this->addColumn('fontListingID', new DBColumn(DBColumnType::Numeric));
 	}
 }
 
