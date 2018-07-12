@@ -20,7 +20,7 @@ class Comment extends DBItem
 	
 	public function write()
 	{
-		$this->writeBase($this->text, 'text', true);
+		$this->writeBase($this->text, 'text', DBColumnType::String);
 		
 		if ($this->postTime)
 		{
@@ -28,8 +28,8 @@ class Comment extends DBItem
 			$this->db->query($query, 'ii', array(&$this->postTime, &$this->id));
 		}
 		
-		$this->writeBase($this->commentReplyingToID, 'commentReplyingToID', false, true);
-		$this->writeBase($this->sectionImageID, 'sectionImageID', false, true);
+		$this->writeBase($this->commentReplyingToID, 'commentReplyingToID', DBColumnType::Numeric, true);
+		$this->writeBase($this->sectionImageID, 'sectionImageID', DBColumnType::Numeric, true);
 		$this->writeBase($this->userID, 'userID');
 	}
 	

@@ -18,9 +18,9 @@ class StyleguideSection extends DBItemPositioned
 	
 	public function writeSubTable()
 	{
-		$this->writeBase($this->name, 'name', true);
-		$this->writeBase($this->enabled, 'enabled', false, false, true);
-		$this->writeBase($this->userCreated, 'userCreated', false, false, true);
+		$this->writeBase($this->name, 'name', DBColumnType::String);
+		$this->writeBase($this->enabled, 'enabled', DBColumnType::Boolean);
+		$this->writeBase($this->userCreated, 'userCreated', DBColumnType::Boolean);
 	}
 	
 	public function read()

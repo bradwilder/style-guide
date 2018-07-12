@@ -22,10 +22,10 @@ class Color extends DBItem
 			$this->variant2 = '';
 		}
 		
-		$this->writeBase($this->name, 'name', true);
-		$this->writeBase($this->hex, 'hex', true);
-		$this->writeBase($this->variant1, 'variant1', true, true);
-		$this->writeBase($this->variant2, 'variant2', true, true);
+		$this->writeBase($this->name, 'name', DBColumnType::String);
+		$this->writeBase($this->hex, 'hex', DBColumnType::String);
+		$this->writeBase($this->variant1, 'variant1', DBColumnType::String, true);
+		$this->writeBase($this->variant2, 'variant2', DBColumnType::String, true);
 	}
 	
 	public function delete()

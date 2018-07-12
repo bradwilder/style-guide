@@ -26,7 +26,7 @@ class StyleguideItem extends DBItemParent
 	
 	public function writeSubTable()
 	{
-		$this->writeBase($this->name, 'name', true);
+		$this->writeBase($this->name, 'name', DBColumnType::String);
 		$this->writeBase($this->colLg, 'colLg');
 		$this->writeBase($this->colMd, 'colMd');
 		$this->writeBase($this->colSm, 'colSm');

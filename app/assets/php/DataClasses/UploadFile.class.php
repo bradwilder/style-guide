@@ -17,8 +17,8 @@ class UploadFile extends Upload
 	{
 		parent::write();
 		
-		$this->writeSub($this->shortName, 'shortName', true);
-		$this->writeSub($this->fullName, 'fullName', true);
+		$this->writeSub($this->shortName, 'shortName', DBColumnType::String);
+		$this->writeSub($this->fullName, 'fullName', DBColumnType::String);
 	}
 	
 	public function read()

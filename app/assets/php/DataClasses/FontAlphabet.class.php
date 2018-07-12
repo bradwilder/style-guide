@@ -14,8 +14,8 @@ class FontAlphabet extends DBItem
 	
 	public function write()
 	{
-		$this->writeBase($this->name, 'name', true);
-		$this->writeBase($this->alphabet, 'alphabet', true);
+		$this->writeBase($this->name, 'name', DBColumnType::String);
+		$this->writeBase($this->alphabet, 'alphabet', DBColumnType::String);
 	}
 }
 

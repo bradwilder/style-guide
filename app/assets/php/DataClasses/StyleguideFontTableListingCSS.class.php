@@ -14,7 +14,7 @@ class StyleguideFontTableListingCSS extends DBItem
 	
 	public function write()
 	{
-		$this->writeBase($this->css, 'css', true);
+		$this->writeBase($this->css, 'css', DBColumnType::String);
 		$this->writeBase($this->fontListingID, 'fontListingID');
 	}
 }

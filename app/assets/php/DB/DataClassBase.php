@@ -1,5 +1,12 @@
 <?php
 
+abstract class DBColumnType
+{
+	const Numeric = 0;
+	const String = 1;
+	const Boolean = 2;
+}
+
 abstract class DBItem_base
 {
 	protected $db;
@@ -28,14 +35,14 @@ abstract class DBItem_base
 	public abstract function read();
 	public abstract function delete();
 	
-	protected function writeBase($value, string $columnName, bool $quote = false, bool $allowNull = false, bool $boolean = false)
+	protected function writeBase($value, string $columnName, $columnType = DBColumnType::Numeric, bool $allowNull = false)
 	{
-		$this->writeBaseTable($value, $columnName, 'id', $this->table, $quote, $allowNull, $boolean);
+		$this->writeBaseTable($value, $columnName, 'id', $this->table, $columnType, $allowNull);
 	}
 	
-	protected function writeBaseTable($value, string $columnName, string $idName, string $table, bool $quote = false, bool $allowNull = false, bool $boolean = false)
+	protected function writeBaseTable($value, string $columnName, string $idName, string $table, $columnType = DBColumnType::Numeric, bool $allowNull = false)
 	{
-		if (($allowNull && isset($value)) || (!$allowNull && $value) || $boolean)
+		if (($allowNull && isset($value)) || (!$allowNull && $value) || $columnType === DBColumnType::Boolean)
 		{
 			if ($allowNull && ($value === 0 || $value === ''))
 			{
@@ -43,15 +50,7 @@ abstract class DBItem_base
 			}
 			
 			$query = 'update ' . $table . ' set ' . $columnName . ' = ? where ' . $idName . ' = ?';
-			$types;
-			if ($quote)
-			{
-				$types = 'si';
-			}
-			else
-			{
-				$types = 'ii';
-			}
+			$types = ($columnType === DBColumnType::String ? 's' : 'i') . 'i';
 			$this->db->query($query, $types, array(&$value, &$this->id));
 		}
 	}
@@ -165,9 +164,9 @@ abstract class DBItemParent extends DBItem
 		$this->writeBase($this->typeID, 'typeID');
 	}
 	
-	protected function writeSub($value, string $columnName, bool $quote = false, bool $allowNull = false, bool $boolean = false)
+	protected function writeSub($value, string $columnName, $columnType = DBColumnType::Numeric, bool $allowNull = false)
 	{
-		$this->writeBaseTable($value, $columnName, 'baseID', $this->subTable, $quote, $allowNull, $boolean);
+		$this->writeBaseTable($value, $columnName, 'baseID', $this->subTable, $columnType, $allowNull);
 	}
 }
 

@@ -18,7 +18,7 @@ class StyleguideItemTypeColumnMin extends DBItem
 	public function write()
 	{
 		$this->writeBase($this->typeID, 'typeID');
-		$this->writeBase($this->code, 'code', true);
+		$this->writeBase($this->code, 'code', DBColumnType::String);
 		$this->writeBase($this->minLG, 'minLG');
 		$this->writeBase($this->minMD, 'minMD');
 		$this->writeBase($this->minSM, 'minSM');

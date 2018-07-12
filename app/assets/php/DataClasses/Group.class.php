@@ -14,8 +14,8 @@ class Group extends DBItem
 	
 	public function write()
 	{
-		$this->writeBase($this->name, 'name', true);
-		$this->writeBase($this->description, 'description', true, true);
+		$this->writeBase($this->name, 'name', DBColumnType::String);
+		$this->writeBase($this->description, 'description', DBColumnType::String, true);
 	}
 }
 

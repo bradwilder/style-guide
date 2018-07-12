@@ -24,8 +24,8 @@ class Font extends DBItemParent
 	
 	public function writeSubTable()
 	{
-		$this->writeBase($this->name, 'name', true);
-		$this->writeBase($this->alphabetID, 'alphabetID', false, true);
+		$this->writeBase($this->name, 'name', DBColumnType::String);
+		$this->writeBase($this->alphabetID, 'alphabetID', DBColumnType::Numeric, true);
 	}
 	
 	public function readSubExtra()

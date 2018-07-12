@@ -18,8 +18,8 @@ class Requests extends DBItem
 	public function write()
 	{
 		$this->writeBase($this->userID, 'userID');
-		$this->writeBase($this->emailKey, 'emailKey', true);
-		$this->writeBase($this->smsKey, 'smsKey', true);
+		$this->writeBase($this->emailKey, 'emailKey', DBColumnType::String);
+		$this->writeBase($this->smsKey, 'smsKey', DBColumnType::String);
 		
 		if ($this->expire)
 		{
@@ -27,7 +27,7 @@ class Requests extends DBItem
 			$this->db->query($query, 'ii', array(&$this->expire, &$this->id));
 		}
 		
-		$this->writeBase($this->type, 'type', true);
+		$this->writeBase($this->type, 'type', DBColumnType::String);
 	}
 	
 	public function read()

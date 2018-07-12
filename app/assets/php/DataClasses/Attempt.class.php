@@ -14,7 +14,7 @@ class Attempt extends DBItem
 	
 	public function write()
 	{
-		$this->writeBase($this->ip, 'ip', true);
+		$this->writeBase($this->ip, 'ip', DBColumnType::String);
 		
 		if ($this->expire)
 		{

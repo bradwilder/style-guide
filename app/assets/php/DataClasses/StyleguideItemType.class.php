@@ -14,8 +14,8 @@ class StyleguideItemType extends DBItem
 	
 	public function write()
 	{
-		$this->writeBase($this->code, 'code', true);
-		$this->writeBase($this->description, 'description', true, true);
+		$this->writeBase($this->code, 'code', DBColumnType::String);
+		$this->writeBase($this->description, 'description', DBColumnType::String, true);
 	}
 }
 
