@@ -1,10 +1,9 @@
 <?php
 
-class StyleguideIconTableListing extends DBItem
+class StyleguideIconTableListing extends DBItemPositioned
 {
 	public $html;
 	public $itemID;
-	public $position;
 	
 	private static $tableName = 'sg_icon_listing';
 	
@@ -14,7 +13,6 @@ class StyleguideIconTableListing extends DBItem
 		
 		$this->addColumn('html', new DBColumn(DBColumnType::String));
 		$this->addColumn('itemID', new DBColumn(DBColumnType::Numeric));
-		$this->addColumn('position', new DBColumn(DBColumnType::Numeric));
 	}
 	
 	public function writePosition()

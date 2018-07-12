@@ -1,10 +1,9 @@
 <?php
 
-class MoodboardSectionImage extends DBItem
+class MoodboardSectionImage extends DBItemPositioned
 {
 	public $sectionID;
 	public $imageID;
-	public $position;
 	public $sizeID;
 	
 	// Extra properties
@@ -18,7 +17,6 @@ class MoodboardSectionImage extends DBItem
 		
 		$this->addColumn('sectionID', new DBColumn(DBColumnType::Numeric));
 		$this->addColumn('imageID', new DBColumn(DBColumnType::Numeric));
-		$this->addColumn('position', new DBColumn(DBColumnType::Numeric));
 		$this->addColumn('sizeID', new DBColumn(DBColumnType::Numeric));
 	}
 	

@@ -1,11 +1,10 @@
 <?php
 
-class StyleguideFontTableListing extends DBItem
+class StyleguideFontTableListing extends DBItemPositioned
 {
 	public $text;
 	public $itemID;
 	public $fontID;
-	public $position;
 	
 	// Extra properties
 	public $cssList = array();
@@ -20,7 +19,6 @@ class StyleguideFontTableListing extends DBItem
 		$this->addColumn('text', new DBColumn(DBColumnType::String));
 		$this->addColumn('itemID', new DBColumn(DBColumnType::Numeric));
 		$this->addColumn('fontID', new DBColumn(DBColumnType::Numeric));
-		$this->addColumn('position', new DBColumn(DBColumnType::Numeric));
 	}
 	
 	public function readExtra()

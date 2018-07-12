@@ -1,10 +1,9 @@
 <?php
 
-class StyleguideColorItemDescriptor extends DBItem
+class StyleguideColorItemDescriptor extends DBItemPositioned
 {
 	public $description;
 	public $itemID;
-	public $position;
 	
 	private static $tableName = 'sg_color_descriptor';
 	
@@ -14,7 +13,6 @@ class StyleguideColorItemDescriptor extends DBItem
 		
 		$this->addColumn('description', new DBColumn(DBColumnType::String));
 		$this->addColumn('itemID', new DBColumn(DBColumnType::Numeric));
-		$this->addColumn('position', new DBColumn(DBColumnType::Numeric));
 	}
 	
 	public function writePosition()

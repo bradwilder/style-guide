@@ -1,10 +1,9 @@
 <?php
 
-class StyleguideSubsection extends DBItem
+class StyleguideSubsection extends DBItemPositioned
 {
 	public $name;
 	public $description;
-	public $position;
 	public $enabled;
 	public $sectionID;
 	public $parentSubsectionID;
@@ -21,7 +20,6 @@ class StyleguideSubsection extends DBItem
 		
 		$this->addColumn('name', new DBColumn(DBColumnType::String));
 		$this->addColumn('description', new DBColumn(DBColumnType::String));
-		$this->addColumn('position', new DBColumn(DBColumnType::Numeric));
 		$this->addColumn('enabled', new DBColumn(DBColumnType::Boolean));
 		$this->addColumn('sectionID', new DBColumn(DBColumnType::Numeric));
 		$this->addColumn('parentSubsectionID', new DBColumn(DBColumnType::Numeric, true));
