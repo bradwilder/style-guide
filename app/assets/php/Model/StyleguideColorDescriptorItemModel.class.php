@@ -4,10 +4,10 @@ class StyleguideColorDescriptorItemModel extends StyleguideColorItemModel
 {
 	public function getData()
 	{
-		$colors = $this->getColorAndVariants();
+		$color = $this->getColorAndVariants();
 		
 		$colorDescriptors = [];
-		$colorDescriptors []= $colors->name;
+		$colorDescriptors []= $color->name;
 		
 		$rows = $this->db->select('select description from sg_color_descriptor where itemID = ? order by position', 'i', [&$this->foreignItem->itemID]);
 		foreach ($rows as $row)
@@ -15,7 +15,7 @@ class StyleguideColorDescriptorItemModel extends StyleguideColorItemModel
 			$colorDescriptors []= $row['description'];
 		}
 		
-		return new ColorDescriptorItem($colors, $colorDescriptors);
+		return new ColorDescriptorItem($color, $colorDescriptors);
 	}
 }
 

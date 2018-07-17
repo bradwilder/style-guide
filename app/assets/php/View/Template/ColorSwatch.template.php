@@ -1,8 +1,8 @@
 <?php  
-$colors = $data->colors;
+$color = $data->color;
 $colorDescriptors = $data->descriptors;
 // ColorTile.template.php needs the $colors as $data, even though this file also uses $data
-$data = $colors;
+$data = $color;
 ?>
 
 <div class="row">

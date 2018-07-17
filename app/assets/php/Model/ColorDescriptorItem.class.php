@@ -2,12 +2,12 @@
 
 class ColorDescriptorItem
 {
-	public $colors;
+	public $color;
 	public $descriptors;
 	
-	public function __construct($colors, $descriptors)
+	public function __construct($color, $descriptors)
 	{
-		$this->colors = $colors;
+		$this->color = $color;
 		$this->descriptors = $descriptors;
 	}
 }
