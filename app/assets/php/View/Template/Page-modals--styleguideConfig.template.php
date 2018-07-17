@@ -32,6 +32,7 @@ echoModal('editSectionModal', 'Edit Section', 'Modal--editStyleguideSection.temp
 echoModal('arrangeSubsectionsModal', 'Arrange Subsections', 'Modal--arrange.template.php');
 echoModal('addSubsectionModal', 'Add Subsection', 'Modal--addStyleguideSubsection.template.php');
 echoModal('editSubsectionModal', 'Edit Subsection', 'Modal--editStyleguideSubsection.template.php');
+echoModal('arrangeSubSubsectionsModal', 'Arrange Sub-Subsections', 'Modal--arrange.template.php');
 echoModal('arrangeItemsModal', 'Arrange Items', 'Modal--arrange.template.php');
 echoModal('editItemModal', 'Edit Item', 'Modal--editItem.template.php');
 echoModal('addItemModal', 'Add Item', 'Modal--addItem.template.php');

@@ -13,7 +13,7 @@ class StyleguideItemsDraggableModel extends DraggablesModel
 				$item = new StyleguideItem($this->db, $row['id']);
 				$item->read();
 				
-				$draggableSection = new DraggablesSection($item->id, $item->name, true, $index + 1);
+				$draggableSection = new DraggableSection($item->id, $item->name, true, $index + 1);
 				$items []= $draggableSection;
 			}
 			

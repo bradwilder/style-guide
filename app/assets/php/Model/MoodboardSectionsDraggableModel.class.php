@@ -15,7 +15,7 @@ class MoodboardSectionsDraggableModel extends DraggablesModel
 			$section->read();
 			$section->readExtra();
 			
-			$draggableSection = new DraggablesSection($section->id, $section->name, true, $index + 1, count($section->images) . ' image' . (count($section->images) == 1 ? '' : 's'));
+			$draggableSection = new DraggableSection($section->id, $section->name, true, $index + 1, count($section->images) . ' image' . (count($section->images) == 1 ? '' : 's'));
 			$sections []= $draggableSection;
 		}
 		

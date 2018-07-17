@@ -13,7 +13,7 @@ class StyleguideIconTableItemDraggableModel extends DraggablesModel
 			$sections = [];
 			foreach ($item->listings as $index=>$listing)
 			{
-				$draggableSection = new DraggablesSection($listing->id, $listing->html, true, $index + 1);
+				$draggableSection = new DraggableSection($listing->id, $listing->html, true, $index + 1);
 				$sections []= $draggableSection;
 			}
 			

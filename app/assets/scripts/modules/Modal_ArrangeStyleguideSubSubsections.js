@@ -4,7 +4,7 @@ var settings =
 {
 	url: '/styleguideSubSubsectionsDraggable',
 	getID: true,
-	modalID: '#arrangeSubsectionsModal'
+	modalID: '#arrangeSubSubsectionsModal'
 }
 
 const Modal_ArrangeStyleguideSubSubsections = Modal_Arrange(settings);

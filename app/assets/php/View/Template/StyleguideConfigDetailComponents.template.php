@@ -275,7 +275,7 @@
 			<section v-if="!data.item.parentSubsectionID" class="editable-section">
 				<div class="sg-config-detail__header">
 					<span class="sg-config-detail__header-buttons__sub editable-section__button-container">
-						<a v-if="data.subitems.length > 1" tabindex="0" role="button" class="sg-config-detail__header-button editable-section__button fa fa-arrows" data-modal="#arrangeSubsectionsModal" :data-id="data.item.id"></a>
+						<a v-if="data.subitems.length > 1" tabindex="0" role="button" class="sg-config-detail__header-button editable-section__button fa fa-arrows" data-modal="#arrangeSubSubsectionsModal" :data-id="data.item.id"></a>
 						<a tabindex="0" role="button" class="sg-config-detail__header-button editable-section__button fa fa-plus" data-modal="#addSubsectionModal" :data-section-id="data.item.sectionID" :data-parent-sub-id="data.item.id"></a>
 					</span>
 					<h4 class="sg-config-detail__desc type__title type__title--darker">Sub-subsections</h4>
