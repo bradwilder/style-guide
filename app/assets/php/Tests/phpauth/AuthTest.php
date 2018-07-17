@@ -1151,7 +1151,7 @@ final class AuthTest extends TestCase
 		
 		for ($i = 0; $i < ($this->config->attempts_before_ban + 5); $i++)
 		{
-			$this->db->query('insert into attempts (ip, expire) values (?, (NOW() + 100000000))', 's', array(&$_SERVER['REMOTE_ADDR']));
+			$this->db->query('insert into attempts (ip, expire) values (?, (NOW() + 100000000))', 's', [&$_SERVER['REMOTE_ADDR']]);
 		}
 		$this->assertEquals($this->config->attempts_before_ban + 5, $this->attemptTableCount());
 		
@@ -1388,7 +1388,7 @@ final class AuthTest extends TestCase
 
 class CookiesMock implements CookieDelegate_i
 {
-	private $items = array();
+	private $items = [];
 	
 	public function setCookie($name, $value = "",  $expire = 0,  $path = "", $domain = "", $secure = false, $httponly = false)
 	{

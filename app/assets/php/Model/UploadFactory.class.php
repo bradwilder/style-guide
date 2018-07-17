@@ -7,7 +7,7 @@ class UploadFactory
 		$db = new Db();
 		
 		$query = 'select case when t.code = "folder" then 1 else 0 end as isFolder from sg_upload u join sg_upload_type t on t.id = u.typeID where u.id = ?';
-		$isFolder = ($db->select($query, 'i', array(&$uploadID))[0]['isFolder'] == 1);
+		$isFolder = ($db->select($query, 'i', [&$uploadID])[0]['isFolder'] == 1);
 		
 		$upload;
 		if ($isFolder)

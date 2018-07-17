@@ -29,7 +29,7 @@ class StyleguideColorItemDescriptor extends DBItem
 		if ($this->itemID)
 		{
 			$query = 'select case when max(position) is not null then max(position) + 1 else 1 end as next_position from ' . self::$tableName . ' where itemID = ?';
-			$row = $this->db->select($query, 'i', array(&$this->itemID))[0];
+			$row = $this->db->select($query, 'i', [&$this->itemID])[0];
 			
 			$this->position = $row['next_position'];
 			$this->write();

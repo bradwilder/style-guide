@@ -51,7 +51,7 @@ class StyleguideItem extends DBItemParent
 		if ($this->subsectionID)
 		{
 			$query = 'select case when max(position) is not null then max(position) + 1 else 1 end as next_position from ' . self::$tableName . ' where subsectionID = ?';
-			$row = $this->db->select($query, 'i', array(&$this->subsectionID))[0];
+			$row = $this->db->select($query, 'i', [&$this->subsectionID])[0];
 			
 			$this->position = $row['next_position'];
 			$this->write();
@@ -64,7 +64,7 @@ class StyleguideItem extends DBItemParent
 		
 		$query = 'select count(*) as count from ' . self::$tableName . ' where name = ?';
 		$types = 's';
-		$params = array(&$name);
+		$params = [&$name];
 		if ($selfID)
 		{
 			$query .= ' and id <> ?';

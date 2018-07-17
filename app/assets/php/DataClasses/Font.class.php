@@ -37,7 +37,7 @@ class Font extends DBItemParent
 	public function delete()
 	{
 		$query = 'select baseID from sg_font_family where fontID = ?';
-		$rows = $this->db->select($query, 'i', array(&$this->id));
+		$rows = $this->db->select($query, 'i', [&$this->id]);
 		
 		foreach ($rows as $row)
 		{
@@ -54,7 +54,7 @@ class Font extends DBItemParent
 		
 		$query = 'select count(*) as count from ' . self::$tableName . ' where name = ?';
 		$types = 's';
-		$params = array(&$name);
+		$params = [&$name];
 		if ($selfID)
 		{
 			$query .= ' and id <> ?';

@@ -177,7 +177,7 @@ class Auth
         
         if ($this->config->email)
 		{
-            $requestTypes = array('activation');
+            $requestTypes = ['activation'];
 			if ($reset)
 			{
                 array_unshift($requestTypes, 'reset');
@@ -235,7 +235,7 @@ class Auth
 			$alsoReset = $user->resetNeeded;
         }
 		
-		$options = array("activation");
+		$options = ["activation"];
 		if ($alsoReset)
 		{
 			array_unshift($options, "reset");
@@ -321,7 +321,7 @@ class Auth
             return $return;
 		}
 		
-		$addRequest = $this->addRequest($user, array("reset"));
+		$addRequest = $this->addRequest($user, ["reset"]);
         if ($addRequest['error'])
 		{
             $this->addAttempt();
@@ -591,7 +591,7 @@ class Auth
     private function deleteSessions(int $userID)
     {
         $query = "select id from sessions WHERE userID = ?";
-        $rows = $this->db->select($query, 'i', array(&$userID));
+        $rows = $this->db->select($query, 'i', [&$userID]);
         
         foreach ($rows as $row)
         {
@@ -615,7 +615,7 @@ class Auth
     private function findSessionByHash(string $hash)
     {
         $query = "select id from sessions WHERE hash = ?";
-        $rows = $this->db->select($query, 's', array(&$hash));
+        $rows = $this->db->select($query, 's', [&$hash]);
         
         if (count($rows) == 1)
         {
@@ -715,7 +715,7 @@ class Auth
             $user->isActive = false;
             $user->resetNeeded = true;
             
-			$addRequest = $this->addRequest($user, array("reset", "activation"));
+			$addRequest = $this->addRequest($user, ["reset", "activation"]);
 			if ($addRequest['error'])
 			{
 				$this->addAttempt();
@@ -737,9 +737,9 @@ class Auth
     private function getRequests(User $user, string $type)
     {
         $query = "SELECT id FROM requests WHERE userID = ? AND type = ?";
-        $rows = $this->db->select($query, 'is', array(&$user->id, &$type));
+        $rows = $this->db->select($query, 'is', [&$user->id, &$type]);
         
-        $requests = array();
+        $requests = [];
         foreach ($rows as $row)
         {
             $request = new Requests($this->db, $row['id']);
@@ -790,7 +790,7 @@ class Auth
             $smsKey = $this->getRandomKey(20);
         }
         
-        $request_ids = array();
+        $request_ids = [];
         foreach ($types as $type)
         {
             $request = new Requests($this->db);
@@ -893,7 +893,7 @@ class Auth
         $query = "SELECT id FROM requests WHERE emailKey = ? AND type = ?";
         
         $types = 'ss';
-        $params = array(&$emailKey, &$type);
+        $params = [&$emailKey, &$type];
         if ($this->config->sms)
 		{
             $query .= ' and smsKey = ?';
@@ -949,7 +949,7 @@ class Auth
     private function deleteRequests(User $user)
     {
         $query = "select id from requests WHERE userID = ?";
-        $rows = $this->db->select($query, 'i', array(&$user->id));
+        $rows = $this->db->select($query, 'i', [&$user->id]);
         
         foreach ($rows as $row)
         {
@@ -1124,7 +1124,7 @@ class Auth
 		$this->deleteAttempts($ip, false);
         
         $query = "SELECT count(*) as count FROM attempts WHERE ip = ?";
-        $attempts = $this->db->select($query, 's', array(&$ip))[0]['count'];
+        $attempts = $this->db->select($query, 's', [&$ip])[0]['count'];
         
         return $attempts >= $this->config->attempts_before_ban;
     }
@@ -1142,12 +1142,12 @@ class Auth
         if ($all)
 		{
             $query = "DELETE FROM attempts WHERE ip = ?";
-            return $this->db->query($query, 's', array(&$ip));
+            return $this->db->query($query, 's', [&$ip]);
         }
 		else
 		{
             $query = "SELECT id FROM attempts WHERE ip = ?";
-			$rows = $this->db->select($query, 's', array(&$ip));
+			$rows = $this->db->select($query, 's', [&$ip]);
 			
 			foreach ($rows as $row)
 			{

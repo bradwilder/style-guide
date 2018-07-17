@@ -9,9 +9,9 @@ class SessionListModel extends UserDataListModel
 			throw new Exception('User ID must be set');
 		}
 		
-		$rows = $this->db->select('select id from sessions where userID = ? order by expire', 'i', array(&$this->userID));
+		$rows = $this->db->select('select id from sessions where userID = ? order by expire', 'i', [&$this->userID]);
 		
-		$sessions = array();
+		$sessions = [];
 		foreach ($rows as $row)
 		{
 			$session = new Session($this->db, $row['id']);

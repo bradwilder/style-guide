@@ -34,12 +34,12 @@ class User extends DBItem
 	public function readExtra()
 	{
 		$query = 'select count(*) as session_count from sessions where userID = ?';
-		$this->sessions = $this->db->select($query, 'i', array(&$this->id))[0]['session_count'];
+		$this->sessions = $this->db->select($query, 'i', [&$this->id])[0]['session_count'];
 		
 		$query = 'select dt.expire from (select userID, expire from requests group by userID, emailKey, expire) dt where dt.userID = ?';
-		$rows = $this->db->select($query, 'i', array(&$this->id));
+		$rows = $this->db->select($query, 'i', [&$this->id]);
 		
-		$this->requests = array();
+		$this->requests = [];
 		foreach ($rows as $row)
 		{
 			$this->requests []= $row['expire'];
@@ -52,7 +52,7 @@ class User extends DBItem
 		
 		$query = 'select count(*) as count from ' . self::$tableName . ' where email = ?';
 		$types = 's';
-		$params = array(&$name);
+		$params = [&$name];
 		if ($selfID)
 		{
 			$query .= ' and id <> ?';

@@ -33,7 +33,7 @@ class Color extends DBItem
 	public function delete()
 	{
 		$query = 'select baseID from sg_color_item where color1ID = ? || color2ID = ? || color3ID = ? || color4ID = ? || color5ID = ? || color6ID = ?';
-		$rows = $this->db->select($query, 'iiiiii', array(&$this->id, &$this->id, &$this->id, &$this->id, &$this->id, &$this->id));
+		$rows = $this->db->select($query, 'iiiiii', [&$this->id, &$this->id, &$this->id, &$this->id, &$this->id, &$this->id]);
 		
 		foreach ($rows as $row)
 		{
@@ -50,7 +50,7 @@ class Color extends DBItem
 		
 		$query = 'select count(*) as count from ' . self::$tableName . ' where name = ?';
 		$types = 's';
-		$params = array(&$name);
+		$params = [&$name];
 		if ($selfID)
 		{
 			$query .= ' and id <> ?';

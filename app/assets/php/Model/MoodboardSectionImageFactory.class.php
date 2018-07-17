@@ -7,7 +7,7 @@ class MoodboardSectionImageFactory
 		$db = new Db();
 		
 		$query = 'select id from mb_section_image where sectionID = ? and imageID = ?';
-		$rows = $db->select($query, 'ii', array(&$sectionID, &$imageID));
+		$rows = $db->select($query, 'ii', [&$sectionID, &$imageID]);
 		
 		if (count($rows) == 1)
 		{

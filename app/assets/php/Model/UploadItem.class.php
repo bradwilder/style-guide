@@ -12,7 +12,7 @@ class UploadItem
 		$this->id = $id;
 		$this->name = $name;
 		$this->folder = ($folder === true || $folder == '1');
-		$this->children = array();
+		$this->children = [];
 	}
 	
 	public function addChild($child)

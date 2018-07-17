@@ -36,7 +36,7 @@ class Db
 		if ($types && $params)
 		{
 			array_unshift($params, $types);
-			call_user_func_array(array($stmt, 'bind_param'), $params);
+			call_user_func_array([$stmt, 'bind_param'], $params);
 		}
 		return $stmt;
 	}
@@ -57,7 +57,7 @@ class Db
 		}
 		
 		$result = $stmt->get_result();
-		$rows = array();
+		$rows = [];
 		while ($row = $result->fetch_assoc())
 		{
 			$rows[] = $row;

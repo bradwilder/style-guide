@@ -10,7 +10,7 @@ class StyleguideElementItemDraggableModel extends DraggablesModel
 			$elementItem->read();
 			$elementItem->readItemData();
 			
-			$sections = array();
+			$sections = [];
 			foreach ($elementItem->uploads as $index=>$upload)
 			{
 				$draggableSection = new DraggablesSection($upload->id, $upload->filePath, true, $index + 1);

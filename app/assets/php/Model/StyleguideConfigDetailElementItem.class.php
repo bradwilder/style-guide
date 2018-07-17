@@ -6,7 +6,7 @@ class StyleguideConfigDetailElementItem
 	
 	public function __construct()
 	{
-		$this->images = array();
+		$this->images = [];
 	}
 	
 	public function addImage($image)

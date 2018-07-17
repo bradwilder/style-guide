@@ -33,12 +33,12 @@ class MoodboardSection extends DBItem
 	public function readExtra()
 	{
 		$query = 'select i.*, si.id as section_image_id from mb_section s join mb_section_image si on si.sectionID = s.id join mb_image i on i.id = si.imageID where s.id = ? order by si.position';
-		$rows = $this->db->select($query, 'i', array(&$this->id));
+		$rows = $this->db->select($query, 'i', [&$this->id]);
 		
 		$this->images = $rows;
 		
 		$query = 'select name from mb_mode where id = ?';
-		$rows = $this->db->select($query, 'i', array(&$this->modeID));
+		$rows = $this->db->select($query, 'i', [&$this->modeID]);
 		
 		$this->modeName = $rows[0]['name'];
 	}
@@ -49,7 +49,7 @@ class MoodboardSection extends DBItem
 		
 		$query = 'select count(*) as count from ' . self::$tableName . ' where name = ?';
 		$types = 's';
-		$params = array(&$name);
+		$params = [&$name];
 		if ($selfID)
 		{
 			$query .= ' and id <> ?';

@@ -10,7 +10,7 @@ class StyleguideIconTableItemDraggableModel extends DraggablesModel
 			$item->read();
 			$item->readItemData();
 			
-			$sections = array();
+			$sections = [];
 			foreach ($item->listings as $index=>$listing)
 			{
 				$draggableSection = new DraggablesSection($listing->id, $listing->html, true, $index + 1);

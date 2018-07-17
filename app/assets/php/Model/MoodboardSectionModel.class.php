@@ -57,7 +57,7 @@ class MoodboardSectionModel extends Model_base
 	{
 		if ($this->sectionImageID)
 		{
-			$this->db->query('delete from mb_section_image where id = ?', 'i', array(&$this->sectionImageID));
+			$this->db->query('delete from mb_section_image where id = ?', 'i', [&$this->sectionImageID]);
 		}
 		else
 		{
@@ -72,7 +72,7 @@ class MoodboardSectionModel extends Model_base
 			foreach ($this->imageIDs as $imageID)
 			{
 				$query = 'insert into mb_section_image (sectionID, imageID, position, sizeID) select ' . $this->sectionID . ', ' . $imageID . ', case when max(position) is not null then max(position) + 1 else 1 end, (select id from mb_size where name = "Small") from mb_section_image where sectionID = ?';
-				$this->db->query($query, 'i', array(&$this->sectionID));
+				$this->db->query($query, 'i', [&$this->sectionID]);
 			}
 		}
 		else
@@ -85,9 +85,9 @@ class MoodboardSectionModel extends Model_base
 	{
 		if ($this->sectionID)
 		{
-			$rows = $this->db->select('select i.id from mb_image i where i.id not in (select si.imageID from mb_section_image si where si.sectionID = ?) order by i.name', 'i', array(&$this->sectionID));
+			$rows = $this->db->select('select i.id from mb_image i where i.id not in (select si.imageID from mb_section_image si where si.sectionID = ?) order by i.name', 'i', [&$this->sectionID]);
 			
-			$images = array();
+			$images = [];
 			foreach ($rows as $row)
 			{
 				$moodboardImage = new MoodboardImage($this->db, $row['id']);

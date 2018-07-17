@@ -5,7 +5,7 @@ class PageSubsection
 	public $title;
 	public $description;
 	public $content = '';
-	public $subSubsections = array();
+	public $subSubsections = [];
 	
 	public function __construct($title, $description)
 	{

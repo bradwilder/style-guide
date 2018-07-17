@@ -1,5 +1,5 @@
 <?php
-$strings = array();
+$strings = [];
 
 $strings['user_blocked'] = "You are currently locked out of the system.";
 $strings['user_deleted'] = "Account has been deleted.";

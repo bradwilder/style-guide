@@ -7,7 +7,7 @@ class FontFactory
 		$db = new Db();
 		
 		$query = 'select ft.code from sg_font f join sg_font_type ft on ft.id = f.typeID where f.id = ?';
-		$fontTypeCode = $db->select($query, 'i', array(&$fontID))[0]['code'];
+		$fontTypeCode = $db->select($query, 'i', [&$fontID])[0]['code'];
 		
 		$font;
 		switch ($fontTypeCode)

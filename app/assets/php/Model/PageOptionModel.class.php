@@ -7,7 +7,7 @@ class PageOptionModel extends Model_base
 	
 	public function getShowTOCOptions()
 	{
-		$options = array();
+		$options = [];
 		$rows = $this->db->select('select code, value from page_options where setting = "showTOC"');
 		foreach ($rows as $row)
 		{
@@ -22,7 +22,7 @@ class PageOptionModel extends Model_base
 	{
 		if ($this->pageCode && property_exists($this, 'value'))
 		{
-			$this->db->query('update page_options set value = ? where setting = "showTOC" and code = ?', 'ss', array(&$this->value, &$this->pageCode));
+			$this->db->query('update page_options set value = ? where setting = "showTOC" and code = ?', 'ss', [&$this->value, &$this->pageCode]);
 		}
 		else
 		{

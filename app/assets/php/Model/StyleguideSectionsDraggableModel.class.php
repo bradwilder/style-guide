@@ -4,7 +4,7 @@ class StyleguideSectionsDraggableModel extends DraggablesModel
 {
 	public function getData()
 	{
-		$sections = array();
+		$sections = [];
 		$rows = $this->db->select('select id from sg_section order by position');
 		foreach ($rows as $index=>$row)
 		{

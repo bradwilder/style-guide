@@ -40,7 +40,7 @@ class Upload extends DBItemParent
 		$db = new Db();
 		
 		$query = 'select count(*) as count from ' . self::$tableName . ' where filePath = ? and parentID <=> ?';
-		$row = $db->select($query, 'si', array(&$name, &$folderID))[0];
+		$row = $db->select($query, 'si', [&$name, &$folderID])[0];
 		return $row['count'] > 0;
 	}
 	
@@ -52,7 +52,7 @@ class Upload extends DBItemParent
 		while ($parentPathID)
 		{
 			$query = 'select filePath, parentID from ' . self::$tableName . ' where id = ?';
-			$row = $db->select($query, 'i', array(&$parentPathID))[0];
+			$row = $db->select($query, 'i', [&$parentPathID])[0];
 			
 			$pathElementName = $row['filePath'];
 			$parentPathID = $row['parentID'];

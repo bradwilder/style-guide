@@ -52,7 +52,7 @@ class MoodboardSectionController extends Controller_base
 	public function addImages()
 	{
 		$this->model->sectionID = $_POST['section_id'];
-		$this->model->imageIDs = array();
+		$this->model->imageIDs = [];
 		foreach ($_POST as $key=>$value)
 		{
 			if (strstr($key, 'add-images-check-'))

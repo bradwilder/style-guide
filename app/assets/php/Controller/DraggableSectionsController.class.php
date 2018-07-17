@@ -22,7 +22,7 @@ class DraggableSectionsController extends Controller_base
 	private function parseSectionStr($sectionStr)
 	{
 		$sectionStrs = explode(',', $sectionStr);
-		$sectionArrays = array();
+		$sectionArrays = [];
 		foreach ($sectionStrs as $sectionStr)
 		{
 			$sectionArray = explode(':', $sectionStr);

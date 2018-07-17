@@ -4,7 +4,7 @@ class PageSectionEditableOptions
 {
 	public $role;
 	public $submittable;
-	public $buttons = array();
+	public $buttons = [];
 	
 	public function __construct($role, PageSectionSubmittableOptions $submittable = null)
 	{

@@ -6,8 +6,8 @@ class StyleguideItemsDraggableModel extends DraggablesModel
 	{
 		if ($this->id)
 		{
-			$items = array();
-			$rows = $this->db->select('select id from sg_item where subsectionID = ? order by position', 'i', array(&$this->id));
+			$items = [];
+			$rows = $this->db->select('select id from sg_item where subsectionID = ? order by position', 'i', [&$this->id]);
 			foreach ($rows as $index=>$row)
 			{
 				$item = new StyleguideItem($this->db, $row['id']);

@@ -7,7 +7,7 @@ class UserFactory
 		$db = new Db();
 		
 		$query = 'select id from users where email = ?';
-		$rows = $db->select($query, 's', array(&$name));
+		$rows = $db->select($query, 's', [&$name]);
 		
 		if (count($rows) == 0)
 		{

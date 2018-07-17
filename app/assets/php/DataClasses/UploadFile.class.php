@@ -24,7 +24,7 @@ class UploadFile extends Upload
 	public function delete()
 	{
 		$query = 'select baseID from sg_element where upload1ID = ? or upload2ID = ? or upload3ID = ? or upload4ID = ? or upload5ID = ? or upload6ID = ?';
-		$rows = $this->db->select($query, 'iiiiii', array(&$this->id, &$this->id, &$this->id, &$this->id, &$this->id, &$this->id));
+		$rows = $this->db->select($query, 'iiiiii', [&$this->id, &$this->id, &$this->id, &$this->id, &$this->id, &$this->id]);
 		
 		foreach ($rows as $row)
 		{

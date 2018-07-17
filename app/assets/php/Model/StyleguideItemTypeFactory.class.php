@@ -7,7 +7,7 @@ class StyleguideItemTypeFactory
 		$db = new Db();
 		
 		$query = 'select id from sg_item_type where code = ?';
-		$id = $db->select($query, 's', array(&$code))[0]['id'];
+		$id = $db->select($query, 's', [&$code])[0]['id'];
 		
 		$type = new StyleguideItemType($db, $id);
 		$type->read();

@@ -126,7 +126,7 @@ catch (Exception $e)
 	$currentUser = $auth->authenticate(true, $uri);
 	if ($currentUser)
 	{
-		echo MVCoutput("PageModel", "PageController", "PageView", "Page.template.php", $currentUser, null, array('404 - Page Not Found!', 'notFound', true));
+		echo MVCoutput("PageModel", "PageController", "PageView", "Page.template.php", $currentUser, null, ['404 - Page Not Found!', 'notFound', true]);
 		return;
 	}
 }

@@ -4,7 +4,7 @@ class StyleguideConfigDetailFontTableListing
 {
 	public $id;
 	public $sampleText;
-	public $cssList = array();
+	public $cssList = [];
 	
 	public function __construct($id, $sampleText)
 	{

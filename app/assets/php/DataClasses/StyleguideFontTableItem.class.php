@@ -3,7 +3,7 @@
 class StyleguideFontTableItem extends StyleguideItem
 {
 	// Extra propertes
-	public $listings = array();
+	public $listings = [];
 	
 	private static $tableName = 'sg_font_listing_table';
 	private static $code = 'font-tbl';
@@ -16,7 +16,7 @@ class StyleguideFontTableItem extends StyleguideItem
 	public function readItemData()
 	{
 		$query = 'select id from sg_font_listing where itemID = ? order by position';
-		$rows = $this->db->select($query, 'i', array(&$this->id));
+		$rows = $this->db->select($query, 'i', [&$this->id]);
 		foreach ($rows as $row)
 		{
 			$fontListing = new StyleguideFontTableListing($this->db, $row['id']);

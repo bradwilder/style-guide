@@ -14,7 +14,7 @@ class SessionController extends Controller_base
 		$deleted = $this->model->deleteSession();
 		if (!$deleted)
 		{
-			setReturnHeaders(500, 'Internal Server Error', array('error' => 'Error: Unable to delete the session.'));
+			setReturnHeaders(500, 'Internal Server Error', ['error' => 'Error: Unable to delete the session.']);
 		}
 	}
 	

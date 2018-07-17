@@ -7,8 +7,8 @@ class CommentsModel extends Model_base
 	
 	public function getComments()
 	{
-		$comments = array();
-		$rows = $this->db->select('select id from mb_comment where sectionImageID <=> ? order by commentReplyingToID, postTime', 'i', array(&$this->sectionImageID));
+		$comments = [];
+		$rows = $this->db->select('select id from mb_comment where sectionImageID <=> ? order by commentReplyingToID, postTime', 'i', [&$this->sectionImageID]);
 		foreach ($rows as $row)
 		{
 			$comment = new Comment($this->db, $row['id']);

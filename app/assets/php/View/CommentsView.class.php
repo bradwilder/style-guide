@@ -14,7 +14,7 @@ class CommentsView extends View_base
 		$commentsList = $this->model->getComments();
 		
 		$root = new Node(null);
-		$itemsHash = array();
+		$itemsHash = [];
 		foreach ($commentsList as $comment)
 		{
 			$node = new Node($comment);

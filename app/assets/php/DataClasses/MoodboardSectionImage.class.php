@@ -44,7 +44,7 @@ class MoodboardSectionImage extends DBItem
 		if ($this->sectionID)
 		{
 			$query = 'select case when max(position) is not null then max(position) + 1 else 1 end as next_position from ' . self::$tableName . ' where sectionID = ?';
-			$row = $this->db->select($query, 'i', array(&$this->sectionID))[0];
+			$row = $this->db->select($query, 'i', [&$this->sectionID])[0];
 			
 			$this->position = $row['next_position'];
 			$this->write();

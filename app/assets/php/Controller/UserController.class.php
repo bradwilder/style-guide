@@ -22,7 +22,7 @@ class UserController extends Controller_base
 		$ret = $this->model->add();
 		if ($ret)
 		{
-			setReturnHeaders(500, 'Internal Server Error', array('error' => 'Error: ' . $ret));
+			setReturnHeaders(500, 'Internal Server Error', ['error' => 'Error: ' . $ret]);
 		}
 	}
 	
@@ -37,7 +37,7 @@ class UserController extends Controller_base
 		$ret = $this->model->edit();
 		if ($ret)
 		{
-			setReturnHeaders(500, 'Internal Server Error', array('error' => 'Error: ' . $ret));
+			setReturnHeaders(500, 'Internal Server Error', ['error' => 'Error: ' . $ret]);
 		}
 	}
 	
@@ -62,7 +62,7 @@ class UserController extends Controller_base
 		$ret = $this->model->undelete();
 		if ($ret)
 		{
-			setReturnHeaders(500, 'Internal Server Error', array('error' => 'Error: ' . $ret));
+			setReturnHeaders(500, 'Internal Server Error', ['error' => 'Error: ' . $ret]);
 		}
 	}
 	
@@ -76,7 +76,7 @@ class UserController extends Controller_base
 		$ret = $this->model->changePassword();
 		if ($ret)
 		{
-			setReturnHeaders(500, 'Internal Server Error', array('error' => 'Error: ' . $ret));
+			setReturnHeaders(500, 'Internal Server Error', ['error' => 'Error: ' . $ret]);
 		}
 	}
 	
@@ -87,7 +87,7 @@ class UserController extends Controller_base
 		$ret = $this->model->activationRequest();
 		if ($ret)
 		{
-			setReturnHeaders(500, 'Internal Server Error', array('error' => 'Error: ' . $ret));
+			setReturnHeaders(500, 'Internal Server Error', ['error' => 'Error: ' . $ret]);
 		}
 	}
 	
@@ -132,7 +132,7 @@ class UserController extends Controller_base
 		$ret = $this->model->deleteRequests();
 		if ($ret)
 		{
-			setReturnHeaders(500, 'Internal Server Error', array('error' => 'Error: ' . $ret));
+			setReturnHeaders(500, 'Internal Server Error', ['error' => 'Error: ' . $ret]);
 		}
 	}
 	

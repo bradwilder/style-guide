@@ -2,7 +2,7 @@
 
 class StyleguideConfigTree
 {
-	public $children = array();
+	public $children = [];
 	
 	public function addChild($child)
 	{

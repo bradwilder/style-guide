@@ -4,7 +4,7 @@ class Request
 {
 	public $currentUser;
 	private $uri;
-	private $params = array();
+	private $params = [];
 	
 	public function __construct($uri)
 	{
@@ -57,7 +57,7 @@ class Route
 {
 	private $path;
 	private $action;
-	private $actionArgs = array();
+	private $actionArgs = [];
 	public $model;
 	public $view;
 	public $templateFile;
@@ -95,7 +95,7 @@ class Route
 
 class Router
 {
-	private $routes = array();
+	private $routes = [];
 	
 	public function __construct($routes = null)
 	{

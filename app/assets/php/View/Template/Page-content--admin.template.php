@@ -6,7 +6,7 @@ include(__ASSETS_PATH . '/php/View/Template/Page-title.template.php');
 $options = new PageSectionEditableOptions('Root');
 
 $button = new PageSectionEditableButton('fa fa-plus', 'data-modal="#newUserModal"');
-$buttons = array($button);
+$buttons = [$button];
 
 $pageSectionModel = new PageSectionModel(null, $options, $buttons);
 $pageSectionModel->title = 'Users';

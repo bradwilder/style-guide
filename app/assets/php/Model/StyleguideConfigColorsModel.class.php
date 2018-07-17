@@ -14,7 +14,7 @@ class StyleguideConfigColorsModel extends Model_base
 		
 		if ($this->id)
 		{
-			$this->db->query('insert into sg_color_default (color_id) values (?)', 'i', array(&$this->id));
+			$this->db->query('insert into sg_color_default (color_id) values (?)', 'i', [&$this->id]);
 		}
 	}
 	

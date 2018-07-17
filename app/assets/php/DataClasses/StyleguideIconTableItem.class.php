@@ -5,7 +5,7 @@ class StyleguideIconTableItem extends StyleguideItem
 	public $fontID;
 	
 	// Extra properties
-	public $listings = array();
+	public $listings = [];
 	
 	private static $tableName = 'sg_icon_listing_table';
 	private static $code = 'icons-css';
@@ -25,7 +25,7 @@ class StyleguideIconTableItem extends StyleguideItem
 	public function readItemData()
 	{
 		$query = 'select id from sg_icon_listing where itemID = ? order by position';
-		$rows = $this->db->select($query, 'i', array(&$this->id));
+		$rows = $this->db->select($query, 'i', [&$this->id]);
 		foreach ($rows as $row)
 		{
 			$iconListing = new StyleguideIconTableListing($this->db, $row['id']);

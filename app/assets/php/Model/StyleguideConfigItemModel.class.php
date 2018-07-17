@@ -62,7 +62,7 @@ class StyleguideConfigItemModel extends Model_base
 	
 	public function getItemTypes()
 	{
-		$types = array();
+		$types = [];
 		$rows = $this->db->select('select id from sg_item_type');
 		foreach ($rows as $row)
 		{

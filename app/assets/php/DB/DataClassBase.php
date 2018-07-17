@@ -27,7 +27,7 @@ abstract class DBItem_base
 	protected $db;
 	protected $table;
 	
-	protected $columns = array();
+	protected $columns = [];
 	
 	protected function __construct(Db $db, string $table, int $id = null)
 	{
@@ -77,14 +77,14 @@ abstract class DBItem_base
 			
 			$query = 'update ' . $table . ' set ' . $columnName . ' = ? where ' . $idName . ' = ?';
 			$types = ($column->type === DBColumnType::String || $column->type === DBColumnType::Date ? 's' : 'i') . 'i';
-			$this->db->query($query, $types, array(&$value, &$this->id));
+			$this->db->query($query, $types, [&$value, &$this->id]);
 		}
 	}
 	
 	protected function readTable(string $table, string $primaryColName, $columns)
 	{
 		$query = 'select * from ' . $table . ' where ' . $primaryColName . ' = ?';
-		$row = $this->db->select($query, 'i', array(&$this->id))[0];
+		$row = $this->db->select($query, 'i', [&$this->id])[0];
 		foreach ($row as $key => $value)
 		{
 			if ($key != 'id' && $key != 'baseID')
@@ -126,7 +126,7 @@ class DBItem extends DBItem_base
 	public function delete()
 	{
 		$query = 'delete from ' . $this->table . ' where id = ?';
-		$this->db->query($query, 'i', array(&$this->id));
+		$this->db->query($query, 'i', [&$this->id]);
 	}
 }
 
@@ -137,7 +137,7 @@ abstract class DBItemParent extends DBItem
 	private $subTable;
 	private $typeTable;
 	private $typeClass;
-	private $subColumns = array();
+	private $subColumns = [];
 	
 	// Extra properties
 	public $type;
@@ -160,7 +160,7 @@ abstract class DBItemParent extends DBItem
 			if ($this->subTable)
 			{
 				$query = 'insert into ' . $this->subTable . ' (baseID) values (?)';
-				$this->db->query($query, 'i', array(&$this->id));
+				$this->db->query($query, 'i', [&$this->id]);
 			}
 		}
 	}
@@ -170,7 +170,7 @@ abstract class DBItemParent extends DBItem
 		if ($code)
 		{
 			$query = 'select id from ' . $this->typeTable . ' where code = ?';
-			$rows = $this->db->select($query, 's', array(&$code));
+			$rows = $this->db->select($query, 's', [&$code]);
 			if (count($rows) > 0)
 			{
 				return $rows[0]['id'];

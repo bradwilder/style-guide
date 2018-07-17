@@ -11,9 +11,9 @@ class UploadFolder extends Upload
 	
 	public function getChildren()
 	{
-		$children = array();
+		$children = [];
 		$query = 'select u.id, case when t.code = "folder" then 1 else 0 end as isFolder from ' . self::$tableName . ' u join sg_upload_type t on t.id = u.typeID where u.parentID = ?';
-		$rows = $this->db->select($query, 'i', array(&$this->id));
+		$rows = $this->db->select($query, 'i', [&$this->id]);
 		
 		foreach ($rows as $row)
 		{

@@ -16,7 +16,7 @@ class StyleguideSectionsView extends View_base
 		{
 			$title = $section->name;
 			
-			$subsections = array();
+			$subsections = [];
 			foreach ($section->subsections as $subsectionRow)
 			{
 				$subsection = new PageSubsection($subsectionRow->name, $subsectionRow->description);

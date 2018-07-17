@@ -8,7 +8,7 @@ class StyleguideSection extends DBItem
 	public $position;
 	
 	// Extra properties
-	public $subsections = array();
+	public $subsections = [];
 	
 	private static $tableName = 'sg_section';
 	
@@ -32,7 +32,7 @@ class StyleguideSection extends DBItem
 	public function readExtra(bool $enabled = null)
 	{
 		$query = 'select id from sg_subsection where sectionID = ? and parentSubsectionID is null ' . (isset($enabled) ? 'and enabled = ' . ($enabled ? '1' : '0') : '') . ' order by position';
-		$rows = $this->db->select($query, 'i', array(&$this->id));
+		$rows = $this->db->select($query, 'i', [&$this->id]);
 		foreach ($rows as $row)
 		{
 			$styleguideSubsection = new StyleguideSubsection($this->db, $row['id']);
@@ -49,7 +49,7 @@ class StyleguideSection extends DBItem
 		
 		$query = 'select count(*) as count from ' . self::$tableName . ' where name = ?';
 		$types = 's';
-		$params = array(&$name);
+		$params = [&$name];
 		if ($selfID)
 		{
 			$query .= ' and id <> ?';

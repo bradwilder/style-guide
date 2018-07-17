@@ -92,8 +92,8 @@ class StyleguideConfigUploadsModel extends Model_base
 				unlink($path);
 			}
 			
-			$folders = array();
-			$files = array();
+			$folders = [];
+			$files = [];
 			
 			if ($upload->isFolder())
 			{

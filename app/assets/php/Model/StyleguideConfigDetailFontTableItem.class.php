@@ -2,7 +2,7 @@
 
 class StyleguideConfigDetailFontTableItem
 {
-	public $listings = array();
+	public $listings = [];
 	
 	public function addListing($listing)
 	{

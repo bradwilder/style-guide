@@ -3,7 +3,7 @@
 class StyleguideConfigDetailIconTableItem
 {
 	public $iconSet;
-	public $listings = array();
+	public $listings = [];
 	
 	public function __construct($iconSet)
 	{

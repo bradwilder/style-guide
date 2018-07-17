@@ -4,7 +4,7 @@ class StyleguidePageModel extends PageModel
 {
 	public function getWebFontURLs()
 	{
-		$urls = array();
+		$urls = [];
 		$rows = $this->db->select('select importURL from sg_webfont');
 		foreach ($rows as $row)
 		{
@@ -16,7 +16,7 @@ class StyleguidePageModel extends PageModel
 	
 	public function getCSSFontFiles()
 	{
-		$files = array();
+		$files = [];
 		$rows = $this->db->select('select cssFile from sg_cssfont');
 		foreach ($rows as $row)
 		{

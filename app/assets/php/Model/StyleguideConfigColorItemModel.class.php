@@ -102,7 +102,7 @@ class StyleguideConfigColorItemModel extends Model_base
 			$colorItem = new StyleguideColorItem($this->db, $this->itemID);
 			$colorItem->read();
 			
-			$colorIDs = array();
+			$colorIDs = [];
 			
 			if ($colorItem->color1ID)
 			{

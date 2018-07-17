@@ -51,7 +51,7 @@ class StyleguideConfigDetailModel extends Model_base
 	
 	private function getColors()
 	{
-		$colors = array();
+		$colors = [];
 		$rows = $this->db->select('select id from sg_color order by name');
 		foreach ($rows as $row)
 		{
@@ -77,7 +77,7 @@ class StyleguideConfigDetailModel extends Model_base
 	
 	private function getFonts()
 	{
-		$fonts = array();
+		$fonts = [];
 		$rows = $this->db->select('select id from sg_font order by name');
 		foreach ($rows as $row)
 		{
@@ -96,7 +96,7 @@ class StyleguideConfigDetailModel extends Model_base
 	
 	private function getUploads()
 	{
-		$uploadsHash = array();
+		$uploadsHash = [];
 		
 		$uploads = new UploadItem(null, 'Uploads', true);
 		$uploadsHash[''] = $uploads;
@@ -124,7 +124,7 @@ class StyleguideConfigDetailModel extends Model_base
 	
 	private function getSections()
 	{
-		$sections = array();
+		$sections = [];
 		$rows = $this->db->select('select id from sg_section order by position');
 		foreach ($rows as $row)
 		{
@@ -265,7 +265,7 @@ class StyleguideConfigDetailModel extends Model_base
 	
 	private function getIconTableItem()
 	{
-		$row = $this->db->select('select f.id, f.name from sg_icon_listing_table t join sg_font f on f.id = t.fontID where t.baseID = ?', 'i', array(&$this->configDetailID))[0];
+		$row = $this->db->select('select f.id, f.name from sg_icon_listing_table t join sg_font f on f.id = t.fontID where t.baseID = ?', 'i', [&$this->configDetailID])[0];
 		
 		$iconSet = new StyleguideConfigDetailIconSet($row['id'], $row['name']);
 		

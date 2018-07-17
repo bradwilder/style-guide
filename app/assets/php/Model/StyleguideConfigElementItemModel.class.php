@@ -12,7 +12,7 @@ class StyleguideConfigElementItemModel extends Model_base
 			$elementItem = new StyleguideElementItem($this->db, $this->itemID);
 			$elementItem->read();
 			
-			$uploadIDs = array();
+			$uploadIDs = [];
 			
 			if ($elementItem->upload1ID)
 			{

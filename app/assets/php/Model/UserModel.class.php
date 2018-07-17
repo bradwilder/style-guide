@@ -177,7 +177,7 @@ class UserModel extends Model_base
 			}
 			else
 			{
-				$error = array('error' => $activate['message']);
+				$error = ['error' => $activate['message']];
 				$error['inactive'] = '1';
 				$error['expired'] = $activate['expired'];
 				return $error;
@@ -248,7 +248,7 @@ class UserModel extends Model_base
 			}
 			else
 			{
-				$error = array('error' => $return['message']);
+				$error = ['error' => $return['message']];
 				if ($return['inactive'])
 				{
 					$error['inactive'] = '1';
@@ -304,7 +304,7 @@ class UserModel extends Model_base
 	
 	public function getGroups()
 	{
-		$groups = array();
+		$groups = [];
 		$rows = $this->db->select('select id from groups order by name');
 		foreach ($rows as $row)
 		{

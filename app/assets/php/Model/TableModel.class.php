@@ -8,7 +8,7 @@ class TableModel extends Model_base
 	public $attributes;
 	public $rowTemplate;
 	public $data;
-	public $columns = array();
+	public $columns = [];
 	
 	public function __construct(TableSortingOptions $sortableOptions = null, $striped = false, $selectable = false, string $rowTemplate, $data = null, $attributes = null)
 	{

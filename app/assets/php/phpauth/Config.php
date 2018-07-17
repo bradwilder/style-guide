@@ -13,7 +13,7 @@ class Config
     {
         $this->db = $db;
         
-        $this->config = array();
+        $this->config = [];
         
         $query = "SELECT * FROM config";
         $rows = $this->db->select($query);
@@ -32,7 +32,7 @@ class Config
     public function __set(string $setting, string $value)
     {
         $query = "UPDATE config SET value = ? WHERE setting = ?";
-        $this->db->query($query, 'ss', array(&$value, &$setting));
+        $this->db->query($query, 'ss', [&$value, &$setting]);
         
         $this->config[$setting] = $value;
     }

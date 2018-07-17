@@ -8,7 +8,7 @@ class StyleguideItemTypeColumnMinFactory
 		
 		$query = 'select id from sg_item_type_column_min where typeID = ?';
 		$types = 'i';
-		$params = array(&$typeID);
+		$params = [&$typeID];
 		if ($code)
 		{
 			$query .= ' and code = ?';

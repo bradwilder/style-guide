@@ -18,7 +18,7 @@ class StyleguideConfigUploadsController extends Controller_base
 		$ret = $this->model->uploadFile();
 		if ($ret)
 		{
-			setReturnHeaders(500, 'Internal Server Error', array('error' => 'Error: ' . $ret));
+			setReturnHeaders(500, 'Internal Server Error', ['error' => 'Error: ' . $ret]);
 		}
 	}
 	
@@ -30,7 +30,7 @@ class StyleguideConfigUploadsController extends Controller_base
 		$ret = $this->model->newFolder();
 		if ($ret)
 		{
-			setReturnHeaders(500, 'Internal Server Error', array('error' => 'Error: ' . $ret));
+			setReturnHeaders(500, 'Internal Server Error', ['error' => 'Error: ' . $ret]);
 		}
 	}
 	
@@ -41,7 +41,7 @@ class StyleguideConfigUploadsController extends Controller_base
 		$ret = $this->model->delete();
 		if ($ret)
 		{
-			setReturnHeaders(500, 'Internal Server Error', array('error' => 'Error: ' . $ret));
+			setReturnHeaders(500, 'Internal Server Error', ['error' => 'Error: ' . $ret]);
 		}
 	}
 	
@@ -63,7 +63,7 @@ class StyleguideConfigUploadsController extends Controller_base
 		$ret = $this->model->editFile();
 		if ($ret)
 		{
-			setReturnHeaders(500, 'Internal Server Error', array('error' => 'Error: ' . $ret));
+			setReturnHeaders(500, 'Internal Server Error', ['error' => 'Error: ' . $ret]);
 		}
 	}
 	
@@ -75,7 +75,7 @@ class StyleguideConfigUploadsController extends Controller_base
 		$ret = $this->model->editFolder();
 		if ($ret)
 		{
-			setReturnHeaders(500, 'Internal Server Error', array('error' => 'Error: ' . $ret));
+			setReturnHeaders(500, 'Internal Server Error', ['error' => 'Error: ' . $ret]);
 		}
 	}
 }

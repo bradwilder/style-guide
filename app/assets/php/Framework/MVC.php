@@ -49,7 +49,7 @@ class Controller_base
 class Template
 {
 	private $template;
-	private $params = array();
+	private $params = [];
 	
 	function __construct($template)
 	{
@@ -75,7 +75,7 @@ class Template
 	}
 }
 
-function MVCoutput($modelClass, $controllerClass, $viewClass = null, $templateFile = null, $currentUser = null, $action = null, $actionArgs = array())
+function MVCoutput($modelClass, $controllerClass, $viewClass = null, $templateFile = null, $currentUser = null, $action = null, $actionArgs = [])
 {
 	$model = new $modelClass;
 	

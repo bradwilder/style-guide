@@ -9,7 +9,7 @@ class CurrentUser
 	public $id;
 	public $email;
 	public $displayName;
-	public $roles = array();
+	public $roles = [];
 	
 	public function addRole($role)
 	{
@@ -40,7 +40,7 @@ class Authentication
 		$currentUser->displayName = $user->displayName;
 		
 		$query = 'select r.name from users u join groups g on g.id = u.groupID join group_role gr on gr.groupID = g.id join role r on r.id = gr.role_id where u.id = ?';
-		$rows = $this->db->select($query, 'i', array(&$currentUser->id));
+		$rows = $this->db->select($query, 'i', [&$currentUser->id]);
 		
 		foreach ($rows as $row)
 		{
@@ -90,7 +90,7 @@ class Authentication
 		
 		if ($requiredRole && !in_array($requiredRole, $currentUser->roles))
 		{
-			setReturnHeaders(401, 'Unauthorized', array('error' => 'You do not have permission to access this page.'));
+			setReturnHeaders(401, 'Unauthorized', ['error' => 'You do not have permission to access this page.']);
 			return null;
 		}
 		

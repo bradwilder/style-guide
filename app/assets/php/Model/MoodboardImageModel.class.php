@@ -11,7 +11,7 @@ class MoodboardImageModel extends Model_base
 	{
 		if ($this->name)
 		{
-			$rows = $this->db->select('select count(*) as count from mb_image where name = ?', 's', array(&$this->name));
+			$rows = $this->db->select('select count(*) as count from mb_image where name = ?', 's', [&$this->name]);
 			$count = $rows[0]['count'];
 			echo ($count != 0);
 		}
@@ -99,7 +99,7 @@ class MoodboardImageModel extends Model_base
 	{
 		$rows = $this->db->select('select id from mb_image order by name');
 		
-		$images = array();
+		$images = [];
 		foreach ($rows as $row)
 		{
 			$image = new MoodboardImage($this->db, $row['id']);

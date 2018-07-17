@@ -10,7 +10,7 @@ class PageModel extends Model_base
 	
 	public function setUseTOC()
 	{
-		$rows = $this->db->select('select value from page_options where code = ? and setting = "showTOC"', 's', array(&$this->pageCode));
+		$rows = $this->db->select('select value from page_options where code = ? and setting = "showTOC"', 's', [&$this->pageCode]);
 		if (count($rows) > 0)
 		{
 			$this->useTOC = ($rows[0]['value'] == 1);

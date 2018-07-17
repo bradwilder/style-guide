@@ -10,8 +10,8 @@ class StyleguideSubsection extends DBItem
 	public $position;
 	
 	// Extra properties
-	public $subSubsections = array();
-	public $items = array();
+	public $subSubsections = [];
+	public $items = [];
 	
 	private static $tableName = 'sg_subsection';
 	
@@ -38,7 +38,7 @@ class StyleguideSubsection extends DBItem
 	public function readExtra(bool $enabled = null)
 	{
 		$query = 'select id from sg_subsection where sectionID = ? and parentSubsectionID = ? ' . (isset($enabled) ? 'and enabled = ' . ($enabled ? '1' : '0') : '') . ' order by position';
-		$rows = $this->db->select($query, 'ii', array(&$this->sectionID, &$this->id));
+		$rows = $this->db->select($query, 'ii', [&$this->sectionID, &$this->id]);
 		foreach ($rows as $row)
 		{
 			$styleguideSubSubsection = new StyleguideSubsection($this->db, $row['id']);
@@ -49,7 +49,7 @@ class StyleguideSubsection extends DBItem
 		}
 		
 		$query = 'select id from sg_item where subsectionID = ? order by position';
-		$rows = $this->db->select($query, 'i', array(&$this->id));
+		$rows = $this->db->select($query, 'i', [&$this->id]);
 		foreach ($rows as $row)
 		{
 			$styleguideItem = new StyleguideItem($this->db, $row['id']);
@@ -64,7 +64,7 @@ class StyleguideSubsection extends DBItem
 		if ($this->sectionID)
 		{
 			$query = 'select case when max(position) is not null then max(position) + 1 else 1 end as next_position from ' . self::$tableName . ' where sectionID = ? and parentSubsectionID <=> ?';
-			$row = $this->db->select($query, 'ii', array(&$this->sectionID, &$this->parentSubsectionID))[0];
+			$row = $this->db->select($query, 'ii', [&$this->sectionID, &$this->parentSubsectionID])[0];
 			
 			$this->position = $row['next_position'];
 			$this->write();
@@ -77,7 +77,7 @@ class StyleguideSubsection extends DBItem
 		
 		$query = 'select count(*) as count from ' . self::$tableName . ' where name = ? and sectionID = ? and parentSubsectionID <=> ?';
 		$types = 'si';
-		$params = array(&$name, &$sectionID, &$parentSubsectionID);
+		$params = [&$name, &$sectionID, &$parentSubsectionID];
 		if ($selfID)
 		{
 			$query .= ' and id <> ?';

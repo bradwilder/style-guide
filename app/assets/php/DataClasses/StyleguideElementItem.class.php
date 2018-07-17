@@ -10,7 +10,7 @@ class StyleguideElementItem extends StyleguideItem
 	public $upload6ID;
 	
 	// Extra properties
-	public $uploads = array();
+	public $uploads = [];
 	
 	private static $tableName = 'sg_element';
 	private static $code = 'elem-seg';

@@ -10,8 +10,8 @@ class StyleguideColorItem extends StyleguideItem
 	public $color6ID;
 	
 	// Extra properties
-	public $colors = array();
-	public $descriptors = array();
+	public $colors = [];
+	public $descriptors = [];
 	
 	private static $tableName = 'sg_color_item';
 	
@@ -82,7 +82,7 @@ class StyleguideColorItem extends StyleguideItem
 		}
 		
 		$query = 'select id from sg_color_descriptor where itemID = ? order by position';
-		$rows = $this->db->select($query, 'i', array(&$this->id));
+		$rows = $this->db->select($query, 'i', [&$this->id]);
 		foreach ($rows as $row)
 		{
 			$descriptor = new StyleguideColorItemDescriptor($this->db, $row['id']);

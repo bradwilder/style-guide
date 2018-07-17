@@ -10,7 +10,7 @@ class StyleguideColorItemDraggableModel extends DraggablesModel
 			$colorItem->read();
 			$colorItem->readItemData();
 			
-			$sections = array();
+			$sections = [];
 			foreach ($colorItem->colors as $index=>$color)
 			{
 				$draggableSection = new DraggablesSection($color->id, $color->name, true, $index + 1);

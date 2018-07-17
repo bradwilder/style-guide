@@ -6,7 +6,7 @@ class StyleguideSectionsModel extends Model_base
 	
 	public function getSections()
 	{
-		$sections = array();
+		$sections = [];
 		$rows = $this->db->select('select id from sg_section ' . (isset($this->enabled) ? 'where enabled = ' . ($this->enabled ? 1 : 0) : '') . ' order by position');
 		foreach ($rows as $row)
 		{

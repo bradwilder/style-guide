@@ -6,7 +6,7 @@ class MoodboardSectionsDraggableModel extends DraggablesModel
 	{
 		$rows = $this->db->select('select id from mb_section order by position');
 		
-		$sections = array();
+		$sections = [];
 		foreach ($rows as $index=>$row)
 		{
 			$id = $row['id'];

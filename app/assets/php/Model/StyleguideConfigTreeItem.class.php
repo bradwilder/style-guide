@@ -6,7 +6,7 @@ class StyleguideConfigTreeItem
 	public $type;
 	public $name;
 	public $enabled;
-	public $children = array();
+	public $children = [];
 	
 	public function __construct($id, $type, $text, $substringPrefix = null, $enabled = true)
 	{

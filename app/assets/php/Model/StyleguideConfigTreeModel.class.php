@@ -4,7 +4,7 @@ class StyleguideConfigTreeModel extends Model_base
 {
 	private function getSections()
 	{
-		$sections = array();
+		$sections = [];
 		
 		$rows = $this->db->select('select id from sg_section order by position');
 		foreach ($rows as $row)
@@ -18,7 +18,7 @@ class StyleguideConfigTreeModel extends Model_base
 			
 			$sections []= $section;
 			
-			$rows = $this->db->select('select id from sg_subsection where parentSubsectionID is null and sectionID = ? order by position', 'i', array(&$section->id));
+			$rows = $this->db->select('select id from sg_subsection where parentSubsectionID is null and sectionID = ? order by position', 'i', [&$section->id]);
 			foreach ($rows as $row)
 			{
 				$sgSubsection = new StyleguideSubsection($this->db, $row['id']);
@@ -30,7 +30,7 @@ class StyleguideConfigTreeModel extends Model_base
 				
 				$section->subsections []= $subsection;
 				
-				$rows = $this->db->select('select id from sg_item where subsectionID = ? order by position', 'i', array(&$subsection->id));
+				$rows = $this->db->select('select id from sg_item where subsectionID = ? order by position', 'i', [&$subsection->id]);
 				foreach ($rows as $row)
 				{
 					$sgItem = new StyleguideItem($this->db, $row['id']);
@@ -42,7 +42,7 @@ class StyleguideConfigTreeModel extends Model_base
 					$subsection->items []= $item;
 				}
 				
-				$rows = $this->db->select('select id from sg_subsection where parentSubsectionID = ? order by position', 'i', array(&$subsection->id));
+				$rows = $this->db->select('select id from sg_subsection where parentSubsectionID = ? order by position', 'i', [&$subsection->id]);
 				foreach ($rows as $row)
 				{
 					$sgSubSubsection = new StyleguideSubsection($this->db, $row['id']);
@@ -54,7 +54,7 @@ class StyleguideConfigTreeModel extends Model_base
 					
 					$subsection->subsections []= $subSubsection;
 					
-					$rows = $this->db->select('select id from sg_item where subsectionID = ? order by position', 'i', array(&$subSubsection->id));
+					$rows = $this->db->select('select id from sg_item where subsectionID = ? order by position', 'i', [&$subSubsection->id]);
 					foreach ($rows as $row)
 					{
 						$sgItem = new StyleguideItem($this->db, $row['id']);
@@ -124,7 +124,7 @@ class StyleguideConfigTreeModel extends Model_base
 	
 	private static function romanNumeral($integer) 
 	{ 
-		$table = array('M' => 1000, 'CM' => 900, 'D' => 500, 'CD' => 400, 'C' => 100, 'XC' => 90, 'L' => 50, 'XL' => 40, 'X' => 10, 'IX' => 9, 'V' => 5, 'IV' => 4, 'I' => 1);
+		$table = ['M' => 1000, 'CM' => 900, 'D' => 500, 'CD' => 400, 'C' => 100, 'XC' => 90, 'L' => 50, 'XL' => 40, 'X' => 10, 'IX' => 9, 'V' => 5, 'IV' => 4, 'I' => 1];
 		$return = ''; 
 		while ($integer > 0) 
 		{ 

@@ -7,7 +7,7 @@ class StyleguideItemFactory
 		$db = new Db();
 		
 		$query = 'select it.code from sg_item i join sg_item_type it on it.id = i.typeID where i.id = ?';
-		$itemTypeCode = $db->select($query, 'i', array(&$itemID))[0]['code'];
+		$itemTypeCode = $db->select($query, 'i', [&$itemID])[0]['code'];
 		
 		$item;
 		switch ($itemTypeCode)
