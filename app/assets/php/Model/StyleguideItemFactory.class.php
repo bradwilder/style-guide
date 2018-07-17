@@ -62,6 +62,48 @@ class StyleguideItemFactory
 				return new StyleguideElementItem($db, null, $subsectionID);
 		}
 	}
+	
+	public static function modelByCode($code)
+	{
+		switch ($code)
+		{
+			case 'color-var-desc':
+			case 'color-desc':
+				return new StyleguideColorDescriptorItemModel();
+			case 'color-var':
+			case 'color':
+				return new StyleguideColorItemModel();
+			case 'font-fmy':
+				return new StyleguideFontFamilyItemModel();
+			case 'font-tbl':
+				return new StyleguideFontTableItemModel();
+			case 'icons-css':
+				return new StyleguideIconTableItemModel();
+			case 'elem-seg':
+				return new StyleguideElementsItemModel();
+		}
+	}
+	
+	public static function viewByCode($code, $model, $currentUser)
+	{
+		switch ($code)
+		{
+			case 'color-var-desc':
+			case 'color-desc':
+				return new StyleguideColorDescriptorItemView($model, $currentUser);
+			case 'color-var':
+			case 'color':
+				return new StyleguideColorItemView($model, $currentUser);
+			case 'font-fmy':
+				return new StyleguideFontFamilyItemView($model, $currentUser);
+			case 'font-tbl':
+				return new StyleguideFontTableItemView($model, $currentUser);
+			case 'icons-css':
+				return new StyleguideIconTableItemView($model, $currentUser);
+			case 'elem-seg':
+				return new StyleguideElementsItemView($model, $currentUser);
+		}
+	}
 }
 
 ?>

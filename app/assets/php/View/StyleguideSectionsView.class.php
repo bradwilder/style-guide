@@ -55,12 +55,12 @@ class StyleguideSectionsView extends View_base
 
 		foreach ($data as $row)
 		{
-			$imodel = new StyleguideItemModel();
+			$imodel = StyleguideItemFactory::modelByCode($row->code);
 			$imodel->foreignItem = $row;
-
-			$view = new StyleguideItemView($imodel, $this->currentUser);
+			
+			$view = StyleguideItemFactory::viewByCode($row->code, $imodel, $this->currentUser);
 			$itemContent = $view->output();		
-
+			
 			$content .= $itemContent;
 		}
 
