@@ -27,7 +27,7 @@ class StyleguideColorItemModel extends StyleguideItemModel
 			}
 		}
 		
-		return new Color($row['name'], $row['hex'], $shades);
+		return new ColorItem($row['name'], $row['hex'], $shades);
 	}
 }
 

@@ -1,6 +1,6 @@
 <?php
 
-class Color
+class ColorItem
 {
 	public $name;
 	public $hex;
