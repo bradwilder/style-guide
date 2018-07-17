@@ -1,7 +1,22 @@
-<?php $colorsCount = count($data); ?>
+<?php
+
+$colorsCount = count($data->shades) + 1;
+
+$colors = [];
+if (count($data->shades) > 0)
+{
+	$colors []= (object) ['hex' => $data->shades[0], 'isMainColor' => false];
+}
+$colors []= (object) ['hex' => $data->hex, 'isMainColor' => true];
+if (count($data->shades) > 1)
+{
+	$colors []= (object) ['hex' => $data->shades[1], 'isMainColor' => false];
+}
+
+?>
 
 <div class="color-swatch color-swatch__card card card--shadow">
-	<?php foreach ($data as $index=>$color) {
+	<?php foreach ($colors as $index=>$color) {
 		if ($index != 0)
 		{
 			echo '--><div class="color-swatch__tile color-swatch__tile--' . $colorsCount . '">';

@@ -49,33 +49,23 @@ class StyleguideItemModel extends Model_base
 	{
 		$row = $this->db->select('select c.name, c.hex, c.variant1, c.variant2 from sg_color c join sg_color_item ci on ci.color1ID = c.id where ci.baseID = ?', 'i', [&$this->foreignItem->itemID])[0];
 		
-		$colors = [];
-		$hex = $row['hex'];
-		$name = $row['name'];
-		
+		$shades = [];
 		if (strpos($this->foreignItem->code, 'var'))
 		{
 			$variant1 = $row['variant1'];
-			$variant2 = $row['variant2'];
-			
 			if ($variant1)
 			{
-				$colors []= new ColorTileSegment($name, $variant1, false);
+				$shades []= $variant1;
 			}
 			
-			$colors []= new ColorTileSegment($name, $hex, true);
-			
+			$variant2 = $row['variant2'];
 			if ($variant2)
 			{
-				$colors []= new ColorTileSegment($name, $variant2, false);
+				$shades []= $variant2;
 			}
 		}
-		else
-		{
-			$colors []= new ColorTileSegment($name, $hex, true);
-		}
 		
-		return $colors;
+		return new Color($row['name'], $row['hex'], $shades);
 	}
 	
 	private function getColorWithDescriptors()
@@ -83,11 +73,7 @@ class StyleguideItemModel extends Model_base
 		$colors = $this->getColorAndVariants();
 		
 		$colorDescriptors = [];
-		$colorName = $colors[0]->name;
-		if ($colorName)
-		{
-			$colorDescriptors []= $colorName;
-		}
+		$colorDescriptors []= $colors->name;
 		
 		$rows = $this->db->select('select description from sg_color_descriptor where itemID = ? order by position', 'i', [&$this->foreignItem->itemID]);
 		foreach ($rows as $row)
