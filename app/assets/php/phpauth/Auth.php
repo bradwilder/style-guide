@@ -1133,7 +1133,7 @@ class Auth
     {
         $attempt = new Attempt($this->db);
         $attempt->ip = $this->getIp();
-        $attempt->expire = date("Y-m-d H:i:s", strtotime($this->config->attack_mitigation_time));
+        $attempt->expire = strtotime($this->config->attack_mitigation_time);
         $attempt->write();
     }
 	
