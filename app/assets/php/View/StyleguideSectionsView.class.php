@@ -20,12 +20,12 @@ class StyleguideSectionsView extends View_base
 			foreach ($section->subsections as $subsectionRow)
 			{
 				$subsection = new PageSubsection($subsectionRow->name, $subsectionRow->description);
-				$subsection->content = $this->getForeignTableContent($subsectionRow->id);
+				$subsection->content = $this->getItemContent($subsectionRow->id);
 				
 				foreach ($subsectionRow->subSubsections as $subSubsectionRow)
 				{
 					$subSubsection = new PageSubsection($subSubsectionRow->name, $subSubsectionRow->description);
-					$subSubsection->content = $this->getForeignTableContent($subSubsectionRow->id);
+					$subSubsection->content = $this->getItemContent($subSubsectionRow->id);
 					
 					$subsection->subSubsections []= $subSubsection;
 				}
@@ -45,18 +45,18 @@ class StyleguideSectionsView extends View_base
 		return $output;
 	}
 	
-	private function getForeignTableContent($subsectionID)
+	private function getItemContent($subsectionID)
 	{
 		$smodel = new StyleguideSubsectionModel();
 		$smodel->subsectionID = $subsectionID;
-		$data = $smodel->getForeignData();
+		$items = $smodel->getItemData();
 
 		$content = '';
 
-		foreach ($data as $row)
+		foreach ($items as $row)
 		{
 			$imodel = StyleguideItemFactory::modelByCode($row->code);
-			$imodel->foreignItem = $row;
+			$imodel->foreignID = $row->itemID;
 			
 			$view = StyleguideItemFactory::viewByCode($row->code, $imodel, $this->currentUser);
 			$itemContent = $view->output();		

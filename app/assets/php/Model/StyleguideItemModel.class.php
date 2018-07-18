@@ -2,20 +2,21 @@
 
 abstract class StyleguideItemModel extends Model_base
 {
-	public $foreignItem;
+	public $foreignID;
 	
 	public abstract function getData();
+	public abstract function getConfigData();
 	
 	public function getColumnData()
 	{
-		if ($this->foreignItem)
+		if ($this->foreignID)
 		{
-			$row = $this->db->select('select i.colLg, i.colMd, i.colSm, i.colXs from sg_item i join sg_item_type it on it.id = i.typeID where i.id = ? and it.code = ?', 'is', [&$this->foreignItem->itemID, &$this->foreignItem->code])[0];
+			$row = $this->db->select('select colLg, colMd, colSm, colXs from sg_item where id = ?', 'i', [&$this->foreignID])[0];
 			return new StyleguideItemColumns($row['colXs'], $row['colSm'], $row['colMd'], $row['colLg']);
 		}
 		else
 		{
-			throw new Exception('ID and code must be set');
+			throw new Exception('ID must be set');
 		}
 	}
 }
