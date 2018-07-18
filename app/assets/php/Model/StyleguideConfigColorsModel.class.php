@@ -2,19 +2,13 @@
 
 class StyleguideConfigColorsModel extends Model_base
 {
-	public $id;
-	public $name;
-	public $hex;
-	public $variant1;
-	public $variant2;
-	
-	public function setDefaultColor()
+	public function setDefaultColor(int $id)
 	{
 		$this->db->query('delete from sg_color_default');
 		
-		if ($this->id)
+		if ($id)
 		{
-			$this->db->query('insert into sg_color_default (color_id) values (?)', 'i', [&$this->id]);
+			$this->db->query('insert into sg_color_default (color_id) values (?)', 'i', [&$id]);
 		}
 	}
 	
@@ -29,85 +23,50 @@ class StyleguideConfigColorsModel extends Model_base
 		return null;
 	}
 	
-	public function delete()
+	public function delete(int $id)
 	{
-		if ($this->id)
-		{
-			$color = new Color($this->db, $this->id);
-			$color->delete();
-		}
-		else
-		{
-			throw new Exception('Color ID must be set');
-		}
+		$color = new Color($this->db, $id);
+		$color->delete();
 	}
 	
-	public function nameExists()
+	public function nameExists(string $name, int $id)
 	{
-		if ($this->name)
-		{
-			return Color::nameExists($this->db, $this->name, $this->id);
-		}
-		else
-		{
-			throw new Exception('Color name must be set');
-		}
+		return Color::nameExists($this->db, $name, $id);
 	}
 	
-	public function getColor()
+	public function getColor(int $id)
 	{
-		if ($this->id)
-		{
-			$color = new Color($this->db, $this->id);
-			$color->read();
-			return $color;
-		}
-		else
-		{
-			throw new Exception('Color ID must be set');
-		}
+		$color = new Color($this->db, $id);
+		$color->read();
+		return $color;
 	}
 	
-	public function editColor()
+	public function editColor(int $id, string $name, string $hex, string $variant1, string $variant2)
 	{
-		if ($this->id)
+		$color = new Color($this->db, $id);
+		$color->read(); // Read so that the current variant1/variant2 will be set
+		
+		$color->name = $name;
+		$color->hex = $hex;
+		if (isset($variant1))
 		{
-			$color = new Color($this->db, $this->id);
-			$color->read(); // Read so that the current variant1/variant2 will be set
-			
-			$color->name = $this->name;
-			$color->hex = $this->hex;
-			if (isset($this->variant1))
-			{
-				$color->variant1 = $this->variant1;
-			}
-			if (isset($this->variant2))
-			{
-				$color->variant2 = $this->variant2;
-			}
-			$color->write();
+			$color->variant1 = $variant1;
 		}
-		else
+		if (isset($variant2))
 		{
-			throw new Exception('Color id must be set');
+			$color->variant2 = $variant2;
 		}
+		$color->write();
 	}
 	
-	public function addColor()
+	public function addColor(string $name, string $hex, string $variant1, string $variant2)
 	{
-		if ($this->name && $this->hex)
-		{
-			$color = new Color($this->db);
-			$color->name = $this->name;
-			$color->hex = $this->hex;
-			$color->variant1 = $this->variant1;
-			$color->variant2 = $this->variant2;
-			$color->write();
-		}
-		else
-		{
-			throw new Exception('Color name and hex must be set');
-		}
+		$color = new Color($this->db);
+		$color->name = $name;
+		$color->hex = $hex;
+		$color->variant1 = $variant1;
+		$color->variant2 = $variant2;
+		$color->write();
 	}
 }
 

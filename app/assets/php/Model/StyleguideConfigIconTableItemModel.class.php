@@ -2,78 +2,38 @@
 
 class StyleguideConfigIconTableItemModel extends Model_base
 {
-	public $itemID;
-	public $fontID;
-	public $listingID;
-	public $listing;
-	
-	public function editFont()
+	public function editFont(int $itemID, int $fontID)
 	{
-		if ($this->itemID && $this->fontID)
-		{
-			$iconTableItem = new StyleguideIconTableItem($this->db, $this->itemID);
-			$iconTableItem->fontID = $this->fontID;
-			$iconTableItem->write();
-		}
-		else
-		{
-			throw new Exception('Item ID and font ID must be set');
-		}
+		$iconTableItem = new StyleguideIconTableItem($this->db, $itemID);
+		$iconTableItem->fontID = $fontID;
+		$iconTableItem->write();
 	}
 	
-	public function addListing()
+	public function addListing(int $itemID, string $listing)
 	{
-		if ($this->itemID && $this->listing)
-		{
-			$listing = new StyleguideIconTableListing($this->db, null, $this->itemID);
-			$listing->html = $this->listing;
-			$listing->write();
-		}
-		else
-		{
-			throw new Exception('Item ID and listing must be set');
-		}
+		$listing = new StyleguideIconTableListing($this->db, null, $itemID);
+		$listing->html = $listing;
+		$listing->write();
 	}
 	
-	public function deleteListing()
+	public function deleteListing(int $listingID)
 	{
-		if ($this->itemID && $this->listingID)
-		{
-			$listing = new StyleguideIconTableListing($this->db, $this->listingID);
-			$listing->delete();
-		}
-		else
-		{
-			throw new Exception('Item ID and listing ID must be set');
-		}
+		$listing = new StyleguideIconTableListing($this->db, $listingID);
+		$listing->delete();
 	}
 	
-	public function getListing()
+	public function getListing(int $listingID)
 	{
-		if ($this->listingID)
-		{
-			$listing = new StyleguideIconTableListing($this->db, $this->listingID);
-			$listing->read();
-			return $listing->html;
-		}
-		else
-		{
-			throw new Exception('Listing ID must be set');
-		}
+		$listing = new StyleguideIconTableListing($this->db, $listingID);
+		$listing->read();
+		return $listing->html;
 	}
 	
-	public function editListing()
+	public function editListing(int $listingID, string $listing)
 	{
-		if ($this->listingID && $this->listing)
-		{
-			$listing = new StyleguideIconTableListing($this->db, $this->listingID);
-			$listing->html = $this->listing;
-			$listing->write();
-		}
-		else
-		{
-			throw new Exception('Listing ID and listing must be set');
-		}
+		$listing = new StyleguideIconTableListing($this->db, $listingID);
+		$listing->html = $listing;
+		$listing->write();
 	}
 }
 

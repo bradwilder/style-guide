@@ -3,86 +3,46 @@
 class MoodboardSectionModel extends Model_base
 {
 	public $sectionID;
-	public $name;
-	public $description;
-	public $modeID;
-	public $sectionImageID;
-	public $imageIDs;
 	
 	public function nameExists(string $name, int $selfID = null)
 	{
 		return MoodboardSection::nameExists($this->db, $name, $selfID);
 	}
 	
-	public function newSection()
+	public function newSection(string $name, string $description, int $modeID)
 	{
-		if ($this->name)
-		{
-			$moodboardSection = new MoodboardSection($this->db);
-			$moodboardSection->name = $this->name;
-			$moodboardSection->description = $this->description;
-			$moodboardSection->modeID = $this->modeID;
-			$moodboardSection->write();
-		}
-		else
-		{
-			throw new Exception('Section name must be set');
-		}
+		$moodboardSection = new MoodboardSection($this->db);
+		$moodboardSection->name = $name;
+		$moodboardSection->description = $description;
+		$moodboardSection->modeID = $modeID;
+		$moodboardSection->write();
 	}
 	
-	public function updateSection()
+	public function updateSection(int $sectionID, string $name, string $description)
 	{
-		if ($this->sectionID)
-		{
-			$moodboardSection = new MoodboardSection($this->db, $this->sectionID);
-			$moodboardSection->name = $this->name;
-			$moodboardSection->description = $this->description;
-			$moodboardSection->write();
-		}
-		else
-		{
-			throw new Exception('Section ID must be set');
-		}
+		$moodboardSection = new MoodboardSection($this->db, $sectionID);
+		$moodboardSection->name = $name;
+		$moodboardSection->description = $description;
+		$moodboardSection->write();
 	}
 	
-	public function deleteSection()
+	public function deleteSection(int $sectionID)
 	{
-		if ($this->sectionID)
-		{
-			$moodboardSection = new MoodboardSection($this->db, $this->sectionID);
-			$moodboardSection->delete();
-		}
-		else
-		{
-			throw new Exception('Section ID must be set');
-		}
+		$moodboardSection = new MoodboardSection($this->db, $sectionID);
+		$moodboardSection->delete();
 	}
 	
-	public function removeImage()
+	public function removeImage(int $sectionImageID)
 	{
-		if ($this->sectionImageID)
-		{
-			$this->db->query('delete from mb_section_image where id = ?', 'i', [&$this->sectionImageID]);
-		}
-		else
-		{
-			throw new Exception('Section image ID must be set');
-		}
+		$this->db->query('delete from mb_section_image where id = ?', 'i', [&$sectionImageID]);
 	}
 	
-	public function addImages()
+	public function addImages(int $sectionID, $imageIDs)
 	{
-		if ($this->sectionID && $this->imageIDs)
+		foreach ($imageIDs as $imageID)
 		{
-			foreach ($this->imageIDs as $imageID)
-			{
-				$query = 'insert into mb_section_image (sectionID, imageID, position, sizeID) select ' . $this->sectionID . ', ' . $imageID . ', case when max(position) is not null then max(position) + 1 else 1 end, (select id from mb_size where name = "Small") from mb_section_image where sectionID = ?';
-				$this->db->query($query, 'i', [&$this->sectionID]);
-			}
-		}
-		else
-		{
-			throw new Exception('Section ID and images must be set');
+			$query = 'insert into mb_section_image (sectionID, imageID, position, sizeID) select ?, ?, case when max(position) is not null then max(position) + 1 else 1 end, (select id from mb_size where name = "Small") from mb_section_image where sectionID = ?';
+			$this->db->query($query, 'iii', [&$sectionID, &$imageID, &$sectionID]);
 		}
 	}
 	

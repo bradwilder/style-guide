@@ -9,18 +9,12 @@ class StyleguideConfigElementItemController extends Controller_base
 	
 	public function deleteUpload()
 	{
-		$this->model->itemID = $_POST['item_id'];
-		$this->model->uploadID = $_POST['upload_id'];
-		
-		$this->model->removeUpload();
+		$this->model->removeUpload($_POST['item_id'], $_POST['upload_id']);
 	}
 	
 	public function addUpload()
 	{
-		$this->model->itemID = $_POST['item_id'];
-		$this->model->uploadID = $_POST['upload_id'];
-		
-		$this->model->addUpload();
+		$this->model->addUpload($_POST['item_id'], $_POST['upload_id']);
 	}
 }
 

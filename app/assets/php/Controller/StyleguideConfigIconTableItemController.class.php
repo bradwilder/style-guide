@@ -9,41 +9,27 @@ class StyleguideConfigIconTableItemController extends Controller_base
 	
 	public function editFont()
 	{
-		$this->model->itemID = $_POST['item_id'];
-		$this->model->fontID = $_POST['font_id'];
-		
-		$this->model->editFont();
+		$this->model->editFont($_POST['item_id'], $_POST['font_id']);
 	}
 	
 	public function addListing()
 	{
-		$this->model->itemID = $_POST['item_id'];
-		$this->model->listing = $_POST['listing'];
-		
-		$this->model->addListing();
+		$this->model->addListing($_POST['item_id'], $_POST['listing']);
 	}
 	
 	public function delete()
 	{
-		$this->model->itemID = $_POST['item_id'];
-		$this->model->listingID = $_POST['listing_id'];
-		
-		$this->model->deleteListing();
+		$this->model->deleteListing($_POST['listing_id']);
 	}
 	
 	public function getListing()
 	{
-		$this->model->listingID = $_GET['listing_id'];
-		
-		echo $this->model->getListing();
+		echo $this->model->getListing($_GET['listing_id']);
 	}
 	
 	public function editListing()
 	{
-		$this->model->listingID = $_POST['listing_id'];
-		$this->model->listing = $_POST['listing'];
-		
-		$this->model->editListing();
+		$this->model->editListing($_POST['listing_id'], $_POST['listing']);
 	}
 }
 

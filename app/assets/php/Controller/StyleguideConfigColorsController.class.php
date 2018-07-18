@@ -14,30 +14,21 @@ class StyleguideConfigColorsController extends Controller_base
 	
 	public function setDefaultColor()
 	{
-		$this->model->id = $_POST['color_id'];
-		
-		$this->model->setDefaultColor();
+		$this->model->setDefaultColor($_POST['color_id']);
 	}
 	
 	public function delete()
 	{
-		$this->model->id = $_POST['color_id'];
-		
-		$this->model->delete();
+		$this->model->delete($_POST['color_id']);
 	}
 	
 	public function nameExists()
 	{
-		$this->model->name = $_POST['newValue'];
-		$this->model->id = $_POST['self_id'];
-		
-		echo $this->model->nameExists();
+		echo $this->model->nameExists($_POST['newValue'], $_POST['self_id']);
 	}
 	
 	public function add()
 	{
-		$this->model->name = $_POST['name'];
-		$this->model->hex = $_POST['hex'];
 		$var1 = $_POST['var1'];
 		$var2 = $_POST['var2'];
 		if ($var2 && !$var1)
@@ -45,28 +36,18 @@ class StyleguideConfigColorsController extends Controller_base
 			$var1 = $var2;
 			$var2 = null;
 		}
-		$this->model->variant1 = $var1;
-		$this->model->variant2 = $var2;
 		
-		$this->model->addColor();
+		$this->model->addColor($_POST['name'], $_POST['hex'], $var1, $var2);
 	}
 	
 	public function get()
 	{
-		$this->model->id = $_GET['color_id'];
-		
-		echo json_encode($this->model->getColor());
+		echo json_encode($this->model->getColor($_GET['color_id']));
 	}
 	
 	public function edit()
 	{
-		$this->model->id = $_POST['color_id'];
-		$this->model->name = $_POST['name'];
-		$this->model->hex = $_POST['hex'];
-		$this->model->variant1 = $_POST['var1'];
-		$this->model->variant2 = $_POST['var2'];
-		
-		$this->model->editColor();
+		$this->model->editColor($_POST['color_id'], $_POST['name'], $_POST['hex'], $_POST['var1'], $_POST['var2']);
 	}
 }
 

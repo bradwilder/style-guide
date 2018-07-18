@@ -2,102 +2,53 @@
 
 class StyleguideConfigSubsectionModel extends Model_base
 {
-	public $id;
-	public $sectionID;
-	public $parentID;
-	public $name;
-	public $description;
-	public $enabled;
-	
-	public function deleteSubsection()
+	public function deleteSubsection(int $id)
 	{
-		if ($this->id)
+		$subsection = new StyleguideSubsection($this->db, $id);
+		$subsection->delete();
+	}
+	
+	public function nameExists(string $name, int $id, int $sectionID, int $parentID)
+	{
+		if ($id)
 		{
-			$subsection = new StyleguideSubsection($this->db, $this->id);
-			$subsection->delete();
+			return StyleguideSubsection::nameExistsEdit($this->db, $name, $id);
 		}
 		else
 		{
-			throw new Exception('Subsection ID must be set');
+			return StyleguideSubsection::nameExistsNew($this->db, $name, $sectionID, $parentID);
 		}
 	}
 	
-	public function nameExists()
+	public function getSubsection(int $id)
 	{
-		if ($this->name)
-		{
-			if ($this->id)
-			{
-				return StyleguideSubsection::nameExistsEdit($this->db, $this->name, $this->id);
-			}
-			else
-			{
-				return StyleguideSubsection::nameExistsNew($this->db, $this->name, $this->sectionID, $this->parentID);
-			}
-		}
-		else
-		{
-			throw new Exception('Subsection name must be set');
-		}
+		$subsection = new StyleguideSubsection($this->db, $id);
+		$subsection->read();
+		return $subsection;
 	}
 	
-	public function getSubsection()
+	public function editSubsection(int $id, string $name, string $description)
 	{
-		if ($this->id)
-		{
-			$subsection = new StyleguideSubsection($this->db, $this->id);
-			$subsection->read();
-			return $subsection;
-		}
-		else
-		{
-			throw new Exception('Subsection ID must be set');
-		}
+		$subsection = new StyleguideSubsection($this->db, $id);
+		$subsection->name = $name;
+		$subsection->description = $description;
+		$subsection->write();
 	}
 	
-	public function editSubsection()
+	public function enableSubsection(int $id, bool $enabled)
 	{
-		if ($this->id)
-		{
-			$subsection = new StyleguideSubsection($this->db, $this->id);
-			$subsection->name = $this->name;
-			$subsection->description = $this->description;
-			$subsection->write();
-		}
-		else
-		{
-			throw new Exception('Subsection id must be set');
-		}
+		$subsection = new StyleguideSubsection($this->db, $id);
+		$subsection->enabled = $enabled;
+		$subsection->write();
 	}
 	
-	public function enableSubsection()
+	public function addSubsection(string $name, string $description, bool $enabled, int $sectionID, int $parentID)
 	{
-		if ($this->id &&isset($this->enabled))
-		{
-			$subsection = new StyleguideSubsection($this->db, $this->id);
-			$subsection->enabled = $this->enabled;
-			$subsection->write();
-		}
-		else
-		{
-			throw new Exception('Subsection id and enabled value must be set');
-		}
-	}
-	
-	public function addSubsection()
-	{
-		if ($this->name)
-		{
-			$subsection = new StyleguideSubsection($this->db, null, $this->sectionID, $this->parentID);
-			$subsection->name = $this->name;
-			$subsection->description = $this->description;
-			$subsection->enabled = $this->enabled;
-			$subsection->write();
-		}
-		else
-		{
-			throw new Exception('Subsection name must be set');
-		}
+		$subsection = new StyleguideSubsection($this->db, null, $sectionID, $parentID);
+		$subsection->name = $name;
+		$subsection->description = $description;
+		$subsection->enabled = $enabled;
+		$subsection->write();
 	}
 }
 

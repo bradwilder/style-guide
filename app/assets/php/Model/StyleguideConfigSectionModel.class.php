@@ -2,91 +2,45 @@
 
 class StyleguideConfigSectionModel extends Model_base
 {
-	public $id;
-	public $name;
-	public $enabled;
-	
-	public function delete()
+	public function delete(int $id)
 	{
-		if ($this->id)
-		{
-			$section = new StyleguideSection($this->db, $this->id);
-			$section->delete();
-		}
-		else
-		{
-			throw new Exception('Section ID must be set');
-		}
+		$section = new StyleguideSection($this->db, $id);
+		$section->delete();
 	}
 	
-	public function nameExists()
+	public function nameExists(string $name, int $id)
 	{
-		if ($this->name)
-		{
-			return StyleguideSection::nameExists($this->db, $this->name, $this->id);
-		}
-		else
-		{
-			throw new Exception('Section name must be set');
-		}
+		return StyleguideSection::nameExists($this->db, $name, $id);
 	}
 	
-	public function getSection()
+	public function getSection(int $id)
 	{
-		if ($this->id)
-		{
-			$section = new StyleguideSection($this->db, $this->id);
-			$section->read();
-			return $section;
-		}
-		else
-		{
-			throw new Exception('Section ID must be set');
-		}
+		$section = new StyleguideSection($this->db, $id);
+		$section->read();
+		return $section;
 	}
 	
-	public function editSection()
+	public function editSection(int $id, string $name)
 	{
-		if ($this->id)
-		{
-			$section = new StyleguideSection($this->db, $this->id);
-			$section->name = $this->name;
-			$section->write();
-		}
-		else
-		{
-			throw new Exception('Section id must be set');
-		}
+		$section = new StyleguideSection($this->db, $id);
+		$section->name = $name;
+		$section->write();
 	}
 	
-	public function enableSection()
+	public function enableSection(int $id, bool $enabled)
 	{
-		if ($this->id &&isset($this->enabled))
-		{
-			$section = new StyleguideSection($this->db, $this->id);
-			$section->enabled = $this->enabled;
-			$section->write();
-		}
-		else
-		{
-			throw new Exception('Section id and enabled value must be set');
-		}
+		$section = new StyleguideSection($this->db, $id);
+		$section->enabled = $enabled;
+		$section->write();
 	}
 	
-	public function addSection()
+	public function addSection(string $name, bool $enabled)
 	{
-		if ($this->name)
-		{
-			$section = new StyleguideSection($this->db);
-			$section->name = $this->name;
-			$section->enabled = $this->enabled;
-			$section->userCreated = true;
-			$section->write();
-		}
-		else
-		{
-			throw new Exception('Section name must be set');
-		}
+		$section = new StyleguideSection($this->db);
+		$section->name = $name;
+		$section->enabled = $enabled;
+		$section->userCreated = true;
+		$section->write();
 	}
 }
 

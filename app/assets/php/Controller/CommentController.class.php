@@ -9,19 +9,12 @@ class CommentController extends Controller_base
 	
 	public function submit()
 	{
-		$this->model->userID = $_POST['user_id'];
-		$this->model->commentText = $_POST['comment'];
-		
-		$this->model->submit();
+		$this->model->submit($_POST['user_id'], $_POST['comment']);
 	}
 	
 	public function reply()
 	{
-		$this->model->userID = $_POST['user_id'];
-		$this->model->commentText = $_POST['comment'];
-		$this->model->commentReplyingTo = $_POST['replying_id'];
-		
-		$this->model->submit();
+		$this->model->submit($_POST['user_id'], $_POST['comment'], $_POST['replying_id']);
 	}
 }
 

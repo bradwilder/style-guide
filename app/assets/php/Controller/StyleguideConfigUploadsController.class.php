@@ -9,13 +9,7 @@ class StyleguideConfigUploadsController extends Controller_base
 	
 	public function uploadFile()
 	{
-		$this->model->id = $_POST['folder_id'];
-		$this->model->fileName = $_POST['name'];
-		$this->model->shortName = $_POST['shortName'];
-		$this->model->longName = $_POST['longName'];
-		$this->model->uploadFile = $_FILES['upload'];
-		
-		$ret = $this->model->uploadFile();
+		$ret = $this->model->uploadFile($_POST['folder_id'], $_POST['name'], $_FILES['upload'], $_POST['shortName'], $_POST['longName']);
 		if ($ret)
 		{
 			setReturnHeaders(500, 'Internal Server Error', ['error' => 'Error: ' . $ret]);
@@ -24,10 +18,7 @@ class StyleguideConfigUploadsController extends Controller_base
 	
 	public function newFolder()
 	{
-		$this->model->id = $_POST['folder_id'];
-		$this->model->fileName = $_POST['name'];
-		
-		$ret = $this->model->newFolder();
+		$ret = $this->model->newFolder($_POST['folder_id'], $_POST['name']);
 		if ($ret)
 		{
 			setReturnHeaders(500, 'Internal Server Error', ['error' => 'Error: ' . $ret]);
@@ -36,9 +27,7 @@ class StyleguideConfigUploadsController extends Controller_base
 	
 	public function delete()
 	{
-		$this->model->id = $_POST['upload_id'];
-		
-		$ret = $this->model->delete();
+		$ret = $this->model->delete($_POST['upload_id']);
 		if ($ret)
 		{
 			setReturnHeaders(500, 'Internal Server Error', ['error' => 'Error: ' . $ret]);
@@ -47,20 +36,12 @@ class StyleguideConfigUploadsController extends Controller_base
 	
 	public function get()
 	{
-		$this->model->id = $_GET['upload_id'];
-		
-		echo json_encode($this->model->getUpload());
+		echo json_encode($this->model->getUpload($_GET['upload_id']));
 	}
 	
 	public function editFile()
 	{
-		$this->model->id = $_POST['upload_id'];
-		$this->model->fileName = $_POST['name'];
-		$this->model->shortName = $_POST['shortName'];
-		$this->model->longName = $_POST['longName'];
-		$this->model->uploadFile = $_FILES['upload'];
-		
-		$ret = $this->model->editFile();
+		$ret = $this->model->editFile($_POST['upload_id'], $_POST['name'], $_FILES['upload'], $_POST['shortName'], $_POST['longName']);
 		if ($ret)
 		{
 			setReturnHeaders(500, 'Internal Server Error', ['error' => 'Error: ' . $ret]);
@@ -69,10 +50,7 @@ class StyleguideConfigUploadsController extends Controller_base
 	
 	public function editFolder()
 	{
-		$this->model->id = $_POST['folder_id'];
-		$this->model->fileName = $_POST['name'];
-		
-		$ret = $this->model->editFolder();
+		$ret = $this->model->editFolder($_POST['folder_id'], $_POST['name']);
 		if ($ret)
 		{
 			setReturnHeaders(500, 'Internal Server Error', ['error' => 'Error: ' . $ret]);

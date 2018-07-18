@@ -9,9 +9,7 @@ class SessionController extends Controller_base
 	
 	public function delete()
 	{
-		$this->model->setSessionID($_POST['id']);
-		
-		$deleted = $this->model->deleteSession();
+		$deleted = $this->model->deleteSession($_POST['id']);
 		if (!$deleted)
 		{
 			setReturnHeaders(500, 'Internal Server Error', ['error' => 'Error: Unable to delete the session.']);

@@ -2,27 +2,15 @@
 
 class CommentModel extends Model_base
 {
-	public $userID;
-	public $commentText;
-	public $commentReplyingTo;
-	public $sectionImageID;
-	
-	public function submit()
+	public function submit(int $userID, string $commentText, int $commentReplyingToID, int $sectionImageID)
 	{
-		if ($this->userID && $this->commentText)
-		{
-			$comment = new Comment($this->db);
-			$comment->userID = $this->userID;
-			$comment->text = $this->commentText;
-			$comment->postTime = time();
-			$comment->commentReplyingToID = $this->commentReplyingTo;
-			$comment->sectionImageID = $this->sectionImageID;
-			$comment->write();
-		}
-		else
-		{
-			throw new Exception('User ID and comment must be set');
-		}
+		$comment = new Comment($this->db);
+		$comment->userID = $userID;
+		$comment->text = $commentText;
+		$comment->postTime = time();
+		$comment->commentReplyingToID = $commentReplyingToID;
+		$comment->sectionImageID = $sectionImageID;
+		$comment->write();
 	}
 }
 

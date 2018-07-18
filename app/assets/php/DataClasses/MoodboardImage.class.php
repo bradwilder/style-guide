@@ -25,6 +25,13 @@ class MoodboardImage extends DBItem
 		
 		$this->sections = $rows;
 	}
+	
+	public static function nameExists(Db $db, string $name)
+	{
+		$rows = $db->select('select count(*) as count from ' . self::$tableName . ' where name = ?', 's', [&$name]);
+		$count = $rows[0]['count'];
+		return ($count != 0);
+	}
 }
 
 ?>

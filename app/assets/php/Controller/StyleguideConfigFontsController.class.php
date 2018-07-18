@@ -9,37 +9,22 @@ class StyleguideConfigFontsController extends Controller_base
 	
 	public function delete()
 	{
-		$this->model->id = $_POST['font_id'];
-		
-		$this->model->delete();
+		$this->model->delete($_POST['font_id']);
 	}
 	
 	public function nameExists()
 	{
-		$this->model->name = $_POST['newValue'];
-		$this->model->id = $_POST['self_id'];
-		
-		echo $this->model->nameExists();
+		echo $this->model->nameExists($_POST['newValue'], $_POST['self_id']);
 	}
 	
 	public function add()
 	{
-		$this->model->name = $_POST['name'];
-		$this->model->alphabetID = $_POST['alphabet'];
-		$this->model->typeCode = $_POST['type'];
-		$this->model->uploadFile = $_FILES['upload'];
-		$this->model->cssFile = $_POST['cssFile'];
-		$this->model->importURL = $_POST['importUrl'];
-		$this->model->website = $_POST['website'];
-		
-		$this->model->addFont();
+		$this->model->addFont($_POST['name'], $_POST['alphabet'], $_POST['type'], $_FILES['upload'], $_POST['cssFile'], $_POST['importUrl'], $_POST['website']);
 	}
 	
 	public function get()
 	{
-		$this->model->id = $_GET['font_id'];
-		
-		echo json_encode($this->model->getFont());
+		echo json_encode($this->model->getFont($_GET['font_id']));
 	}
 	
 	public function alphabets()
@@ -54,15 +39,7 @@ class StyleguideConfigFontsController extends Controller_base
 	
 	public function edit()
 	{
-		$this->model->id = $_POST['font_id'];
-		$this->model->name = $_POST['name'];
-		$this->model->alphabetID = $_POST['alphabet'];
-		$this->model->uploadFile = $_FILES['upload'];
-		$this->model->cssFile = $_POST['cssFile'];
-		$this->model->importURL = $_POST['importUrl'];
-		$this->model->website = $_POST['website'];
-		
-		$this->model->editFont();
+		$this->model->editFont($_POST['font_id'], $_POST['name'], $_POST['alphabet'], $_FILES['upload'], $_POST['cssFile'], $_POST['importUrl'], $_POST['website']);
 	}
 }
 

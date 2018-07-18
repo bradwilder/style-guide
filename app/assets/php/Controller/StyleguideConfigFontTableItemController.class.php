@@ -9,71 +9,47 @@ class StyleguideConfigFontTableItemController extends Controller_base
 	
 	public function editListingFont()
 	{
-		$this->model->listingID = $_POST['listing_id'];
-		$this->model->fontID = $_POST['font_id'];
-		
-		$this->model->editListingFont();
+		$this->model->editListingFont($_POST['listing_id'], $_POST['font_id']);
 	}
 	
 	public function addListingCSS()
 	{
-		$this->model->listingID = $_POST['listing_id'];
-		$this->model->css = $_POST['css'];
-		
-		$this->model->addListingCSS();
+		$this->model->addListingCSS($_POST['listing_id'], $_POST['css']);
 	}
 	
 	public function deleteListingCSS()
 	{
-		$this->model->listingCSSID = $_POST['listing_css_id'];
-		
-		$this->model->deleteListingCSS();
+		$this->model->deleteListingCSS($_POST['listing_css_id']);
 	}
 	
 	public function getListingCSS()
 	{
-		$this->model->listingCSSID = $_GET['listing_css_id'];
-		
-		echo $this->model->getListingCSS();
+		echo $this->model->getListingCSS($_GET['listing_css_id']);
 	}
 	
 	public function editListingCSS()
 	{
-		$this->model->listingCSSID = $_POST['listing_css_id'];
-		$this->model->css = $_POST['css'];
-		
-		$this->model->editListingCSS();
+		$this->model->editListingCSS($_POST['listing_css_id'], $_POST['css']);
 	}
 	
 	public function getListing()
 	{
-		$this->model->listingID = $_GET['listing_id'];
-		
-		echo $this->model->getListing();
+		echo $this->model->getListing($_GET['listing_id']);
 	}
 	
 	public function editListing()
 	{
-		$this->model->listingID = $_POST['listing_id'];
-		$this->model->listing = $_POST['listing'];
-		
-		$this->model->editListing();
+		$this->model->editListing($_POST['listing_id'], $_POST['listing']);
 	}
 	
 	public function deleteListing()
 	{
-		$this->model->listingID = $_POST['listing_id'];
-		
-		$this->model->deleteListing();
+		$this->model->deleteListing($_POST['listing_id']);
 	}
 	
 	public function addListing()
 	{
-		$this->model->itemID = $_POST['item_id'];
-		$this->model->listing = $_POST['listing'];
-		$this->model->fontID = $_POST['font_id'];
-		
-		$this->model->addListing();
+		$this->model->addListing($_POST['item_id'], $_POST['listing'], $_POST['font_id']);
 	}
 }
 

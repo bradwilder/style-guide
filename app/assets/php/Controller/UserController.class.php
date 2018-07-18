@@ -14,12 +14,7 @@ class UserController extends Controller_base
 	
 	public function add()
 	{
-		$this->model->email = $_POST['email'];
-		$this->model->phone = $_POST['phone'];
-		$this->model->displayName = $_POST['displayName'];
-		$this->model->groupID = $_POST['group'];
-		
-		$ret = $this->model->add();
+		$ret = $this->model->add($_POST['email'], $_POST['group'], $_POST['phone'], $_POST['displayName']);
 		if ($ret)
 		{
 			setReturnHeaders(500, 'Internal Server Error', ['error' => 'Error: ' . $ret]);
@@ -28,13 +23,7 @@ class UserController extends Controller_base
 	
 	public function edit()
 	{
-		$this->model->userID = $_POST['id'];
-		$this->model->email = $_POST['email'];
-		$this->model->phone = $_POST['phone'];
-		$this->model->displayName = $_POST['displayName'];
-		$this->model->groupID = $_POST['group'];
-		
-		$ret = $this->model->edit();
+		$ret = $this->model->edit($_POST['id'], $_POST['email'], $_POST['phone'], $_POST['displayName'], $_POST['group']);
 		if ($ret)
 		{
 			setReturnHeaders(500, 'Internal Server Error', ['error' => 'Error: ' . $ret]);
@@ -48,18 +37,12 @@ class UserController extends Controller_base
 	
 	public function delete()
 	{
-		$this->model->userID = $_POST['user_id_delete'];
-		$this->model->currUserID = $_POST['user_id_current'];
-		$this->model->currUserPassword = $_POST['password'];
-		
-		$this->model->delete();
+		$this->model->delete($_POST['user_id_delete'], $_POST['user_id_current'], $_POST['password']);
 	}
 	
 	public function undelete()
 	{
-		$this->model->userID = $_POST['id'];
-		
-		$ret = $this->model->undelete();
+		$ret = $this->model->undelete($_POST['id']);
 		if ($ret)
 		{
 			setReturnHeaders(500, 'Internal Server Error', ['error' => 'Error: ' . $ret]);
@@ -68,12 +51,7 @@ class UserController extends Controller_base
 	
 	public function changePassword()
 	{
-		$this->model->userID = $_POST['id'];
-		$this->model->oldPassword = $_POST['old'];
-		$this->model->newPassword = $_POST['new'];
-		$this->model->newPasswordConfrim = $_POST['new-confirm'];
-		
-		$ret = $this->model->changePassword();
+		$ret = $this->model->changePassword($_POST['id'], $_POST['old'], $_POST['new'], $_POST['new-confirm']);
 		if ($ret)
 		{
 			setReturnHeaders(500, 'Internal Server Error', ['error' => 'Error: ' . $ret]);
@@ -82,9 +60,7 @@ class UserController extends Controller_base
 	
 	public function activationRequest()
 	{
-		$this->model->userID = $_POST['id'];
-		
-		$ret = $this->model->activationRequest();
+		$ret = $this->model->activationRequest($_POST['id']);
 		if ($ret)
 		{
 			setReturnHeaders(500, 'Internal Server Error', ['error' => 'Error: ' . $ret]);
@@ -93,12 +69,7 @@ class UserController extends Controller_base
 	
 	public function activate()
 	{
-		$this->model->emailKey = $_POST['email-key'];
-		$this->model->smsKey = $_POST['sms-key'];
-		$this->model->newPassword = $_POST['new-password'];
-		$this->model->newPasswordConfirm = $_POST['new-password-confirm'];
-		
-		$ret = $this->model->activate();
+		$ret = $this->model->activate($_POST['email-key'], $_POST['new-password'], $_POST['new-password-confirm'], $_POST['sms-key']);
 		if ($ret['error'])
 		{
 			setReturnHeaders(401, 'Unauthorized', $ret);
@@ -111,10 +82,7 @@ class UserController extends Controller_base
 	
 	public function resendActivation()
 	{
-		$this->model->emailKey = $_POST['email-key'];
-		$this->model->smsKey = $_POST['sms-key'];
-		
-		$ret = $this->model->resendActivation();
+		$ret = $this->model->resendActivation($_POST['email-key'], $_POST['sms-key']);
 		if ($ret['error'])
 		{
 			setReturnHeaders(500, 'Internal Server Error', $ret);
@@ -127,9 +95,7 @@ class UserController extends Controller_base
 	
 	public function deleteRequest()
 	{
-		$this->model->requestIDs = $_POST['id'];
-		
-		$ret = $this->model->deleteRequests();
+		$ret = $this->model->deleteRequests($_POST['id']);
 		if ($ret)
 		{
 			setReturnHeaders(500, 'Internal Server Error', ['error' => 'Error: ' . $ret]);
@@ -143,10 +109,7 @@ class UserController extends Controller_base
 	
 	public function login()
 	{
-		$this->model->email = $_POST['email'];
-		$this->model->currUserPassword = $_POST['password'];
-		
-		$ret = $this->model->login();
+		$ret = $this->model->login($_POST['email'], $_POST['password']);
 		if ($ret['error'])
 		{
 			setReturnHeaders(401, 'Unauthorized', $ret);
@@ -159,9 +122,7 @@ class UserController extends Controller_base
 	
 	public function requestReset()
 	{
-		$this->model->email = $_POST['email'];
-		
-		$ret = $this->model->requestReset();
+		$ret = $this->model->requestReset($_POST['email']);
 		if ($ret['error'])
 		{
 			setReturnHeaders(500, 'Internal Server Error', $ret);
@@ -174,12 +135,7 @@ class UserController extends Controller_base
 	
 	public function resetPassword()
 	{
-		$this->model->emailKey = $_POST['email-key'];
-		$this->model->smsKey = $_POST['sms-key'];
-		$this->model->newPassword = $_POST['new-password'];
-		$this->model->newPasswordConfirm = $_POST['new-password-confirm'];
-		
-		$ret = $this->model->resetPassword();
+		$ret = $this->model->resetPassword($_POST['email-key'], $_POST['new-password'], $_POST['new-password-confirm'], $_POST['sms-key']);
 		if ($ret['error'])
 		{
 			setReturnHeaders(500, 'Internal Server Error', $ret);

@@ -2,62 +2,28 @@
 
 class StyleguideConfigItemModel extends Model_base
 {
-	public $id;
-	public $name;
-	public $type;
-	public $subsectionID;
-	public $columns;
-	
-	public function deleteItem()
+	public function deleteItem(int $id)
 	{
-		if ($this->id)
-		{
-			$item = StyleguideItemFactory::readItemByID($this->id);
-			$item->delete();
-		}
-		else
-		{
-			throw new Exception('Item ID must be set');
-		}
+		$item = StyleguideItemFactory::readItemByID($id);
+		$item->delete();
 	}
 	
-	public function nameExists()
+	public function nameExists(string $name, int $id)
 	{
-		if ($this->name)
-		{
-			return StyleguideItem::nameExists($this->db, $this->name, $this->id);
-		}
-		else
-		{
-			throw new Exception('Item name must be set');
-		}
+		return StyleguideItem::nameExists($this->db, $name, $id);
 	}
 	
-	public function getItem()
+	public function getItem(int $id)
 	{
-		if ($this->id)
-		{
-			$item = StyleguideItemFactory::readItemByID($this->id);
-			return $item;
-		}
-		else
-		{
-			throw new Exception('Item ID must be set');
-		}
+		$item = StyleguideItemFactory::readItemByID($id);
+		return $item;
 	}
 	
-	public function editItem()
+	public function editItem(int $id, string $name)
 	{
-		if ($this->id && $this->name)
-		{
-			$item = new StyleguideItem($this->db, $this->id);
-			$item->name = $this->name;
-			$item->write();
-		}
-		else
-		{
-			throw new Exception('Item ID and name must be set');
-		}
+		$item = new StyleguideItem($this->db, $id);
+		$item->name = $name;
+		$item->write();
 	}
 	
 	public function getItemTypes()
@@ -75,60 +41,39 @@ class StyleguideConfigItemModel extends Model_base
 		return $types;
 	}
 	
-	public function getItemColumns()
+	public function getItemColumns(int $id)
 	{
-		if ($this->id)
-		{
-			$item = new StyleguideItem($this->db, $this->id);
-			$item->read();
-			$itemColumns = new StyleguideItemColumns($item->colXs, $item->colSm, $item->colMd, $item->colLg);
-			
-			$min = StyleguideItemTypeColumnMinFactory::readColMinByTypeID($item->typeID);
-			$minColumns = new StyleguideItemColumns($min->minXS, $min->minSM, $min->minMD, $min->minLG);
-			
-			$editItem = new StyleguideItemColumnsEditItem();
-			$editItem->columns = $itemColumns;
-			$editItem->mins = $minColumns;
-			
-			return $editItem;
-		}
-		else
-		{
-			throw new Exception('Item ID must be set');
-		}
+		$item = new StyleguideItem($this->db, $id);
+		$item->read();
+		$itemColumns = new StyleguideItemColumns($item->colXs, $item->colSm, $item->colMd, $item->colLg);
+		
+		$min = StyleguideItemTypeColumnMinFactory::readColMinByTypeID($item->typeID);
+		$minColumns = new StyleguideItemColumns($min->minXS, $min->minSM, $min->minMD, $min->minLG);
+		
+		$editItem = new StyleguideItemColumnsEditItem();
+		$editItem->columns = $itemColumns;
+		$editItem->mins = $minColumns;
+		
+		return $editItem;
 	}
 	
-	public function editItemColumns()
+	public function editItemColumns(int $id, int $lg, int $md, int $sm, int $xs)
 	{
-		if ($this->id && $this->columns)
-		{
-			$item = new StyleguideItem($this->db, $this->id);
-			
-			$item->colLg = $this->columns->lg;
-			$item->colMd = $this->columns->md;
-			$item->colSm = $this->columns->sm;
-			$item->colXs = $this->columns->xs;
-			
-			$item->write();
-		}
-		else
-		{
-			throw new Exception('Item ID and columns must be set');
-		}
+		$item = new StyleguideItem($this->db, $id);
+		
+		$item->colLg = $lg;
+		$item->colMd = $md;
+		$item->colSm = $sm;
+		$item->colXs = $xs;
+		
+		$item->write();
 	}
 	
-	public function addItem()
+	public function addItem(string $name, string $type, int $subsectionID)
 	{
-		if ($this->name && $this->type && $this->subsectionID)
-		{
-			$item = StyleguideItemFactory::createByCode($this->type, $this->subsectionID);
-			$item->name = $this->name;
-			$item->write();
-		}
-		else
-		{
-			throw new Exception('Item name, type code, and subsection ID must be set');
-		}
+		$item = StyleguideItemFactory::createByCode($type, $subsectionID);
+		$item->name = $name;
+		$item->write();
 	}
 }
 

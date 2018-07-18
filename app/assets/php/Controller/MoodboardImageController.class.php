@@ -9,33 +9,22 @@ class MoodboardImageController extends Controller_base
 	
 	public function nameExists()
 	{
-		$this->model->name = $_POST['newValue'];
-		
-		echo $this->model->nameExists();
+		echo $this->model->nameExists($_POST['newValue']);
 	}
 	
 	public function add()
 	{
-		$this->model->name = $_POST['name'];
-		$this->model->description = $_POST['desc'];
-		$this->model->fileName = $_FILES['file']['tmp_name'];
-		
-		echo $this->model->uploadImage();
+		echo $this->model->uploadImage($_POST['name'], $_FILES['file']['tmp_name'], $_POST['desc']);
 	}
 	
 	public function delete()
 	{
-		$this->model->id = $_POST['image_id'];
-		
-		$this->model->deleteImage();
+		$this->model->deleteImage($_POST['image_id']);
 	}
 	
 	public function replace()
 	{
-		$this->model->id = $_POST['image_id'];
-		$this->model->fileName = $_FILES['file']['tmp_name'];
-		
-		echo $this->model->replaceImage();
+		echo $this->model->replaceImage($_POST['image_id'], $_FILES['file']['tmp_name']);
 	}
 }
 

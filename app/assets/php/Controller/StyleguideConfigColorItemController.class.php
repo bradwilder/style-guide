@@ -9,64 +9,42 @@ class StyleguideConfigColorItemController extends Controller_base
 	
 	public function editColor()
 	{
-		$this->model->itemID = $_POST['item_id'];
-		$this->model->colorID = $_POST['color_id'];
-		$this->model->useVariants = isset($_POST['use_variants']) ? 1 : 0;
-		
-		$this->model->editColor();
+		$this->model->editColor($_POST['item_id'], $_POST['color_id'], isset($_POST['use_variants']) ? 1 : 0);
 	}
 
 	public function addColor()
 	{
-		$this->model->itemID = $_POST['item_id'];
-		$this->model->colorID = $_POST['color_id'];
-		
-		$this->model->addColor();
+		$this->model->addColor($_POST['item_id'], $_POST['color_id']);
 	}
 
 	public function deleteColor()
 	{
-		$this->model->itemID = $_POST['item_id'];
-		$this->model->colorID = $_POST['color_id'];
-		
-		$this->model->deleteColor();
+		$this->model->deleteColor($_POST['item_id'], $_POST['color_id']);
 	}
 	
 	public function getDescriptor()
 	{
-		$this->model->descriptorID = $_GET['descriptor_id'];
-		
-		echo json_encode($this->model->getDescriptor());
+		echo json_encode($this->model->getDescriptor($_GET['descriptor_id']));
 	}
 	
 	public function editDescriptor()
 	{
-		$this->model->descriptorID = $_POST['descriptor_id'];
-		$this->model->descriptor = $_POST['descriptor'];
-		
-		$this->model->editDescriptor();
+		$this->model->editDescriptor($_POST['descriptor_id'], $_POST['descriptor']);
 	}
 	
 	public function deleteDescriptor()
 	{
-		$this->model->descriptorID = $_POST['descriptor_id'];
-		
-		$this->model->deleteDescriptor();
+		$this->model->deleteDescriptor($_POST['descriptor_id']);
 	}
 	
 	public function deleteDescriptors()
 	{
-		$this->model->itemID = $_POST['item_id'];
-		
-		echo json_encode($this->model->deleteDescriptors());
+		echo json_encode($this->model->deleteDescriptors($_POST['item_id']));
 	}
 	
 	public function addDescriptor()
 	{
-		$this->model->itemID = $_POST['item_id'];
-		$this->model->descriptor = $_POST['descriptor'];
-		
-		$this->model->addDescriptor();
+		$this->model->addDescriptor($_POST['item_id'], $_POST['descriptor']);
 	}
 }
 

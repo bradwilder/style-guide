@@ -9,48 +9,32 @@ class StyleguideConfigSectionController extends Controller_base
 	
 	public function delete()
 	{
-		$this->model->id = $_POST['section_id'];
-		
-		$this->model->delete();
+		$this->model->delete($_POST['section_id']);
 	}
 	
 	public function nameExists()
 	{
-		$this->model->name = $_POST['newValue'];
-		$this->model->id = $_POST['self_id'];
-		
-		echo $this->model->nameExists();
+		echo $this->model->nameExists($_POST['newValue'], $_POST['self_id']);
 	}
 	
 	public function add()
 	{
-		$this->model->name = $_POST['name'];
-		$this->model->enabled = isset($_POST['enabled']) ? 1 : 0;
-		
-		$this->model->addSection();
+		$this->model->addSection($_POST['name'], isset($_POST['enabled']) ? 1 : 0);
 	}
 	
 	public function get()
 	{
-		$this->model->id = $_GET['section_id'];
-		
-		echo json_encode($this->model->getSection());
+		echo json_encode($this->model->getSection($_GET['section_id']));
 	}
 	
 	public function edit()
 	{
-		$this->model->id = $_POST['section_id'];
-		$this->model->name = $_POST['name'];
-		
-		$this->model->editSection();
+		$this->model->editSection($_POST['section_id'], $_POST['name']);
 	}
 	
 	public function enable()
 	{
-		$this->model->id = $_POST['section_id'];
-		$this->model->enabled = $_POST['enabled'];
-		
-		$this->model->enableSection();
+		$this->model->enableSection($_POST['section_id'], $_POST['enabled']);
 	}
 }
 

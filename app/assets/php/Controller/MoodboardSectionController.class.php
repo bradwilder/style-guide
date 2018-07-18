@@ -14,27 +14,17 @@ class MoodboardSectionController extends Controller_base
 	
 	public function add()
 	{
-		$this->model->name = $_POST['name'];
-		$this->model->description = $_POST['desc'];
-		$this->model->modeID = $_POST['mode'];
-		
-		$this->model->newSection();
+		$this->model->newSection($_POST['name'], $_POST['desc'], $_POST['mode']);
 	}
 	
 	public function edit()
 	{
-		$this->model->sectionID = $_POST['section_id'];
-		$this->model->name = $_POST['name'];
-		$this->model->description = $_POST['desc'];
-		
-		$this->model->updateSection();
+		$this->model->updateSection($_POST['section_id'], $_POST['name'], $_POST['desc']);
 	}
 	
 	public function delete()
 	{
-		$this->model->sectionID = $_POST['section_id'];
-		
-		$this->model->deleteSection();
+		$this->model->deleteSection($_POST['section_id']);
 	}
 	
 	public function modes()
@@ -44,25 +34,21 @@ class MoodboardSectionController extends Controller_base
 	
 	public function removeImage()
 	{
-		$this->model->sectionImageID = $_POST['section_image_id'];
-		
-		$this->model->removeImage();
+		$this->model->removeImage($_POST['section_image_id']);
 	}
 	
 	public function addImages()
 	{
-		$this->model->sectionID = $_POST['section_id'];
-		$this->model->imageIDs = [];
+		$imageIDs = [];
 		foreach ($_POST as $key=>$value)
 		{
 			if (strstr($key, 'add-images-check-'))
 			{
-				$imageID = str_replace('add-images-check-', '', $key);
-				$this->model->imageIDs []= $imageID;
+				$imageIDs []= str_replace('add-images-check-', '', $key);
 			}
 		}
 		
-		$this->model->addImages();
+		$this->model->addImages($_POST['section_id'], $imageIDs);
 	}
 	
 	public function additionalImages()

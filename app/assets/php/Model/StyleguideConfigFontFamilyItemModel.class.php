@@ -2,25 +2,15 @@
 
 class StyleguideConfigFontFamilyItemModel extends Model_base
 {
-	public $itemID;
-	public $fontID;
-	
-	public function editFont()
+	public function editFont(int $itemID, int $fontID)
 	{
-		if ($this->itemID && $this->fontID)
-		{
-			$fontFamilyItem = new StyleguideFontFamilyItem($this->db, $this->itemID);
-			$fontFamilyItem->read();
-			$fontFamilyItem->readExtra();
-			
-			$fontFamilyItem->fontID = $this->fontID;
-			
-			$fontFamilyItem->write();
-		}
-		else
-		{
-			throw new Exception('Item ID and font ID must be set');
-		}
+		$fontFamilyItem = new StyleguideFontFamilyItem($this->db, $itemID);
+		$fontFamilyItem->read();
+		$fontFamilyItem->readExtra();
+		
+		$fontFamilyItem->fontID = $fontID;
+		
+		$fontFamilyItem->write();
 	}
 }
 

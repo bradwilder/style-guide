@@ -9,48 +9,32 @@ class StyleguideConfigItemController extends Controller_base
 	
 	public function delete()
 	{
-		$this->model->id = $_POST['item_id'];
-		
-		$this->model->deleteItem();
+		$this->model->deleteItem($_POST['item_id']);
 	}
 	
 	public function nameExists()
 	{
-		$this->model->name = $_POST['newValue'];
-		$this->model->id = $_POST['self_id'];
-		
-		echo $this->model->nameExists();
+		echo $this->model->nameExists($_POST['newValue'], $_POST['self_id']);
 	}
 	
 	public function add()
 	{
-		$this->model->name = $_POST['name'];
-		$this->model->type = $_POST['type'];
-		$this->model->subsectionID = $_POST['subsection_id'];
-		
-		$this->model->addItem();
+		$this->model->addItem($_POST['name'], $_POST['type'], $_POST['subsection_id']);
 	}
 	
 	public function get()
 	{
-		$this->model->id = $_GET['item_id'];
-		
-		echo json_encode($this->model->getItem());
+		echo json_encode($this->model->getItem($_GET['item_id']));
 	}
 	
 	public function edit()
 	{
-		$this->model->id = $_POST['item_id'];
-		$this->model->name = $_POST['name'];
-		
-		$this->model->editItem();
+		$this->model->editItem($_POST['item_id'], $_POST['name']);
 	}
 	
 	public function getColumns()
 	{
-		$this->model->id = $_GET['item_id'];
-		
-		echo json_encode($this->model->getItemColumns());
+		echo json_encode($this->model->getItemColumns($_GET['item_id']));
 	}
 	
 	public function getTypes()
@@ -60,10 +44,7 @@ class StyleguideConfigItemController extends Controller_base
 	
 	public function editColumns()
 	{
-		$this->model->id = $_POST['item_id'];
-		$this->model->columns = new StyleguideItemColumns($_POST['xs'], $_POST['sm'], $_POST['md'], $_POST['lg']);
-		
-		$this->model->editItemColumns();
+		$this->model->editItemColumns($_POST['item_id'], $_POST['lg'], $_POST['md'], $_POST['sm'], $_POST['xs']);
 	}
 }
 

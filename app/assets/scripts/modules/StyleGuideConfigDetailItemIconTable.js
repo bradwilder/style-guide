@@ -75,7 +75,7 @@ Vue.component('icon-listing-item-row',
 				({
 					url: '/iconTableItem',
 					type: 'POST',
-					data: 'listing_id=' + _this.model.id + '&item_id=' + _this.itemId + '&action=delete',
+					data: 'listing_id=' + _this.model.id + '&action=delete',
 					success: function()
 					{
 						_this.$emit('delete', _this.model);

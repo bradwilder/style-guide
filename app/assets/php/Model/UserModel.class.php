@@ -7,175 +7,117 @@ use PHPAuth\SMSDelegate;
 
 class UserModel extends Model_base
 {
-	public $userID;
-	public $email;
-	public $phone;
-	public $displayName;
-	public $groupID;
-	public $currUserID;
-	public $currUserPassword;
-	public $oldPassword;
-	public $newPassword;
-	public $newPasswordConfirm;
-	public $requestIDs;
-	public $emailKey;
-	public $smsKey;
-	
 	public function nameExists(string $name, int $selfID = null)
 	{
 		return User::nameExists($this->db, $name, $selfID);
 	}
 	
-	public function edit()
+	public function edit(int $userID, string $email = null, string $phone = null, string $displayName = null, int $groupID = null)
 	{
-		if ($this->userID)
+		$user = new User($this->db, $userID);
+		$changeEmailError;
+		if ($email)
 		{
-			$user = new User($this->db, $this->userID);
-			$changeEmailError;
-			if ($this->email)
-			{
-				$config = new Config($this->db);
-				$auth = new Auth($this->db, $config, new EmailDelegate(), new SMSDelegate());
+			$config = new Config($this->db);
+			$auth = new Auth($this->db, $config, new EmailDelegate(), new SMSDelegate());
 
-				$changeEmailError = $auth->changeEmail($user, $this->email);
-			}
-			
-			if (!$changeEmailError || !$changeEmailError['error'])
-			{
-				$user->phone = $this->phone;
-				$user->displayName = $this->displayName;
-				$user->groupID = $this->groupID;
-				$user->write();
-			}
-			else
-			{
-				return $changeEmailError['message'];
-			}
+			$changeEmailError = $auth->changeEmail($user, $email);
 		}
-		else
-		{
-			throw new Exception('User ID must be set');
-		}
-	}
-	
-	public function add()
-	{
-		if ($this->email && $this->groupID)
-		{
-			$config = new Config($this->db);
-			$auth = new Auth($this->db, $config, new EmailDelegate(), new SMSDelegate());
-			
-			$registerError = $auth->register($this->email, $this->phone, null, null);
-			if (!$registerError['error'])
-			{
-				$user = UserFactory::readByName($this->email);
-				$user->displayName = $this->displayName;
-				$user->groupID = $this->groupID;
-				$user->write();
-			}
-			else
-			{
-				return $registerError['message'];
-			}
-		}
-		else
-		{
-			throw new Exception('Email and group ID must be set');
-		}
-	}
-	
-	public function delete()
-	{
-		if ($this->userID && $this->currUserID && $this->currUserPassword)
-		{
-			$config = new Config($this->db);
-			$auth = new Auth($this->db, $config, new EmailDelegate(), new SMSDelegate());
-			
-			$user = new User($this->db, $this->userID);
-			$user->read();
-			$currUser = new User($this->db, $this->currUserID);
-			$currUser->read();
-			return $auth->deleteUser($user, $currUser, $this->currUserPassword);
-		}
-		else
-		{
-			throw new Exception('User ID, current user ID, and current user password must be set');
-		}
-	}
-	
-	public function undelete()
-	{
-		if ($this->userID)
-		{
-			$config = new Config($this->db);
-			$auth = new Auth($this->db, $config, new EmailDelegate(), new SMSDelegate());
-			
-			$user = new User($this->db, $this->userID);
-			$user->read();
-			$undeleteError = $auth->undeleteUser($user);
-			if ($undeleteError['error'])
-			{
-				return $undeleteError['message'];
-			}
-		}
-		else
-		{
-			throw new Exception('User ID must be set');
-		}
-	}
-	
-	public function changePassword()
-	{
-		if ($this->userID && $this->oldPassword && $this->newPassword && $this->newPasswordConfirm)
-		{
-			$config = new Config($this->db);
-			$auth = new Auth($this->db, $config, new EmailDelegate(), new SMSDelegate());
-			
-			$user = new User($this->db, $this->userID);
-			$user->read();
-			$changedError = $auth->changePassword($user, $this->oldPassword, $this->newPassword, $this->newPasswordConfirm);
-			if ($changedError['error'])
-			{
-				return $changedError['message'];
-			}
-		}
-		else
-		{
-			throw new Exception('User ID and all password fields must be set');
-		}
-	}
-	
-	public function activationRequest()
-	{
-		if ($this->userID)
-		{
-			$config = new Config($this->db);
-			$auth = new Auth($this->db, $config, new EmailDelegate(), new SMSDelegate());
-			
-			$user = new User($this->db, $this->userID);
-			$user->read();
-			$sentError = $auth->resendActivation($user);
-			if ($sentError['error'])
-			{
-				return $sentError['message'];
-			}
-		}
-		else
-		{
-			throw new Exception('User ID must be set');
-		}
-	}
-	
-	public function activate()
-	{
-		$smsEnabled = $this->getSMSEnabled();
 		
-		if ($this->emailKey && (!$smsEnabled || $this->smsKey) && $this->newPassword && $this->newPasswordConfirm)
+		if (!$changeEmailError || !$changeEmailError['error'])
+		{
+			$user->phone = $phone;
+			$user->displayName = $displayName;
+			$user->groupID = $groupID;
+			$user->write();
+		}
+		else
+		{
+			return $changeEmailError['message'];
+		}
+	}
+	
+	public function add(string $email = null, int $groupID, string $phone = null, string $displayName = null)
+	{
+		$config = new Config($this->db);
+		$auth = new Auth($this->db, $config, new EmailDelegate(), new SMSDelegate());
+		
+		$registerError = $auth->register($email, $phone, null, null);
+		if (!$registerError['error'])
+		{
+			$user = UserFactory::readByName($email);
+			$user->displayName = $displayName;
+			$user->groupID = $groupID;
+			$user->write();
+		}
+		else
+		{
+			return $registerError['message'];
+		}
+	}
+	
+	public function delete(int $userID, int $currUserID, string $currUserPassword)
+	{
+		$config = new Config($this->db);
+		$auth = new Auth($this->db, $config, new EmailDelegate(), new SMSDelegate());
+		
+		$user = new User($this->db, $userID);
+		$user->read();
+		$currUser = new User($this->db, $currUserID);
+		$currUser->read();
+		return $auth->deleteUser($user, $currUser, $currUserPassword);
+	}
+	
+	public function undelete(int $userID)
+	{
+		$config = new Config($this->db);
+		$auth = new Auth($this->db, $config, new EmailDelegate(), new SMSDelegate());
+		
+		$user = new User($this->db, $userID);
+		$user->read();
+		$undeleteError = $auth->undeleteUser($user);
+		if ($undeleteError['error'])
+		{
+			return $undeleteError['message'];
+		}
+	}
+	
+	public function changePassword(int $userID, string $oldPassword, string $newPassword, string $newPasswordConfirm)
+	{
+		$config = new Config($this->db);
+		$auth = new Auth($this->db, $config, new EmailDelegate(), new SMSDelegate());
+		
+		$user = new User($this->db, $userID);
+		$user->read();
+		$changedError = $auth->changePassword($user, $oldPassword, $newPassword, $newPasswordConfirm);
+		if ($changedError['error'])
+		{
+			return $changedError['message'];
+		}
+	}
+	
+	public function activationRequest(int $userID)
+	{
+		$config = new Config($this->db);
+		$auth = new Auth($this->db, $config, new EmailDelegate(), new SMSDelegate());
+		
+		$user = new User($this->db, $userID);
+		$user->read();
+		$sentError = $auth->resendActivation($user);
+		if ($sentError['error'])
+		{
+			return $sentError['message'];
+		}
+	}
+	
+	public function activate(string $emailKey, string $newPassword, string $newPasswordConfirm, string $smsKey = null)
+	{
+		if ($smsKey || !$this->getSMSEnabled())
 		{
 			$config = new Config($this->db);
 			$auth = new Auth($this->db, $config, new EmailDelegate(), new SMSDelegate());
 			
-			$activate = $auth->resetActivate($this->emailKey, $this->newPassword, $this->newPasswordConfirm, $this->smsKey);
+			$activate = $auth->resetActivate($emailKey, $newPassword, $newPasswordConfirm, $smsKey);
 			if (!$activate['error'])
 			{
 				return $activate;
@@ -190,43 +132,34 @@ class UserModel extends Model_base
 		}
 		else
 		{
-			throw new Exception('Keys and password fields must be set');
+			throw new Exception('SMS key must be provided');
 		}
 	}
 	
-	public function resendActivation()
+	public function resendActivation(string $emailKey, string $smsKey = null)
 	{
-		$smsEnabled = $this->getSMSEnabled();
-		
-		if ($this->emailKey && (!$smsEnabled || $this->smsKey))
+		if ($smsKey || !$this->getSMSEnabled())
 		{
 			$config = new Config($this->db);
 			$auth = new Auth($this->db, $config, new EmailDelegate(), new SMSDelegate());
 			
-			return $auth->resendActivationUser($this->emailKey, $this->smsKey);
+			return $auth->resendActivationUser($emailKey, $smsKey);
 		}
 		else
 		{
-			throw new Exception('Email and SMS keys must be set');
+			throw new Exception('SMS key must be provided');
 		}
 	}
 	
-	public function deleteRequests()
+	public function deleteRequests($requestIDs)
 	{
-		if ($this->requestIDs)
-		{
-			$config = new Config($this->db);
-			$auth = new Auth($this->db, $config, new EmailDelegate(), new SMSDelegate());
+		$config = new Config($this->db);
+		$auth = new Auth($this->db, $config, new EmailDelegate(), new SMSDelegate());
 
-			$deletedError = $auth->deleteRelatedRequests($this->requestIDs);
-			if (!$deletedError)
-			{
-				return 'Unable to delete the request.';
-			}
-		}
-		else
+		$deletedError = $auth->deleteRelatedRequests($requestIDs);
+		if (!$deletedError)
 		{
-			throw new Exception('Request IDs must be set');
+			return 'Unable to delete the request.';
 		}
 	}
 	
@@ -238,68 +171,52 @@ class UserModel extends Model_base
 		return $auth->logout();
 	}
 	
-	public function login()
+	public function login(string $email, string $password)
 	{
-		if ($this->email && $this->currUserPassword)
+		$config = new Config($this->db);
+		$auth = new Auth($this->db, $config, new EmailDelegate(), new SMSDelegate());
+		
+		$return = $auth->login($email, $password, false);
+		if (!$return['error'])
 		{
-			$config = new Config($this->db);
-			$auth = new Auth($this->db, $config, new EmailDelegate(), new SMSDelegate());
-			
-			$return = $auth->login($this->email, $this->currUserPassword, false);
-			if (!$return['error'])
-			{
-				$return['showMessage'] = false;
-				return $return;
-			}
-			else
-			{
-				$error = ['error' => $return['message']];
-				if ($return['inactive'])
-				{
-					$error['inactive'] = '1';
-				}
-				
-				if ($error['reset'])
-				{
-					$error['reset'] = '1';
-				}
-				
-				return $error;
-			}
-		}
-		else
-		{
-			throw new Exception('Email and password must be set');
-		}
-	}
-	
-	public function requestReset()
-	{
-		if ($this->email)
-		{
-			$config = new Config($this->db);
-			$auth = new Auth($this->db, $config, new EmailDelegate(), new SMSDelegate());
-			
-			$return = $auth->requestReset($this->email);
-			$return['showMessage'] = true;
+			$return['showMessage'] = false;
 			return $return;
 		}
 		else
 		{
-			throw new Exception('Email must be set');
+			$error = ['error' => $return['message']];
+			if ($return['inactive'])
+			{
+				$error['inactive'] = '1';
+			}
+			
+			if ($error['reset'])
+			{
+				$error['reset'] = '1';
+			}
+			
+			return $error;
 		}
 	}
 	
-	public function resetPassword()
+	public function requestReset(string $email)
 	{
-		$smsEnabled = $this->getSMSEnabled();
+		$config = new Config($this->db);
+		$auth = new Auth($this->db, $config, new EmailDelegate(), new SMSDelegate());
 		
-		if ($this->emailKey && (!$smsEnabled || $this->smsKey) && $this->newPassword && $this->newPasswordConfirm)
+		$return = $auth->requestReset($email);
+		$return['showMessage'] = true;
+		return $return;
+	}
+	
+	public function resetPassword(string $emailKey, string $newPassword, string $newPasswordConfirm, string $smsKey = null)
+	{
+		if ($smsKey || !$this->getSMSEnabled())
 		{
 			$config = new Config($this->db);
 			$auth = new Auth($this->db, $config, new EmailDelegate(), new SMSDelegate());
 			
-			return $auth->resetPassword($this->emailKey, $this->newPassword, $this->newPasswordConfirm, $this->smsKey);
+			return $auth->resetPassword($emailKey, $newPassword, $newPasswordConfirm, $smsKey);
 		}
 		else
 		{

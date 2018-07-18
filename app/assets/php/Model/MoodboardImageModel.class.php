@@ -2,96 +2,61 @@
 
 class MoodboardImageModel extends Model_base
 {
-	public $id;
-	public $name;
-	public $description;
-	public $fileName;
-	
-	public function nameExists()
+	public function nameExists(string $name)
 	{
-		if ($this->name)
+		return MoodboardImage::nameExists($this->db, $name);
+	}
+	
+	public function uploadImage(string $name, string $fileName, string $description)
+	{
+		$uploaddir = __ASSETS_PATH . '/img/uploads/moodboard/';
+		$uploadfile = $uploaddir . $name;
+		
+		if (move_uploaded_file($fileName, $uploadfile))
 		{
-			$rows = $this->db->select('select count(*) as count from mb_image where name = ?', 's', [&$this->name]);
-			$count = $rows[0]['count'];
-			echo ($count != 0);
+			$moodboardImage = new MoodboardImage($this->db);
+			$moodboardImage->name = $name;
+			$moodboardImage->description = $description;
+			$moodboardImage->write();
 		}
 		else
 		{
-			throw new Exception('Image name must be set');
+			return "File upload failed";
 		}
 	}
 	
-	public function uploadImage()
+	public function deleteImage(int $id)
 	{
-		if ($this->name && $this->fileName)
-		{
-			$uploaddir = __ASSETS_PATH . '/img/uploads/moodboard/';
-			$uploadfile = $uploaddir . $this->name;
-			
-			if (move_uploaded_file($this->fileName, $uploadfile))
-			{
-				$moodboardImage = new MoodboardImage($this->db);
-				$moodboardImage->name = $this->name;
-				$moodboardImage->description = $this->description;
-				$moodboardImage->write();
-			}
-			else
-			{
-				return "File upload failed";
-			}
-		}
-		else
-		{
-			throw new Exception('Image name and file must be set');
-		}
+		$moodboardImage = new MoodBoardImage($id);
+		$moodboardImage->read();
+		
+		$imageName = $moodboardImage->name;
+		
+		$moodboardImage->delete();
+		
+		$uploaddir = __ASSETS_PATH . '/img/uploads/moodboard/';
+		$uploadfile = $uploaddir . $imageName;
+		unlink($uploadfile);
 	}
 	
-	public function deleteImage()
+	public function replaceImage(int $id, string $fileName)
 	{
-		if ($this->id)
+		$moodboardImage = new MoodBoardImage($id);
+		$moodboardImage->read();
+		
+		$imageName = $moodboardImage->name;
+		
+		$uploaddir = __ASSETS_PATH . '/img/uploads/moodboard/';
+		$uploadfile = $uploaddir . $imageName;
+		unlink($uploadfile);
+		
+		if (move_uploaded_file($fileName, $uploadfile))
 		{
-			$moodboardImage = new MoodBoardImage($this->id);
-			$moodboardImage->read();
-			
-			$imageName = $moodboardImage->name;
-			
-			$moodboardImage->delete();
-			
-			$uploaddir = __ASSETS_PATH . '/img/uploads/moodboard/';
-			$uploadfile = $uploaddir . $imageName;
-			unlink($uploadfile);
+			echo "Success";
 		}
 		else
 		{
-			throw new Exception('Image id must be set');
-		}
-	}
-	
-	public function replaceImage()
-	{
-		if ($this->id && $this->fileName)
-		{
-			$moodboardImage = new MoodBoardImage($this->id);
-			$moodboardImage->read();
-			
-			$imageName = $moodboardImage->name;
-			
-			$uploaddir = __ASSETS_PATH . '/img/uploads/moodboard/';
-			$uploadfile = $uploaddir . $imageName;
-			unlink($uploadfile);
-			
-			if (move_uploaded_file($this->fileName, $uploadfile))
-			{
-				echo "Success";
-			}
-			else
-			{
-				echo "Failed";
-			}
-		}
-		else
-		{
-			throw new Exception('Image id and file must be set');
+			echo "Failed";
 		}
 	}
 	

@@ -7,21 +7,9 @@ use PHPAuth\SMSDelegate;
 
 class SessionModel extends Model_base
 {
-	private $id;
-	
-	public function setSessionID($sessionID)
+	public function deleteSession(int $id)
 	{
-		$this->id = $sessionID;
-	}
-	
-	public function deleteSession()
-	{
-		if (!$this->id)
-		{
-			throw new Exception('Session id must be set');
-		}
-		
-		$session = new Session($this->db, $this->id);
+		$session = new Session($this->db, $id);
 		$session->delete();
 		
 		return true;
