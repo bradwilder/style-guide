@@ -33,22 +33,6 @@ class StyleguideConfigDetailModel extends Model_base
 		}
 	}
 	
-	public function getItemCode()
-	{
-		if ($this->configDetailID && $this->configDetailType && $this->configDetailType == 'Item')
-		{
-			$styleguideItem = new StyleguideItem($this->db, $this->configDetailID);
-			$styleguideItem->read();
-			$styleguideItem->readExtra();
-			
-			return $styleguideItem->type->code;
-		}
-		else
-		{
-			throw new Exception('ID and type must be set for "Item" type');
-		}
-	}
-	
 	private function getColors()
 	{
 		$colors = [];
