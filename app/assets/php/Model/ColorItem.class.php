@@ -4,13 +4,17 @@ class ColorItem
 {
 	public $name;
 	public $hex;
-	public $shades;
+	public $shades = [];
 	
-	public function __construct($name, $hex, $shades)
+	public function __construct(string $name, string $hex)
 	{
 		$this->name = $name;
 		$this->hex = $hex;
-		$this->shades = $shades;
+	}
+	
+	public function addShade(string $shade)
+	{
+		$this->shades []= $shade;
 	}
 }
 
