@@ -2,9 +2,6 @@
 
 class PageOptionModel extends Model_base
 {
-	public $pageCode;
-	public $value;
-	
 	public function getShowTOCOptions()
 	{
 		$options = [];
@@ -18,16 +15,9 @@ class PageOptionModel extends Model_base
 		return $options;
 	}
 	
-	public function setShowTOCOption()
+	public function setShowTOCOption(string $pageCode, string $value)
 	{
-		if ($this->pageCode && property_exists($this, 'value'))
-		{
-			$this->db->query('update page_options set value = ? where setting = "showTOC" and code = ?', 'ss', [&$this->value, &$this->pageCode]);
-		}
-		else
-		{
-			throw new Exception('Page code and show TOC value must be set');
-		}
+		$this->db->query('update page_options set value = ? where setting = "showTOC" and code = ?', 'ss', [&$value, &$pageCode]);
 	}
 }
 

@@ -14,10 +14,7 @@ class PageOptionController extends Controller_base
 	
 	public function setShowTOC()
 	{
-		$this->model->pageCode = $_POST['page_code'];
-		$this->model->value = $_POST['show'];
-		
-		$this->model->setShowTOCOption();
+		$this->model->setShowTOCOption($_POST['page_code'], $_POST['show'] ? '1' : '0');
 	}
 }
 

@@ -2,14 +2,11 @@
 
 class StyleguideConfigDetailModel extends Model_base
 {
-	public $configDetailType;
-	public $configDetailID;
-	
-	public function getDetailData()
+	public function getDetailData(string $configDetailType, int $configDetailID)
 	{
-		if ($this->configDetailType)
+		if ($configDetailType)
 		{
-			switch ($this->configDetailType)
+			switch ($configDetailType)
 			{
 				case 'Colors':
 					return $this->getColors();
@@ -20,11 +17,11 @@ class StyleguideConfigDetailModel extends Model_base
 				case 'Sections':
 					return $this->getSections();
 				case 'Section':
-					return $this->getSection();
+					return $this->getSection($configDetailID);
 				case 'Subsection':
-					return $this->getSubsection();
+					return $this->getSubsection($configDetailID);
 				case 'Item':
-					return $this->getItemData();
+					return $this->getItemData($configDetailID);
 			}
 		}
 		else
@@ -124,70 +121,49 @@ class StyleguideConfigDetailModel extends Model_base
 		return $items;
 	}
 	
-	private function getSection()
+	private function getSection(int $configDetailID)
 	{
-		if ($this->configDetailID)
-		{
-			$section = new StyleguideSection($this->db, $this->configDetailID);
-			$section->read();
-			$section->readExtra();
-			
-			$items = new StyleguideConfigDetailItems();
-			$items->item = $section;
-			$items->items = $section->subsections;
-			
-			return $items;
-		}
-		else
-		{
-			throw new Exception('ID must be set');
-		}
+		$section = new StyleguideSection($this->db, $configDetailID);
+		$section->read();
+		$section->readExtra();
+		
+		$items = new StyleguideConfigDetailItems();
+		$items->item = $section;
+		$items->items = $section->subsections;
+		
+		return $items;
 	}
 	
-	private function getSubsection()
+	private function getSubsection(int $configDetailID)
 	{
-		if ($this->configDetailID)
-		{
-			$subsection = new StyleguideSubsection($this->db, $this->configDetailID);
-			$subsection->read();
-			$subsection->readExtra();
-			
-			$items = new StyleguideConfigDetailItems();
-			$items->item = $subsection;
-			$items->items = $subsection->items;
-			$items->subitems = $subsection->subSubsections;
-			
-			return $items;
-		}
-		else
-		{
-			throw new Exception('ID must be set');
-		}
+		$subsection = new StyleguideSubsection($this->db, $configDetailID);
+		$subsection->read();
+		$subsection->readExtra();
+		
+		$items = new StyleguideConfigDetailItems();
+		$items->item = $subsection;
+		$items->items = $subsection->items;
+		$items->subitems = $subsection->subSubsections;
+		
+		return $items;
 	}
 	
-	private function getItemData()
+	private function getItemData(int $configDetailID)
 	{
-		if ($this->configDetailID)
-		{
-			$styleguideItem = new StyleguideItem($this->db, $this->configDetailID);
-			$styleguideItem->read();
-			$styleguideItem->readExtra();
-			
-			$columns = new StyleguideItemColumns($styleguideItem->colXs, $styleguideItem->colSm, $styleguideItem->colMd, $styleguideItem->colLg);
-			$itemData = $this->getItem($styleguideItem->type->code);
-			
-			return new StyleguideConfigDetailItem($styleguideItem->id, $styleguideItem->name, $styleguideItem->type, $itemData, $columns);
-		}
-		else
-		{
-			throw new Exception('ID must be set');
-		}
+		$styleguideItem = new StyleguideItem($this->db, $configDetailID);
+		$styleguideItem->read();
+		$styleguideItem->readExtra();
+		
+		$columns = new StyleguideItemColumns($styleguideItem->colXs, $styleguideItem->colSm, $styleguideItem->colMd, $styleguideItem->colLg);
+		$itemData = $this->getItem($styleguideItem->type->code, $configDetailID);
+		
+		return new StyleguideConfigDetailItem($styleguideItem->id, $styleguideItem->name, $styleguideItem->type, $itemData, $columns);
 	}
 	
-	private function getItem($itemTypeCode)
+	private function getItem(string $itemTypeCode, int $configDetailID)
 	{
 		$model = StyleguideItemFactory::modelByCode($itemTypeCode);
-		$model->itemID = $this->configDetailID;
+		$model->itemID = $configDetailID;
 		return $model->getConfigData();
 	}
 }
