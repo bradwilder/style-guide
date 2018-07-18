@@ -2,6 +2,8 @@
 
 class MoodboardImageModel extends Model_base
 {
+	private static $uploadDir = __ASSETS_PATH . '/img/uploads/moodboard/';
+	
 	public function nameExists(string $name)
 	{
 		return MoodboardImage::nameExists($this->db, $name);
@@ -9,8 +11,7 @@ class MoodboardImageModel extends Model_base
 	
 	public function uploadImage(string $name, string $fileName, string $description)
 	{
-		$uploaddir = __ASSETS_PATH . '/img/uploads/moodboard/';
-		$uploadfile = $uploaddir . $name;
+		$uploadfile = self::$uploadDir . $name;
 		
 		if (move_uploaded_file($fileName, $uploadfile))
 		{
@@ -30,13 +31,12 @@ class MoodboardImageModel extends Model_base
 		$moodboardImage = new MoodBoardImage($id);
 		$moodboardImage->read();
 		
-		$imageName = $moodboardImage->name;
+		$uploadfile = self::$uploadDir . $moodboardImage->name;
 		
-		$moodboardImage->delete();
-		
-		$uploaddir = __ASSETS_PATH . '/img/uploads/moodboard/';
-		$uploadfile = $uploaddir . $imageName;
-		unlink($uploadfile);
+		if (unlink($uploadfile))
+		{
+			$moodboardImage->delete();
+		}
 	}
 	
 	public function replaceImage(int $id, string $fileName)
@@ -44,13 +44,9 @@ class MoodboardImageModel extends Model_base
 		$moodboardImage = new MoodBoardImage($id);
 		$moodboardImage->read();
 		
-		$imageName = $moodboardImage->name;
+		$uploadfile = self::$uploadDir . $moodboardImage->name;
 		
-		$uploaddir = __ASSETS_PATH . '/img/uploads/moodboard/';
-		$uploadfile = $uploaddir . $imageName;
-		unlink($uploadfile);
-		
-		if (move_uploaded_file($fileName, $uploadfile))
+		if (unlink($uploadfile) && move_uploaded_file($fileName, $uploadfile))
 		{
 			echo "Success";
 		}
