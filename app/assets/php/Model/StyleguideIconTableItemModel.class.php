@@ -4,10 +4,10 @@ class StyleguideIconTableItemModel extends StyleguideItemModel
 {
 	public function getData()
 	{
-		if ($this->foreignID)
+		if ($this->itemID)
 		{
 			$icons = [];
-			$iconRows = $this->db->select('select l.html from sg_icon_listing_table t join sg_icon_listing l on l.itemID = t.baseID where t.baseID = ? order by l.position', 'i', [&$this->foreignID]);
+			$iconRows = $this->db->select('select l.html from sg_icon_listing_table t join sg_icon_listing l on l.itemID = t.baseID where t.baseID = ? order by l.position', 'i', [&$this->itemID]);
 			foreach ($iconRows as $iconRow)
 			{
 				$html = $iconRow['html'];
@@ -25,13 +25,13 @@ class StyleguideIconTableItemModel extends StyleguideItemModel
 	
 	public function getConfigData()
 	{
-		if ($this->foreignID)
+		if ($this->itemID)
 		{
-			$row = $this->db->select('select f.id, f.name from sg_icon_listing_table t join sg_font f on f.id = t.fontID where t.baseID = ?', 'i', [&$this->foreignID])[0];
+			$row = $this->db->select('select f.id, f.name from sg_icon_listing_table t join sg_font f on f.id = t.fontID where t.baseID = ?', 'i', [&$this->itemID])[0];
 		
 			$iconSet = new StyleguideConfigDetailIconSet($row['id'], $row['name']);
 			
-			$iconTable = new StyleguideIconTableItem($this->db, $this->foreignID);
+			$iconTable = new StyleguideIconTableItem($this->db, $this->itemID);
 			$iconTable->read();
 			$iconTable->readItemData();
 			

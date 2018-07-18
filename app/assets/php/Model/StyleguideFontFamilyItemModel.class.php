@@ -4,10 +4,10 @@ class StyleguideFontFamilyItemModel extends StyleguideItemModel
 {
 	public function getData()
 	{
-		if ($this->foreignID)
+		if ($this->itemID)
 		{
 			$query = 'select ft.code, f.id, f.name, a.alphabet from sg_font_family ff join sg_font f on f.id = ff.fontID join sg_font_type ft on ft.id = f.typeID left join sg_font_alphabet a on a.id = f.alphabetID where ff.baseID = ?';
-			$fontRow = $this->db->select($query, 'i', [&$this->foreignID])[0];
+			$fontRow = $this->db->select($query, 'i', [&$this->itemID])[0];
 			
 			$fontTypeCode = $fontRow['code'];
 			$fontID = $fontRow['id'];
@@ -38,9 +38,9 @@ class StyleguideFontFamilyItemModel extends StyleguideItemModel
 	
 	public function getConfigData()
 	{
-		if ($this->foreignID)
+		if ($this->itemID)
 		{
-			$fontFamily = new StyleguideFontFamilyItem($this->db, $this->foreignID);
+			$fontFamily = new StyleguideFontFamilyItem($this->db, $this->itemID);
 			$fontFamily->read();
 			
 			$font = new Font($this->db, $fontFamily->fontID);

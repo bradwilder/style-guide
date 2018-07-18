@@ -29,7 +29,7 @@ class StyleguideSection extends DBItem
 		}
 	}
 	
-	public function readExtra(bool $enabled = null)
+	public function readExtra(bool $enabled = null, bool $readFullItems = false)
 	{
 		$query = 'select id from sg_subsection where sectionID = ? and parentSubsectionID is null ' . (isset($enabled) ? 'and enabled = ' . ($enabled ? '1' : '0') : '') . ' order by position';
 		$rows = $this->db->select($query, 'i', [&$this->id]);
@@ -37,7 +37,7 @@ class StyleguideSection extends DBItem
 		{
 			$styleguideSubsection = new StyleguideSubsection($this->db, $row['id']);
 			$styleguideSubsection->read();
-			$styleguideSubsection->readExtra($enabled);
+			$styleguideSubsection->readExtra($enabled, $readFullItems);
 			
 			$this->subsections []= $styleguideSubsection;
 		}

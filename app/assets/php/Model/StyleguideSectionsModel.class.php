@@ -12,7 +12,7 @@ class StyleguideSectionsModel extends Model_base
 		{
 			$section = new StyleguideSection($this->db, $row['id']);
 			$section->read();
-			$section->readExtra($this->enabled);
+			$section->readExtra($this->enabled, true);
 			
 			$sections []= $section;
 		}

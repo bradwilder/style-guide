@@ -187,7 +187,7 @@ class StyleguideConfigDetailModel extends Model_base
 	private function getItem($itemTypeCode)
 	{
 		$model = StyleguideItemFactory::modelByCode($itemTypeCode);
-		$model->foreignID = $this->configDetailID;
+		$model->itemID = $this->configDetailID;
 		return $model->getConfigData();
 	}
 }

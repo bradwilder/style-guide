@@ -4,11 +4,11 @@ class StyleguideFontTableItemModel extends StyleguideItemModel
 {
 	public function getData()
 	{
-		if ($this->foreignID)
+		if ($this->itemID)
 		{
 			$listings = [];
 			$query = 'select l.id, l.text, f.name from sg_font_listing_table t join sg_font_listing l on l.itemID = t.baseID join sg_font f on f.id = l.fontID where t.baseID = ? order by l.position';
-			$listingRows = $this->db->select($query, 'i', [&$this->foreignID]);
+			$listingRows = $this->db->select($query, 'i', [&$this->itemID]);
 			foreach ($listingRows as $listingRow)
 			{
 				$listingID = $listingRow['id'];
@@ -36,9 +36,9 @@ class StyleguideFontTableItemModel extends StyleguideItemModel
 	
 	public function getConfigData()
 	{
-		if ($this->foreignID)
+		if ($this->itemID)
 		{
-			$fontTable = new StyleguideFontTableItem($this->db, $this->foreignID);
+			$fontTable = new StyleguideFontTableItem($this->db, $this->itemID);
 			$fontTable->read();
 			$fontTable->readItemData();
 			
