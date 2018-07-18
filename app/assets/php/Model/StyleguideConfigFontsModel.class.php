@@ -41,7 +41,7 @@ class StyleguideConfigFontsModel extends Model_base
 	{
 		if ($this->name)
 		{
-			return Font::nameExists($this->name, $this->id);
+			return Font::nameExists($this->db, $this->name, $this->id);
 		}
 		else
 		{

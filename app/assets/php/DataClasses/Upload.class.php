@@ -35,19 +35,15 @@ class Upload extends DBItemParent
 		return $this->type->code == 'folder';
 	}
 	
-	public static function uploadExists(string $name, int $folderID)
+	public static function uploadExists(Db $db, string $name, int $folderID)
 	{
-		$db = new Db();
-		
 		$query = 'select count(*) as count from ' . self::$tableName . ' where filePath = ? and parentID <=> ?';
 		$row = $db->select($query, 'si', [&$name, &$folderID])[0];
 		return $row['count'] > 0;
 	}
 	
-	public static function getUploadPath(int $parentPathID)
+	public static function getUploadPath(Db $db, int $parentPathID)
 	{
-		$db = new Db();
-		
 		$path = '';
 		while ($parentPathID)
 		{

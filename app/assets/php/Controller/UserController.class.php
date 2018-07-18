@@ -9,7 +9,7 @@ class UserController extends Controller_base
 	
 	public function emailExists()
 	{
-		echo User::nameExists($_POST['newValue'], $_POST['self_id']);
+		echo $this->model->nameExists($_POST['newValue'], $_POST['self_id']);
 	}
 	
 	public function add()

@@ -23,7 +23,7 @@ class StyleguideConfigSectionModel extends Model_base
 	{
 		if ($this->name)
 		{
-			return StyleguideSection::nameExists($this->name, $this->id);
+			return StyleguideSection::nameExists($this->db, $this->name, $this->id);
 		}
 		else
 		{

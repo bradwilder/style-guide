@@ -26,10 +26,7 @@ class Comment extends DBItem
 	
 	public function readExtra()
 	{
-		$query = 'select case when displayName is not null and CHAR_LENGTH(displayName) > 0 then displayName else email end as user_name from users where id = ?';
-		$row = $this->db->select($query, 'i', [&$this->userID])[0];
-		
-		$this->userName = $row['user_name'];
+		$this->userName = User::getUserName($this->db, $this->userID);
 	}
 }
 

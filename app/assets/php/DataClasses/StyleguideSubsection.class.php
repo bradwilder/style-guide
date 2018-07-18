@@ -75,10 +75,8 @@ class StyleguideSubsection extends DBItem
 		}
 	}
 	
-	private static function nameExists(string $name, int $sectionID, int $parentSubsectionID = null, int $selfID = null)
+	private static function nameExists(Db $db, string $name, int $sectionID, int $parentSubsectionID = null, int $selfID = null)
 	{
-		$db = new Db();
-		
 		$query = 'select count(*) as count from ' . self::$tableName . ' where name = ? and sectionID = ? and parentSubsectionID <=> ?';
 		$types = 'si';
 		$params = [&$name, &$sectionID, &$parentSubsectionID];
@@ -93,17 +91,17 @@ class StyleguideSubsection extends DBItem
 		return ($rows[0]['count'] != 0);
 	}
 	
-	public static function nameExistsNew(string $name, int $sectionID, int $parentSubsectionID = null)
+	public static function nameExistsNew(Db $db, string $name, int $sectionID, int $parentSubsectionID = null)
 	{
-		return self::nameExists($name, $sectionID, $parentSubsectionID);
+		return self::nameExists($db, $name, $sectionID, $parentSubsectionID);
 	}
 	
-	public static function nameExistsEdit(string $name, int $selfID)
+	public static function nameExistsEdit(Db $db, string $name, int $selfID)
 	{
-		$subsection = new StyleguideSubsection(new Db(), $selfID);
+		$subsection = new StyleguideSubsection($db, $selfID);
 		$subsection->read();
 		
-		return self::nameExists($name, $subsection->sectionID, $subsection->parentSubsectionID, $subsection->id);
+		return self::nameExists($db, $name, $subsection->sectionID, $subsection->parentSubsectionID, $subsection->id);
 	}
 }
 

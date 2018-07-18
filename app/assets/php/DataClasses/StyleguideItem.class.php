@@ -58,10 +58,8 @@ class StyleguideItem extends DBItemParent
 		}
 	}
 	
-	public static function nameExists(string $name, int $selfID = null)
+	public static function nameExists(Db $db, string $name, int $selfID = null)
 	{
-		$db = new Db();
-		
 		$query = 'select count(*) as count from ' . self::$tableName . ' where name = ?';
 		$types = 's';
 		$params = [&$name];

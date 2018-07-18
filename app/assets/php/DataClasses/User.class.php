@@ -46,10 +46,8 @@ class User extends DBItem
 		}
 	}
 	
-	public static function nameExists(string $name, int $selfID = null)
+	public static function nameExists(Db $db, string $name, int $selfID = null)
 	{
-		$db = new Db();
-		
 		$query = 'select count(*) as count from ' . self::$tableName . ' where email = ?';
 		$types = 's';
 		$params = [&$name];
@@ -62,6 +60,14 @@ class User extends DBItem
 		
 		$rows = $db->select($query, $types, $params);
 		return ($rows[0]['count'] != 0);
+	}
+	
+	public static function getUserName(DB $db, int $userID)
+	{
+		$query = 'select case when displayName is not null and CHAR_LENGTH(displayName) > 0 then displayName else email end as user_name from ' . self::$tableName . ' where id = ?';
+		$row = $db->select($query, 'i', [&$userID])[0];
+		
+		return $row['user_name'];
 	}
 }
 

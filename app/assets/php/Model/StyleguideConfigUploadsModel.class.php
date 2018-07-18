@@ -12,12 +12,12 @@ class StyleguideConfigUploadsModel extends Model_base
 	{
 		if ($this->id && $this->fileName && $this->uploadFile)
 		{
-			if (Upload::uploadExists($this->fileName, $this->id))
+			if (Upload::uploadExists($this->db, $this->fileName, $this->id))
 			{
 				return 'Name already exists in this folder';
 			}
 			
-			$path = Upload::getUploadPath($this->id);
+			$path = Upload::getUploadPath($this->db, $this->id);
 			$uploaddir = __ASSETS_PATH . '/img/uploads/style-guide/' . $path;
 			$uploadfile = $uploaddir . $this->fileName;
 			
@@ -46,12 +46,12 @@ class StyleguideConfigUploadsModel extends Model_base
 	{
 		if ($this->fileName)
 		{
-			if (Upload::uploadExists($this->fileName, $this->id))
+			if (Upload::uploadExists($this->db, $this->fileName, $this->id))
 			{
 				return 'Name already exists in this folder';
 			}
 			
-			$path = Upload::getUploadPath($this->id);
+			$path = Upload::getUploadPath($this->db, $this->id);
 			$newdir = __ASSETS_PATH . '/img/uploads/style-guide/' . $path . $this->fileName;
 			
 			if (mkdir($newdir))
@@ -79,7 +79,7 @@ class StyleguideConfigUploadsModel extends Model_base
 		{
 			$upload = UploadFactory::readUploadByID($this->id);
 			
-			$parentPath = Upload::getUploadPath($upload->parentID);
+			$parentPath = Upload::getUploadPath($this->db, $upload->parentID);
 			
 			$path = __ASSETS_PATH . '/img/uploads/style-guide/' . $parentPath . $upload->filePath;
 			
@@ -157,7 +157,7 @@ class StyleguideConfigUploadsModel extends Model_base
 			$fileUpload->shortName = $this->shortName;
 			$fileUpload->fullName = $this->longName;
 			
-			$parentPath = Upload::getUploadPath($fileUpload->parentID);
+			$parentPath = Upload::getUploadPath($this->db, $fileUpload->parentID);
 			$uploaddir = __ASSETS_PATH . '/img/uploads/style-guide/' . $parentPath;
 			
 			$file = $this->uploadFile['tmp_name'];
@@ -200,7 +200,7 @@ class StyleguideConfigUploadsModel extends Model_base
 			$folder = new UploadFolder($this->db, $this->id);
 			$folder->read();
 			
-			$parentPath = Upload::getUploadPath($folder->parentID);
+			$parentPath = Upload::getUploadPath($this->db, $folder->parentID);
 			$uploaddir = __ASSETS_PATH . '/img/uploads/style-guide/' . $parentPath;
 			
 			if (rename($uploaddir . $folder->filePath, $uploaddir . $this->fileName))

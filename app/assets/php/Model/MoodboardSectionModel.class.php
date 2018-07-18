@@ -9,6 +9,11 @@ class MoodboardSectionModel extends Model_base
 	public $sectionImageID;
 	public $imageIDs;
 	
+	public function nameExists(string $name, int $selfID = null)
+	{
+		return MoodboardSection::nameExists($this->db, $name, $selfID);
+	}
+	
 	public function newSection()
 	{
 		if ($this->name)

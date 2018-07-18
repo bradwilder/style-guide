@@ -25,7 +25,7 @@ class StyleguideConfigItemModel extends Model_base
 	{
 		if ($this->name)
 		{
-			return StyleguideItem::nameExists($this->name, $this->id);
+			return StyleguideItem::nameExists($this->db, $this->name, $this->id);
 		}
 		else
 		{

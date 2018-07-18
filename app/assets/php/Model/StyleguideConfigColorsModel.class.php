@@ -46,7 +46,7 @@ class StyleguideConfigColorsModel extends Model_base
 	{
 		if ($this->name)
 		{
-			return Color::nameExists($this->name, $this->id);
+			return Color::nameExists($this->db, $this->name, $this->id);
 		}
 		else
 		{

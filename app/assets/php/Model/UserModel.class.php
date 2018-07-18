@@ -21,6 +21,11 @@ class UserModel extends Model_base
 	public $emailKey;
 	public $smsKey;
 	
+	public function nameExists(string $name, int $selfID = null)
+	{
+		return User::nameExists($this->db, $name, $selfID);
+	}
+	
 	public function edit()
 	{
 		if ($this->userID)

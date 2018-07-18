@@ -9,7 +9,7 @@ class MoodboardSectionController extends Controller_base
 	
 	public function nameExists()
 	{
-		echo MoodboardSection::nameExists($_POST['newValue'], $_POST['self_id']);
+		echo $this->model->nameExists($_POST['newValue'], $_POST['self_id']);
 	}
 	
 	public function add()

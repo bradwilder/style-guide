@@ -28,11 +28,11 @@ class StyleguideConfigSubsectionModel extends Model_base
 		{
 			if ($this->id)
 			{
-				return StyleguideSubsection::nameExistsEdit($this->name, $this->id);
+				return StyleguideSubsection::nameExistsEdit($this->db, $this->name, $this->id);
 			}
 			else
 			{
-				return StyleguideSubsection::nameExistsNew($this->name, $this->sectionID, $this->parentID);
+				return StyleguideSubsection::nameExistsNew($this->db, $this->name, $this->sectionID, $this->parentID);
 			}
 		}
 		else

@@ -20,7 +20,7 @@ class MoodboardImage extends DBItem
 	
 	public function readExtra()
 	{
-		$query = 'select s.name from mb_image i join mb_section_image si on si.imageID = i.id join mb_section s on s.id = si.sectionID where i.id = ?';
+		$query = 'select s.name from ' . self::$tableName . ' i join mb_section_image si on si.imageID = i.id join mb_section s on s.id = si.sectionID where i.id = ?';
 		$rows = $this->db->select($query, 'i', [&$this->id]);
 		
 		$this->sections = $rows;

@@ -165,7 +165,7 @@ class Auth
             return $return;
         }
 		
-        if (User::nameExists($email))
+        if (User::nameExists($this->db, $email))
 		{
             $this->addAttempt();
             $return['message'] = $this->strings["email_taken"];
@@ -1102,7 +1102,7 @@ class Auth
             return $return;
         }
         
-        if (User::nameExists($email))
+        if (User::nameExists($this->db, $email))
 		{
             $this->addAttempt();
             $return['message'] = $this->strings["email_taken"];

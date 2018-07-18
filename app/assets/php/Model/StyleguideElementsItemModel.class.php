@@ -18,7 +18,7 @@ class StyleguideElementsItemModel extends StyleguideItemModel
 					$fullName = $elementRow['u' . $i .  '_full_name'];
 					
 					$parentPathID = $elementRow['u' . $i .  '_path_id'];
-					$path = Upload::getUploadPath($parentPathID);
+					$path = Upload::getUploadPath($this->db, $parentPathID);
 					
 					$element = new ElementItem($path, $file, $shortName, $fullName);
 					$elements []= $element;
@@ -49,7 +49,7 @@ class StyleguideElementsItemModel extends StyleguideItemModel
 			
 			foreach ($element->uploads as $upload)
 			{
-				$elementUpload = new StyleguideConfigDetailElementUpload($upload->id, $upload->filePath, Upload::getUploadPath($upload->parentID));
+				$elementUpload = new StyleguideConfigDetailElementUpload($upload->id, $upload->filePath, Upload::getUploadPath($this->db, $upload->parentID));
 				$elementItem->addImage($elementUpload);
 			}
 			
