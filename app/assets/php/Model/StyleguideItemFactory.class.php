@@ -86,23 +86,32 @@ class StyleguideItemFactory
 	
 	public static function viewByCode($code, $model, $currentUser)
 	{
+		$template;
 		switch ($code)
 		{
 			case 'color-var-desc':
 			case 'color-desc':
-				return new StyleguideColorDescriptorItemView($model, $currentUser);
+				$template = new Template(__ASSETS_PATH . '/php/View/Template/ColorSwatch.template.php');
+				break;
 			case 'color-var':
 			case 'color':
-				return new StyleguideColorItemView($model, $currentUser);
+				$template = new Template(__ASSETS_PATH . '/php/View/Template/ColorTile.template.php');
+				break;
 			case 'font-fmy':
-				return new StyleguideFontFamilyItemView($model, $currentUser);
+				$template = new Template(__ASSETS_PATH . '/php/View/Template/FontFamily.template.php');
+				break;
 			case 'font-tbl':
-				return new StyleguideFontTableItemView($model, $currentUser);
+				$template = new Template(__ASSETS_PATH . '/php/View/Template/FontListingTable.template.php');
+				break;
 			case 'icons-css':
-				return new StyleguideIconTableItemView($model, $currentUser);
+				$template = new Template(__ASSETS_PATH . '/php/View/Template/Icons.template.php');
+				break;
 			case 'elem-seg':
-				return new StyleguideElementsItemView($model, $currentUser);
+				$template = new Template(__ASSETS_PATH . '/php/View/Template/ElementListing.template.php');
+				break;
 		}
+		
+		return new StyleguideItemView($model, $currentUser, $template);
 	}
 }
 

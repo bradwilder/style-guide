@@ -1,6 +1,6 @@
 <?php
 
-abstract class StyleguideItemView extends View_base
+class StyleguideItemView extends View_base
 {
 	public function __construct(StyleguideItemModel $model, $currentUser, $templateFile)
 	{
