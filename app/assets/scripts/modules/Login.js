@@ -1,5 +1,3 @@
-import Session from './Session';
-
 class Login
 {
 	constructor()
